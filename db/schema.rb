@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170720121346) do
+ActiveRecord::Schema.define(version: 20170722112315) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -72,24 +72,6 @@ ActiveRecord::Schema.define(version: 20170720121346) do
     t.index ["user_id"], name: "index_marks_on_user_id"
   end
 
-  create_table "permissions", force: :cascade do |t|
-    t.string "title"
-    t.string "description"
-  end
-
-  create_table "permissions_roles", id: false, force: :cascade do |t|
-    t.bigint "role_id"
-    t.bigint "permission_id"
-    t.index ["permission_id"], name: "index_permissions_roles_on_permission_id"
-    t.index ["role_id"], name: "index_permissions_roles_on_role_id"
-  end
-
-  create_table "roles", force: :cascade do |t|
-    t.bigint "school_id"
-    t.string "title"
-    t.index ["school_id"], name: "index_roles_on_school_id"
-  end
-
   create_table "schools", force: :cascade do |t|
     t.string "name"
     t.string "address"
@@ -105,18 +87,16 @@ ActiveRecord::Schema.define(version: 20170720121346) do
 
   create_table "users", force: :cascade do |t|
     t.bigint "school_id"
-    t.bigint "role_id"
     t.bigint "group_id"
+    t.integer "role", default: 0
+    t.boolean "admin", default: false
     t.string "name"
     t.string "email"
-<<<<<<< HEAD
     t.string "password_digest"
-=======
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "accepted", default: false
     t.index ["group_id"], name: "index_users_on_group_id"
->>>>>>> Controllers
-    t.index ["role_id"], name: "index_users_on_role_id"
     t.index ["school_id"], name: "index_users_on_school_id"
   end
 
