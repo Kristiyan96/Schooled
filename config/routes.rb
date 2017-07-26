@@ -5,5 +5,9 @@ Rails.application.routes.draw do
   get 'signup', to: 'users#new', as: 'signup'
 
   resource :sessions, only: [:new, :create, :destroy]
-  resources :courses, :roles, :schools, :subjects, :users, :groups
+  resources :schools do
+    resources :groups do
+      resources :enroll, only: [:create], shallow: true
+    end
+  end
 end

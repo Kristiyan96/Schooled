@@ -1,0 +1,4 @@
+- @groups.each do |group|
+  = group.name
+  = group.grade
+  = link_to school_group_enroll_index_path(group.school.id, group.id)
