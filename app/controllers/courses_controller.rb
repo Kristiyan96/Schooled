@@ -2,7 +2,12 @@ class CoursesController < ApplicationController
   before_action :set_course, only: [:show, :edit, :update, :destroy]
 
   def index
-    @courses = Course.all
+    case current_user.role
+    when 'teacher'
+      @course_groups = current_user.course_groups
+    when 'student'
+      @courses = current_user.courses
+    end
   end
 
   def show

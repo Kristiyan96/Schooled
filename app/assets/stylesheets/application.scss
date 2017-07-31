@@ -12,7 +12,7 @@
  *
  *= require_tree .
  *= require_self
- */
+*/
 @import "bootstrap-sprockets";
 @import "bootstrap";
 @import "font-awesome";
@@ -71,7 +71,6 @@ a.important{
 }
 #content a, #content .btn{
 	font-weight: bold !important;
-	margin-right: 20px;
 	color: #104b6a;
 }
 .footer{
@@ -155,9 +154,13 @@ h1{
 		.info{
 			font-weight: bold;
 			padding: 0px;
+			height: 100px;
+			min-width: 200px;
 			.footer{
 				background-color: transparent;
-				padding: 20px 0px;
+				padding: 0px;
+				position: absolute;
+				bottom: 0px;
 				a{
 					padding: 0px 15px;
 					color: white;
@@ -185,6 +188,9 @@ h1{
 		background-color: transparent;
 		b{
 			line-height: 30px;
+			a{
+				color: white;
+			}
 		}
 		i{
 			font-size: 20px;

@@ -1,0 +1,19 @@
+h1 = "#{@course_group.course.subject.name} #{@course_group.group.grade}#{@course_group.group.name}"
+
+= link_to root_path, class: 'col-xs-6' do
+	i.fa.fa-bell-o.col-xs-12 
+	span.col-xs-12 Homeworks
+= link_to root_path, class: 'col-xs-6' do
+	i.fa.fa-bell-o.col-xs-12 
+	span.col-xs-12 Messages
+
+- if current_user.teacher?
+	table
+	  tbody
+	    - @students.each do |student|
+	      tr
+	        td = link_to student.name, user_path(student)
+	        td 
+	        - student.marks.where(course_id: @course_group.course).each do |mark|
+	        	= mark.mark	
+	        td 
