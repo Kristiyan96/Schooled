@@ -207,3 +207,15 @@ ul.register-options{
 		font-weight: bold;
 	}
 }
+
+.homework, .notes{
+	padding: 15px;
+	.content{
+		padding: 10px;
+		border-radius: 10px;
+		border: 1px solid #2e7aa2;
+		.header{
+			text-decoration: underline;
+		}
+	}
+}

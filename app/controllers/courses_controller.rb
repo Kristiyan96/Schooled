@@ -6,7 +6,7 @@ class CoursesController < ApplicationController
     when 'teacher'
       @course_groups = current_user.course_groups
     when 'student'
-      @courses = current_user.courses
+      @course_groups = current_user.group.course_groups
     end
   end
 

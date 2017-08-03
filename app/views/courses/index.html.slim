@@ -8,6 +8,14 @@ h1 Your courses
 	        td = link_to "#{course_group.course.subject.name} #{course_group.group.grade}#{course_group.group.name}", school_course_group_path(current_user.school, course_group)
 	        td
 	        td 
-
+	        
+- if current_user.student?
+	table
+	  tbody
+	    - @course_groups.each do |course_group|
+	      tr
+	        td = link_to course_group.course.subject.name, school_course_group_path(current_user.school, course_group)
+	        td
+	        td 
 br
 

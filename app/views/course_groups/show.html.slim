@@ -1,11 +1,21 @@
-h1 = "#{@course_group.course.subject.name} #{@course_group.group.grade}#{@course_group.group.name}"
+h1 
+	= "#{@course_group.course.subject.name} #{@course_group.group.grade}#{@course_group.group.name}"
+	.pull-right
+		- @course_group.teachers.each do |teacher|
+			= teacher.name
 
-= link_to root_path, class: 'col-xs-6' do
-	i.fa.fa-bell-o.col-xs-12 
-	span.col-xs-12 Homeworks
-= link_to root_path, class: 'col-xs-6' do
-	i.fa.fa-bell-o.col-xs-12 
-	span.col-xs-12 Messages
+.homework.col-xs-12.col-md-6
+	.content
+		.header 
+			| Homework
+			= link_to root_path, class: 'pull-right' do
+				i.fa.fa-plus
+.notes.col-xs-12.col-md-6
+	.content
+		.header 
+			| Messages
+			= link_to root_path, class: 'pull-right' do
+				i.fa.fa-plus
 
 - if current_user.teacher?
 	table
@@ -17,3 +27,6 @@ h1 = "#{@course_group.course.subject.name} #{@course_group.group.grade}#{@course
 	        - student.marks.where(course_id: @course_group.course).each do |mark|
 	        	= mark.mark	
 	        td 
+- if current_user.student?
+	- current_user.marks.where(course_id: @course_group.course).each do |mark|
+		= mark.mark
