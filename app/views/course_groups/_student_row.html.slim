@@ -1,0 +1,31 @@
+- student ||= @student
+tr[class='#{student.id}']
+  td.col-xs-2 = link_to student.name, user_path(student)
+  td.col-xs-5 
+    - student.marks.where(course_id: @course_group.course).each do |mark|
+    	.received-marks.col-xs-1 = mark.mark	
+  td.col-xs-4
+  	- @mark = student.marks.new
+    = simple_form_for [student, @mark], remote: true do |f|
+      ul.give-marks
+        li
+          a
+            i.fa.fa-undo
+        li 
+          a.new 2
+        li 
+          a.new 3
+        li 
+          a.new 4
+        li 
+          a.new 5
+        li 
+          a.new 6
+
+    	= f.input :mark, label: false, as: :hidden, input_html: {value: '', class: 'mark'}
+    	= f.input :course_id, as: :hidden, input_html: {value: @course_group.course.id}
+    	= f.input :course_group_id, as: :hidden, input_html: {value: @course_group.id}
+  td.col-xs-1
+    - if student.marks.where(course_id: @course_group.course).size > 0
+      b Avg. 
+      = '%.2f' % student.marks.where(course_id: @course_group.course).average(:mark)

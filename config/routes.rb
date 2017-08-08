@@ -8,7 +8,9 @@ Rails.application.routes.draw do
   get 'logout', to: 'sessions#destroy', as: 'logout'
   get 'signup', to: 'users#new', as: 'signup'
 
-  resources :users
+  resources :users do
+    resources :marks, only: [:create, :destroy]
+  end
   resource :sessions, only: [:new, :create, :destroy]
   resources :schools do
     resources :courses, :course_groups

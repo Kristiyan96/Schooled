@@ -1,0 +1,9 @@
+$("tr.<%=@student.id%>").after("<%= escape_javascript(render 'course_groups/student_row') %>").remove();
+
+$(function() {
+    $('.give-marks a.new').click(function(){
+    	$(this).parent().siblings('div.mark_mark').children('.mark').val($(this).html());
+    	var form = $(this).parent().parent().parent();
+    	form.submit();
+    });
+});

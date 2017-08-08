@@ -16,17 +16,11 @@ h1
 			| Messages
 			= link_to root_path, class: 'pull-right' do
 				i.fa.fa-plus
-
 - if current_user.teacher?
 	table
 	  tbody
 	    - @students.each do |student|
-	      tr
-	        td = link_to student.name, user_path(student)
-	        td 
-	        - student.marks.where(course_id: @course_group.course).each do |mark|
-	        	= mark.mark	
-	        td 
+	    	= render 'student_row', student: student
 - if current_user.student?
 	- current_user.marks.where(course_id: @course_group.course).each do |mark|
 		= mark.mark
