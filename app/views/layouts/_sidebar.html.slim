@@ -1,25 +1,35 @@
-.sidebar.col-xs-10.col-sm-8.col-md-3
+.sidebar.col-xs-11.col-sm-8.col-md-3
 	.logo SCHOOLED
 	.content
 		.personal
-			.image.col-xs-4
+			.image.col-xs-3
 				i.fa.fa-user-circle-o
-			.info.col-xs-8
-				.name.col-xs-12 = link_to current_user.try(:name) || current_user.email, users_path(current_user)
+			.info.col-xs-9
+				.name.col-xs-12 = link_to current_user.try(:name) || current_user.email, user_path(current_user)
 				.role.col-xs-12 = "#{current_user.role} at #{current_user.school.name}" if current_user.school
 				.role.col-xs-6 
 				.footer.col-xs-12
-					= link_to 'Settings', edit_users_path(current_user)
+					= link_to 'Settings', edit_user_path(current_user)
 					= link_to 'Log out', logout_path
 		.col-xs-12.easy-access
-			= link_to root_path, :class => "col-xs-6" do
+			= link_to root_path, class: 'col-xs-6' do
 				i.fa.fa-envelope-open-o.col-xs-12 
 				span.col-xs-12 Messeges
-			= link_to root_path, :class => "col-xs-6" do
+			= link_to root_path, class: 'col-xs-6' do
 				i.fa.fa-bell-o.col-xs-12 
 				span.col-xs-12 Alerts
+			- if current_user.student? && current_user.group
+				= link_to school_group_path(current_user.school, current_user.group), class: 'col-xs-6' do
+					i.fa.fa-users.col-xs-12
+					span.col-xs-12 My class
+			= link_to school_courses_path(current_user.school), class: 'col-xs-6' do
+				i.fa.fa-tasks.col-xs-12
+				span.col-xs-12 My courses
+
 	.sidebar-footer.col-xs-12
-	  b Moonhythe Ltd. 2017
+	  b 
+	  	a href="http://www.moonhythe.com" Moonhythe Ltd. 
+	  	= Time.new.year
 	  .pull-right
 		  i.fa.fa-2x.fa-facebook
 		  i.fa.fa-2x.fa-linkedin

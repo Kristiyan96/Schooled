@@ -1,19 +1,21 @@
-h1 Listing courses
+h1 Your courses
 
-table
-  thead
-    tr
-      th
-      th
-      th
-
-  tbody
-    - @courses.each do |course|
-      tr
-        td = link_to 'Show', course
-        td = link_to 'Edit', edit_course_path(course)
-        td = link_to 'Destroy', course, data: { confirm: 'Are you sure?' }, method: :delete
-
+- if current_user.teacher?
+	table
+	  tbody
+	    - @course_groups.each do |course_group|
+	      tr
+	        td = link_to "#{course_group.course.subject.name} #{course_group.group.grade}#{course_group.group.name}", school_course_group_path(current_user.school, course_group)
+	        td
+	        td 
+	        
+- if current_user.student?
+	table
+	  tbody
+	    - @course_groups.each do |course_group|
+	      tr
+	        td = link_to course_group.course.subject.name, school_course_group_path(current_user.school, course_group)
+	        td
+	        td 
 br
 
-= link_to 'New Course', new_course_path

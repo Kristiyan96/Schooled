@@ -63,7 +63,7 @@ ActiveRecord::Schema.define(version: 20170722112315) do
   create_table "marks", force: :cascade do |t|
     t.bigint "course_id"
     t.bigint "user_id"
-    t.string "mark"
+    t.integer "mark"
     t.boolean "approved"
     t.string "description"
     t.datetime "created_at", null: false
