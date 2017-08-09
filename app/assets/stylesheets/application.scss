@@ -1,17 +1,17 @@
 /*
- * This is a manifest file that'll be compiled into application.css, which will include all the files
- * listed below.
- *
- * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
- * vendor/assets/stylesheets directory can be referenced here using a relative path.
- *
- * You're free to add application-wide styles to this file and they'll appear at the bottom of the
- * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
- * files in this directory. Styles in this file should be added after the last require_* statement.
- * It is generally better to create a new file per style scope.
- *
- *= require_tree .
- *= require_self
+* This is a manifest file that'll be compiled into application.css, which will include all the files
+* listed below.
+*
+* Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+* vendor/assets/stylesheets directory can be referenced here using a relative path.
+*
+* You're free to add application-wide styles to this file and they'll appear at the bottom of the
+* compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+* files in this directory. Styles in this file should be added after the last require_* statement.
+* It is generally better to create a new file per style scope.
+*
+*= require_tree .
+*= require_self
 */
 @import "bootstrap-sprockets";
 @import "bootstrap";
@@ -198,7 +198,6 @@ h1{
 		}
 	}
 }
-
 ul.register-options{
 	li{
 		float: left;
@@ -247,34 +246,25 @@ ul.register-options{
 	}
 	li:nth-of-type(1) a:hover{
 		background-color: rgb(220,20,60);
-		text-decoration: none;
-		padding: 13px 18px;
 		color: white !important;
 	}
 	li:nth-of-type(2) a:hover{
 		background-color: rgb(246,81,119);
-		text-decoration: none;
-		padding: 13px 18px;
 	}
 	li:nth-of-type(3) a:hover{
 		background-color: rgb(235,141,49);
-		text-decoration: none;
-		padding: 13px 18px;
 	}
 	li:nth-of-type(4) a:hover{
 		background-color: rgb(233,217,132);
-		text-decoration: none;
-		padding: 13px 18px;
 	}
 	li:nth-of-type(5) a:hover{
 		background-color: rgb(178,215,107);
-		text-decoration: none;
-		padding: 13px 18px;
 	}
 	li:nth-of-type(6) a:hover{
 		background-color: rgb(0,190,189);
+	}
+	li a:hover{
 		text-decoration: none;
 		padding: 13px 18px;
 	}
-
 }

@@ -22687,3 +22687,48 @@ Unpermitted parameter: :course_group_id
 Completed 200 OK in 19ms (Views: 10.9ms | ActiveRecord: 2.6ms)
 
 
+Started GET "/schools/1/course_groups/1" for 127.0.0.1 at 2017-08-09 19:15:10 +0300
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by CourseGroupsController#show as HTML
+  Parameters: {"school_id"=>"1", "id"=>"1"}
+  [1m[36mSchool Load (0.8ms)[0m  [1m[34mSELECT  "schools".* FROM "schools" WHERE "schools"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCourseGroup Load (1.2ms)[0m  [1m[34mSELECT  "course_groups".* FROM "course_groups" WHERE "course_groups"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mGroup Load (1.2ms)[0m  [1m[34mSELECT  "groups".* FROM "groups" WHERE "groups"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering course_groups/show.html.slim within layouts/application
+  [1m[36mCourse Load (1.2ms)[0m  [1m[34mSELECT  "courses".* FROM "courses" WHERE "courses"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mSubject Load (0.9ms)[0m  [1m[34mSELECT  "subjects".* FROM "subjects" WHERE "subjects"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Load (2.3ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "course_group_teachers" ON "users"."id" = "course_group_teachers"."user_id" WHERE "course_group_teachers"."course_group_id" = $1[0m  [["course_group_id", 1]]
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."group_id" = $1[0m  [["group_id", 1]]
+  [1m[36mMark Load (2.0ms)[0m  [1m[34mSELECT "marks".* FROM "marks" WHERE "marks"."user_id" = $1 AND "marks"."course_id" = 1[0m  [["user_id", 3]]
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "marks" WHERE "marks"."user_id" = $1 AND "marks"."course_id" = 1[0m  [["user_id", 3]]
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT AVG("marks"."mark") FROM "marks" WHERE "marks"."user_id" = $1 AND "marks"."course_id" = 1[0m  [["user_id", 3]]
+  Rendered course_groups/_student_row.html.slim (59.6ms)
+  Rendered course_groups/show.html.slim within layouts/application (119.0ms)
+  [1m[36mSchool Load (0.3ms)[0m  [1m[34mSELECT  "schools".* FROM "schools" WHERE "schools"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered layouts/_sidebar.html.slim (7.1ms)
+Completed 200 OK in 979ms (Views: 894.9ms | ActiveRecord: 33.4ms)
+
+
+Started GET "/schools/1/course_groups/1" for 127.0.0.1 at 2017-08-09 19:16:47 +0300
+Processing by CourseGroupsController#show as HTML
+  Parameters: {"school_id"=>"1", "id"=>"1"}
+  [1m[36mSchool Load (0.3ms)[0m  [1m[34mSELECT  "schools".* FROM "schools" WHERE "schools"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCourseGroup Load (0.2ms)[0m  [1m[34mSELECT  "course_groups".* FROM "course_groups" WHERE "course_groups"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mGroup Load (0.3ms)[0m  [1m[34mSELECT  "groups".* FROM "groups" WHERE "groups"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering course_groups/show.html.slim within layouts/application
+  [1m[36mCourse Load (0.2ms)[0m  [1m[34mSELECT  "courses".* FROM "courses" WHERE "courses"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mSubject Load (0.2ms)[0m  [1m[34mSELECT  "subjects".* FROM "subjects" WHERE "subjects"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "course_group_teachers" ON "users"."id" = "course_group_teachers"."user_id" WHERE "course_group_teachers"."course_group_id" = $1[0m  [["course_group_id", 1]]
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."group_id" = $1[0m  [["group_id", 1]]
+  [1m[36mMark Load (0.4ms)[0m  [1m[34mSELECT "marks".* FROM "marks" WHERE "marks"."user_id" = $1 AND "marks"."course_id" = 1[0m  [["user_id", 3]]
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "marks" WHERE "marks"."user_id" = $1 AND "marks"."course_id" = 1[0m  [["user_id", 3]]
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT AVG("marks"."mark") FROM "marks" WHERE "marks"."user_id" = $1 AND "marks"."course_id" = 1[0m  [["user_id", 3]]
+  Rendered course_groups/_student_row.html.slim (11.0ms)
+  Rendered course_groups/show.html.slim within layouts/application (22.4ms)
+  [1m[36mSchool Load (0.3ms)[0m  [1m[34mSELECT  "schools".* FROM "schools" WHERE "schools"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered layouts/_sidebar.html.slim (6.3ms)
+Completed 200 OK in 1415ms (Views: 1407.8ms | ActiveRecord: 3.2ms)
+
+

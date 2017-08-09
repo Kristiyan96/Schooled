@@ -3,12 +3,12 @@ class CourseGroupsController < ApplicationController
 
   def show
   	@students = @course_group.group.students
+  	@school = School.find(params[:school_id])
   end
 
   private
 
   def set_course_group
-  	@school = School.find(params[:school_id])
   	@course_group = CourseGroup.find(params[:id])
   end
 end
