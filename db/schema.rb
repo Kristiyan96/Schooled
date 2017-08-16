@@ -15,56 +15,27 @@ ActiveRecord::Schema.define(version: 20170722112315) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "course_group_teachers", force: :cascade do |t|
-    t.bigint "course_group_id"
-    t.bigint "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["course_group_id"], name: "index_course_group_teachers_on_course_group_id"
-    t.index ["user_id"], name: "index_course_group_teachers_on_user_id"
-  end
-
-  create_table "course_groups", force: :cascade do |t|
-    t.bigint "course_id"
-    t.bigint "group_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["course_id"], name: "index_course_groups_on_course_id"
-    t.index ["group_id"], name: "index_course_groups_on_group_id"
-  end
-
-  create_table "course_students", id: false, force: :cascade do |t|
-    t.bigint "course_id"
-    t.bigint "user_id"
-    t.float "first_term_mark"
-    t.float "second_term_mark"
-    t.float "final_mark"
-    t.index ["course_id"], name: "index_course_students_on_course_id"
-    t.index ["user_id"], name: "index_course_students_on_user_id"
-  end
-
   create_table "courses", force: :cascade do |t|
-    t.bigint "subject_id"
-    t.bigint "school_id"
-    t.integer "year"
+    t.bigint "school_id", null: false
+    t.date "year", null: false
     t.index ["school_id"], name: "index_courses_on_school_id"
-    t.index ["subject_id"], name: "index_courses_on_subject_id"
   end
 
   create_table "groups", force: :cascade do |t|
-    t.integer "grade"
-    t.string "name"
-    t.bigint "school_id"
+    t.bigint "school_id", null: false
+    t.integer "grade", null: false
+    t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["school_id"], name: "index_groups_on_school_id"
   end
 
   create_table "marks", force: :cascade do |t|
-    t.bigint "course_id"
-    t.bigint "user_id"
-    t.integer "mark"
-    t.boolean "approved"
+    t.bigint "course_id", null: false
+    t.bigint "user_id", null: false
+    t.float "mark", null: false
+    t.integer "purpose", default: 0, null: false
+    t.boolean "approved", default: false, null: false
     t.string "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -73,36 +44,58 @@ ActiveRecord::Schema.define(version: 20170722112315) do
   end
 
   create_table "schools", force: :cascade do |t|
-    t.string "name"
-    t.string "address"
-    t.string "phone_number"
+    t.string "name", null: false
+    t.string "address", null: false
+    t.string "phone_number", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
+  create_table "student_classes", force: :cascade do |t|
+    t.bigint "course_id", null: false
+    t.bigint "group_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["course_id"], name: "index_student_classes_on_course_id"
+    t.index ["group_id"], name: "index_student_classes_on_group_id"
+    t.index ["user_id"], name: "index_student_classes_on_user_id"
+  end
+
   create_table "subjects", force: :cascade do |t|
-    t.string "name"
-    t.integer "grade"
+    t.bigint "course_id", null: false
+    t.string "name", null: false
+    t.integer "grade", null: false
+    t.index ["course_id"], name: "index_subjects_on_course_id"
   end
 
   create_table "users", force: :cascade do |t|
     t.bigint "school_id"
     t.bigint "group_id"
-    t.integer "role", default: 0
-    t.integer "number"
-    t.boolean "admin", default: false
-    t.string "name"
-    t.string "email"
+    t.bigint "parent_id"
+    t.integer "role", default: 0, null: false
+    t.boolean "admin", default: false, null: false
+    t.string "name", null: false
+    t.string "email", null: false
+    t.string "password_digest", null: false
     t.string "address"
-    t.string "password_digest"
+    t.string "phone_number"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "accepted", default: false
     t.index ["group_id"], name: "index_users_on_group_id"
+    t.index ["parent_id"], name: "index_users_on_parent_id"
     t.index ["school_id"], name: "index_users_on_school_id"
   end
 
-  add_foreign_key "course_groups", "courses"
-  add_foreign_key "course_groups", "groups"
+  add_foreign_key "courses", "schools"
   add_foreign_key "groups", "schools"
+  add_foreign_key "marks", "courses"
+  add_foreign_key "marks", "users"
+  add_foreign_key "student_classes", "courses"
+  add_foreign_key "student_classes", "groups"
+  add_foreign_key "student_classes", "users"
+  add_foreign_key "subjects", "courses"
+  add_foreign_key "users", "groups"
+  add_foreign_key "users", "schools"
 end
