@@ -11,13 +11,17 @@ Rails.application.routes.draw do
   resources :users do
     resources :marks, only: [:create, :destroy]
   end
+
   resource :sessions, only: [:new, :create, :destroy]
+
   resources :schools do
-    resources :courses, :course_groups
+    resources :courses
     resources :groups do
       resources :enroll, only: [:create], shallow: true
     end
   end
+
+  resources :parentships, only: [:new, :create]
 
   resources :invitations, only: [:new, :create, :destroy]
 end

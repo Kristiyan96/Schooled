@@ -20,7 +20,8 @@ class User < ApplicationRecord
   validates :email, uniqueness: true, presence: true
   validates :password,
             presence: true,
-            length: { minimum: 6 }
+            length: { minimum: 6 },
+            allow_blank: true
   validates :password_digest, presence: true, allow_blank: true
 
   def admin?
