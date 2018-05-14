@@ -23,34 +23,39 @@ ActiveRecord::Schema.define(version: 2018_05_14_131141) do
   end
 
   create_table "classrooms", force: :cascade do |t|
+    t.bigint "teacher_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["teacher_id"], name: "index_classrooms_on_teacher_id"
   end
 
   create_table "guardianships", force: :cascade do |t|
-    t.bigint "parents_id"
-    t.bigint "students_id"
+    t.bigint "parent_id"
+    t.bigint "student_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["parents_id"], name: "index_guardianships_on_parents_id"
-    t.index ["students_id"], name: "index_guardianships_on_students_id"
+    t.index ["parent_id"], name: "index_guardianships_on_parent_id"
+    t.index ["student_id"], name: "index_guardianships_on_student_id"
   end
 
   create_table "headmasters", force: :cascade do |t|
     t.bigint "school_id", null: false
+    t.string "email", null: false
+    t.string "password_digest", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["school_id"], name: "index_headmasters_on_school_id"
   end
 
   create_table "marks", force: :cascade do |t|
-    t.bigint "students_id"
+    t.bigint "student_id"
     t.bigint "subject_id"
     t.bigint "school_year_id"
+    t.integer "number", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["school_year_id"], name: "index_marks_on_school_year_id"
-    t.index ["students_id"], name: "index_marks_on_students_id"
+    t.index ["student_id"], name: "index_marks_on_student_id"
     t.index ["subject_id"], name: "index_marks_on_subject_id"
   end
 
@@ -74,20 +79,25 @@ ActiveRecord::Schema.define(version: 2018_05_14_131141) do
   end
 
   create_table "remarks", force: :cascade do |t|
-    t.bigint "students_id"
+    t.bigint "student_id"
     t.bigint "school_year_id"
+    t.string "text", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["school_year_id"], name: "index_remarks_on_school_year_id"
-    t.index ["students_id"], name: "index_remarks_on_students_id"
+    t.index ["student_id"], name: "index_remarks_on_student_id"
   end
 
   create_table "school_years", force: :cascade do |t|
+    t.bigint "school_id"
+    t.string "year"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["school_id"], name: "index_school_years_on_school_id"
   end
 
   create_table "schools", force: :cascade do |t|
+    t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -104,8 +114,11 @@ ActiveRecord::Schema.define(version: 2018_05_14_131141) do
   end
 
   create_table "subjects", force: :cascade do |t|
+    t.bigint "school_id"
+    t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["school_id"], name: "index_subjects_on_school_id"
   end
 
   create_table "teachers", force: :cascade do |t|
