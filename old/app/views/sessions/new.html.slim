@@ -1,8 +1,0 @@
-h1 = t 'title.login'
-= simple_form_for :sessions, url: sessions_path do |f|
-  .field
-    = f.input :email
-  .field
-    = f.input :password
-  .actions
-    = submit_tag (t 'button.login')

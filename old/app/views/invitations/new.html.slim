@@ -1,9 +1,0 @@
-h1 = t 'title.new_application', school: current_user.school.name
-  
-= simple_form_for @invitation, html: {class: "col-xs-12 col-md-6"} do |f|
-  = f.association :group, collection: current_user.school.groups,
-                          label_method: lambda { |group| "#{group.grade}#{group.name}" }
-  = f.input :phone_number
-  = f.input :identification
-  = f.input :address
-  = f.button :submit, t 'button.send_application' 

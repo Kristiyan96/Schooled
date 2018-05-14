@@ -1,7 +1,0 @@
-ul.subjects
-  - if current_user.student?
-    - @courses.each do |course|
-      li = link_to course.abbreviation, controller: controller_name, action: action_name, user_id: current_user, course_id: course.id
-  - elsif current_user.teacher?
-    - @courses.each do |course|
-      li = link_to course.name_class, controller: controller_name, action: action_name, user_id: current_user, course_id: course.id

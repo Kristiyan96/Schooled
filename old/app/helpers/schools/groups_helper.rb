@@ -1,2 +1,0 @@
-module Schools::GroupsHelper
-end
