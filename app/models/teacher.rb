@@ -1,4 +1,6 @@
 class Teacher < ApplicationRecord
+  include Authentication
+
   belongs_to :school
 
   has_many :classrooms

@@ -1,4 +1,6 @@
 class Student < ApplicationRecord
+  include Authentication
+
   belongs_to :school
   belongs_to :classroom
 

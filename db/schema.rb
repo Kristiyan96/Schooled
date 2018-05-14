@@ -16,6 +16,8 @@ ActiveRecord::Schema.define(version: 2018_05_14_131141) do
   enable_extension "plpgsql"
 
   create_table "admins", force: :cascade do |t|
+    t.string "email", null: false
+    t.string "password_digest", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -65,6 +67,8 @@ ActiveRecord::Schema.define(version: 2018_05_14_131141) do
   end
 
   create_table "parents", force: :cascade do |t|
+    t.string "email", null: false
+    t.string "password_digest", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -91,6 +95,8 @@ ActiveRecord::Schema.define(version: 2018_05_14_131141) do
   create_table "students", force: :cascade do |t|
     t.bigint "school_id", null: false
     t.bigint "parent_id"
+    t.string "email", null: false
+    t.string "password_digest", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["parent_id"], name: "index_students_on_parent_id"
@@ -103,6 +109,8 @@ ActiveRecord::Schema.define(version: 2018_05_14_131141) do
   end
 
   create_table "teachers", force: :cascade do |t|
+    t.string "email", null: false
+    t.string "password_digest", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
