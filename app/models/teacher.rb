@@ -1,7 +1,7 @@
 class Teacher < ApplicationRecord
   include Authentication
 
-  belongs_to :school
+  belongs_to :school, optional: true
 
   has_many :classrooms
 

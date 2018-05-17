@@ -128,7 +128,7 @@ ActiveRecord::Schema.define(version: 2018_05_17_082113) do
     t.string "email", null: false
     t.string "password_digest", null: false
     t.string "first_name", null: false
-    t.string "middle_name", null: false
+    t.string "middle_name"
     t.string "last_name", null: false
     t.date "birthday", null: false
     t.datetime "created_at", null: false

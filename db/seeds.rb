@@ -31,12 +31,12 @@ gr4 = Group.create(name: 'b', school: feg)
 
 puts "Creating students"
 
-s1 = Student.create(school: smg, group: gr1, first_name: "Kristiyan", last_name: "Tsvetanov", birthday: Date.new(1996,2,28), email: "student1@smg.bg", password: "password", password_confirmation: "password_confirmation")
-s2 = Student.create(school: smg, group: gr1, first_name: "Nikola", last_name: "Jichev", birthday: Date.new(1996,6,13), email: "student2@smg.bg", password: "password", password_confirmation: "password_confirmation")
-s3 = Student.create(school: smg, group: gr2, first_name: "Alexandra", last_name: "Mitkova", birthday: Date.new(1996,3,9), email: "student3@smg.bg", password: "password", password_confirmation: "password_confirmation")
-s4 = Student.create(school: feg, group: gr3, first_name: "Ivan", last_name: "Geshev", birthday: Date.new(1996,4,12), email: "student1@feg.bg", password: "password", password_confirmation: "password_confirmation")
-s5 = Student.create(school: feg, group: gr4, first_name: "Boyan", last_name: "Yotov", birthday: Date.new(1996,7,15), email: "student2@feg.bg", password: "password", password_confirmation: "password_confirmation")
-s6 = Student.create(school: feg, group: gr4, first_name: "Velin", last_name: "Vergiev", birthday: Date.new(1996,8,21), email: "student3@feg.bg", password: "password", password_confirmation: "password_confirmation")
+s1 = Student.create(school: smg, group: gr1, first_name: "Kristiyan", last_name: "Tsvetanov", birthday: Date.new(1996,2,28), email: "student1@smg.bg", password: "password", password_confirmation: "password")
+s2 = Student.create(school: smg, group: gr1, first_name: "Nikola", last_name: "Jichev", birthday: Date.new(1996,6,13), email: "student2@smg.bg", password: "password", password_confirmation: "password")
+s3 = Student.create(school: smg, group: gr2, first_name: "Alexandra", last_name: "Mitkova", birthday: Date.new(1996,3,9), email: "student3@smg.bg", password: "password", password_confirmation: "password")
+s4 = Student.create(school: feg, group: gr3, first_name: "Ivan", last_name: "Geshev", birthday: Date.new(1996,4,12), email: "student1@feg.bg", password: "password", password_confirmation: "password")
+s5 = Student.create(school: feg, group: gr4, first_name: "Boyan", last_name: "Yotov", birthday: Date.new(1996,7,15), email: "student2@feg.bg", password: "password", password_confirmation: "password")
+s6 = Student.create(school: feg, group: gr4, first_name: "Velin", last_name: "Vergiev", birthday: Date.new(1996,8,21), email: "student3@feg.bg", password: "password", password_confirmation: "password")
 
 puts "Creating parents"
 
@@ -74,27 +74,12 @@ c8 = Course.create(school: feg, group: gr4, subject: maths, school_year: y2, tea
 
 puts "Creating marks"
 
-Mark.new(student: s1, course: c1, grade: 5)
-Mark.new(student: s1, course: c1, grade: 6)
-Mark.new(student: s1, course: c2, grade: 4)
-Mark.new(student: s2, course: c2, grade: 6)
-Mark.new(student: s2, course: c1, grade: 2)
-Mark.new(student: s2, course: c1, grade: 6)
-Mark.new(student: s3, course: c3, grade: 6)
-Mark.new(student: s3, course: c4, grade: 5)
-Mark.new(student: s3, course: c4, grade: 5)
-Mark.new(student: s4, course: c5, grade: 6)
-Mark.new(student: s4, course: c5, grade: 6)
-Mark.new(student: s4, course: c6, grade: 3)
-Mark.new(student: s5, course: c7, grade: 3)
-Mark.new(student: s5, course: c8, grade: 6)
-Mark.new(student: s5, course: c7, grade: 4)
-Mark.new(student: s5, course: c7, grade: 6)
-Mark.new(student: s6, course: c8, grade: 2)
-Mark.new(student: s6, course: c8, grade: 6)
-Mark.new(student: s6, course: c8, grade: 3)
+Mark.create(student: s1, course: c1, grade: 5.0)
+Mark.create(student: s1, course: c1, grade: 6.0)
+Mark.create(student: s2, course: c2, grade: 4.0)
+Mark.create(student: s2, course: c2, grade: 6.0)
 
 puts "Creating remarks"
 
-Remark.new(student: s1, course: c1, message: "Ставаш")
-Remark.new(student: s2, course: c2, message: "Не-Ставаш")
+Remark.create(student: s1, course: c1, message: "Ставаш")
+Remark.create(student: s2, course: c2, message: "Не-Ставаш")
