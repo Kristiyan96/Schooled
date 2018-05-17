@@ -5,7 +5,7 @@ class CreateMarks < ActiveRecord::Migration[5.2]
       t.references :subject
       t.references :school_year
 
-      t.integer :number, null: false
+      t.integer :grade, null: false
 
       t.timestamps
     end
