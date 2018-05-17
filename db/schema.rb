@@ -24,8 +24,12 @@ ActiveRecord::Schema.define(version: 2018_05_14_131141) do
 
   create_table "classrooms", force: :cascade do |t|
     t.bigint "teacher_id"
+    t.bigint "subject_id"
+    t.bigint "school_year_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["school_year_id"], name: "index_classrooms_on_school_year_id"
+    t.index ["subject_id"], name: "index_classrooms_on_subject_id"
     t.index ["teacher_id"], name: "index_classrooms_on_teacher_id"
   end
 
@@ -51,7 +55,7 @@ ActiveRecord::Schema.define(version: 2018_05_14_131141) do
     t.bigint "student_id"
     t.bigint "subject_id"
     t.bigint "school_year_id"
-    t.integer "number", null: false
+    t.integer "grade", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["school_year_id"], name: "index_marks_on_school_year_id"
@@ -98,18 +102,24 @@ ActiveRecord::Schema.define(version: 2018_05_14_131141) do
 
   create_table "schools", force: :cascade do |t|
     t.string "name"
+    t.string "address"
+    t.string "contact_number"
+    t.string "email"
+    t.integer "number"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "students", force: :cascade do |t|
     t.bigint "school_id", null: false
-    t.bigint "parent_id"
     t.string "email", null: false
     t.string "password_digest", null: false
+    t.string "first_name", null: false
+    t.string "middle_name", null: false
+    t.string "last_name", null: false
+    t.date "birthday", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["parent_id"], name: "index_students_on_parent_id"
     t.index ["school_id"], name: "index_students_on_school_id"
   end
 

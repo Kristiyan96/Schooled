@@ -1,10 +1,9 @@
 class CreateRemarks < ActiveRecord::Migration[5.2]
   def change
     create_table :remarks do |t|
-      t.references :student
-      t.references :school_year
-
-      t.string :text, null: false
+      t.text :message
+      t.references :course, foreign_key: true
+      t.references :student, foreign_key: true
 
       t.timestamps
     end

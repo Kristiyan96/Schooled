@@ -2,7 +2,7 @@ class Student < ApplicationRecord
   include Authentication
 
   belongs_to :school
-  belongs_to :classroom
+  belongs_to :group
 
   has_many :marks
   has_many :remarks
@@ -12,4 +12,8 @@ class Student < ApplicationRecord
 
   has_many :messages, as: :recepient
   has_many :messages, as: :sender
+
+  def courses
+  	group.courses
+  end
 end

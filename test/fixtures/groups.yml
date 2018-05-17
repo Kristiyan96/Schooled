@@ -1,11 +1,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  grade: 9.99
-  course: one
-  student: one
+  name: MyString
+  school: one
+  teacher: one
 
 two:
-  grade: 9.99
-  course: two
-  student: two
+  name: MyString
+  school: two
+  teacher: two
