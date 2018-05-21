@@ -15,13 +15,13 @@ french    = Subject.new(name: "French")
 
 puts "Creating headmasters"
 
-Headmaster.create(email: "headmaster@smg.bg", password: "password", password_confirmation: "password", school: smg)
-Headmaster.create(email: "headmaster@feg.bg", password: "password", password_confirmation: "password", school: feg)
+Headmaster.create(first_name: 'Ivailo', last_name: 'Tsekov', email: "headmaster@smg.bg", password: "password", password_confirmation: "password", school: smg)
+Headmaster.create(first_name: 'Ivan', last_name: 'Petrov', email: "headmaster@feg.bg", password: "password", password_confirmation: "password", school: feg)
 
 puts "Creating teachers"
 
-t1 = Teacher.create(email: "teacher@smg.bg", password: "password", password_confirmation: "password")
-t2 = Teacher.create(email: "teacher@feg.bg", password: "password", password_confirmation: "password")
+t1 = Teacher.create(first_name: "Tanq", last_name: "Baladjanova", email: "teacher@smg.bg", password: "password", password_confirmation: "password")
+t2 = Teacher.create(first_name: "Anatolii", last_name: "Stoyanov", email: "teacher@feg.bg", password: "password", password_confirmation: "password")
 
 puts "Creating groups"
 gr1 = Group.create(name: 'a', school: smg)
@@ -31,18 +31,18 @@ gr4 = Group.create(name: 'b', school: feg)
 
 puts "Creating students"
 
-s1 = Student.create(school: smg, group: gr1, first_name: "Kristiyan", last_name: "Tsvetanov", birthday: Date.new(1996,2,28), email: "student1@smg.bg", password: "password", password_confirmation: "password")
-s2 = Student.create(school: smg, group: gr1, first_name: "Nikola", last_name: "Jichev", birthday: Date.new(1996,6,13), email: "student2@smg.bg", password: "password", password_confirmation: "password")
-s3 = Student.create(school: smg, group: gr2, first_name: "Alexandra", last_name: "Mitkova", birthday: Date.new(1996,3,9), email: "student3@smg.bg", password: "password", password_confirmation: "password")
-s4 = Student.create(school: feg, group: gr3, first_name: "Ivan", last_name: "Geshev", birthday: Date.new(1996,4,12), email: "student1@feg.bg", password: "password", password_confirmation: "password")
-s5 = Student.create(school: feg, group: gr4, first_name: "Boyan", last_name: "Yotov", birthday: Date.new(1996,7,15), email: "student2@feg.bg", password: "password", password_confirmation: "password")
-s6 = Student.create(school: feg, group: gr4, first_name: "Velin", last_name: "Vergiev", birthday: Date.new(1996,8,21), email: "student3@feg.bg", password: "password", password_confirmation: "password")
+s1 = Student.create(school: smg, group: gr1, number: 1, first_name: "Kristiyan", last_name: "Tsvetanov", birthday: Date.new(1996,2,28), email: "student1@smg.bg", password: "password", password_confirmation: "password")
+s2 = Student.create(school: smg, group: gr1, number: 2, first_name: "Nikola", last_name: "Jichev", birthday: Date.new(1996,6,13), email: "student2@smg.bg", password: "password", password_confirmation: "password")
+s3 = Student.create(school: smg, group: gr2, number: 3, first_name: "Alexandra", last_name: "Mitkova", birthday: Date.new(1996,3,9), email: "student3@smg.bg", password: "password", password_confirmation: "password")
+s4 = Student.create(school: feg, group: gr3, number: 4, first_name: "Ivan", last_name: "Geshev", birthday: Date.new(1996,4,12), email: "student1@feg.bg", password: "password", password_confirmation: "password")
+s5 = Student.create(school: feg, group: gr4, number: 5, first_name: "Boyan", last_name: "Yotov", birthday: Date.new(1996,7,15), email: "student2@feg.bg", password: "password", password_confirmation: "password")
+s6 = Student.create(school: feg, group: gr4, number: 6, first_name: "Velin", last_name: "Vergiev", birthday: Date.new(1996,8,21), email: "student3@feg.bg", password: "password", password_confirmation: "password")
 
 puts "Creating parents"
 
-p1 = Parent.create(email: "dad@parent.bg", password: "password", password_confirmation: "password")
-p2 = Parent.create(email: "mom@parent.bg", password: "password", password_confirmation: "password")
-p3 = Parent.create(email: "momfat@parent.bg", password: "password", password_confirmation: "password")
+p1 = Parent.create(first_name: 'Petar', last_name: 'Novakov', email: "dad@parent.bg", password: "password", password_confirmation: "password")
+p2 = Parent.create(first_name: 'Mihail', last_name: 'Terziev', email: "mom@parent.bg", password: "password", password_confirmation: "password")
+p3 = Parent.create(first_name: 'Gergana', last_name: 'Spasova', email: "momfat@parent.bg", password: "password", password_confirmation: "password")
 
 puts "Linking parents and students"
 
