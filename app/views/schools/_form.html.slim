@@ -1,0 +1,20 @@
+- content_for :head do
+  = javascript_pack_tag 'schools'
+
+
+= content_tag :div, id: "school-form", data: { id: school.id, school: school.to_json(except: [:id, :created_at, :updated_at])} do 
+
+  label Name
+  input type="text" v-model="school.name"
+
+  label Address
+  input type="text" v-model="school.address"
+
+  label Contact Number
+  input type="text" v-model="school.contact_number"
+
+  label Email
+  input type="text" v-model="school.email"
+
+  br
+  button v-on:click="saveSchool" Submit 
