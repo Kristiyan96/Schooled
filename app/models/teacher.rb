@@ -7,4 +7,7 @@ class Teacher < ApplicationRecord
 
   has_many :messages, as: :recepient
   has_many :messages, as: :sender
+
+  validates :email, uniqueness: true
+  validates :first_name, :last_name, presence: true, length: { minimum: 2 }
 end

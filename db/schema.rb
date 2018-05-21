@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(version: 2018_05_17_082113) do
   create_table "admins", force: :cascade do |t|
     t.string "email", null: false
     t.string "password_digest", null: false
+    t.string "phone_number"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -60,6 +61,11 @@ ActiveRecord::Schema.define(version: 2018_05_17_082113) do
     t.bigint "school_id", null: false
     t.string "email", null: false
     t.string "password_digest", null: false
+    t.string "first_name", null: false
+    t.string "middle_name"
+    t.string "last_name", null: false
+    t.string "phone_number"
+    t.string "address"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["school_id"], name: "index_headmasters_on_school_id"
@@ -90,6 +96,11 @@ ActiveRecord::Schema.define(version: 2018_05_17_082113) do
   create_table "parents", force: :cascade do |t|
     t.string "email", null: false
     t.string "password_digest", null: false
+    t.string "first_name", null: false
+    t.string "middle_name"
+    t.string "last_name", null: false
+    t.string "phone_number"
+    t.string "address"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -130,7 +141,10 @@ ActiveRecord::Schema.define(version: 2018_05_17_082113) do
     t.string "first_name", null: false
     t.string "middle_name"
     t.string "last_name", null: false
+    t.string "phone_number"
+    t.string "address"
     t.date "birthday", null: false
+    t.integer "number"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["group_id"], name: "index_students_on_group_id"
@@ -149,6 +163,11 @@ ActiveRecord::Schema.define(version: 2018_05_17_082113) do
     t.bigint "school_id"
     t.string "email", null: false
     t.string "password_digest", null: false
+    t.string "first_name", null: false
+    t.string "middle_name"
+    t.string "last_name", null: false
+    t.string "phone_number"
+    t.string "address"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["school_id"], name: "index_teachers_on_school_id"

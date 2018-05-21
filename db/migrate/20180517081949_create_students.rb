@@ -10,7 +10,10 @@ class CreateStudents < ActiveRecord::Migration[5.2]
       t.string :first_name, null: false
       t.string :middle_name
       t.string :last_name, null: false
+      t.string :phone_number
+      t.string :address
       t.date   :birthday, null: false
+      t.integer :number
 
       t.timestamps
     end

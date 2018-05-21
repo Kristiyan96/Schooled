@@ -13,6 +13,10 @@ class Student < ApplicationRecord
   has_many :messages, as: :recepient
   has_many :messages, as: :sender
 
+  validates :email, uniqueness: true
+  validates :first_name, :last_name, presence: true, length: { minimum: 2 }
+  validates :number, inclusion: { in: [1..40] }
+
   def courses
   	group.courses
   end
