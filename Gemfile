@@ -21,6 +21,7 @@ gem 'jquery-rails', '~> 4.3', '>= 4.3.3'
 gem 'popper_js', '~> 1.12.9'
 gem 'bootstrap-sass'
 gem 'font-awesome-rails'
+gem 'devise'
 
 gem 'bootsnap', '>= 1.1.0', require: false
 
