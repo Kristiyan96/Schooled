@@ -1,13 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
-  root "pages#show", page: "home"
-
   resources :schools
 
-  get 'sessions/new'
-	root "pages#show", page: "home"
+  root "pages#show", page: "home"
 	get '/pages/*page', to: 'pages#show'
-  get    '/login',    to: 'sessions#new'
-  post   '/login',    to: 'sessions#create'
-  delete '/logout',   to: 'sessions#destroy'
 end
