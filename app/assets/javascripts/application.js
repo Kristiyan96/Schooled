@@ -4,5 +4,4 @@
 //= require jquery
 //= require popper
 //= require material/bootstrap-material-design
-//= require material/material-dashboard
 //= require_tree .
