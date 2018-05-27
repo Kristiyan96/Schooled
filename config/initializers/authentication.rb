@@ -1,5 +1,1 @@
-Authentication.register Teacher
-Authentication.register Admin
-Authentication.register Headmaster
-Authentication.register Student
-Authentication.register Parent
+
