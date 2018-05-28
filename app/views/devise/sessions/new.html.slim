@@ -15,21 +15,21 @@
                   button.btn.btn-just-icon.btn-round.btn-facebook
                     i.fa.fa-facebook
                   h4 or be classical
-                form.form action="" method="" 
+                = form_for(:user, url: session_path(:user)) do |f|  
                   .form-group
                     .input-group
                       .input-group-prepend
                         span.input-group-text
                           i.material-icons mail
-                      input.form-control placeholder="Email..." type="text" 
+                      = f.email_field :email, placeholder: "Email...", class: 'form-control' 
                   .form-group
                     .input-group
                       .input-group-prepend
                         span.input-group-text
                           i.material-icons lock_outline
-                      input.form-control placeholder="Password..." type="password" 
+                      = f.password_field :password, placeholder: "Password...", class: 'form-control' 
                   .text-center
-                    a.btn.btn-primary.btn-round href="#pablo"  Log in
+                    = f.submit "Log in", class: "btn btn-primary btn-round"
                 = render "devise/shared/links"
               .col-md-5.ml-auto
                 .info.info-horizontal

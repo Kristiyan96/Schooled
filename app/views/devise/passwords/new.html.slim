@@ -7,15 +7,15 @@
           .card-body
             .row
               .col-md-5.mr-auto
-                form.form action="" method="" 
+                = form_for(:user, url: password_path(:user)) do |f| 
                   .form-group
                     .input-group
                       .input-group-prepend
                         span.input-group-text
                           i.material-icons mail
-                      input.form-control placeholder="Email..." type="text" 
+                      = f.email_field :email, placeholder: "Email...", class: 'form-control'
                   .text-center
-                    a.btn.btn-primary.btn-round href="#pablo"  Send new password
+                    = f.submit "Send new password", class: "btn btn-primary btn-round"
                 = render "devise/shared/links"
               .col-md-5.ml-auto
                 .info.info-horizontal

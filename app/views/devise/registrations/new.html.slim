@@ -1,4 +1,4 @@
-.page-header.header-filter filter-color="purple" style=("background-image: url('../assets/img/bg7.jpg')") 
+.page-header.header-filter filter-color="purple"
   .container
     .row
       .col-md-10.ml-auto.mr-auto
@@ -15,31 +15,37 @@
                   button.btn.btn-just-icon.btn-round.btn-facebook
                     i.fa.fa-facebook
                   h4 or be classical
-                form.form action="" method="" 
+                = form_for(:user, url: registration_path(:user)) do |f|
                   .form-group
                     .input-group
                       .input-group-prepend
                         span.input-group-text
                           i.material-icons face
-                      input.form-control placeholder=("First Name...") type="text" /
+                      = f.text_field :first_name, placeholder: "First Name...", class: 'form-control'
                   .form-group
                     .input-group
                       .input-group-prepend
                         span.input-group-text
                           i.material-icons face
-                      input.form-control placeholder=("Last Name...") type="text" /
+                      = f.text_field :last_name, placeholder: "Last Name...", class: 'form-control'
                   .form-group
                     .input-group
                       .input-group-prepend
                         span.input-group-text
                           i.material-icons mail
-                      input.form-control placeholder="Email..." type="text" /
+                      = f.email_field :email, placeholder: "Email...", class: 'form-control'
                   .form-group
                     .input-group
                       .input-group-prepend
                         span.input-group-text
                           i.material-icons lock_outline
-                      input.form-control placeholder="Password..." type="password" /
+                      = f.password_field :password, placeholder: "Password...", class: 'form-control'
+                  .form-group
+                    .input-group
+                      .input-group-prepend
+                        span.input-group-text
+                          i.material-icons lock_outline
+                      = f.password_field :password_confirmation, placeholder: "Password Confirmation...", class: 'form-control'
                   .form-check
                     label.form-check-label
                       input.form-check-input checked="checked" type="checkbox" value="" /
@@ -48,7 +54,7 @@
                       | I agree to the
                       a href="#something"  terms and conditions
                   .text-center
-                    a.btn.btn-primary.btn-round href="#pablo"  Get Started
+                    = f.submit "Get Started", class: "btn btn-primary btn-round"
               .col-md-5.ml-auto
                 .info.info-horizontal
                   .icon.icon-rose
