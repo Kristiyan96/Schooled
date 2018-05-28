@@ -9,6 +9,9 @@ Rails.application.routes.draw do
     resources :teacher_invitations, path: :teachers, module: :schools, only: [:index, :create]
   end
 
+  resources :parentship, only: :create
+  resources :profiles
+
   root "pages#show", page: "home"
   get '/pages/*page', to: 'pages#show'
 end
