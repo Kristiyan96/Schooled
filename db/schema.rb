@@ -10,10 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_05_28_162956) do
+ActiveRecord::Schema.define(version: 2018_05_28_195750) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "absences", force: :cascade do |t|
+    t.decimal "value", null: false
+    t.integer "kind", default: 0, null: false
+    t.bigint "student_id"
+    t.bigint "course_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["course_id"], name: "index_absences_on_course_id"
+  end
 
   create_table "assignments", force: :cascade do |t|
     t.bigint "role_id"
@@ -50,7 +60,8 @@ ActiveRecord::Schema.define(version: 2018_05_28_162956) do
   end
 
   create_table "marks", force: :cascade do |t|
-    t.decimal "grade"
+    t.decimal "grade", null: false
+    t.integer "kind", default: 0, null: false
     t.integer "student_id"
     t.bigint "course_id"
     t.datetime "created_at", null: false
@@ -157,6 +168,7 @@ ActiveRecord::Schema.define(version: 2018_05_28_162956) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "absences", "courses"
   add_foreign_key "assignments", "roles"
   add_foreign_key "assignments", "schools"
   add_foreign_key "assignments", "users"

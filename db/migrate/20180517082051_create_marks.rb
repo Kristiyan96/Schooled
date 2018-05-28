@@ -1,7 +1,10 @@
 class CreateMarks < ActiveRecord::Migration[5.2]
   def change
     create_table :marks do |t|
-      t.decimal :grade
+      t.decimal :grade, null: false
+      t.integer :kind, default: 0, null: false
+
+
       t.integer :student_id
       t.references :course, foreign_key: true
 
