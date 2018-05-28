@@ -1,4 +1,4 @@
-.page-header.header-filter filter-color="purple" style=("background-image: url('../assets/img/bg7.jpg')") 
+.page-header.header-filter filter-color="purple"
   .container
     .row
       .col-md-10.ml-auto.mr-auto
@@ -33,7 +33,7 @@
                       .input-group-prepend
                         span.input-group-text
                           i.material-icons mail
-                      = f.text_field :email, placeholder: "Email...", class: 'form-control'
+                      = f.email_field :email, placeholder: "Email...", class: 'form-control'
                   .form-group
                     .input-group
                       .input-group-prepend
