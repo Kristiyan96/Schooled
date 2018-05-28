@@ -1,0 +1,8 @@
+h4 Groups
+
+- @groups.each do |group|
+  = group.teacher.full_name
+  = group.name
+  .students
+    | Students
+    = group.students.map(&:full_name)

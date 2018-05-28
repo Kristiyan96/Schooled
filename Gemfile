@@ -22,6 +22,7 @@ gem 'popper_js', '~> 1.12.9'
 gem 'bootstrap-sass'
 gem 'font-awesome-rails'
 gem 'devise'
+gem 'devise_invitable'
 
 gem 'bootsnap', '>= 1.1.0', require: false
 
