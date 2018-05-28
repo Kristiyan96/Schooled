@@ -1,7 +1,14 @@
-h4
-  | Invite Headmasters
+h4 Group
 
-= form_with url: school_headmaster_invitations_path(@school) do |f|
+= @group.teacher.full_name
+= @group.name
+.students
+  | Students
+  = @group.students.map(&:full_name)
+
+h4 Invite Students
+
+= form_with url: school_group_student_invitations_path(@school, @group) do |f|
     = f.label :email
     = f.text_field :email, required: true
     = f.label :first_name

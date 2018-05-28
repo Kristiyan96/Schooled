@@ -1,12 +1,14 @@
 h4
-  | Invite Headmasters
+  Invite Teachers
 
-= form_with url: school_headmaster_invitations_path(@school) do |f|
+= form_with path: school_student_invitations_path(@school) do |f|
     = f.label :email
     = f.text_field :email, required: true
     = f.label :first_name
     = f.text_field :first_name, required: true
     = f.label :last_name
     = f.text_field :last_name, required: true
+    = f.label :number_in_class
+    = f.text_field :number_in_class, required: true, placeholder: "1"
 
     = f.submit "Invite"

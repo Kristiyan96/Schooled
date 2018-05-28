@@ -17,4 +17,8 @@ class User < ApplicationRecord
   def role?(role, school)
     assignments.where(school: school, role: { name: role.to_s.capitalize }).any?
   end
+
+  def full_name
+    "#{first_name} #{last_name}"
+  end
 end
