@@ -1,9 +1,11 @@
-.sidebar data-background-color="white" data-color="purple" data-image="../assets/img/sidebar-1.jpg" 
+.sidebar data-background-color="white" data-color="purple"
   .logo
-    a.simple-text.logo-normal href="http://www.creative-tim.com" 
+    a.simple-text.logo-normal href="" 
       | Schooled
   .sidebar-wrapper
     ul.nav
+      .d-md-none
+        = render 'components/users/navbar'
       li.nav-item.active
         a.nav-link href="../examples/dashboard.html" 
           i.material-icons dashboard
