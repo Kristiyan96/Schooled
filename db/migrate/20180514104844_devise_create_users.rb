@@ -40,6 +40,8 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.2]
       t.integer :number_in_class
       t.references :group
 
+      t.boolean :admin, default: false, null: false
+
       t.timestamps null: false
     end
 

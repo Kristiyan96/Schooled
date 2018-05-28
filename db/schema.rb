@@ -137,6 +137,7 @@ ActiveRecord::Schema.define(version: 2018_05_28_162956) do
     t.date "birthday"
     t.integer "number_in_class"
     t.bigint "group_id"
+    t.boolean "admin", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "invitation_token"
