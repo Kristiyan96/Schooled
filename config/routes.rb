@@ -9,6 +9,10 @@ Rails.application.routes.draw do
     resources :teacher_invitations, path: :teachers, module: :schools, only: [:index, :create]
   end
 
+  resources :students, only: [] do
+    resources :parentship, only: :create, module: :students
+  end
+
   resources :parentship, only: :create
   resources :profiles
 
