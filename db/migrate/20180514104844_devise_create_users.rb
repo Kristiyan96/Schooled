@@ -38,6 +38,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.2]
       ## Student specific columns
       t.date    :birthday
       t.integer :number_in_class
+      t.references :group
 
       t.timestamps null: false
     end

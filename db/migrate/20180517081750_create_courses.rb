@@ -5,6 +5,7 @@ class CreateCourses < ActiveRecord::Migration[5.2]
       t.references :subject, foreign_key: true
       t.references :school, foreign_key: true
       t.references :school_year, foreign_key: true
+      t.integer :teacher_id
 
       t.timestamps
     end

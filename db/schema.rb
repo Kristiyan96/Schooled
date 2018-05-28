@@ -10,16 +10,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_05_17_082113) do
+ActiveRecord::Schema.define(version: 2018_05_28_135823) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "assignments", force: :cascade do |t|
+    t.bigint "role_id"
+    t.bigint "user_id"
+    t.bigint "school_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["role_id"], name: "index_assignments_on_role_id"
+    t.index ["school_id"], name: "index_assignments_on_school_id"
+    t.index ["user_id"], name: "index_assignments_on_user_id"
+  end
 
   create_table "courses", force: :cascade do |t|
     t.bigint "group_id"
     t.bigint "subject_id"
     t.bigint "school_id"
     t.bigint "school_year_id"
+    t.integer "teacher_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["group_id"], name: "index_courses_on_group_id"
@@ -30,6 +42,7 @@ ActiveRecord::Schema.define(version: 2018_05_17_082113) do
 
   create_table "groups", force: :cascade do |t|
     t.string "name"
+    t.integer "teacher_id"
     t.bigint "school_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -38,6 +51,7 @@ ActiveRecord::Schema.define(version: 2018_05_17_082113) do
 
   create_table "marks", force: :cascade do |t|
     t.decimal "grade"
+    t.integer "student_id"
     t.bigint "course_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -56,12 +70,26 @@ ActiveRecord::Schema.define(version: 2018_05_17_082113) do
     t.index ["sender_type", "sender_id"], name: "index_messages_on_sender_type_and_sender_id"
   end
 
+  create_table "parentships", force: :cascade do |t|
+    t.integer "parent_id"
+    t.integer "student_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "remarks", force: :cascade do |t|
     t.text "message"
     t.bigint "course_id"
+    t.integer "student_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["course_id"], name: "index_remarks_on_course_id"
+  end
+
+  create_table "roles", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "school_years", force: :cascade do |t|
@@ -108,12 +136,17 @@ ActiveRecord::Schema.define(version: 2018_05_17_082113) do
     t.inet "last_sign_in_ip"
     t.date "birthday"
     t.integer "number_in_class"
+    t.bigint "group_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["group_id"], name: "index_users_on_group_id"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "assignments", "roles"
+  add_foreign_key "assignments", "schools"
+  add_foreign_key "assignments", "users"
   add_foreign_key "courses", "groups"
   add_foreign_key "courses", "school_years"
   add_foreign_key "courses", "schools"
