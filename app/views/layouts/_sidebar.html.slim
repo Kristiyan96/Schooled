@@ -9,8 +9,8 @@
       = render 'components/user/sidebar'
       - if user_signed_in?
         li.nav-item
-          a.nav-link.btn-info
+          a.nav-link
             b 
-              = current_user.roles.first.name
+              = current_user.assignments.first.name
         = render partial: "components/#{current_user.roles.first.name.downcase}/sidebar/sidebar"
         
