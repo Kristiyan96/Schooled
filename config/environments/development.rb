@@ -63,4 +63,21 @@ Rails.application.configure do
 
   # Devise setup
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+
+  #Email sending setup
+  config.action_mailer.delivery_method       = :smtp
+  config.action_mailer.perform_deliveries    = true
+  config.action_mailer.default_url_options   = {host: 'localhost:3000' }
+  config.action_mailer.raise_delivery_errors = true 
+  config.action_mailer.default :charset => "utf-8"
+  config.action_mailer.smtp_settings = {
+    tls:                         true,
+    address:                     'smtp.gmail.com',
+    port:                        '465',
+    user_name:                   'moonhythe@gmail.com',
+    password:                    'krisnikola2016',
+    domain:                      'moonhythe.com',
+    authentication:              'plain',
+    enable_starttls_auto:        true
+  }
 end
