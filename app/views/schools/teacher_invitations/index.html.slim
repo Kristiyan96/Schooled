@@ -1,0 +1,12 @@
+h4
+  | Invite Teachers
+
+= form_with url: school_teacher_invitations_path(@school) do |f|
+    = f.label :email
+    = f.text_field :email, required: true
+    = f.label :first_name
+    = f.text_field :first_name, required: true
+    = f.label :last_name
+    = f.text_field :last_name, required: true
+
+    = f.submit "Invite"

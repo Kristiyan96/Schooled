@@ -5,9 +5,10 @@ class School < ApplicationRecord
   has_many :courses
   has_many :assignments
   has_many :users, through: :assignments
+  has_many :roles, through: :assignments
 
   def teachers
-    users.find_each.select { |u| u.role?(:teacher, self)}
+    users.joins(:assignments, :roles).find_each.select { |u| u.role?(:teacher, self)}
   end
 
   def students
