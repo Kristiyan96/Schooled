@@ -15,7 +15,8 @@ class User < ApplicationRecord
   belongs_to :group, optional: true
 
   def role?(role, school)
-    assignments.where(school: school, role: { name: role.to_s.capitalize }).any?
+    assignments.any? { |a| a.school == school && a.role.name.underscore.to_sym == role }
+    # assignments.where(school: school, role: { name: role.to_s.capitalize }).any?
   end
 
   def full_name
@@ -25,7 +26,7 @@ class User < ApplicationRecord
   def role_summary
     if assignments.any?
       asgn = assignments.order(:created_at).first
-      "#{asgn.role.name} at #{asgn.school.name}"
+      "#{asgn.role.name} at #{asgn.school.link}"
     elsif students.any?
       "Parent"
     end
@@ -39,13 +40,5 @@ class User < ApplicationRecord
       role = "Parent"
     end 
     "roles/#{role}".downcase 
-  end
-
-  def role_summary
-    if assignments.any?
-      assignments.order(:created_at).first.role.name
-    elsif students.any?
-      'parent'
-    end
   end
 end

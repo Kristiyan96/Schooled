@@ -1,31 +1,4 @@
-.col-md-5.col-xs-12
-  .card.card-profile
-    .card-avatar
-      a href="#pablo" 
-        = image_tag(@user.role_image, class: "img")
-    .card-body
-      h6.card-category.text-gray = @user.role_summary
-      h4.card-title = @user.full_name
-    .row
-      - if user_signed_in? && @user != current_user
-        .col
-          button.btn.btn-round
-            i.material-icons message 
-            | Message
-        .col
-          a.btn.btn-round href="mailto:#{@user.email}" data-toggle="tooltip" data-placement="top" title="#{@user.email}"
-            i.material-icons email 
-            | Email
-        - if @user.phone_number
-          .col
-            a.btn.btn-round href="tel:#{@user.phone_number}" data-toggle="tooltip" data-placement="top" title="#{@user.phone_number}"
-              i.material-icons phone
-              | Call    
-      - if user_signed_in? && @user == current_user
-        .col
-          = link_to edit_user_registration_path, class: "btn btn-round" do
-            i.material-icons settings
-            | Settings
+= render 'components/user/profile/card'
 
 .col-md-7.col-xs-12
 

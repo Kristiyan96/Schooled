@@ -3,6 +3,6 @@ li.nav-item
     i.material-icons dashboard
     p Dashboard
 li.nav-item
-  a.nav-link href="../examples/dashboard.html" 
+  = link_to school_path(current_user.assignments.order(:created_at).first.school), class: "nav-link" do
     i.material-icons school
     p My School
