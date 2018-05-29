@@ -25,3 +25,8 @@
           = link_to edit_user_registration_path, class: "btn btn-round" do
             i.material-icons settings
             | Settings
+      - if can_add_parent?(current_user, @user)
+        .col
+          = link_to edit_user_registration_path, class: "btn btn-round" do
+            i.material-icons person_add
+            | Add parent

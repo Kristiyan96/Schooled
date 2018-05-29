@@ -16,4 +16,11 @@ module UsersHelper
   def user_url(user)
     profile_path(user.id)
   end
+
+  def can_add_parent?(user, student)
+    student.assignments.order(:created_at).first.role.name == "Student" &&
+    (student.in?(user.students) ||    #user is parent
+     student.group.teacher == user || #user is head_teacher
+     student == user)                 #user is the student
+  end
 end
