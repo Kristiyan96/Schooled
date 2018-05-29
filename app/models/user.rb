@@ -21,4 +21,31 @@ class User < ApplicationRecord
   def full_name
     "#{first_name} #{last_name}"
   end
+
+  def role_summary
+    if assignments.any?
+      asgn = assignments.order(:created_at).first
+      "#{asgn.role.name} at #{asgn.school.name}"
+    elsif students.any?
+      "Parent"
+    end
+  end
+
+  def role_image
+    if assignments.any?
+      role = assignments.order(:created_at).first.role.name == "Headmaster" ? 
+        "Teacher" : assignments.order(:created_at).first.role.name
+    elsif students.any?
+      role = "Parent"
+    end 
+    "roles/#{role}".downcase 
+  end
+
+  def role_summary
+    if assignments.any?
+      assignments.order(:created_at).first.role.name
+    elsif students.any?
+      'parent'
+    end
+  end
 end
