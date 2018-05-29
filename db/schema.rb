@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(version: 2018_05_28_195750) do
   enable_extension "plpgsql"
 
   create_table "absences", force: :cascade do |t|
-    t.decimal "value", null: false
+    t.string "value", default: "1/1", null: false
     t.integer "kind", default: 0, null: false
     t.bigint "student_id"
     t.bigint "course_id"
