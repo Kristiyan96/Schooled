@@ -4,4 +4,5 @@ class Absence < ApplicationRecord
 
   attribute :value, :rational
   enum kind: [:first_semester, :first_semester_total, :second_semester, :second_semester_total]
+  enum category: [:permanent, :excused]
 end
