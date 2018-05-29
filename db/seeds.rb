@@ -99,3 +99,10 @@ puts "Creating remarks"
 
 Remark.create(student: s1, course: c1, message: "Ставаш")
 Remark.create(student: s2, course: c2, message: "Не-Ставаш")
+
+puts "Creating absences"
+
+Absence.create(student: s1, course: c1, value: (1/3r))
+Absence.create(student: s1, course: c1, value: (1/1r))
+Absence.create(student: s2, course: c2, value: (1/3r))
+Absence.create(student: s2, course: c2, value: (1/1r))
