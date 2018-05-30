@@ -12,6 +12,6 @@
         li.nav-item
           a.nav-link
             b 
-              = current_user.assignments.order(:created_at).role.name
+              = current_user.assignments.order(:created_at).first.role.name
         = render partial: "components/#{current_user.roles.first.name.downcase}/sidebar/sidebar"
         

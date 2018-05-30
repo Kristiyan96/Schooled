@@ -1,4 +1,6 @@
 .row
+  .col-md-5.col-xs-12
+    = render 'components/user/profile/card'
   .col-md-7.col-xs-12
     .card
       .card-header.card-header-primary
@@ -46,5 +48,4 @@
                 i Only if you want to change your password
           = f.submit "Update Profile", class: "btn btn-primary pull-right"
           .clearfix
-  = render 'components/user/profile/card'
 
