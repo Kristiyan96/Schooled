@@ -1,0 +1,29 @@
+#addParent.modal.fade role="" tabindex="-1" 
+  .modal-dialog role="document" 
+    .modal-content
+      .card.card-signup.card-plain
+        .modal-header
+          .card-header.card-header-primary.text-center style="width: 100%;"
+            button.close aria-hidden="true" data-dismiss="modal" type="button" 
+              i.material-icons clear
+            h4.card-title Add a Parent
+        .modal-body
+          = form_with url: (current_user == @user ? parentship_index_path : student_parentship_index_path(@user)) do |f|
+            .card-body
+              .form-group.bmd-form-group
+                .input-group
+                  span.input-group-addon
+                    i.material-icons face
+                  = f.text_field :first_name, placeholder: "First Name", class: 'form-control'  
+              .form-group.bmd-form-group
+                .input-group
+                  span.input-group-addon
+                    i.material-icons face
+                  = f.text_field :last_name, placeholder: "Last Name", class: 'form-control' 
+              .form-group.bmd-form-group
+                .input-group
+                  span.input-group-addon
+                    i.material-icons email
+                  = f.email_field :email, placeholder: "Email", class: 'form-control' 
+              .justify-content-center
+                = f.submit "Send Invitation", class: "btn btn-primary btn-link btn-wd btn-lg"

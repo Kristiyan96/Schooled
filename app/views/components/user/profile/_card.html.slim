@@ -27,6 +27,8 @@
             | Settings
       - if can_add_parent?(current_user, @user)
         .col
-          = link_to edit_user_registration_path, class: "btn btn-round" do
+          = link_to edit_user_registration_path, class: "btn btn-round", data: {target: '#addParent', toggle: 'modal'} do
             i.material-icons person_add
             | Add parent
+
+= render 'components/student/profile/add_parent_modal'

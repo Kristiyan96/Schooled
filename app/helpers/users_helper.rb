@@ -18,6 +18,7 @@ module UsersHelper
   end
 
   def can_add_parent?(user, student)
+    student && student.assignments.any? && 
     student.assignments.order(:created_at).first.role.name == "Student" &&
     (student.in?(user.students) ||    #user is parent
      student.group.teacher == user || #user is head_teacher

@@ -7,10 +7,11 @@
       .d-md-none
         = render 'components/user/navbar'
       = render 'components/user/sidebar'
-      - if user_signed_in?
+      = render 'components/parent/sidebar/sidebar'
+      - if user_signed_in? && current_user.assignments.any?
         li.nav-item
           a.nav-link
             b 
-              = current_user.assignments.first.name
+              = current_user.assignments.order(:created_at).role.name
         = render partial: "components/#{current_user.roles.first.name.downcase}/sidebar/sidebar"
         
