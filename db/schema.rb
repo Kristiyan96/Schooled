@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(version: 2018_05_28_195750) do
   create_table "absences", force: :cascade do |t|
     t.string "value", default: "1/1", null: false
     t.integer "kind", default: 0, null: false
+    t.integer "category", default: 0, null: false
     t.bigint "student_id"
     t.bigint "course_id"
     t.datetime "created_at", null: false
@@ -51,6 +52,7 @@ ActiveRecord::Schema.define(version: 2018_05_28_195750) do
   end
 
   create_table "groups", force: :cascade do |t|
+    t.integer "grade"
     t.string "name"
     t.integer "teacher_id"
     t.bigint "school_id"

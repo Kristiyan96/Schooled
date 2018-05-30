@@ -3,7 +3,7 @@
     = image_tag('bg7', class: "img")
   .card-body
     h6.card-category.text-gray = @school.address
-    h4.card-title = @school.name
+    h4.card-title = "#{@school.number} #{@school.name}"
   .row
     - if user_signed_in?
       .col

@@ -1,5 +1,5 @@
 - content_for :head do
-  = javascript_pack_tag 'schools'
+  = javascript_pack_tag 'school_form'
 
 .card
   .card-header.card-header-primary
@@ -8,7 +8,11 @@
   .card-body
     = content_tag :div, id: "school-form", data: { id: school.id, school: school.to_json(except: [:id, :created_at, :updated_at])} do 
       .row
-        .col-md-12
+        .col-md-4
+          .form-group
+            label.bmd-label-floating School Number
+            input.form-control type="text" v-model="school.number"
+        .col-md-8
           .form-group
             label.bmd-label-floating School Name
             input.form-control type="text" v-model="school.name"

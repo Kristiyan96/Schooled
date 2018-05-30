@@ -1,3 +1,6 @@
+- content_for :head do
+  = javascript_pack_tag 'user_form'
+
 .row
   .col-md-5.col-xs-12
     = render 'components/user/profile/card'
@@ -7,45 +10,54 @@
         h4.card-title Edit Profile
         p.card-category Complete your profile
       .card-body
-        = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
+        = content_tag :div, id: "user-form", data: { id: @user.id, user: @user.to_json(except: [:id, :created_at, :updated_at, :number_in_class, :group_id, :admin])} do 
           .row
             .col-md-4
               .form-group
                 label.bmd-label-floating Email address
-                = f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control", disabled: true
+                input.form-control type="email" v-model="user.email" disabled="true"
           .row
-            .col-md-6
+            .col-md-4
               .form-group
                 label.bmd-label-floating Fist Name
-                = f.text_field :first_name, autocomplete: "first_name", class: "form-control"
-            .col-md-6
+                input.form-control type="text" v-model="user.first_name"
+            .col-md-4
+              .form-group
+                label.bmd-label-floating Middle Name
+                input.form-control type="text" v-model="user.middle_name"
+            .col-md-4
               .form-group
                 label.bmd-label-floating Last Name
-                = f.text_field :last_name, autocomplete: "last_name", class: "form-control"
+                input.form-control type="text" v-model="user.last_name"
+          .row
+            .col-md-4
+              .form-group
+                label.bmd-label-floating Birthday
+                input.form-control type="date" v-model="user.birthday"
           .row
             .col-md-6
               .form-group
                 label.bmd-label-floating Address
-                = f.text_field :address, autocomplete: "address", class: "form-control"
+                input.form-control type="text" v-model="user.address"
             .col-md-6
               .form-group
                 label.bmd-label-floating Phone Number
-                = f.text_field :phone_number, autocomplete: "phone_number", class: "form-control"
+                input.form-control type="text" v-model="user.phone_number"
           .row
             .col-md-6
               .form-group
                 label.bmd-label-floating New Password
-                = f.password_field :password, class: "form-control"
+                input.form-control type="password" v-model="user.password"
             .col-md-6
               .form-group
                 label.bmd-label-floating New Password Again
-                = f.password_field :password_confirmation, class: "form-control"
+                input.form-control type="password" v-model="user.password_confirmation"
           .row
             .col-md-6
               .form-group
                 label.bmd-label-floating Old Password
-                = f.password_field :current_password, class: "form-control"
+                input.form-control type="password" v-model="user.current_password"
                 i Only if you want to change your password
-          = f.submit "Update Profile", class: "btn btn-primary pull-right"
+          button.btn.btn-primary.pull-right v-on:click="saveUser" Update Profile
           .clearfix
 
