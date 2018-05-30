@@ -10,7 +10,6 @@ document.addEventListener('turbolinks:load', () => {
 
   var element = document.getElementById("school-form")
   if (element != null) {
-
     var id = element.dataset.id
     var school = JSON.parse(element.dataset.school)
 
@@ -31,18 +30,13 @@ document.addEventListener('turbolinks:load', () => {
 
           // Edit an existing school
           } else {
-            this.$http.put(`/schools/${this.id}`, { school: this.school }).then(response => {
-              Turbolinks.visit(`/schools/${response.body.id}`)
+            this.$http.put("/schools/" + this.id, { school: this.school }).then(response => {
+              Turbolinks.visit(response.url)
             }, response => {
               console.log(response)
             })
           }
-        },
-
-        existingSchool: function() {
-          return this.school.id != null
         }
-
       }
     })
 
