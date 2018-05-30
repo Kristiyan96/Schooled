@@ -88,6 +88,7 @@ ActiveRecord::Schema.define(version: 2018_05_28_195750) do
     t.integer "student_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["parent_id", "student_id"], name: "index_parentships_on_parent_id_and_student_id", unique: true
   end
 
   create_table "remarks", force: :cascade do |t|
