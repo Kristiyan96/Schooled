@@ -21,7 +21,6 @@ document.addEventListener('turbolinks:load', () => {
       },
       methods: {
         saveSchool: function() {
-          alert();
           // Create a new school
           if (this.id == null) {
             this.$http.post('/schools', { school: this.school }).then(response => {

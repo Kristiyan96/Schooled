@@ -15,10 +15,30 @@ class User < ApplicationRecord
   belongs_to :group, optional: true
 
   def role?(role, school)
-    assignments.where(school: school, role: { name: role.to_s.capitalize }).any?
+    assignments.any? { |a| a.school == school && a.role.name.underscore.to_sym == role }
+    # assignments.where(school: school, role: { name: role.to_s.capitalize }).any?
   end
 
   def full_name
     "#{first_name} #{last_name}"
+  end
+
+  def role_summary
+    if assignments.any?
+      asgn = assignments.order(:created_at).first
+      "#{asgn.role.name} at #{asgn.school.link}"
+    elsif students.any?
+      "Parent"
+    end
+  end
+
+  def role_image
+    if assignments.any?
+      role = assignments.order(:created_at).first.role.name == "Headmaster" ? 
+        "Teacher" : assignments.order(:created_at).first.role.name
+    elsif students.any?
+      role = "Parent"
+    end 
+    "roles/#{role}".downcase 
   end
 end

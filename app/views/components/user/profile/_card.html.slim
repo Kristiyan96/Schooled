@@ -1,0 +1,33 @@
+.card.card-profile
+  .card-avatar
+    = image_tag(@user.role_image, class: "img")
+  .card-body
+    h6.card-category.text-gray = role_summary(@user).html_safe
+    h4.card-title = full_name(@user)
+  .row
+    - if user_signed_in? && @user != current_user
+      .col
+        button.btn.btn-round
+          i.material-icons message 
+          | Message
+      .col
+        a.btn.btn-round href="mailto:#{@user.email}" data-toggle="tooltip" data-placement="top" title="#{@user.email}"
+          i.material-icons email 
+          | Email
+      - if @user.phone_number
+        .col
+          a.btn.btn-round href="tel:#{@user.phone_number}" data-toggle="tooltip" data-placement="top" title="#{@user.phone_number}"
+            i.material-icons phone
+            | Call    
+    - if user_signed_in? && @user == current_user
+      .col
+        = link_to edit_user_registration_path, class: "btn btn-round" do
+          i.material-icons settings
+          | Settings
+    - if can_add_parent?(current_user, @user)
+      .col
+        = link_to edit_user_registration_path, class: "btn btn-round", data: {target: '#addParent', toggle: 'modal'} do
+          i.material-icons person_add
+          | Add parent
+
+= render 'components/student/profile/add_parent_modal'

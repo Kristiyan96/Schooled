@@ -1,12 +1,13 @@
-li.nav-item
-  a.nav-link href="../examples/notifications.html" 
-    i.material-icons person
-    p My Profile
-li.nav-item
-  a.nav-link href="../examples/notifications.html" 
-    i.material-icons notifications
-    p Notifications
-li.nav-item
-  a.nav-link href="../examples/notifications.html" 
-    i.material-icons message
-    p Messages
+- if user_signed_in?
+  li.nav-item
+    = link_to profile_path(current_user), class: "nav-link" do
+      i.material-icons person
+      p My Profile
+  li.nav-item
+    a.nav-link href="../examples/notifications.html" 
+      i.material-icons notifications
+      p Notifications
+  li.nav-item
+    a.nav-link href="../examples/notifications.html" 
+      i.material-icons message
+      p Messages

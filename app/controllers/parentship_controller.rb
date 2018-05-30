@@ -3,9 +3,9 @@ class ParentshipController < ApplicationController
     is_invited = Parentship.invite_parent(student: current_user, parent: user_params)
 
     if is_invited
-      redirect_back fallback_location: home_path, notice: "Invited!"
+      redirect_back fallback_location: profile_path(current_user), notice: "Invited!"
     else
-      redirect_back fallback_location: home_path, alert: "Failed to invite!"
+      redirect_back fallback_location: profile_path(current_user), alert: "Failed to invite!"
     end
   end
 

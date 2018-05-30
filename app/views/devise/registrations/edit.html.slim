@@ -1,0 +1,51 @@
+.row
+  .col-md-5.col-xs-12
+    = render 'components/user/profile/card'
+  .col-md-7.col-xs-12
+    .card
+      .card-header.card-header-primary
+        h4.card-title Edit Profile
+        p.card-category Complete your profile
+      .card-body
+        = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
+          .row
+            .col-md-4
+              .form-group
+                label.bmd-label-floating Email address
+                = f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control", disabled: true
+          .row
+            .col-md-6
+              .form-group
+                label.bmd-label-floating Fist Name
+                = f.text_field :first_name, autocomplete: "first_name", class: "form-control"
+            .col-md-6
+              .form-group
+                label.bmd-label-floating Last Name
+                = f.text_field :last_name, autocomplete: "last_name", class: "form-control"
+          .row
+            .col-md-6
+              .form-group
+                label.bmd-label-floating Address
+                = f.text_field :address, autocomplete: "address", class: "form-control"
+            .col-md-6
+              .form-group
+                label.bmd-label-floating Phone Number
+                = f.text_field :phone_number, autocomplete: "phone_number", class: "form-control"
+          .row
+            .col-md-6
+              .form-group
+                label.bmd-label-floating New Password
+                = f.password_field :password, class: "form-control"
+            .col-md-6
+              .form-group
+                label.bmd-label-floating New Password Again
+                = f.password_field :password_confirmation, class: "form-control"
+          .row
+            .col-md-6
+              .form-group
+                label.bmd-label-floating Old Password
+                = f.password_field :current_password, class: "form-control"
+                i Only if you want to change your password
+          = f.submit "Update Profile", class: "btn btn-primary pull-right"
+          .clearfix
+

@@ -1,7 +1,7 @@
 puts "Creating schools"
 
-smg = School.create(name: "SMG")
-feg = School.create(name: "FEG")
+smg = School.create(name: "SMG", email: 'smg@gmail.com', contact_number: "0885955926", address: "Sofia, bul. Levski 26")
+feg = School.create(name: "FEG", email: 'fed@gmail.com', contact_number: "0885955925", address: "Varna, bul. Lomsko shose 12")
 
 puts "Creating subjects"
 
@@ -20,8 +20,8 @@ t1 = User.create(first_name: "Tanq", last_name: "Baladjanova", email: "teacher@s
 t2 = User.create(first_name: "Anatolii", last_name: "Stoyanov", email: "teacher@feg.bg", password: "password", password_confirmation: "password")
 
 puts "Creating groups"
-gr1 = Group.create(name: 'a', school: smg, teacher: t1)
-gr2 = Group.create(name: 'a', school: feg, teacher: t2)
+gr1 = Group.create(name: 'a', school: smg, teacher: t1, grade: 8)
+gr2 = Group.create(name: 'a', school: feg, teacher: t2, grade: 9)
 
 puts "Creating students"
 
