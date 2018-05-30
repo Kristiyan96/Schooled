@@ -1,27 +1,35 @@
 puts "Creating schools"
 
-smg = School.create(name: "SMG", email: 'smg@gmail.com', contact_number: "0885955926", address: "Sofia, bul. Levski 26")
-feg = School.create(name: "FEG", email: 'fed@gmail.com', contact_number: "0885955925", address: "Varna, bul. Lomsko shose 12")
+smg = School.create(name: "Софийска Математическа Гимназия", email: 'smg@gmail.com', contact_number: "0885955926", address: "Sofia, bul. Levski 26", number: 128)
+feg = School.create(name: "Френска Езикова Гимназия", email: 'fed@gmail.com', contact_number: "0885955925", address: "Varna, bul. Lomsko shose 12", number: 9)
 
 puts "Creating subjects"
 
-maths     = Subject.new(name: "Mathematics")
-bulgarian = Subject.new(name: "Bulgarian")
-french    = Subject.new(name: "French")
+maths     = Subject.new(name: "Математика")
+bulgarian = Subject.new(name: "Български")
+french    = Subject.new(name: "Френски")
 
 puts "Creating headmasters"
 
-h1 = User.create(first_name: 'Ivailo', last_name: 'Tsekov', email: "headmaster@smg.bg", password: "password", password_confirmation: "password")
-h2 = User.create(first_name: 'Ivan', last_name: 'Petrov', email: "headmaster@feg.bg", password: "password", password_confirmation: "password")
+h1 = User.create(first_name: 'Ивайло', last_name: 'Цеков', email: "headmaster@smg.bg", password: "password", password_confirmation: "password")
+h2 = User.create(first_name: 'Иван', last_name: 'Петров', email: "headmaster@feg.bg", password: "password", password_confirmation: "password")
 
 puts "Creating teachers"
 
-t1 = User.create(first_name: "Tanq", last_name: "Baladjanova", email: "teacher@smg.bg", password: "password", password_confirmation: "password")
-t2 = User.create(first_name: "Anatolii", last_name: "Stoyanov", email: "teacher@feg.bg", password: "password", password_confirmation: "password")
+t1 = User.create(first_name: "Таня", last_name: "Баладжанова", email: "teacher1@smg.bg", password: "password", password_confirmation: "password")
+t2 = User.create(first_name: "Мария", last_name: "Ценова", email: "teacher2@smg.bg", password: "password", password_confirmation: "password")
+t3 = User.create(first_name: "Ваня", last_name: "Костадинова", email: "teacher3@smg.bg", password: "password", password_confirmation: "password")
+t4 = User.create(first_name: "Анатолии", last_name: "Стоянов", email: "teacher4@feg.bg", password: "password", password_confirmation: "password")
+t5 = User.create(first_name: "Благой", last_name: "Георгиев", email: "teacher5@feg.bg", password: "password", password_confirmation: "password")
+t6 = User.create(first_name: "Сам", last_name: "Маринов", email: "teacher6@feg.bg", password: "password", password_confirmation: "password")
 
 puts "Creating groups"
-gr1 = Group.create(name: 'a', school: smg, teacher: t1, grade: 8)
-gr2 = Group.create(name: 'a', school: feg, teacher: t2, grade: 9)
+gr1 = Group.create(name: 'а', school: smg, teacher: t1, grade: 8)
+gr1 = Group.create(name: 'б', school: smg, teacher: t2, grade: 8)
+gr1 = Group.create(name: 'в', school: smg, teacher: t3, grade: 8)
+gr2 = Group.create(name: 'а', school: feg, teacher: t4, grade: 9)
+gr2 = Group.create(name: 'б', school: feg, teacher: t5, grade: 9)
+gr2 = Group.create(name: 'в', school: feg, teacher: t6, grade: 9)
 
 puts "Creating students"
 
@@ -53,7 +61,7 @@ Assignment.create(role: r3, school: feg, user: h2)
 
 # Teachers
 Assignment.create(role: r2, school: smg, user: t1)
-Assignment.create(role: r2, school: feg, user: t2)
+Assignment.create(role: r2, school: feg, user: t4)
 
 # Students
 Assignment.create(role: r1, school: smg, user: s1)
@@ -82,11 +90,11 @@ y2 = SchoolYear.create(year: "2017", school: feg)
 puts "Creating courses"
 
 c1 = Course.create(school: smg, group: gr1, subject: maths, school_year: y1, teacher: t1)
-c2 = Course.create(school: smg, group: gr1, subject: bulgarian, school_year: y1, teacher: t1)
-c3 = Course.create(school: smg, group: gr1, subject: french, school_year: y1, teacher: t1)
-c5 = Course.create(school: feg, group: gr2, subject: maths, school_year: y2, teacher: t2)
-c6 = Course.create(school: feg, group: gr2, subject: french, school_year: y2, teacher: t2)
-c7 = Course.create(school: feg, group: gr2, subject: bulgarian, school_year: y2, teacher: t2)
+c2 = Course.create(school: smg, group: gr1, subject: bulgarian, school_year: y1, teacher: t2)
+c3 = Course.create(school: smg, group: gr1, subject: french, school_year: y1, teacher: t3)
+c5 = Course.create(school: feg, group: gr2, subject: maths, school_year: y2, teacher: t4)
+c6 = Course.create(school: feg, group: gr2, subject: french, school_year: y2, teacher: t5)
+c7 = Course.create(school: feg, group: gr2, subject: bulgarian, school_year: y2, teacher: t6)
 
 puts "Creating marks"
 

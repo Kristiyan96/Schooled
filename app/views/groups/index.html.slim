@@ -1,8 +1,8 @@
 h4 Groups
 
-- @groups.each do |group|
-  = group.teacher.full_name
-  = group.name
-  .students
-    | Students
-    = group.students.map(&:full_name)
+- (1..12).each do |grade|
+  - if @school.groups.where(grade: grade).any?
+    hr
+    = "Grade #{grade}"
+    .row
+      = render partial: 'groups/group_card', collection: @school.groups.order(:name), as: :group

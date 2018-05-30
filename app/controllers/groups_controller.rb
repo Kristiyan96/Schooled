@@ -10,7 +10,6 @@ class GroupsController < ApplicationController
   end
 
   def edit
-
   end
 
   def create
@@ -25,6 +24,7 @@ class GroupsController < ApplicationController
         format.html { render :new, notice: "There was an error while creating the group." }
         format.json { render json: @group.errors, status: :unprocessable_entity }
       end
+    end
   end
 
   def update
@@ -36,6 +36,7 @@ class GroupsController < ApplicationController
         format.html { render :new, notice: "There was an error while creating the group." }
         format.json { render json: @group.errors, status: :unprocessable_entity }
       end
+    end
   end
 
   private
@@ -48,4 +49,5 @@ class GroupsController < ApplicationController
   def group_params
     params.permit(:name, :grade, :teacher_id)
   end
+
 end
