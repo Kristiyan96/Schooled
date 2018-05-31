@@ -5,9 +5,9 @@
         = group.name.upcase
       p.card-category = group.teacher.full_name
       h3.card-title 
-        = group.grade
+        = group.students.count
         |  
-        small = group.name.upcase
+        small students
     .card-footer
       .stats
         i.material-icons.text-primary dashboard
