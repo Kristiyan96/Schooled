@@ -1,5 +1,6 @@
 class GroupsController < ApplicationController
-  before_action :set_group, only: [:show, :edit, :update]
+  before_action :set_school
+  before_action :set_group, only: [:show, :edit, :update, :destroy]
 
   def index
     @school = School.find(params[:school_id])
@@ -7,6 +8,10 @@ class GroupsController < ApplicationController
   end
 
   def show
+  end
+
+  def new
+    @group = @school.groups.new
   end
 
   def edit
@@ -18,7 +23,7 @@ class GroupsController < ApplicationController
 
     respond_to do |format|
       if @group.save
-        format.html { redirect_to @group, notice: "Group was successfully created." }
+        format.html { redirect_to school_groups_path(@school), notice: "Group was successfully created." }
         format.json { render :show, status: :created, location: @group }
       else
         format.html { render :new, notice: "There was an error while creating the group." }
@@ -41,13 +46,15 @@ class GroupsController < ApplicationController
 
   private
 
-  def set_group
+  def set_school
     @school = School.find(params[:school_id])
-    @group = School.groups.find(params[:id])
+  end
+
+  def set_group
+    @group = @school.groups.find(params[:id])
   end
 
   def group_params
-    params.permit(:name, :grade, :teacher_id)
+    params.require(:group).permit(:name, :grade, :teacher_id)
   end
-
 end

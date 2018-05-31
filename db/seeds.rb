@@ -61,7 +61,11 @@ Assignment.create(role: r3, school: feg, user: h2)
 
 # Teachers
 Assignment.create(role: r2, school: smg, user: t1)
+Assignment.create(role: r2, school: smg, user: t2)
+Assignment.create(role: r2, school: smg, user: t3)
 Assignment.create(role: r2, school: feg, user: t4)
+Assignment.create(role: r2, school: feg, user: t5)
+Assignment.create(role: r2, school: feg, user: t6)
 
 # Students
 Assignment.create(role: r1, school: smg, user: s1)

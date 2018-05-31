@@ -1,7 +1,7 @@
 .col-md-4.col-xs-12.col-lg-3
   .card.card-stats
-    .card-header.card-header-danger.card-header-icon
-      .card-icon
+    .card-header.card-header-primary.card-header-icon
+      b.card-icon
         = group.name.upcase
       p.card-category = group.teacher.full_name
       h3.card-title 
@@ -10,5 +10,5 @@
         small = group.name.upcase
     .card-footer
       .stats
-        i.material-icons.text-danger dashboard
-        a.text-danger href="#pablo"  Manage Staff
+        i.material-icons.text-primary dashboard
+        = link_to "Manage Group", school_group_path(@school, group), class: "text-primary"

@@ -1,8 +1,12 @@
-h4 Groups
+.row
+  .col.text-right
+    = link_to new_school_group_path(@school), class: "btn btn-success btn-round" do
+      i.material-icons group_add
+      |  
+      | Add group
 
 - (1..12).each do |grade|
   - if @school.groups.where(grade: grade).any?
-    hr
     = "Grade #{grade}"
     .row
-      = render partial: 'groups/group_card', collection: @school.groups.order(:name), as: :group
+      = render partial: 'groups/group_card', collection: @school.groups.order(:name).where(grade: grade), as: :group

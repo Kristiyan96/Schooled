@@ -8,7 +8,7 @@
         .col-md-4
           .form-group
             label.bmd-label-floating School Number
-            = f.text_field :number, class: "form-control", value: school.number
+            = f.number_field :number, class: "form-control", value: school.number
         .col-md-8
           .form-group
             label.bmd-label-floating School Name
@@ -26,7 +26,7 @@
         .col-md-6
           .form-group
             label.bmd-label-floating Phone Number
-            = f.text_field :contact_number, class: "form-control", value: school.contact_number
+            = f.phone_field :contact_number, class: "form-control", value: school.contact_number
       = f.submit "Update School", class: "btn btn-primary pull-right"
       .clearfix
 
