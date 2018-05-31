@@ -16,3 +16,7 @@
               = render "components/student/group/student_row", student: student   
             - else
               = render "components/student/group/student_row_invite", student: student, number: number
+          - if student && student.parents.any?
+            - student.parents.each do |parent|
+              = render "components/parent/group/parent_row", student: student, parent: parent
+              
