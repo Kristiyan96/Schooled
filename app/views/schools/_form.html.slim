@@ -1,32 +1,32 @@
 .card
   .card-header.card-header-primary
     h4.card-title Edit School
-    p.card-category Complete your school profile
+    p.card-category = school.name
   .card-body
-    = content_tag :div, id: "school-form", data: { id: school.id, school: school.to_json(except: [:id, :created_at, :updated_at])} do 
+    = form_with model: school do |f|
       .row
         .col-md-4
           .form-group
             label.bmd-label-floating School Number
-            input.form-control type="text" v-model="school.number"
+            = f.text_field :number, class: "form-control", value: school.number
         .col-md-8
           .form-group
             label.bmd-label-floating School Name
-            input.form-control type="text" v-model="school.name"
+            = f.text_field :name, class: "form-control", value: school.name
       .row
         .col-md-12
           .form-group
             label.bmd-label-floating Email address
-            input.form-control type="email" v-model="school.email"
+            = f.email_field :email, class: "form-control", value: school.email, autofocus: true
       .row
         .col-md-6
           .form-group
             label.bmd-label-floating Address
-            input.form-control type="text" v-model="school.address"
+            = f.text_field :address, class: "form-control", value: school.address
         .col-md-6
           .form-group
             label.bmd-label-floating Phone Number
-            input.form-control type="text" v-model="school.contact_number"
-      button.btn.btn-primary.pull-right v-on:click="saveSchool" Update School
+            = f.text_field :contact_number, class: "form-control", value: school.contact_number
+      = f.submit "Update School", class: "btn btn-primary pull-right"
       .clearfix
 
