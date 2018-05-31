@@ -29,16 +29,16 @@ ul.nav.nav-pills.nav-pills-icons role="tablist"
     = render 'groups/form', group: @group
     = render 'groups/student_list'
 
-  .students
-    - @group.students.each do |student|
-      h4
-        | Invite Parent for #{student.full_name}
-      = form_with url: student_parentship_index_path(student) do |f|
-        = f.label :email
-        = f.text_field :email, required: true
-        = f.label :first_name
-        = f.text_field :first_name, required: true
-        = f.label :last_name
-        = f.text_field :last_name, required: true
+  / .students
+  /   - @group.students.each do |student|
+  /     h4
+  /       | Invite Parent for #{student.full_name}
+  /     = form_with url: student_parentship_index_path(student) do |f|
+  /       = f.label :email
+  /       = f.text_field :email, required: true
+  /       = f.label :first_name
+  /       = f.text_field :first_name, required: true
+  /       = f.label :last_name
+  /       = f.text_field :last_name, required: true
 
-        = f.submit "Invite"
+  /       = f.submit "Invite"

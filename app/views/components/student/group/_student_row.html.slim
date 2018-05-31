@@ -1,0 +1,11 @@
+td.text-center = student.number_in_class
+td = student.first_name
+td = student.last_name
+td = student.email
+td.td-actions.pull-right
+  = link_to profile_path(student), class: "btn btn-info btn-round" do
+    i.material-icons person
+  button.btn.btn-success.btn-round rel="tooltip" type="button" 
+    i.material-icons edit
+  button.btn.btn-danger.btn-round rel="tooltip" type="button" 
+    i.material-icons close       

@@ -11,39 +11,8 @@
       tbody
         - (1..35).each do |number|
           - student = @group.students.find_by(number_in_class: number)
-          - if student
-            tr
-              td.text-center = number
-              td = student.first_name
-              td = student.last_name
-              td = student.email
-              td.td-actions.pull-right
-                = link_to profile_path(student), class: "btn btn-info btn-round" do
-                  i.material-icons person
-                button.btn.btn-success.btn-round rel="tooltip" type="button" 
-                  i.material-icons edit
-                button.btn.btn-danger.btn-round rel="tooltip" type="button" 
-                  i.material-icons close          
-          - else
-            tr
-              = form_with url: school_group_student_invitations_path(@school, @group) do |f|
-                = f.hidden_field :number_in_class, value: number
-                td.text-center
-                  .form-group = number
-                td
-                  .form-group
-                    label.bmd-label-floating First Name
-                    = f.text_field :first_name, required: true, class: "form-control"
-                td 
-                  .form-group
-                    label.bmd-label-floating Last Name
-                    = f.text_field :last_name, required: true, class: "form-control"
-                td
-                  .form-group
-                    label.bmd-label-floating Email
-                    = f.email_field :email, required: true, class: "form-control"
-                td.td-actions.pull-right
-                  .pull-right.form-group
-                    = f.button class: "btn btn-info btn-round", type: "submit" do
-                      i.material-icons person
-                      | Invite
+          tr id="student-#{number}"
+            - if student
+              = render "components/student/group/student_row", student: student   
+            - else
+              = render "components/student/group/student_row_invite", student: student, number: number
