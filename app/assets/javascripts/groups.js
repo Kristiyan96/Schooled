@@ -1,11 +1,9 @@
 document.addEventListener("turbolinks:load", function() {
-  $('.td-actions .add-parent').on('click', function(){
+  $('body').on('click tap', '.add-parent', function(e){
     $(this).parent().parent().next('tr').toggleClass('d-none');
-  })
-});
-
-document.addEventListener("turbolinks:load", function() {
-  $('.td-actions .invite-parent').on('click', function(){
+  });
+  
+  $('body').on('click tap', '.invite-parent', function(e){
     $(this).parent().parent().parent().toggleClass('d-none');
-  })
+  });
 });
