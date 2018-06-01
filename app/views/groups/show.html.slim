@@ -1,34 +1,32 @@
-h4
-  | Group
+ul.nav.nav-pills.nav-pills-icons role="tablist" 
 
-= @group.teacher.full_name
-= @group.name
-.students
-  | Students
-  - @group.students.each do |student|
-    h4
-      | Invite Parent for #{student.full_name}
-    = form_with url: student_parentship_index_path(student) do |f|
-      = f.label :email
-      = f.text_field :email, required: true
-      = f.label :first_name
-      = f.text_field :first_name, required: true
-      = f.label :last_name
-      = f.text_field :last_name, required: true
+  li.nav-item
+    a.nav-link data-toggle="tab" href="#group-main" role="tab" 
+      i.material-icons dashboard
+      | Main
+  li.nav-item
+    a.nav-link.active data-toggle="tab" href="#group-courses" role="tab" 
+      i.material-icons list_alt
+      | Courses
+  li.nav-item
+    a.nav-link data-toggle="tab" href="#group-schedule" role="tab" 
+      i.material-icons schedule
+      | Schedule
+  li.nav-item
+    a.nav-link data-toggle="tab" href="#group-manage" role="tab" 
+      i.material-icons edit
+      | Manage
+.tab-content.tab-space
+  #group-main.tab-pane.active
+    | Collaboratively administrate empowered markets via plug-and-play networks. Dynamically procrastinate B2C users after installed base benefits.
+  #group-courses.tab-pane
+    | Efficiently unleash cross-media information without cross-media value. Quickly maximize timely deliverables for real-time schemas.
 
-      = f.submit "Invite"
+  #group-schedule.tab-pane
+    | Completely synergize resource taxing relationships via premier niche markets. Professionally cultivate one-to-one customer service with robust ideas.
+
+  #group-manage.tab-pane
+    = render 'groups/form', group: @group
+    = render 'groups/student_list'
 
 
-
-h4
-  | Invite Students
-
-= form_with url: school_group_student_invitations_path(@school, @group) do |f|
-    = f.label :email
-    = f.text_field :email, required: true
-    = f.label :first_name
-    = f.text_field :first_name, required: true
-    = f.label :last_name
-    = f.text_field :last_name, required: true
-
-    = f.submit "Invite"

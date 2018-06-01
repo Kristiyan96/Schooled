@@ -1,0 +1,23 @@
+.card
+  .card-body
+    table.table
+      thead
+        tr
+          th.text-center #
+          th First Name
+          th Last Name
+          th Email
+          th.text-right Actions
+      tbody
+        - (1..35).each do |number|
+          - student = @group.students.find_by(number_in_class: number)
+          tr id="student-#{number}"
+            - if student
+              = render "components/student/group/student_row", student: student   
+            - else
+              = render "components/student/group/student_row_invite", student: student, number: number
+          - if student
+            = render "components/parent/group/parent_row_invite", student: student
+            - student.parents.each do |parent|
+              = render "components/parent/group/parent_row", student: student, parent: parent
+              

@@ -1,0 +1,6 @@
+<% if @is_invited %>
+  $("#student-<%=@user.number_in_class%>").html("<%= escape_javascript (render 'components/student/group/student_row', student: @user  ) %>");
+  $("#student-<%=@user.number_in_class%>").after("<%= escape_javascript (render 'components/parent/group/parent_row_invite', student: @user  ) %>");
+<% else %>
+  alert("No success");
+<% end %>
