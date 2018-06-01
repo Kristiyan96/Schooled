@@ -5,7 +5,7 @@ tr.table-light.d-none id="student-#{student.number_in_class}-parent-"
     td
       .form-group
         label.bmd-label-floating First Name
-        = f.text_field :first_name, required: true, class: "form-control"
+        = f.text_field :first_name, required: true, class: "form-control", autofocus: false
     td 
       .form-group
         label.bmd-label-floating Last Name

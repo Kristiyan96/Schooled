@@ -6,6 +6,6 @@ document.addEventListener("turbolinks:load", function() {
 
 document.addEventListener("turbolinks:load", function() {
   $('.td-actions .invite-parent').on('click', function(){
-    $(this).parent().parent().toggleClass('d-none');
+    $(this).parent().parent().parent().toggleClass('d-none');
   })
 });
