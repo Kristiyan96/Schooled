@@ -1,7 +1,8 @@
 .card
-  .card-header.card-header-primary
-    h4.card-title Group Form
-    p.card-category = group_name(group)
+  .card-header class="card-header-#{action_name == 'new' ? 'success' : 'warning'}"
+    h4.card-title 
+      b = action_name == 'new' ? 'New group' : 'Edit group'
+    b.card-category = group_name(group)
   .card-body
     = form_with model: group, url: school_groups_path(@school) do |f|
       .row
@@ -20,6 +21,6 @@
             label.bmd-label-floating for="group_teacher_id" Head Teacher
             = f.collection_select :teacher_id, @school.teachers, :id, :full_name, {prompt: true}, {class: "form-control"}
 
-      = f.submit "Submit", class: "btn btn-primary pull-right"
+      = f.submit "Submit", class: "btn btn-#{action_name == 'new' ? 'success' : 'warning'} pull-right"
       .clearfix
 

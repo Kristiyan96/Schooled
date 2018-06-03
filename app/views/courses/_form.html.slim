@@ -1,0 +1,19 @@
+.card-body
+  = form_with url: school_group_courses_path(@school, @group), remote: true do |f|
+    td.col-md-3
+      .form-group
+        label.bmd-label-floating for="group_teacher_id" School Year
+        = f.collection_select :school_year, @school.school_years, :id, :year, {prompt: true}, {class: "form-control"}
+    td.col-md-3
+      .form-group
+          label.bmd-label-floating for="group_teacher_id" Subject
+          = f.collection_select :subject, @school.subjects, :id, :name, {prompt: true}, {class: "form-control"}
+    td.col-md-3 
+      .form-group
+          label.bmd-label-floating for="group_teacher_id" Teacher
+          = f.collection_select :teacher_id, @school.teachers, :id, :full_name, {prompt: true}, {class: "form-control"}
+    td.td-actions.pull-right.col-md-3
+      .pull-right.form-group
+        = f.button class: "btn btn-#{action_name == 'edit' ? 'warning' : 'success'} btn-round", type: "submit" do
+          i.material-icons edit
+          | Submit
