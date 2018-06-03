@@ -16,8 +16,6 @@ ul.nav.nav-pills.nav-pills-icons role="tablist"
       i.material-icons edit
       | Manage
 .tab-content.tab-space
-  #group-main.tab-pane.active
-
   #group-courses.tab-pane
     .row
       = render partial: 'courses/course_card', collection: @group.courses, as: :course
@@ -53,6 +51,5 @@ ul.nav.nav-pills.nav-pills-icons role="tablist"
               p.card-category Group Settings
               h3.card-title 
                 | Edit group
-
 
 

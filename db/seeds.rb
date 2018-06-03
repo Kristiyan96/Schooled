@@ -79,7 +79,6 @@ puts "Linking parents and students"
 
 Parentship.create(parent: p1, student: s1)
 Parentship.create(parent: p1, student: s2)
-Parentship.create(parent: p1, student: s1)
 Parentship.create(parent: p2, student: s2)
 Parentship.create(parent: p2, student: s3)
 Parentship.create(parent: p2, student: s4)

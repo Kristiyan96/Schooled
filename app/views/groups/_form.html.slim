@@ -20,7 +20,6 @@
           .form-group
             label.bmd-label-floating for="group_teacher_id" Head Teacher
             = f.collection_select :teacher_id, @school.teachers, :id, :full_name, {prompt: true}, {class: "form-control"}
-
       = f.submit "Submit", class: "btn btn-#{action_name == 'new' ? 'success' : 'warning'} pull-right"
       .clearfix
 
