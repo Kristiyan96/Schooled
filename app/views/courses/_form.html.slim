@@ -14,6 +14,6 @@
           = f.collection_select :teacher_id, @school.teachers, :id, :full_name, {prompt: true}, {class: "form-control"}
     td.td-actions.pull-right.col-md-3
       .pull-right.form-group
-        = f.button class: "btn btn-#{action_name == 'edit' ? 'warning' : 'success'} btn-round", type: "submit" do
+        = f.button class: "btn btn-#{action_name == 'edit' ? 'warning' : 'success'}", type: "submit" do
           i.material-icons edit
           | Submit

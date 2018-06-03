@@ -1,7 +1,7 @@
 ul.navbar-nav
   - if user_signed_in?
     li.nav-item.dropdown
-      a#notification-navbar.nav-link aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" 
+      a#notification-navbar.nav-link href="" aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" 
         i.material-icons notifications
         span.notification 5
         p
@@ -9,7 +9,7 @@ ul.navbar-nav
       .dropdown-menu.dropdown-menu-right aria-labelledby="notification-navbar" 
         = render 'components/user/navbar_notification'
   li.nav-item.dropdown
-    a#account-navbar.nav-link aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" 
+    a#account-navbar.nav-link href="" aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" 
       i.material-icons person
       p
         span.d-lg-none.d-md-block Account

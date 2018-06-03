@@ -4,7 +4,7 @@ tr.table-info id="student-#{student.number_in_class}-parent-#{parent.id}"
   td = parent.last_name
   td = parent.email
   td.td-actions.pull-right
-    = link_to profile_path(parent), class: "btn btn-info btn-round" do
+    = link_to profile_path(parent), class: "btn btn-info" do
       i.material-icons person
-    button.btn.btn-danger.btn-round rel="tooltip" type="button" 
+    button.btn.btn-danger rel="tooltip" type="button" 
       i.material-icons close    

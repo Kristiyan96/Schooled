@@ -35,7 +35,7 @@ class GroupsController < ApplicationController
   def update
     respond_to do |format|
       if @group.update(group_params)
-        format.html { redirect_to @group, notice: "Group was successfully created." }
+        format.html { redirect_to school_group_path(@school, @group), notice: "Group was successfully created." }
         format.json { render :show, status: :created, location: @group }
       else
         format.html { render :new, notice: "There was an error while creating the group." }

@@ -1,1 +1,22 @@
-= render 'groups/form', group: @group
+.card
+  .card-header.card-header-icon class="card-header-success"
+    b.card-icon New Group
+  .card-body
+    = form_with model: @group, url: school_groups_path(@school) do |f|
+      .row
+        .col-md-4
+          .form-group
+            label.bmd-label-floating Group Grade (1 to 12)
+            = f.number_field :grade, class: "form-control", value: @group.grade
+            i Incremented automatically every year
+        .col-md-4
+          .form-group
+            label.bmd-label-floating Group Name (A, B, ...)
+            = f.text_field :name, class: "form-control", value: @group.name
+      .row
+        .col-md-4
+          .form-group
+            label.bmd-label-floating for="group_teacher_id" Head Teacher
+            = f.collection_select :teacher_id, @school.teachers, :id, :full_name, {prompt: true}, {class: "form-control"}
+      = f.submit "Create", class: "btn btn-success pull-right"
+      .clearfix

@@ -1,7 +1,9 @@
 nav.navbar.navbar-expand-lg.navbar-transparent.navbar-absolute.fixed-top
   .container-fluid
     .navbar-wrapper
-      a.navbar-brand href="#pablo"  Material Dashboard
+      = link_to @go_back_path || 'javascript:history.back()', class: 'navbar-brand' do
+        i.material-icons arrow_back
+        = "Back #{@go_back_text}"
     button.navbar-toggler aria-controls="navigation-index" aria-expanded="false" aria-label=("Toggle navigation") data-target="#navigation" data-toggle="collapse" type="button" 
       span.sr-only Toggle navigation
       span.navbar-toggler-icon.icon-bar
