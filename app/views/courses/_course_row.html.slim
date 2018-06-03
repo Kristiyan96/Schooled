@@ -1,0 +1,7 @@
+tr
+  td = course.school_year.year
+  td = course.subject.name
+  td = course.teacher.full_name
+  td.td-actions.pull-right
+    = link_to edit_school_group_course_path(@school, @group, course), class: "btn btn-warning btn-round" do
+      i.material-icons edit   

@@ -1,45 +1,46 @@
-.row
-  .col-md-4 
-    .card.card-stats
-      .card-header.card-header-danger.card-header-icon
-        .card-icon
-          i.material-icons person
-        p.card-category Teachers
-        h3.card-title 
-          = @school.teachers.count
-          |  
-          small teachers
-      .card-footer
-        .stats
-          i.material-icons.text-danger dashboard
-          a.text-danger href="#pablo"  Manage Staff
+- if @school 
+  .row
+    .col-md-4 
+      .card.card-stats
+        .card-header.card-header-danger.card-header-icon
+          .card-icon
+            i.material-icons person
+          p.card-category Teachers
+          h3.card-title 
+            = @school.teachers.count
+            |  
+            small teachers
+        .card-footer
+          .stats
+            i.material-icons.text-danger dashboard
+            a.text-danger href="#pablo"  Manage Staff
 
-  .col-md-4
-    .card.card-stats
-      .card-header.card-header-primary.card-header-icon
-        .card-icon
-          i.material-icons group
-        p.card-category Groups
-        h3.card-title 
-          = @school.groups.count
-          |  
-          small groups
-      .card-footer
-        .stats
-          i.material-icons.text-primary dashboard
-          = link_to "Manage Groups", school_groups_path(@school)
+    .col-md-4
+      .card.card-stats
+        .card-header.card-header-primary.card-header-icon
+          .card-icon
+            i.material-icons group
+          p.card-category Groups
+          h3.card-title 
+            = @school.groups.count
+            |  
+            small groups
+        .card-footer
+          .stats
+            i.material-icons.text-primary dashboard
+            = link_to "Manage Groups", school_groups_path(@school)
 
-  .col-md-4
-    .card.card-stats
-      .card-header.card-header-warning.card-header-icon
-        .card-icon
-          i.material-icons face
-        p.card-category Students
-        h3.card-title 
-          = @school.students.count
-          |  
-          small students
-      .card-footer
-        .stats
-          i.material-icons.text-warning dashboard
-          a.text-warning href="#pablo"  Manage Students
+    .col-md-4
+      .card.card-stats
+        .card-header.card-header-warning.card-header-icon
+          .card-icon
+            i.material-icons face
+          p.card-category Students
+          h3.card-title 
+            = @school.students.count
+            |  
+            small students
+        .card-footer
+          .stats
+            i.material-icons.text-warning dashboard
+            a.text-warning href="#pablo"  Manage Students

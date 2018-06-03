@@ -1,47 +1,5 @@
 .col-md-5.col-xs-12
   = render 'schools/card'
- 
-  .card.card-stats
-    .card-header.card-header-danger.card-header-icon
-      .card-icon
-        i.material-icons group
-      p.card-category Teachers
-      h3.card-title 
-        = @school.teachers.count
-        |  
-        small teachers
-    .card-footer
-      .stats
-        i.material-icons.text-danger dashboard
-        a.text-danger href="#pablo"  Manage Staff
-
-  .card.card-stats
-    .card-header.card-header-primary.card-header-icon
-      .card-icon
-        i.material-icons group
-      p.card-category Groups
-      h3.card-title 
-        = @school.groups.count
-        |  
-        small groups
-    .card-footer
-      .stats
-        i.material-icons.text-primary dashboard
-        a href="#pablo"  Manage Groups
-
-  .card.card-stats
-    .card-header.card-header-warning.card-header-icon
-      .card-icon
-        i.material-icons face
-      p.card-category Student
-      h3.card-title 
-        = @school.students.count
-        |  
-        small students
-    .card-footer
-      .stats
-        i.material-icons.text-warning dashboard
-        a.text-warning href="#pablo"  Manage Students
 
 
             

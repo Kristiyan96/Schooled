@@ -1,11 +1,10 @@
 ul.nav.nav-pills.nav-pills-icons role="tablist" 
-
   li.nav-item
-    a.nav-link data-toggle="tab" href="#group-main" role="tab" 
+    a.nav-link.active data-toggle="tab" href="#group-main" role="tab" 
       i.material-icons dashboard
       | Main
   li.nav-item
-    a.nav-link.active data-toggle="tab" href="#group-courses" role="tab" 
+    a.nav-link data-toggle="tab" href="#group-courses" role="tab" 
       i.material-icons list_alt
       | Courses
   li.nav-item
@@ -17,16 +16,40 @@ ul.nav.nav-pills.nav-pills-icons role="tablist"
       i.material-icons edit
       | Manage
 .tab-content.tab-space
-  #group-main.tab-pane.active
-    | Collaboratively administrate empowered markets via plug-and-play networks. Dynamically procrastinate B2C users after installed base benefits.
   #group-courses.tab-pane
-    | Efficiently unleash cross-media information without cross-media value. Quickly maximize timely deliverables for real-time schemas.
+    .row
+      = render partial: 'courses/course_card', collection: @group.courses, as: :course
 
   #group-schedule.tab-pane
     | Completely synergize resource taxing relationships via premier niche markets. Professionally cultivate one-to-one customer service with robust ideas.
 
   #group-manage.tab-pane
-    = render 'groups/form', group: @group
-    = render 'groups/student_list'
+    .row
+      = link_to school_group_courses_path(@school, @group), class: "col-md-4" do
+          .card.card-stats
+            .card-header.card-header-danger.card-header-icon
+              .card-icon
+                i.material-icons list_alt
+              p.card-category Add & remove courses
+              h3.card-title 
+                | Manage courses
+
+      = link_to profiles_path(school_id: @school, group_id: @group), class: "col-md-4" do
+          .card.card-stats
+            .card-header.card-header-success.card-header-icon
+              .card-icon
+                i.material-icons group
+              p.card-category Add students & parents
+              h3.card-title 
+                | Manage students
+
+      = link_to edit_school_group_path(@school, @group), class: "col-md-4" do
+          .card.card-stats
+            .card-header.card-header-warning.card-header-icon
+              .card-icon
+                i.material-icons edit
+              p.card-category Group Settings
+              h3.card-title 
+                | Edit group
 
 
