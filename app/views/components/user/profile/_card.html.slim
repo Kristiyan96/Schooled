@@ -7,16 +7,16 @@
   .row
     - if user_signed_in? && @user != current_user
       .col
-        button.btn.btn-round
+        button.btn
           i.material-icons message 
           | Message
       .col
-        a.btn.btn-round href="mailto:#{@user.email}" data-toggle="tooltip" data-placement="top" title="#{@user.email}"
+        a.btn href="mailto:#{@user.email}" data-toggle="tooltip" data-placement="top" title="#{@user.email}"
           i.material-icons email 
           | Email
       - if @user.phone_number
         .col
-          a.btn.btn-round href="tel:#{@user.phone_number}" data-toggle="tooltip" data-placement="top" title="#{@user.phone_number}"
+          a.btn href="tel:#{@user.phone_number}" data-toggle="tooltip" data-placement="top" title="#{@user.phone_number}"
             i.material-icons phone
             | Call    
     - if user_signed_in? && @user == current_user

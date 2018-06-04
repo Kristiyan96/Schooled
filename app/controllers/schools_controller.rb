@@ -9,6 +9,7 @@ class SchoolsController < ApplicationController
   end
 
   def new
+    @back_to_path = schools_path
     @school = School.new
   end
 

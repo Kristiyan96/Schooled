@@ -1,22 +1,22 @@
 .card.card-profile
   .card-avatar
-    = image_tag('bg7', class: "img")
+    = image_tag('school', class: "img")
   .card-body
     h6.card-category.text-gray = @school.address
     h4.card-title = school_name(@school)
   .row
     - if user_signed_in?
       .col
-        a.btn.btn-round href="mailto:#{@school.email}" data-toggle="tooltip" data-placement="top" title="#{@school.email}"
+        a.btn href="mailto:#{@school.email}" data-toggle="tooltip" data-placement="top" title="#{@school.email}"
           i.material-icons email 
           | Email
       - if @school.contact_number
         .col
-          a.btn.btn-round href="tel:#{@school.contact_number}" data-toggle="tooltip" data-placement="top" title="#{@school.contact_number}"
+          a.btn href="tel:#{@school.contact_number}" data-toggle="tooltip" data-placement="top" title="#{@school.contact_number}"
             i.material-icons phone
             | Call    
     - if user_signed_in? && current_user.role?(:headmaster, @school)
       .col
-        = link_to edit_school_path(@school), class: "btn btn-round" do
+        = link_to edit_school_path(@school), class: "btn" do
           i.material-icons settings
           | Settings
