@@ -11,7 +11,7 @@ french    = Subject.new(name: "Френски")
 
 puts "Creating headmasters"
 
-h1 = User.create(first_name: 'Ивайло', last_name: 'Цеков', email: "headmaster@smg.bg", password: "password", password_confirmation: "password")
+h1 = User.create(first_name: 'Ивайло', last_name: 'Ушагелов', email: "headmaster@smg.bg", password: "password", password_confirmation: "password")
 h2 = User.create(first_name: 'Иван', last_name: 'Петров', email: "headmaster@feg.bg", password: "password", password_confirmation: "password")
 
 puts "Creating teachers"
@@ -33,18 +33,18 @@ gr2 = Group.create(name: 'в', school: feg, teacher: t6, grade: 9)
 
 puts "Creating students"
 
-s1 = User.create(group: gr1, number_in_class: 1, first_name: "Kristiyan", last_name: "Tsvetanov", birthday: Date.new(1996,2,28), email: "student1@smg.bg", password: "password", password_confirmation: "password")
-s2 = User.create(group: gr1, number_in_class: 2, first_name: "Nikola", last_name: "Jichev", birthday: Date.new(1996,6,13), email: "student2@smg.bg", password: "password", password_confirmation: "password")
-s3 = User.create(group: gr1, number_in_class: 3, first_name: "Alexandra", last_name: "Mitkova", birthday: Date.new(1996,3,9), email: "student3@smg.bg", password: "password", password_confirmation: "password")
-s4 = User.create(group: gr2, number_in_class: 4, first_name: "Ivan", last_name: "Geshev", birthday: Date.new(1996,4,12), email: "student1@feg.bg", password: "password", password_confirmation: "password")
-s5 = User.create(group: gr2, number_in_class: 5, first_name: "Boyan", last_name: "Yotov", birthday: Date.new(1996,7,15), email: "student2@feg.bg", password: "password", password_confirmation: "password")
-s6 = User.create(group: gr2, number_in_class: 6, first_name: "Velin", last_name: "Vergiev", birthday: Date.new(1996,8,21), email: "student3@feg.bg", password: "password", password_confirmation: "password")
+s1 = User.create(group: gr1, number_in_class: 1, first_name: "Кристиян", last_name: "Цветанов", birthday: Date.new(1996,2,28), email: "student1@smg.bg", password: "password", password_confirmation: "password")
+s2 = User.create(group: gr1, number_in_class: 2, first_name: "Никола", last_name: "Жишев", birthday: Date.new(1996,6,13), email: "student2@smg.bg", password: "password", password_confirmation: "password")
+s3 = User.create(group: gr1, number_in_class: 3, first_name: "Александра", last_name: "Миткова", birthday: Date.new(1996,3,9), email: "student3@smg.bg", password: "password", password_confirmation: "password")
+s4 = User.create(group: gr2, number_in_class: 4, first_name: "Иван", last_name: "Гешев", birthday: Date.new(1996,4,12), email: "student1@feg.bg", password: "password", password_confirmation: "password")
+s5 = User.create(group: gr2, number_in_class: 5, first_name: "Боян", last_name: "Йотов", birthday: Date.new(1996,7,15), email: "student2@feg.bg", password: "password", password_confirmation: "password")
+s6 = User.create(group: gr2, number_in_class: 6, first_name: "Велин", last_name: "Вергиев", birthday: Date.new(1996,8,21), email: "student3@feg.bg", password: "password", password_confirmation: "password")
 
 puts "Creating parents"
 
-p1 = User.create(first_name: 'Petar', last_name: 'Novakov', email: "dad@parent.bg", password: "password", password_confirmation: "password")
-p2 = User.create(first_name: 'Mihail', last_name: 'Terziev', email: "mom@parent.bg", password: "password", password_confirmation: "password")
-p3 = User.create(first_name: 'Gergana', last_name: 'Spasova', email: "momfat@parent.bg", password: "password", password_confirmation: "password")
+p1 = User.create(first_name: 'Петър', last_name: 'Новаков', email: "dad@parent.bg", password: "password", password_confirmation: "password")
+p2 = User.create(first_name: 'Михаил', last_name: 'Терзиев', email: "mom@parent.bg", password: "password", password_confirmation: "password")
+p3 = User.create(first_name: 'Гергана', last_name: 'Спасова', email: "momfa@parent.bg", password: "password", password_confirmation: "password")
 
 puts "Creating roles"
 
@@ -87,8 +87,8 @@ Parentship.create(parent: p3, student: s6)
 
 puts "Creating school years"
 
-y1 = SchoolYear.create(year: "2017", school: smg)
-y2 = SchoolYear.create(year: "2017", school: feg)
+y1 = SchoolYear.create(year: "2017/2018", school: smg)
+y2 = SchoolYear.create(year: "2017/2018", school: feg)
 
 puts "Creating courses"
 

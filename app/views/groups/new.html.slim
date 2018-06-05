@@ -1,22 +1,22 @@
 .card
   .card-header.card-header-icon class="card-header-success"
-    b.card-icon New Group
+    b.card-icon Нов клас
   .card-body
     = form_with model: @group, url: school_groups_path(@school) do |f|
       .row
         .col-md-4
           .form-group
-            label.bmd-label-floating Group Grade (1 to 12)
+            label.bmd-label-floating Клас (1 до 12)
             = f.number_field :grade, class: "form-control", value: @group.grade
-            i Incremented automatically every year
+            i Системата автоматично го увеличава с 1 всяка година
         .col-md-4
           .form-group
-            label.bmd-label-floating Group Name (A, B, ...)
+            label.bmd-label-floating Име на клас (A, Б, ...)
             = f.text_field :name, class: "form-control", value: @group.name
       .row
         .col-md-4
           .form-group
-            label.bmd-label-floating for="group_teacher_id" Head Teacher
+            label.bmd-label-floating for="group_teacher_id" Класен ръководител
             = f.collection_select :teacher_id, @school.teachers, :id, :full_name, {prompt: true}, {class: "form-control"}
-      = f.submit "Create", class: "btn btn-success pull-right"
+      = f.submit "Създай", class: "btn btn-success pull-right"
       .clearfix

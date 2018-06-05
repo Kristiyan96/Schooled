@@ -3,9 +3,9 @@
     table.table
       thead
         tr
-          th.text-center Year
-          th Subject
-          th Teacher
-          th.text-right Actions
+          th.text-center Година
+          th Предмет
+          th Учител
+          th.text-right Действия
       tbody
         = render partial: 'courses/course_row', collection: @group.courses, as: :course
