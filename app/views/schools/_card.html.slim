@@ -9,14 +9,14 @@
       .col
         a.btn href="mailto:#{@school.email}" data-toggle="tooltip" data-placement="top" title="#{@school.email}"
           i.material-icons email 
-          | Email
+          | Имейл
       - if @school.contact_number
         .col
           a.btn href="tel:#{@school.contact_number}" data-toggle="tooltip" data-placement="top" title="#{@school.contact_number}"
             i.material-icons phone
-            | Call    
+            | Позвъни    
     - if user_signed_in? && current_user.role?(:headmaster, @school)
       .col
         = link_to edit_school_path(@school), class: "btn" do
           i.material-icons settings
-          | Settings
+          | Настройки

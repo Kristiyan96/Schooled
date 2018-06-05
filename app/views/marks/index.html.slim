@@ -11,9 +11,9 @@
       li.nav-item 
         = link_to 'Оценки', school_group_marks_path(@school,@group), class: 'nav-link active'
       li.nav-item 
-        = link_to 'Отсъствия', school_group_absences_path(@school,@group), class: 'nav-link'
+        = link_to 'Отсъствия', school_group_absences_path(@school,@group, school_year_id: current_year(@school)), class: 'nav-link'
       li.nav-item 
-        = link_to 'Домашни', school_group_path(@school,@group), class: 'nav-link'
+        = link_to 'Домашни', school_group_homeworks_path(@school,@group), class: 'nav-link'
       li.nav-item 
         = link_to 'Ученици', profiles_path(school_id: @school, group_id: @group), class: 'nav-link'
       li.nav-item 

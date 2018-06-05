@@ -1,32 +1,32 @@
 .card
   .card-header.card-header-primary
-    h4.card-title Edit School
+    h4.card-title Редактирай информация на училище
     p.card-category = school.name
   .card-body
     = form_with model: school do |f|
       .row
         .col-md-4
           .form-group
-            label.bmd-label-floating School Number
+            label.bmd-label-floating Номер
             = f.number_field :number, class: "form-control", value: school.number
         .col-md-8
           .form-group
-            label.bmd-label-floating School Name
+            label.bmd-label-floating Име
             = f.text_field :name, class: "form-control", value: school.name
       .row
         .col-md-12
           .form-group
-            label.bmd-label-floating Email address
+            label.bmd-label-floating Имейл за контакт
             = f.email_field :email, class: "form-control", value: school.email, autofocus: true
       .row
         .col-md-6
           .form-group
-            label.bmd-label-floating Address
+            label.bmd-label-floating Адрес
             = f.text_field :address, class: "form-control", value: school.address
         .col-md-6
           .form-group
-            label.bmd-label-floating Phone Number
+            label.bmd-label-floating Телефонен номер
             = f.phone_field :contact_number, class: "form-control", value: school.contact_number
-      = f.submit "Update School", class: "btn btn-primary pull-right"
+      = f.submit "Обнови", class: "btn btn-primary pull-right"
       .clearfix
 

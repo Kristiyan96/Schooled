@@ -1,8 +1,8 @@
 li.nav-item
   = link_to root_path, class: "nav-link" do 
     i.material-icons dashboard
-    p Dashboard
+    p Контролен панел
 li.nav-item
   = link_to school_path(current_user.assignments.order(:created_at).first.school), class: "nav-link" do
     i.material-icons school
-    p My School
+    p Моето училище

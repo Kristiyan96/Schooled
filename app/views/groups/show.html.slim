@@ -20,44 +20,5 @@
 
 
 
-.tab-content.tab-space
-  #group-main.tab-pane.active
-    .row
-
-  #group-courses.tab-pane
-    .row
-      = render partial: 'courses/course_card', collection: @group.courses, as: :course
-
-  #group-schedule.tab-pane
-    
-
-  #group-manage.tab-pane
-    .row
-      = link_to school_group_courses_path(@school, @group), class: "col-md-4" do
-          .card.card-stats
-            .card-header.card-header-danger.card-header-icon
-              .card-icon
-                i.material-icons list_alt
-              p.card-category Add & remove courses
-              h3.card-title 
-                | Manage courses
-
-      = link_to profiles_path(school_id: @school, group_id: @group), class: "col-md-4" do
-          .card.card-stats
-            .card-header.card-header-success.card-header-icon
-              .card-icon
-                i.material-icons group
-              p.card-category Add students & parents
-              h3.card-title 
-                | Manage students
-
-      = link_to edit_school_group_path(@school, @group), class: "col-md-4" do
-          .card.card-stats
-            .card-header.card-header-warning.card-header-icon
-              .card-icon
-                i.material-icons edit
-              p.card-category Group Settings
-              h3.card-title 
-                | Edit group
 
 

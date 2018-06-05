@@ -1,25 +1,25 @@
 .card
   .card-header.card-header-default.card-header-icon
     b.card-icon
-      | Courses
+      | Предмети(Курсове)
     .row
       .col.text-right
         = link_to new_school_group_course_path(@school, @group), class: "btn btn-success" do
           i.material-icons add
           |  
-          | Add course
+          | Добави курс
 
   .card-body
     table.table
       thead
         tr
-          th Year
-          th Subject
-          th Teacher
-          th.text-right Actions
+          th Година
+          th Предмет
+          th Учител
+          th.text-right Действия
       tbody
         - @school.school_years.each do |year|
           - courses = Course.in_year(@group.id, year.year.to_s).ordered
           - if courses.any?
-            = "Year #{year.year}"
+            = "Година #{year.year}"
             = render partial: 'courses/course_row', collection: courses, as: :course

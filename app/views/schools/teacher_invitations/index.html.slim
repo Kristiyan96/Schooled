@@ -1,5 +1,5 @@
 h4
-  | Invite Teachers
+  | Покани учители
 
 = form_with url: school_teacher_invitations_path(@school) do |f|
     = f.label :email
@@ -9,4 +9,4 @@ h4
     = f.label :last_name
     = f.text_field :last_name, required: true
 
-    = f.submit "Invite"
+    = f.submit "Покани"
