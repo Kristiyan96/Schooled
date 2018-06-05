@@ -7,6 +7,6 @@
 
 - (1..12).each do |grade|
   - if @school.groups.where(grade: grade).any?
-    = "Grade #{grade}"
+    = "Клас #{grade}"
     .row
       = render partial: 'groups/group_card', collection: @school.groups.order(:name).where(grade: grade), as: :group

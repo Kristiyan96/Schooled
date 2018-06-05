@@ -19,26 +19,44 @@ puts "Creating teachers"
 t1 = User.create(first_name: "Таня", last_name: "Баладжанова", email: "teacher1@smg.bg", password: "password", password_confirmation: "password")
 t2 = User.create(first_name: "Мария", last_name: "Ценова", email: "teacher2@smg.bg", password: "password", password_confirmation: "password")
 t3 = User.create(first_name: "Ваня", last_name: "Костадинова", email: "teacher3@smg.bg", password: "password", password_confirmation: "password")
+
 t4 = User.create(first_name: "Анатолии", last_name: "Стоянов", email: "teacher4@feg.bg", password: "password", password_confirmation: "password")
 t5 = User.create(first_name: "Благой", last_name: "Георгиев", email: "teacher5@feg.bg", password: "password", password_confirmation: "password")
 t6 = User.create(first_name: "Сам", last_name: "Маринов", email: "teacher6@feg.bg", password: "password", password_confirmation: "password")
 
 puts "Creating groups"
-gr1 = Group.create(name: 'а', school: smg, teacher: t1, grade: 8)
-gr1 = Group.create(name: 'б', school: smg, teacher: t2, grade: 8)
-gr1 = Group.create(name: 'в', school: smg, teacher: t3, grade: 8)
-gr2 = Group.create(name: 'а', school: feg, teacher: t4, grade: 9)
-gr2 = Group.create(name: 'б', school: feg, teacher: t5, grade: 9)
-gr2 = Group.create(name: 'в', school: feg, teacher: t6, grade: 9)
+gr1 = Group.create(name: 'а', school: smg, teacher: t1, grade: 6)
+gr2 = Group.create(name: 'б', school: smg, teacher: t2, grade: 6)
+gr3 = Group.create(name: 'в', school: smg, teacher: t3, grade: 6)
+gr3 = Group.create(name: 'а', school: smg, teacher: t1, grade: 7)
+gr3 = Group.create(name: 'б', school: smg, teacher: t2, grade: 7)
+gr3 = Group.create(name: 'в', school: smg, teacher: t3, grade: 7)
+gr3 = Group.create(name: 'а', school: smg, teacher: t1, grade: 8)
+gr3 = Group.create(name: 'б', school: smg, teacher: t2, grade: 8)
+gr3 = Group.create(name: 'в', school: smg, teacher: t3, grade: 8)
+
+gr4 = Group.create(name: 'а', school: feg, teacher: t4, grade: 9)
+gr5 = Group.create(name: 'б', school: feg, teacher: t5, grade: 9)
+gr6 = Group.create(name: 'в', school: feg, teacher: t6, grade: 9)
 
 puts "Creating students"
 
 s1 = User.create(group: gr1, number_in_class: 1, first_name: "Кристиян", last_name: "Цветанов", birthday: Date.new(1996,2,28), email: "student1@smg.bg", password: "password", password_confirmation: "password")
 s2 = User.create(group: gr1, number_in_class: 2, first_name: "Никола", last_name: "Жишев", birthday: Date.new(1996,6,13), email: "student2@smg.bg", password: "password", password_confirmation: "password")
 s3 = User.create(group: gr1, number_in_class: 3, first_name: "Александра", last_name: "Миткова", birthday: Date.new(1996,3,9), email: "student3@smg.bg", password: "password", password_confirmation: "password")
-s4 = User.create(group: gr2, number_in_class: 4, first_name: "Иван", last_name: "Гешев", birthday: Date.new(1996,4,12), email: "student1@feg.bg", password: "password", password_confirmation: "password")
-s5 = User.create(group: gr2, number_in_class: 5, first_name: "Боян", last_name: "Йотов", birthday: Date.new(1996,7,15), email: "student2@feg.bg", password: "password", password_confirmation: "password")
-s6 = User.create(group: gr2, number_in_class: 6, first_name: "Велин", last_name: "Вергиев", birthday: Date.new(1996,8,21), email: "student3@feg.bg", password: "password", password_confirmation: "password")
+s4 = User.create(group: gr1, number_in_class: 4, first_name: "Иван", last_name: "Гешев", birthday: Date.new(1996,4,12), email: "student4@smg.bg", password: "password", password_confirmation: "password")
+s5 = User.create(group: gr1, number_in_class: 5, first_name: "Боян", last_name: "Йотов", birthday: Date.new(1996,7,15), email: "student5@smg.bg", password: "password", password_confirmation: "password")
+s6 = User.create(group: gr1, number_in_class: 6, first_name: "Велин", last_name: "Вергиев", birthday: Date.new(1996,8,21), email: "student6@smg.bg", password: "password", password_confirmation: "password")
+s6 = User.create(group: gr1, number_in_class: 7, first_name: "Кирил", last_name: "Атанасов", birthday: Date.new(1996,8,21), email: "student7@smg.bg", password: "password", password_confirmation: "password")
+s6 = User.create(group: gr1, number_in_class: 8, first_name: "Марин", last_name: "Вергиев", birthday: Date.new(1996,8,21), email: "student8@smg.bg", password: "password", password_confirmation: "password")
+s6 = User.create(group: gr1, number_in_class: 9, first_name: "Мария", last_name: "Пешева", birthday: Date.new(1996,8,21), email: "student9@smg.bg", password: "password", password_confirmation: "password")
+s6 = User.create(group: gr1, number_in_class: 10, first_name: "Виктория", last_name: "Вергиева", birthday: Date.new(1996,8,21), email: "student10@smg.bg", password: "password", password_confirmation: "password")
+s6 = User.create(group: gr2, number_in_class: 6, first_name: "Велин", last_name: "Вергиев", birthday: Date.new(1996,8,21), email: "student31@smg.bg", password: "password", password_confirmation: "password")
+s6 = User.create(group: gr2, number_in_class: 6, first_name: "Велин", last_name: "Вергиев", birthday: Date.new(1996,8,21), email: "student32@smg.bg", password: "password", password_confirmation: "password")
+s6 = User.create(group: gr2, number_in_class: 6, first_name: "Велин", last_name: "Вергиев", birthday: Date.new(1996,8,21), email: "student33@smg.bg", password: "password", password_confirmation: "password")
+s6 = User.create(group: gr2, number_in_class: 6, first_name: "Велин", last_name: "Вергиев", birthday: Date.new(1996,8,21), email: "student34@smg.bg", password: "password", password_confirmation: "password")
+s6 = User.create(group: gr2, number_in_class: 6, first_name: "Велин", last_name: "Вергиев", birthday: Date.new(1996,8,21), email: "student35@smg.bg", password: "password", password_confirmation: "password")
+s6 = User.create(group: gr2, number_in_class: 6, first_name: "Велин", last_name: "Вергиев", birthday: Date.new(1996,8,21), email: "student36@smg.bg", password: "password", password_confirmation: "password")
 
 puts "Creating parents"
 

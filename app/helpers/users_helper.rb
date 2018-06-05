@@ -7,10 +7,20 @@ module UsersHelper
     if user.assignments.any?
       assignment = user.assignments.order(:created_at).first
       school     = assignment.school
-      "#{assignment.role.name} at <a href='#{school_url(school)}'>#{school.name}</a>"
-    elsif user.students.any?
-      "Parent"
+      case assignment.role.name
+      when "Headmaster"
+        role = "Директор"
+      when "Teacher"
+        role = Учител
+      when "Student"
+        role = "Ученик"
+      end
     end
+
+    if user.students.any?
+      role = "Родител"
+    end
+      "#{role} в <a href='#{school_url(school)}'>#{school.name}</a>"
   end
 
   def user_url(user)
