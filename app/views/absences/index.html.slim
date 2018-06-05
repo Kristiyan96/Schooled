@@ -1,0 +1,19 @@
+h1 Listing absences
+
+table
+  thead
+    tr
+      th
+      th
+      th
+
+  tbody
+    - @absences.each do |absence|
+      tr
+        td = link_to 'Show', absence
+        td = link_to 'Edit', edit_absence_path(absence)
+        td = link_to 'Destroy', absence, data: { confirm: 'Are you sure?' }, method: :delete
+
+br
+
+= link_to 'New Absence', new_absence_path

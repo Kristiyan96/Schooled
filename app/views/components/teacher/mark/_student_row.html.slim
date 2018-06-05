@@ -1,0 +1,7 @@
+tr id="student-#{student.id}"
+  td.text-center = student.number_in_class
+  td = link_to student.full_name, profile_path(student)
+  td 
+    .pull-left.marks  = render partial: 'components/teacher/mark/marks', collection: Mark.where(student: student, course: @course, kind: term).order(:created_at), as: :mark
+    .pull-right = render partial: 'components/teacher/mark/mark_form', locals: {student: student, term: term}
+ 

@@ -1,0 +1,22 @@
+.card
+  .card-header.card-header-default.card-header-icon
+    b.card-icon
+      = @course.name
+    b.card-icon
+      = group_name(@group)
+
+  .card-body
+    ul.nav.nav-pills.pull-right
+      li.nav-item 
+        a.nav-link.active href="#first_semester" data-toggle="tab" Текущи - първи срок
+      li.nav-item 
+        a.nav-link href="#first_semester_final" data-toggle="tab" Срочна - първи срок
+      li.nav-item 
+        a.nav-link href="#second_semester" data-toggle="tab" Текущи - втори срок
+      li.nav-item 
+        a.nav-link href="#second_semester_final" data-toggle="tab" Срочна - втори срок
+      li.nav-item 
+        a.nav-link href="#final" data-toggle="tab" Годишна
+
+    - ['first_semester', 'first_semester_final', 'second_semester', 'second_semester_final', 'final'].each do |term|
+      = render partial: 'components/teacher/mark/semester_mark', locals: {term: term}

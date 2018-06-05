@@ -1,8 +1,22 @@
 .card
-  .card-header.card-header-icon class="card-header-#{action_name == 'new' ? 'success' : 'warning'}"
-    b.card-icon = action_name == 'new' ? 'New group' : 'Edit group'
+  .card-header.card-header-icon.card-header-default
+    b.card-icon Настройки
     b.card-icon = group_name(@group)
   .card-body
+    ul.nav.nav-pills.justify-content-end
+      li.nav-item 
+        = link_to 'Начало', school_group_path(@school,@group), class: 'nav-link'
+      li.nav-item 
+        = link_to 'Оценки', school_group_marks_path(@school,@group), class: 'nav-link'
+      li.nav-item 
+        = link_to 'Отсъствия', school_group_path(@school,@group), class: 'nav-link'
+      li.nav-item 
+        = link_to 'Домашни', school_group_path(@school,@group), class: 'nav-link'
+      li.nav-item 
+        = link_to 'Ученици', profiles_path(school_id: @school, group_id: @group), class: 'nav-link'
+      li.nav-item 
+        = link_to 'Настройки', edit_school_group_path(@school, @group), class: 'nav-link active'
+    hr
     = form_with model: @group, url: school_group_path(@school, @group), method: :put do |f|
       .row
         .col-md-4

@@ -1,0 +1,11 @@
+.card
+  .card-body
+    table.table
+      thead
+        tr
+          th.text-center Year
+          th Subject
+          th Teacher
+          th.text-right Actions
+      tbody
+        = render partial: 'courses/course_row', collection: @group.courses, as: :course

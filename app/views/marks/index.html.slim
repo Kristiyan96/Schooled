@@ -1,0 +1,43 @@
+.card
+  .card-header.card-header-icon
+    b.card-icon Оценки
+    b.card-icon = group_name(@group)
+
+
+  .card-body
+    ul.nav.nav-pills.justify-content-end
+      li.nav-item 
+        = link_to 'Начало', school_group_path(@school,@group), class: 'nav-link'
+      li.nav-item 
+        = link_to 'Оценки', school_group_marks_path(@school,@group), class: 'nav-link active'
+      li.nav-item 
+        = link_to 'Отсъствия', school_group_path(@school,@group), class: 'nav-link'
+      li.nav-item 
+        = link_to 'Домашни', school_group_path(@school,@group), class: 'nav-link'
+      li.nav-item 
+        = link_to 'Ученици', profiles_path(school_id: @school, group_id: @group), class: 'nav-link'
+      li.nav-item 
+        = link_to 'Настройки', edit_school_group_path(@school, @group), class: 'nav-link'
+    hr
+    .row
+      a.col-md-2.dropdown-toggle.btn.btn-round data-toggle="dropdown" href="#" role="button" aria-expanded="false" style="margin: 0px;" = @course.name
+      .dropdown-menu
+        - @school.school_years.order(year: :desc).each do |year|
+          = year.year
+          - Course.in_year(@group, year.year).each do |course|
+            = link_to course.name, school_group_marks_path(@school, @group, course_id: course), class: 'dropdown-item'
+      ul.nav.nav-pills.justify-content-end.col-md-9
+        li.nav-item 
+          a.nav-link.active href="#first_semester" data-toggle="tab" Текущи - първи срок
+        li.nav-item 
+          a.nav-link href="#first_semester_final" data-toggle="tab" Срочна - първи срок
+        li.nav-item 
+          a.nav-link href="#second_semester" data-toggle="tab" Текущи - втори срок
+        li.nav-item 
+          a.nav-link href="#second_semester_final" data-toggle="tab" Срочна - втори срок
+        li.nav-item 
+          a.nav-link href="#final" data-toggle="tab" Годишна
+
+    .tab-content
+      - ['first_semester', 'first_semester_final', 'second_semester', 'second_semester_final', 'final'].each do |term|
+        = render partial: 'components/teacher/mark/semester_mark', locals: {term: term}

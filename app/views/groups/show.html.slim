@@ -1,20 +1,24 @@
-ul.nav.nav-pills.nav-pills-icons role="tablist" 
-  li.nav-item
-    a.nav-link.active data-toggle="tab" href="#group-main" role="tab" 
-      i.material-icons dashboard
-      | Main
-  li.nav-item
-    a.nav-link data-toggle="tab" href="#group-courses" role="tab" 
-      i.material-icons list_alt
-      | Courses
-  li.nav-item
-    a.nav-link data-toggle="tab" href="#group-schedule" role="tab" 
-      i.material-icons schedule
-      | Schedule
-  li.nav-item
-    a.nav-link data-toggle="tab" href="#group-manage" role="tab" 
-      i.material-icons edit
-      | Manage
+.card
+  .card-header.card-header-default.card-header-icon
+    b.card-icon Начало
+    b.card-icon = group_name(@group)
+
+  .card-body
+    ul.nav.nav-pills.justify-content-end
+      li.nav-item 
+        = link_to 'Начало', school_group_path(@school,@group), class: 'nav-link active'
+      li.nav-item 
+        = link_to 'Оценки', school_group_marks_path(@school,@group), class: 'nav-link'
+      li.nav-item 
+        = link_to 'Отсъствия', school_group_path(@school,@group), class: 'nav-link'
+      li.nav-item 
+        = link_to 'Домашни', school_group_path(@school,@group), class: 'nav-link'
+      li.nav-item 
+        = link_to 'Ученици', profiles_path(school_id: @school, group_id: @group), class: 'nav-link'
+      li.nav-item 
+        = link_to 'Настройки', edit_school_group_path(@school, @group), class: 'nav-link'
+
+
 
 .tab-content.tab-space
   #group-main.tab-pane.active
@@ -25,7 +29,7 @@ ul.nav.nav-pills.nav-pills-icons role="tablist"
       = render partial: 'courses/course_card', collection: @group.courses, as: :course
 
   #group-schedule.tab-pane
-    | Completely synergize resource taxing relationships via premier niche markets. Professionally cultivate one-to-one customer service with robust ideas.
+    
 
   #group-manage.tab-pane
     .row

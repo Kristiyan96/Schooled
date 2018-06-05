@@ -1,0 +1,1 @@
+$("#student-<%=@mark.student_id%> .marks").html("<%= escape_javascript ( render partial: 'components/teacher/mark/marks', collection: Mark.where(student: @mark.student, course: @course, kind: @mark.kind).order(:created_at), as: :mark ) %>");
