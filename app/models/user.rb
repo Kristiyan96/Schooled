@@ -3,6 +3,7 @@ class User < ApplicationRecord
   :recoverable, :rememberable, :trackable, :validatable, :invitable
 
   has_many :marks
+  has_many :absences
   has_many :groups
   has_many :assignments
   has_many :roles, through: :assignments

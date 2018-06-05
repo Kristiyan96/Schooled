@@ -1,0 +1,19 @@
+= form_with(scope: :absence, url: school_group_absences_path(@school, @group), remote: true) do |f|
+  .row.d-flex.h-100
+    .col.justify-content-center.align-self-center.text-center
+      button.add-absence.btn.btn-success.btn-sm.btn-round -5  
+      button.add-absence.btn.btn-success.btn-sm.btn-round -1
+    .col.form-group.col-md-3.justify-content-center.align-self-center.text-center class="#{category}" style="margin: 0px; padding-top: 0px; padding-bottom: 0px;"
+      input.form-control.text-center readonly="true" value="#{Absence.find_by(student_id: student, school_year: @year, kind: term, category: category).try(:value)}"
+    .col.justify-content-center.align-self-center.text-center
+      - if category == 'permanent'
+        button.add-absence.btn.btn-danger.btn-sm.btn-round 1/3
+      button.add-absence.btn.btn-danger.btn-sm.btn-round 1
+      - if category == 'excused'
+        button.add-absence.btn.btn-danger.btn-sm.btn-round 2
+      button.add-absence.btn.btn-danger.btn-sm.btn-round 5
+  = f.hidden_field :value, class: "absence-value"
+  = f.hidden_field :student_id, value: student.id
+  = f.hidden_field :category, value: category
+  = f.hidden_field :kind, value: term
+  = f.hidden_field :school_year_id, value: @year.id

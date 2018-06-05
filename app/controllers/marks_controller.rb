@@ -1,6 +1,7 @@
 class MarksController < ApplicationController
   before_action :set_school
   before_action :set_group
+  before_action :set_year
   before_action :set_course
   before_action :set_mark, only: [:update, :destroy]
 
@@ -54,6 +55,10 @@ class MarksController < ApplicationController
 
     def set_group
       @group = @school.groups.find(params[:group_id])
+    end
+
+    def set_year
+      @year = @school.school_years.find_by_id(params[:school_year_id])
     end
 
     def set_course

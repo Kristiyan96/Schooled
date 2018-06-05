@@ -1,19 +1,35 @@
-h1 Listing absences
+.card
+  .card-header.card-header-icon
+    b.card-icon Отсъствия
+    b.card-icon = group_name(@group)
 
-table
-  thead
-    tr
-      th
-      th
-      th
 
-  tbody
-    - @absences.each do |absence|
-      tr
-        td = link_to 'Show', absence
-        td = link_to 'Edit', edit_absence_path(absence)
-        td = link_to 'Destroy', absence, data: { confirm: 'Are you sure?' }, method: :delete
+  .card-body
+    ul.nav.nav-pills.justify-content-end
+      li.nav-item 
+        = link_to 'Начало', school_group_path(@school,@group), class: 'nav-link'
+      li.nav-item 
+        = link_to 'Оценки', school_group_marks_path(@school,@group), class: 'nav-link'
+      li.nav-item 
+        = link_to 'Отсъствия', school_group_absences_path(@school,@group), class: 'nav-link active'
+      li.nav-item 
+        = link_to 'Домашни', school_group_path(@school,@group), class: 'nav-link'
+      li.nav-item 
+        = link_to 'Ученици', profiles_path(school_id: @school, group_id: @group), class: 'nav-link'
+      li.nav-item 
+        = link_to 'Настройки', edit_school_group_path(@school, @group), class: 'nav-link'
+    hr
+    .dropdown-menu
+      - @school.school_years.order(year: :desc).each do |year|
+        = year.year
+        - Course.in_year(@group, year.year).each do |course|
+          = link_to course.name, school_group_marks_path(@school, @group, course_id: course), class: 'dropdown-item'
+    ul.nav.nav-pills.justify-content-end
+      li.nav-item 
+        a.nav-link.active href="#first_semester" data-toggle="tab" Първи срок
+      li.nav-item 
+        a.nav-link href="#second_semester" data-toggle="tab" Втори срок
 
-br
-
-= link_to 'New Absence', new_absence_path
+    .tab-content
+      - ['first_semester', 'second_semester'].each do |term|
+        = render partial: 'components/teacher/absence/semester_absence', locals: {term: term}
