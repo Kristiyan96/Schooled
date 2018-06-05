@@ -13,6 +13,8 @@ Rails.application.routes.draw do
 
   resources :schools do
     resources :groups do
+      resources :absences, only: [:index, :create, :update]
+      resources :marks
       resources :courses
       resources :student_invitations, path: :students, module: :schools, only: [:index, :create]
       resources :parent_invitations, path: :parents, module: :schools, only: [:index, :create]

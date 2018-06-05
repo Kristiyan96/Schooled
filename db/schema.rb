@@ -19,11 +19,11 @@ ActiveRecord::Schema.define(version: 2018_05_28_195750) do
     t.string "value", default: "1/1", null: false
     t.integer "kind", default: 0, null: false
     t.integer "category", default: 0, null: false
-    t.bigint "student_id"
-    t.bigint "course_id"
+    t.integer "student_id"
+    t.bigint "school_year_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["course_id"], name: "index_absences_on_course_id"
+    t.index ["school_year_id"], name: "index_absences_on_school_year_id"
   end
 
   create_table "assignments", force: :cascade do |t|
@@ -63,6 +63,7 @@ ActiveRecord::Schema.define(version: 2018_05_28_195750) do
 
   create_table "marks", force: :cascade do |t|
     t.decimal "grade", null: false
+    t.text "note"
     t.integer "kind", default: 0, null: false
     t.integer "student_id"
     t.bigint "course_id"
@@ -171,7 +172,6 @@ ActiveRecord::Schema.define(version: 2018_05_28_195750) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "absences", "courses"
   add_foreign_key "assignments", "roles"
   add_foreign_key "assignments", "schools"
   add_foreign_key "assignments", "users"

@@ -1,16 +1,30 @@
 .card
   .card-header.card-header-default.card-header-icon
-    b.card-icon
-      | Students & Parents
+    b.card-icon Ученици и Родители
+    b.card-icon = group_name(@group)
   .card-body
+    ul.nav.nav-pills.justify-content-end
+      li.nav-item 
+        = link_to 'Начало', school_group_path(@school,@group), class: 'nav-link'
+      li.nav-item 
+        = link_to 'Оценки', school_group_marks_path(@school,@group), class: 'nav-link'
+      li.nav-item 
+        = link_to 'Отсъствия', school_group_path(@school,@group), class: 'nav-link'
+      li.nav-item 
+        = link_to 'Домашни', school_group_path(@school,@group), class: 'nav-link'
+      li.nav-item 
+        = link_to 'Ученици', profiles_path(school_id: @school, group_id: @group), class: 'nav-link active'
+      li.nav-item 
+        = link_to 'Настройки', edit_school_group_path(@school, @group), class: 'nav-link'
+    hr
     table.table
       thead
         tr
           th.text-center #
-          th First Name
-          th Last Name
-          th Email
-          th.text-right Actions
+          th Име
+          th Презиме
+          th Имейл
+          th.text-right Действия
       tbody
         - (1..35).each do |number|
           - student = @group.students.find_by(number_in_class: number)

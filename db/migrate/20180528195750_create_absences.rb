@@ -4,9 +4,8 @@ class CreateAbsences < ActiveRecord::Migration[5.2]
       t.string :value, null: false, default: "1/1"
       t.integer :kind, default: 0, null: false
       t.integer :category, default: 0, null: false
-
-      t.bigint :student_id
-      t.references :course, foreign_key: true
+      t.integer :student_id
+      t.references :school_year, null: false
 
       t.timestamps
     end
