@@ -13,6 +13,7 @@ Rails.application.routes.draw do
 
   resources :schools do
     resources :groups do
+      resources :homeworks, only: [:index, :create, :update, :destroy]
       resources :absences, only: [:index, :create, :update]
       resources :marks
       resources :courses

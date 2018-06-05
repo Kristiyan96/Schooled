@@ -1,0 +1,35 @@
+.card
+  .card-header.card-header-default.card-header-icon
+    b.card-icon = group_name(@group)
+
+  .card-body
+    ul.nav.nav-pills.justify-content-end
+      li.nav-item 
+        = link_to 'Начало', school_group_path(@school,@group), class: 'nav-link'
+      li.nav-item 
+        = link_to 'Оценки', school_group_marks_path(@school,@group), class: 'nav-link'
+      li.nav-item 
+        = link_to 'Отсъствия', school_group_absences_path(@school,@group, school_year_id: current_year(@school)), class: 'nav-link'
+      li.nav-item 
+        = link_to 'Домашни', school_group_homeworks_path(@school,@group), class: 'nav-link active'
+      li.nav-item 
+        = link_to 'Ученици', profiles_path(school_id: @school, group_id: @group), class: 'nav-link'
+      li.nav-item 
+        = link_to 'Настройки', edit_school_group_path(@school, @group), class: 'nav-link'
+    hr
+    ul.nav.nav-pills.justify-content-end
+      li.nav-item 
+        a.nav-link.active href="#future" data-toggle="tab" Предстоящи
+      li.nav-item 
+        a.nav-link href="#past" data-toggle="tab" Изминали
+
+    .tab-content
+      .tab-pane.active id="#future"
+        table.table
+          tbody
+            = render partial: 'homeworks/homework_row', collection: @group.homeworks, as: :homework
+
+      .tab-pane id="#past"
+        table.table
+          tbody
+            = render partial: 'homeworks/homework_row', collection: @group.homeworks, as: :homework
