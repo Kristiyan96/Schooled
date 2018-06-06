@@ -19,6 +19,7 @@ Rails.application.routes.draw do
       resources :courses
       resources :student_invitations, path: :students, module: :schools, only: [:index, :create]
       resources :parent_invitations, path: :parents, module: :schools, only: [:index, :create]
+      resources :time_slots
     end
     resources :headmaster_invitations, path: :headmasters, module: :schools, only: [:index, :create]
     resources :teacher_invitations, path: :teachers, module: :schools, only: [:index, :create]
