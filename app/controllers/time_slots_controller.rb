@@ -11,17 +11,19 @@ class TimeSlotsController < ApplicationController
   end
 
   def update
-    @slot = TimeSlot.find(params[:id])
+    time_slot = TimeSlot.find(params[:id])
 
-    @slot.update(update_slot_params)
+    #Type is one of [:one, :all]
+    TimeSlot.update_with_type(time_slot: time_slot, type: type, params: time_slot_params)
 
     redirect_to root_path
   end
 
   def delete
-    @slot = TimeSlot.find(params[:id])
+    time_slot = TimeSlot.find(params[:id])
 
-    @slot.destroy
+    #Type is one of [:one, :all]
+    TimeSlot.destroy_with_type(time_slot: time_slot, type: type)
 
     redirect_to root_path
   end
@@ -29,10 +31,10 @@ class TimeSlotsController < ApplicationController
   private
 
   def time_slot_params
-    params.require(:time_slot).permit(:start, :end, :period_start, :period_end, :school_year_id)
+    params.require(:time_slot).permit(:start, :end, :school_year_id)
   end
 
-  def update_slot_params
-    params.require(:time_slot).permit(:start, :end)
+  def type
+    params[:type]
   end
 end
