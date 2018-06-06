@@ -4,56 +4,56 @@
   .col-md-7.col-xs-12
     .card
       .card-header.card-header-primary
-        h4.card-title Edit Profile
-        p.card-category Complete your profile
+        h4.card-title Редактиране на профил
+        p.card-category Завърши профила си
       .card-body
         = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| 
           .row
             .col-md-4
               .form-group
-                label.bmd-label-floating Email address
+                label.bmd-label-floating Имейл
                 = f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control", readonly: true
           .row
             .col-md-4
               .form-group
-                label.bmd-label-floating First Name
+                label.bmd-label-floating Име
                 = f.text_field :first_name, autocomplete: "first_name", class: "form-control"
             .col-md-4
               .form-group
-                label.bmd-label-floating Middle Name
+                label.bmd-label-floating Презиме
                 = f.text_field :middle_name, autocomplete: "middle_name", class: "form-control"
             .col-md-4
               .form-group
-                label.bmd-label-floating Last Name
+                label.bmd-label-floating Фамилия
                 = f.text_field :last_name, autocomplete: "last_name", class: "form-control"
           .row
             .col-md-4
               .form-group
-                label.bmd-label-floating Birthday
+                label.bmd-label-floating Дата на раждане
                 = f.date_field :birthday, autocomplete: "birthday", class: "form-control"
           .row
             .col-md-6
               .form-group
-                label.bmd-label-floating Address
+                label.bmd-label-floating Адрес
                 = f.text_field :address, autocomplete: "address", class: "form-control"
             .col-md-6
               .form-group
-                label.bmd-label-floating Phone Number
+                label.bmd-label-floating Телефонен номер
                 = f.phone_field :phone_number, autocomplete: "phone_number", class: "form-control"
           .row
             .col-md-6
               .form-group
-                label.bmd-label-floating New Password
+                label.bmd-label-floating Нова парола
                 = f.password_field :password, class: "form-control"
             .col-md-6
               .form-group
-                label.bmd-label-floating New Password Again
+                label.bmd-label-floating Нова парола отново
                 = f.password_field :password_confirmation, class: "form-control"
           .row
             .col-md-6
               .form-group
-                label.bmd-label-floating Old Password
+                label.bmd-label-floating Стара парола
                 = f.password_field :current_password, class: "form-control"
-          = f.submit "Update Profile", class: "btn btn-primary pull-right"
+          = f.submit "Обнови", class: "btn btn-primary pull-right"
           .clearfix
 
