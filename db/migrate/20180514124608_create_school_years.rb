@@ -4,6 +4,9 @@ class CreateSchoolYears < ActiveRecord::Migration[5.2]
       t.references :school
       t.string :year
 
+      t.datetime :start
+      t.datetime :end
+
       t.timestamps
     end
   end

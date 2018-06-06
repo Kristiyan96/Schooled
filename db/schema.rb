@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_06_05_120209) do
+ActiveRecord::Schema.define(version: 2018_06_06_125440) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -120,9 +120,20 @@ ActiveRecord::Schema.define(version: 2018_06_05_120209) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "schedules", force: :cascade do |t|
+    t.bigint "course_id"
+    t.bigint "time_slot_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["course_id"], name: "index_schedules_on_course_id"
+    t.index ["time_slot_id"], name: "index_schedules_on_time_slot_id"
+  end
+
   create_table "school_years", force: :cascade do |t|
     t.bigint "school_id"
     t.string "year"
+    t.datetime "start"
+    t.datetime "end"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["school_id"], name: "index_school_years_on_school_id"
@@ -144,6 +155,13 @@ ActiveRecord::Schema.define(version: 2018_06_05_120209) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["school_id"], name: "index_subjects_on_school_id"
+  end
+
+  create_table "time_slots", force: :cascade do |t|
+    t.datetime "start"
+    t.datetime "end"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
