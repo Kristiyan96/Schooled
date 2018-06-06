@@ -22,3 +22,12 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+*
+
+## Documentation and stuff to know
+
+Getting all schedules with a given group and time period will look like this:
+
+```
+Schedule.with_courses_for_period(group, period_start, period_end)
+```
