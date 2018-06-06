@@ -27,7 +27,7 @@ class TimeSlot < ApplicationRecord
     TimeSlot.create(time_slots)
   end
 
-  def self.update_with_type(time_slot:, type:, params:) do
+  def self.update_with_type(time_slot:, type:, params:)
     case type
     when :one
       time_slot.update(params)
@@ -39,7 +39,7 @@ class TimeSlot < ApplicationRecord
     end
   end
 
-  def self.destroy_with_type(time_slot:, type:) do
+  def self.destroy_with_type(time_slot:, type:)
     case type
     when :one
       time_slot.destroy
@@ -49,6 +49,5 @@ class TimeSlot < ApplicationRecord
         .with_start_date_greater_than(time_slot.start)
         .destroy_all
     end
-  end
   end
 end
