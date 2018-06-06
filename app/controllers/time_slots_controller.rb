@@ -1,7 +1,6 @@
 class TimeSlotsController < ApplicationController
   def index
     @school = School.find(params[:school_id])
-    @group = Group.find(params[:group_id])
 
     @time_slots = TimeSlot.where(school_year: @school.school_years)
   end

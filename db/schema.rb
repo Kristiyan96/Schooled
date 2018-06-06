@@ -183,6 +183,7 @@ ActiveRecord::Schema.define(version: 2018_06_06_125440) do
     t.inet "current_sign_in_ip"
     t.inet "last_sign_in_ip"
     t.date "birthday"
+    t.string "UCN"
     t.integer "number_in_class"
     t.bigint "group_id"
     t.boolean "admin", default: false, null: false
