@@ -22,6 +22,10 @@ Rails.application.routes.draw do
     end
     resources :headmaster_invitations, path: :headmasters, module: :schools, only: [:index, :create]
     resources :teacher_invitations, path: :teachers, module: :schools, only: [:index, :create]
+    member do 
+      get 'dashboard'
+      get 'teachers'
+    end
   end
 
   resources :students, only: [] do
