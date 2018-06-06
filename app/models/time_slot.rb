@@ -14,4 +14,15 @@ class TimeSlot < ApplicationRecord
     end
     TimeSlot.create(time_slots)
   end
+
+  scope :with_interval_from_start_and_end, -> start, finish, interval {
+    joins(:time_slot)
+      .where("CAST(DATE_PART('day', time_slots.start - ?) as INTEGER) % ? = 0", start, interval)
+      .where("CAST(DATE_PART('day', time_slots.end - ?) as INTEGER) % ? = 0", finish, interval)
+  }
+  scope :with_start_date_greater_than, -> date {
+    joins(:time_slot)
+      .where('time_slots.start >= ?', date)
+  }
+
 end
