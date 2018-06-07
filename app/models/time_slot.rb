@@ -40,7 +40,7 @@ class TimeSlot < ApplicationRecord
   end
 
   def self.update_with_type(time_slot:, type:, params:)
-    case type
+    case type.to_sym
     when :one
       time_slot.update(params)
     when :all
@@ -52,7 +52,7 @@ class TimeSlot < ApplicationRecord
   end
 
   def self.destroy_with_type(time_slot:, type:)
-    case type
+    case type.to_sym
     when :one
       time_slot.destroy
     when :all
