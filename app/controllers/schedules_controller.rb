@@ -1,7 +1,8 @@
 class SchedulesController < ApplicationController
   def index
     @school = School.find(params[:school_id])
-
+    @group = @school.groups.find(params[:group_id])
+    @date = Date.today
     @schedules = Schedule.where(course: @school.courses)
   end
 
@@ -19,7 +20,7 @@ class SchedulesController < ApplicationController
     schedule = Schedule.find(params[:id])
 
     # Type param should be one of [:one, :series_7, :series_14]
-    Schedule.update_with_type(school: school, schedule: schedule, update_params)
+    Schedule.update_with_type(school: school, schedule: schedule, **update_params)
 
     redirect_to root_path
   end

@@ -18,10 +18,18 @@ class Schedule < ApplicationRecord
       .where("DATE_PART('minute', time_slots.end) = ?", finish.min)
       .where("CAST(DATE_PART('day', time_slots.start - ?) AS INTEGER) % ? = 0", start, interval)
   }
-  }
+
   scope :with_start_date_greater_than, -> date {
     joins(:time_slot)
       .where('time_slots.start >= ?', date)
+  }
+
+  scope :for_period, -> period {
+    joins(:time_slot).where(time_slots: {start: period})
+      .where(time_slots: {end: period})
+  }
+  scope :for_day, -> date {
+    for_period(date.all_day)
   }
 
   def self.create_with_type(school:, course_id:, time_slot_id:, type:)
