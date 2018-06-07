@@ -3,6 +3,7 @@ class CreateTimeSlots < ActiveRecord::Migration[5.2]
     create_table :time_slots do |t|
       t.datetime :start
       t.datetime :end
+      t.string :title
 
       t.references :school_year
 

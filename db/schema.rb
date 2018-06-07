@@ -132,6 +132,7 @@ ActiveRecord::Schema.define(version: 2018_06_06_125440) do
   create_table "school_years", force: :cascade do |t|
     t.bigint "school_id"
     t.string "year"
+    t.boolean "active", default: false, null: false
     t.datetime "start"
     t.datetime "end"
     t.datetime "created_at", null: false
@@ -160,6 +161,7 @@ ActiveRecord::Schema.define(version: 2018_06_06_125440) do
   create_table "time_slots", force: :cascade do |t|
     t.datetime "start"
     t.datetime "end"
+    t.string "title"
     t.bigint "school_year_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

@@ -14,4 +14,8 @@ class School < ApplicationRecord
   def students
     users.find_each.select { |u| u.role?(:student,self)}
   end
+
+  def active_school_year
+    school_years.where(active: true).first
+  end
 end

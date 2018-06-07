@@ -1,3 +1,31 @@
 .card
-  .card-body
+  .card-body.time-slots
     = render 'schools/navigation'
+    .cd-horizontal-timeline
+      .timeline
+        .events-wrapper
+          .events
+            ol
+              - (Date.parse('2018-01-01') .. Date.parse('2018-12-31')).each do |date|
+                li
+                  a class="#{'selected' if Date.today == date}" data-date="#{date.strftime("%d/%m/%Y")}" href="#0"
+                    = date.to_formatted_s(:short)
+            span.filling-line aria-hidden="true" 
+        ul.cd-timeline-navigation
+          li
+            a.prev.inactive href="#0" Prev
+          li
+            a.next href="#0" Next
+    .card.col-md-6.offset-3
+      .card-body
+        table.table
+          thead
+            tr
+              th Начало
+              th Край
+              th Име
+              th.text-right Действия
+          tbody#day-schedule
+            = render partial: 'time_slots/time_slot', collection: @time_slots, as: :slot
+        button.btn.btn-success type="button" data-toggle="modal" data-target="#add-slot" Създай период
+        = render 'time_slots/add_timeslot_modal'

@@ -11,12 +11,21 @@ class TimeSlot < ApplicationRecord
   scope :with_start_date_greater_than, -> date {
     where('time_slots.start >= ?', date)
   }
+  scope :for_period, -> start, finish {
+    where('start > ?', start)
+      .where('end < ?', finish)
+  }
+  scope :for_day, -> date {
+    for_period(date.beginning_of_day, date.end_of_day)
+  }
+  scope :for_school, -> school {
+    where(school_year: school.school_years)
+  }
 
-  def self.create_week_daily(school_year_id:, start:, finish:)
+  def self.create_week_daily(school_year_id:, start:, finish:, title:)
     school_year = SchoolYear.find(school_year_id)
     period_start = school_year.start
     period_end = school_year.end
-
     time_slots = []
     (period_start.to_i..period_end.to_i).step(1.day) do |day|
       day = Time.at(day)

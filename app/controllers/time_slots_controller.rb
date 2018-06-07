@@ -1,12 +1,24 @@
 class TimeSlotsController < ApplicationController
   def index
     @school = School.find(params[:school_id])
-
     @time_slots = TimeSlot.where(school_year: @school.school_years)
+    @date = Date.today
+  end
+
+  def show
+    school = School.find(params[:school_id])
+    @date = Date.parse(params[:date])
+    @time_slots = TimeSlot.for_school(school).for_day(@date)
+    respond_to do |format|
+      format.js { }
+    end
   end
 
   def create
     TimeSlot.create_daily(**time_slot_params)
+    respond_to do |format|
+      format.js { }
+    end
   end
 
   def update
@@ -15,7 +27,9 @@ class TimeSlotsController < ApplicationController
     #Type is one of [:one, :all]
     TimeSlot.update_with_type(time_slot: time_slot, type: type, params: time_slot_params)
 
-    redirect_to root_path
+    respond_to do |format|
+      format.js { }
+    end
   end
 
   def delete
@@ -24,16 +38,22 @@ class TimeSlotsController < ApplicationController
     #Type is one of [:one, :all]
     TimeSlot.destroy_with_type(time_slot: time_slot, type: type)
 
-    redirect_to root_path
+    respond_to do |format|
+      format.js { }
+    end
   end
 
   private
 
   def time_slot_params
-    params.require(:time_slot).permit(:start, :end, :school_year_id)
+    params.require(:time_slot).permit(:start, :end, :title, :school_year_id)
   end
 
   def type
     params[:type]
+  end
+
+  def update_slot_params
+    params.require(:time_slot).permit(:start, :end, :title)
   end
 end
