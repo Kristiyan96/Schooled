@@ -5,7 +5,7 @@ class CreateTimeSlots < ActiveRecord::Migration[5.2]
       t.datetime :end
       t.string :title
 
-      t.references :school_year
+      t.references :school_year, foreign_key: true, index: true
 
       t.timestamps
     end

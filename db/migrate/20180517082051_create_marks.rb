@@ -7,7 +7,7 @@ class CreateMarks < ActiveRecord::Migration[5.2]
 
 
       t.integer :student_id
-      t.references :course, foreign_key: true
+      t.references :course, foreign_key: true, index: true
 
       t.timestamps
     end

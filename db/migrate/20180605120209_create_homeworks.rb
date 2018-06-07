@@ -5,8 +5,8 @@ class CreateHomeworks < ActiveRecord::Migration[5.2]
       t.date :deadline
       t.text :description
       t.integer :teacher_id
-      t.references :group, foreign_key: true
-      t.references :course, foreign_key: true
+      t.references :group, foreign_key: true, index: true
+      t.references :course, foreign_key: true, index: true
 
       t.timestamps
     end

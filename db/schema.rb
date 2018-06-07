@@ -20,7 +20,7 @@ ActiveRecord::Schema.define(version: 2018_06_06_125440) do
     t.integer "kind", default: 0, null: false
     t.integer "category", default: 0, null: false
     t.integer "student_id"
-    t.bigint "school_year_id", null: false
+    t.bigint "school_year_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["school_year_id"], name: "index_absences_on_school_year_id"
@@ -112,6 +112,7 @@ ActiveRecord::Schema.define(version: 2018_06_06_125440) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["course_id"], name: "index_remarks_on_course_id"
+    t.index ["student_id"], name: "index_remarks_on_student_id"
   end
 
   create_table "roles", force: :cascade do |t|
@@ -208,6 +209,7 @@ ActiveRecord::Schema.define(version: 2018_06_06_125440) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "absences", "school_years"
   add_foreign_key "assignments", "roles"
   add_foreign_key "assignments", "schools"
   add_foreign_key "assignments", "users"
@@ -220,4 +222,9 @@ ActiveRecord::Schema.define(version: 2018_06_06_125440) do
   add_foreign_key "homeworks", "groups"
   add_foreign_key "marks", "courses"
   add_foreign_key "remarks", "courses"
+  add_foreign_key "schedules", "courses"
+  add_foreign_key "schedules", "time_slots"
+  add_foreign_key "subjects", "schools"
+  add_foreign_key "time_slots", "school_years"
+  add_foreign_key "users", "groups"
 end

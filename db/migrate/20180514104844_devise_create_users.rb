@@ -39,7 +39,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.2]
       t.date    :birthday
       t.string  :UCN
       t.integer :number_in_class
-      t.references :group
+      t.references :group, foreign_key: true, index: true
 
       t.boolean :admin, default: false, null: false
 
