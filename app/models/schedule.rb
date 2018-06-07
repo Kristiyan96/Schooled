@@ -39,7 +39,7 @@ class Schedule < ApplicationRecord
       .with_interval_from_start_and_end(time_slot.start, time_slot.end, days)
 
     schedules = timeslots.map { |t| { time_slot_id: t.id, course_id: course_id, school_year: time_slot.school_year } }
-    Schedule.create(schedules)
+    Schedule.import(schedules)
   end
 
   def self.update_with_type(school:, schedule:, type:, course_id:)

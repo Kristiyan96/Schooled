@@ -24,6 +24,8 @@ gem 'font-awesome-rails'
 gem 'devise'
 gem 'devise_invitable'
 
+gem 'activerecord-import'
+
 gem 'bootsnap', '>= 1.1.0', require: false
 
 group :development, :test do

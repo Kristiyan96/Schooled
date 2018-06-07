@@ -30,12 +30,12 @@ class TimeSlot < ApplicationRecord
     title = params[:title]
     time_slots = []
     (period_start.to_i..period_end.to_i).step(1.day) do |day|
-      day = Time.at(day)
+      day = Time.zone.at(day).to_date
       s = Utils.datetime_from_date_and_time(day, start)
       e = Utils.datetime_from_date_and_time(day, finish)
-      time_slots << { start: s, end: e, school_year: school_year, title: title }
+      time_slots << { start: s, end: e, school_year_id: school_year.id, title: title }
     end
-    TimeSlot.create(time_slots)
+    TimeSlot.import(time_slots)
   end
 
   def self.update_with_type(time_slot:, type:, params:)
