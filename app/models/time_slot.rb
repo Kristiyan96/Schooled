@@ -5,8 +5,11 @@ class TimeSlot < ApplicationRecord
   has_many :courses, through: :schedules
 
   scope :with_interval_from_start_and_end, -> start, finish, interval {
-    where("CAST(DATE_PART('day', time_slots.start - ?) as INTEGER) % ? = 0", start, interval)
-     .where("CAST(DATE_PART('day', time_slots.end - ?) as INTEGER) % ? = 0", finish, interval)
+    where("DATE_PART('hour', time_slots.start) = ?", start.hour)
+      .where("DATE_PART('minute', time_slots.start) = ?", start.min)
+      .where("DATE_PART('hour', time_slots.end) = ?", finish.hour)
+      .where("DATE_PART('minute', time_slots.end) = ?", finish.min)
+      .where("CAST(DATE_PART('day', time_slots.start - ?) AS INTEGER) % ? = 0", start, interval)
   }
   scope :with_start_date_greater_than, -> date {
     where('time_slots.start >= ?', date)
