@@ -1,12 +1,13 @@
-.row
-  .col.text-right
-    = link_to new_school_group_path(@school), class: "btn btn-success" do
-      i.material-icons group_add
-      |  
-      | Добави клас
-
-- (1..12).each do |grade|
-  - if @school.groups.where(grade: grade).any?
-    = "Клас #{grade}"
+.card
+  .card-body
     .row
-      = render partial: 'groups/group_card', collection: @school.groups.order(:name).where(grade: grade), as: :group
+      .col-md-2
+        = link_to new_school_group_path(@school), class: "btn btn-success" do
+          i.material-icons group_add
+          |  
+          | Добави клас
+
+      .col
+        = render 'schools/navigation'
+
+    = render 'groups/group_list'

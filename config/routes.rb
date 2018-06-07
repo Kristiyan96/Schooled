@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   end
 
   resources :schools do
+    resources :time_slots
     resources :groups do
       resources :homeworks, only: [:index, :create, :update, :destroy]
       resources :absences, only: [:index, :create, :update]

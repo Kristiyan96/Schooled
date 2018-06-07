@@ -105,8 +105,8 @@ Parentship.create(parent: p3, student: s6)
 
 puts "Creating school years"
 
-y1 = SchoolYear.create(year: "2017/2018", school: smg)
-y2 = SchoolYear.create(year: "2017/2018", school: feg)
+y1 = SchoolYear.create(year: "2017/2018", school: smg, active: true, start: DateTime.parse("15/09/2017 8:00"), end: DateTime.parse("30/06/2018 8:00"))
+y2 = SchoolYear.create(year: "2017/2018", school: feg, active: true, start: DateTime.parse("15/09/2017 8:00"), end: DateTime.parse("30/06/2018 8:00"))
 
 puts "Creating courses"
 

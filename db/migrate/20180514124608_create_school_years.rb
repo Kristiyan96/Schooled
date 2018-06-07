@@ -3,6 +3,7 @@ class CreateSchoolYears < ActiveRecord::Migration[5.2]
     create_table :school_years do |t|
       t.references :school
       t.string :year
+      t.boolean :active, default: false, null: false
 
       t.datetime :start
       t.datetime :end

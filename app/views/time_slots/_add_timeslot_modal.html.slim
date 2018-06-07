@@ -1,0 +1,31 @@
+#add-slot.modal.fade role="" tabindex="-1" 
+  .modal-dialog role="document" 
+    .modal-content
+      .card.card-signup.card-plain
+        .modal-header
+          .card-header.card-header-primary.text-center style="width: 100%;"
+            button.close aria-hidden="true" data-dismiss="modal" type="button" 
+              i.material-icons clear
+            h4.card-title Създай период
+        .modal-body
+          = form_with(scope: :time_slot, url: school_time_slots_path(@school), remote: true) do |f|
+            = f.hidden_field :school_year_id, value: @school.active_school_year.id
+            .card-body
+              .row
+                .form-group.bmd-form-group.col-md-6
+                  .input-group
+                    span.input-group-addon
+                      i.material-icons access_time
+                    = f.time_field :start, placeholder: "Начало на период", class: 'form-control'  
+                .form-group.bmd-form-group.col-md-6
+                  .input-group
+                    span.input-group-addon
+                      i.material-icons timer_off
+                    = f.time_field :end, placeholder: "Край на период", class: 'form-control'  
+              .form-group.bmd-form-group
+                .input-group
+                  span.input-group-addon
+                    i.material-icons title
+                  = f.text_field :title, placeholder: "Заглавие(Час 1, Междучасие, ...)", class: 'form-control' 
+              .justify-content-center
+                = f.submit "Създай период", class: "btn btn-primary btn-link btn-wd btn-lg"

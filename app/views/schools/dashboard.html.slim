@@ -1,16 +1,3 @@
- .row
-  .col-md-4 
-    = link_to teachers_school_path(@school), class: 'card card-stats' do
-      .card-header.card-header-danger.card-header-icon
-        .card-icon
-          i.material-icons person
-        p.card-title = @school.teachers.count.to_s + ' учители'
-        h3.card-title Учители
-
-  .col-md-4
-    = link_to school_groups_path(@school), class: 'card card-stats' do
-      .card-header.card-header-primary.card-header-icon
-        .card-icon
-          i.material-icons group
-        p.card-title = @school.groups.count.to_s + ' класа'
-        h3.card-title Класове 
+.card
+  .card-body
+    = render 'schools/navigation'
