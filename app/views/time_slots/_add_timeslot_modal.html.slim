@@ -9,6 +9,7 @@
             h4.card-title Създай период
         .modal-body
           = form_with(scope: :time_slot, url: school_time_slots_path(@school), remote: true) do |f|
+            = f.hidden_field :school_year_id, value: @school.active_school_year.id
             .card-body
               .row
                 .form-group.bmd-form-group.col-md-6
@@ -20,18 +21,7 @@
                   .input-group
                     span.input-group-addon
                       i.material-icons timer_off
-                    = f.time_field :end, placeholder: "Край на период", class: 'form-control' 
-              .row
-                .form-group.bmd-form-group.col-md-6
-                  .input-group
-                    span.input-group-addon
-                      i.material-icons date_range
-                    = f.date_field :period_start, placeholder: "Начална дата", class: 'form-control', value: @school.active_school_year.start.to_date
-                .form-group.bmd-form-group.col-md-6
-                  .input-group
-                    span.input-group-addon
-                      i.material-icons date_range
-                    = f.date_field :period_end, placeholder: "Крайна дата", class: 'form-control', value: @school.active_school_year.end.to_date  
+                    = f.time_field :end, placeholder: "Край на период", class: 'form-control'  
               .form-group.bmd-form-group
                 .input-group
                   span.input-group-addon

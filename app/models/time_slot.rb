@@ -22,16 +22,18 @@ class TimeSlot < ApplicationRecord
     where(school_year: school.school_years)
   }
 
-  def self.create_week_daily(school_year_id:, start:, finish:, title:)
-    school_year = SchoolYear.find(school_year_id)
+  def self.create_week_daily(school_year:, params:)
     period_start = school_year.start
     period_end = school_year.end
+    start = Time.parse(params[:start])
+    finish = Time.parse(params[:end])
+    title = params[:title]
     time_slots = []
     (period_start.to_i..period_end.to_i).step(1.day) do |day|
       day = Time.at(day)
       s = Utils.datetime_from_date_and_time(day, start)
       e = Utils.datetime_from_date_and_time(day, finish)
-      time_slots << { start: s, end: e, school_year_id: school_year_id }
+      time_slots << { start: s, end: e, school_year: school_year, title: title }
     end
     TimeSlot.create(time_slots)
   end

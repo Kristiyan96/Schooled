@@ -15,7 +15,8 @@ class TimeSlotsController < ApplicationController
   end
 
   def create
-    TimeSlot.create_daily(**time_slot_params)
+    school_year = SchoolYear.find(time_slot_params[:school_year_id])
+    TimeSlot.create_week_daily(school_year: school_year, params: time_slot_params)
     respond_to do |format|
       format.js { }
     end
