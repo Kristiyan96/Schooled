@@ -11,16 +11,17 @@ class TimeSlot < ApplicationRecord
   scope :with_start_date_greater_than, -> date {
     where('time_slots.start >= ?', date)
   }
-  scope :for_period, -> start, finish {
-    where('start > ?', start)
-      .where('end < ?', finish)
+  scope :for_period, -> period {
+    where(start: period)
+      .where(end: period)
   }
   scope :for_day, -> date {
-    for_period(date.beginning_of_day, date.end_of_day)
+    for_period(date.all_day)
   }
   scope :for_school, -> school {
     where(school_year: school.school_years)
   }
+  default_scope { order('start ASC') }
 
   def self.create_week_daily(school_year:, params:)
     period_start = school_year.start
@@ -39,7 +40,7 @@ class TimeSlot < ApplicationRecord
   end
 
   def self.update_with_type(time_slot:, type:, params:)
-    case type
+    case type.to_sym
     when :one
       time_slot.update(params)
     when :all
@@ -51,7 +52,7 @@ class TimeSlot < ApplicationRecord
   end
 
   def self.destroy_with_type(time_slot:, type:)
-    case type
+    case type.to_sym
     when :one
       time_slot.destroy
     when :all

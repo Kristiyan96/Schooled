@@ -1,0 +1,9 @@
+tr
+  td.period data-start="#{slot.start.strftime('%H:%M')}" data-end="#{slot.end.strftime('%H:%M')}" = slot_period(slot)
+  td.title data-title="#{slot.title}" = slot.title
+  td.td-actions.text-center
+    .row data-slot="#{slot.id}"
+      button.btn.btn-warning.col.edit-slot-button type="button" data-toggle="modal" data-target="#edit-slot"
+        i.material-icons edit
+      button.btn.btn-danger.col.delete-slot-button type="button" data-toggle="modal" data-target="#delete-slot" 
+        i.material-icons close  
