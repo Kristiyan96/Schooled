@@ -41,8 +41,8 @@ document.addEventListener("turbolinks:load", function() {
         jQuery.ajax({
           url: "/schools/1/time_slots/1",
           type: "GET",
-          data: {date: $(this).data('date')},
-          dataType: "json"
+          data: {date: $(this).data('date'), school_id: $(this).parent().parent().data('school')},
+          dataType: "script"
         });
         timelineComponents['timelineEvents'].removeClass('selected');
         $(this).addClass('selected');
