@@ -48,7 +48,7 @@ class TimeSlot < ApplicationRecord
       time_slot.update(params)
     when :all
       year = time_slot.school_year
-      TimeSlot.with_interval_from_start_and_end(year.start, year.end, 1.day)
+      TimeSlot.with_interval_from_start_and_end(year.start, year.end, 1)
         .with_start_date_greater_than(time_slot.start)
         .update_all(params)
     end
@@ -60,7 +60,7 @@ class TimeSlot < ApplicationRecord
       time_slot.destroy
     when :all
       year = time_slot.school_year
-      TimeSlot.with_interval_from_start_and_end(year.start, year.end, 1.day)
+      TimeSlot.with_interval_from_start_and_end(year.start, year.end, 1)
         .with_start_date_greater_than(time_slot.start)
         .destroy_all
     end

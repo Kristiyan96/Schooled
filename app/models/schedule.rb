@@ -52,11 +52,11 @@ class Schedule < ApplicationRecord
     when :one
       schedule.update(course_id: course_id)
     when :series_7
-      Schedule.with_interval_from_start_and_end(time_slot.start, time_slot.end, 7.days)
+      Schedule.with_interval_from_start_and_end(time_slot.start, time_slot.end, 7)
         .with_start_date_greater_than(time_slot.start)
         .update_all(course_id: course_id)
     when :series_14
-      Schedule.with_interval_from_start_and_end(time_slot.start, time_slot.end, 14.days)
+      Schedule.with_interval_from_start_and_end(time_slot.start, time_slot.end, 14)
         .with_start_date_greater_than(time_slot.start)
         .update_all(course_id: course_id)
     end
@@ -69,11 +69,11 @@ class Schedule < ApplicationRecord
     when :one
       schedule.destroy
     when :series_7
-      Schedule.with_interval_from_start_and_end(time_slot.start, time_slot.end, 7.days)
+      Schedule.with_interval_from_start_and_end(time_slot.start, time_slot.end, 7)
         .with_start_date_greater_than(time_slot.start)
         .destroy_all
     when :series_14
-      Schedule.with_interval_from_start_and_end(time_slot.start, time_slot.end, 14.days)
+      Schedule.with_interval_from_start_and_end(time_slot.start, time_slot.end, 14)
         .with_start_date_greater_than(time_slot.start)
         .destroy_all
     end
