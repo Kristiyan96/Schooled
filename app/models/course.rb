@@ -18,4 +18,14 @@ class Course < ApplicationRecord
   def year
     school_year.year
   end
+
+  class None
+    def self.name
+      "Празен"
+    end
+
+    def self.id
+      nil
+    end
+  end
 end
