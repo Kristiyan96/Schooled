@@ -9,12 +9,8 @@ class AbsencesController < ApplicationController
   end
 
   def create
-    @absence = Absence.find_or_create_by(absence_params)
-
     respond_to do |format|
-      @absence.value += value
-      @absence.value.rationalize
-      if @absence.save
+      if @absence = Absence.create(absence_params)
         format.html { redirect_to @absence, notice: 'Absence was successfully created.' }
         format.json { render :show, status: :created, location: @absence }
         format.js { }
@@ -59,7 +55,7 @@ class AbsencesController < ApplicationController
   end
 
   def absence_params
-    params.require(:absence).permit(:student_id, :kind, :category, :school_year_id)
+    params.require(:absence).permit(:student_id, :kind, :category, :school_year_id, :course_id)
   end
 
   def value
