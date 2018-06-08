@@ -5,7 +5,7 @@
       .timeline
         .events-wrapper
           .events
-            ol data-school="#{@school.id}"
+            ol data-school="#{@school.id}" data-group="#{@group.id}" data-type="schedule"
               - (@school.active_school_year.start.to_date .. @school.active_school_year.end.to_date).each do |date|
                 li
                   a class="#{'selected' if Date.today == date}" data-date="#{date.strftime("%d/%m/%Y")}" href="#0"
@@ -17,4 +17,4 @@
           li
             a.next href="#0" Next
     #day-card
-      = render partial: 'schedules/day_card', locals: {date: @date, schedules: @schedules}
+      = render partial: 'schedules/day_card', locals: {date: @date, time_slots: @time_slots}

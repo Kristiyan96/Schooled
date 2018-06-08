@@ -38,10 +38,15 @@ document.addEventListener("turbolinks:load", function() {
       //detect click on the a single event - show new event content
       timelineComponents['eventsWrapper'].on('click', 'a', function(event){
         event.preventDefault();
+        var destintation = $(this).parent().parent().data('type');
+        var group_id = $(this).parent().parent().data('group');
+        var url = '/schools/1/' + (destintation == 'schedule' ? 'groups/1/schedules/1' : 'time_slots/1');
         jQuery.ajax({
-          url: "/schools/1/time_slots/1",
+          url: url,
           type: "GET",
-          data: {date: $(this).data('date'), school_id: $(this).parent().parent().data('school')},
+          data: {date: $(this).data('date'), 
+                 school_id: $(this).parent().parent().data('school'), 
+                 group_id: group_id},
           dataType: "script"
         });
         timelineComponents['timelineEvents'].removeClass('selected');
