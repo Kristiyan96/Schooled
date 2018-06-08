@@ -1,10 +1,12 @@
 .card
   .card-header.card-header-default.card-header-icon
-    b.card-icon Начало
     b.card-icon = group_name(@group)
 
   .card-body
     = render 'groups/navigation'
+
+    .week-schedule.col-12
+      = render 'schedules/week_schedule'
 
 
 

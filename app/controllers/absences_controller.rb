@@ -2,10 +2,21 @@ class AbsencesController < ApplicationController
   before_action :set_school
   before_action :set_group
   before_action :set_year
-  before_action :set_absence, only: [:show, :edit, :update, :destroy]
+  before_action :set_absence, only: [:update, :destroy]
 
   def index
     @absence = Absence.new
+    @date = Date.today
+    @schedules = @group.schedules.for_day(@date)
+    @school_year = @school.active_school_year
+  end
+
+  def show
+    @date = Date.parse(params[:date])
+    @schedules = @group.schedules.for_day(@date)
+    respond_to do |format|
+      format.js { render action: "refresh_card"}
+    end
   end
 
   def create
@@ -55,7 +66,7 @@ class AbsencesController < ApplicationController
   end
 
   def absence_params
-    params.require(:absence).permit(:student_id, :kind, :category, :schedule_id, :school_year_id)
+    params.require(:absence).permit(:student_id, :category, :schedule_id, :value)
   end
 
   def value
