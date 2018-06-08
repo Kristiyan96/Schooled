@@ -6,7 +6,7 @@ class CreateAbsences < ActiveRecord::Migration[5.2]
       t.integer :category, default: 0, null: false
       t.integer :student_id, index: true
 
-      t.references :course, foreign_key: true, index: true
+      t.references :schedule, foreign_key: true, index: true
       t.references :school_year, foreign_key: true, index: true
 
       t.timestamps
