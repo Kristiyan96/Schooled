@@ -55,7 +55,7 @@ class AbsencesController < ApplicationController
   end
 
   def absence_params
-    params.require(:absence).permit(:student_id, :kind, :category, :school_year_id, :course_id)
+    params.require(:absence).permit(:student_id, :kind, :category, :school_year_id, :course_id, :time_slot_id)
   end
 
   def value
