@@ -8,11 +8,11 @@ class School < ApplicationRecord
   has_many :roles, through: :assignments
 
   def teachers
-    users.joins(:assignments, :roles).find_each.select { |u| u.role?(:teacher, self)}
+    users.joins(:assignments, :roles).where(roles: { name: "Teacher" })
   end
 
   def students
-    users.find_each.select { |u| u.role?(:student,self)}
+    users.joins(:assignments, :roles).where(roles: { name: "Student" })
   end
 
   def active_school_year

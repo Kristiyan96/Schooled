@@ -1,5 +1,5 @@
 class MessageSenderJob < ApplicationJob
-  def perform(sender:, args:)
-    Message.send_multiple(sender, args)
+  def perform(sender, args)
+    MessageSender.new(sender, args).call
   end
 end
