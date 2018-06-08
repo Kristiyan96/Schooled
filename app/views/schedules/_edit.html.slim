@@ -1,0 +1,11 @@
+= form_with(scope: :schedule, url: school_group_schedule_path(@school, @group, schedule), remote: true, method: :put) do |f|
+  .row
+    .form-group.bmd-form-group.col-md-4
+      .input-group
+        = f.collection_select :course_id, @group.courses, :id, :name, {}, {class: "form-control"}, value: schedule.id
+    .form-group.bmd-form-group.col-md-4
+      .input-group
+        = f.select :type, [['Само днес', 'one'], ['Всяка седмица', 'series_7'], ['Четни седмици', 'series_14']], {}, { class: "form-control" }
+    .form-group.bmd-form-group.col-md-4
+      .input-group
+        = f.submit 'Промени', class: 'btn btn-warning btn-sm form-control'

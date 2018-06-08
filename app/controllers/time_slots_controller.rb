@@ -1,8 +1,8 @@
 class TimeSlotsController < ApplicationController
   def index
     @school = School.find(params[:school_id])
-    @time_slots = TimeSlot.where(school_year: @school.school_years)
     @date = Date.today
+    @time_slots = TimeSlot.for_school(@school).for_day(@date)
   end
 
   def show

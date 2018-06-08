@@ -1,0 +1,7 @@
+.card.col-md-8.col-xs-12.offset-md-2
+  .card-body
+    b
+      .title.text-center.text-primary = date.strftime("%A, %d/%m/%Y")
+    table.table
+      tbody#day-schedule
+        = render partial: 'schedules/schedule', collection: time_slots.for_day(date), as: :slot
