@@ -28,7 +28,7 @@ class TimeSlotsController < ApplicationController
   def update
     time_slot = TimeSlot.find(params[:id])
     #Type is one of [:one, :all]
-    TimeSlot.update_with_type(time_slot: time_slot, type: type, params: time_slot_params)
+    TimeSlot.update_with_type(time_slot: time_slot, type: type, params: update_slot_params)
     @school = time_slot.school
     @date = time_slot.start.to_date
     @time_slots = TimeSlot.for_school(@school).for_day(@date)
@@ -38,7 +38,7 @@ class TimeSlotsController < ApplicationController
     end
   end
 
-  def delete
+  def destroy
     time_slot = TimeSlot.find(params[:id])
 
     #Type is one of [:one, :all]

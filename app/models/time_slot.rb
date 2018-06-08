@@ -1,5 +1,6 @@
 class TimeSlot < ApplicationRecord
   belongs_to :school_year
+  has_one :school, through: :school_year
 
   has_many :schedules
   has_many :courses, through: :schedules
@@ -43,14 +44,28 @@ class TimeSlot < ApplicationRecord
   end
 
   def self.update_with_type(time_slot:, type:, params:)
+    s, e = params[:start], params[:end]
+    day = time_slot.start.to_date
+    s = Utils.datetime_from_date_and_time(day, Time.zone.parse(s))
+    e = Utils.datetime_from_date_and_time(day, Time.zone.parse(e))
     case type.to_sym
     when :one
       time_slot.update(params)
     when :all
-      year = time_slot.school_year
-      TimeSlot.with_interval_from_start_and_end(year.start, year.end, 1)
+      sql = sanitize_sql_for_assignment([<<~SQL.split("\n").join(" "), start: s, end: e, title: params[:title]])
+          start = date_trunc('day', start) +
+          date_part('hour', TIMESTAMP :start) * interval '1 hour' +
+          date_part('minute', TIMESTAMP :start) * interval '1 minute' +
+          date_part('second', TIMESTAMP :start) * interval '1 second',
+          "end" = date_trunc('day', "end") +
+          date_part('hour', TIMESTAMP :end) * interval '1 hour' +
+          date_part('minute', TIMESTAMP :end) * interval '1 minute' +
+          date_part('second', TIMESTAMP :end) * interval '1 second',
+          title = :title
+        SQL
+      TimeSlot.with_interval_from_start_and_end(time_slot.start, time_slot.end, 1)
         .with_start_date_greater_than(time_slot.start)
-        .update_all(params)
+        .update_all(sql)
     end
   end
 
@@ -64,5 +79,9 @@ class TimeSlot < ApplicationRecord
         .with_start_date_greater_than(time_slot.start)
         .destroy_all
     end
+  end
+
+  def self.convert_to_time(t)
+    Time.zone.parse(t)
   end
 end
