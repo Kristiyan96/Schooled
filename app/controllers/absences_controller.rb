@@ -21,7 +21,7 @@ class AbsencesController < ApplicationController
 
   def create
     respond_to do |format|
-      if @absence = Absence.create(absence_params)
+      if @absence = Absence.create_multiple(absence_params)
         format.html { redirect_to @absence, notice: 'Absence was successfully created.' }
         format.json { render :show, status: :created, location: @absence }
         format.js { }
@@ -66,7 +66,7 @@ class AbsencesController < ApplicationController
   end
 
   def absence_params
-    params.require(:absence).permit(:student_id, :category, :schedule_id, :value)
+    params.require(:absence).permit(:student_id, :category, :schedule_id, :value, student_ids: [])
   end
 
   def value
