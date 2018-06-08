@@ -1,0 +1,17 @@
+- schedules = @group.schedules.for_period(Date.today.beginning_of_week..Date.today.end_of_week).sort_by{|ev| ev.time_slot.end.strftime('%H:%M')}
+
+
+table.table
+  thead
+    tr
+      th
+      th Пон.
+      th Втор.
+      th Ср.
+      th Четв.
+      th Пет.
+      th Съб.
+  tbody
+    tr
+      td
+        

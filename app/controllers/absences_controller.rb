@@ -6,6 +6,8 @@ class AbsencesController < ApplicationController
 
   def index
     @absence = Absence.new
+    @date = Date.today
+    @schedules = @group.schedules.for_day(@date)
   end
 
   def create
@@ -55,7 +57,7 @@ class AbsencesController < ApplicationController
   end
 
   def absence_params
-    params.require(:absence).permit(:student_id, :kind, :category, :schedule_id, :school_year_id)
+    params.require(:absence).permit(:student_id, :category, :schedule_id, :school_year_id)
   end
 
   def value

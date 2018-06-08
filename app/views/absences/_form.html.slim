@@ -1,9 +1,0 @@
-= form_for @absence do |f|
-  - if @absence.errors.any?
-    #error_explanation
-      h2 = "#{pluralize(@absence.errors.count, "error")} prohibited this absence from being saved:"
-      ul
-        - @absence.errors.full_messages.each do |message|
-          li = message
-
-  .actions = f.submit

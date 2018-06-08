@@ -1,0 +1,13 @@
+.card.col-xs-12
+  .card-body
+    b
+      .title.text-center.text-primary = date.strftime("%A, %d/%m/%Y")
+    table.table
+      thead
+        tr
+          td Период
+          td Предмет
+          td Отсъствали
+          td Закъснели
+      tbody#day-schedule
+        = render partial: 'absences/schedule_row', collection: @schedules, as: :schedule
