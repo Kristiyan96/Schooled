@@ -1,6 +1,5 @@
 class Absence < ApplicationRecord
   belongs_to :school_year
-  belongs_to :course
   belongs_to :schedule
   belongs_to :student, foreign_key: "student_id", class_name: "User"
 
