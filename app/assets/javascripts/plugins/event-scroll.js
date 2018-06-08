@@ -38,14 +38,14 @@ document.addEventListener("turbolinks:load", function() {
       //detect click on the a single event - show new event content
       timelineComponents['eventsWrapper'].on('click', 'a', function(event){
         event.preventDefault();
-        var destintation = $(this).parent().parent().data('type');
+        var type = $(this).parent().parent().data('type');
         var group_id = $(this).parent().parent().data('group');
-        var url = '/schools/1/' + (destintation == 'schedule' ? 'groups/1/schedules/1' : 'time_slots/1');
+        var school_id = $(this).parent().parent().data('school');
         jQuery.ajax({
-          url: url,
+          url: getURI(type),
           type: "GET",
           data: {date: $(this).data('date'), 
-                 school_id: $(this).parent().parent().data('school'), 
+                 school_id: school_id, 
                  group_id: group_id},
           dataType: "script"
         });
@@ -275,5 +275,16 @@ document.addEventListener("turbolinks:load", function() {
   function checkMQ() {
     //check if mobile or desktop device
     return window.getComputedStyle(document.querySelector('.cd-horizontal-timeline'), '::before').getPropertyValue('content').replace(/'/g, "").replace(/"/g, "");
+  }
+
+  function getURI(type){
+    switch(type) {
+      case 'schedule':
+        return '/schools/1/groups/1/schedules/1'
+      case 'absence':
+        return '/schools/1/groups/1/absences/1'
+      case 'time_slot':
+        return  'schools/1/time_slots/1'
+    }
   }
 });

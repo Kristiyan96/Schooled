@@ -2,24 +2,10 @@ tr
   td = slot_period(schedule.time_slot)
   td = schedule.course.name
   td 
-    = form_with model: @absence, url: school_group_absences_path(@school, @group), method: :post do |f|
-      = f.hidden_field :value, value: 1
-      = f.hidden_field :schedule_id, value: schedule.id
-      = f.hidden_field :category, value: "permanent"
-      .row
-        .form-group style="margin-top: 0px"
-          label.bmd-label-floating Номера на ученици
-          = f.text_field :student_id, class: "form-control"
-        .form-group style="margin-top: 0px"
-          = f.submit 'Въведи', class: 'btn btn-sm btn-success' 
+    button.btn.btn-success.col.add-absence.btn-sm type="button" data-toggle="modal" data-target="#add-absence"
+      i.material-icons edit
+      b Въведи
   td
-    = form_with model: @absence, url: school_group_absences_path(@school, @group), method: :post do |f|
-      = f.hidden_field :value, value: '1/3'
-      = f.hidden_field :schedule_id, value: schedule.id
-      = f.hidden_field :category, value: "permanent"
-      .row
-        .form-group style="margin-top: 0px"
-          label.bmd-label-floating Номера на ученици
-          = f.text_field :student_id, class: "form-control"
-        .form-group style="margin-top: 0px"
-          = f.submit 'Въведи', class: 'btn btn-sm btn-success' 
+    button.btn.btn-warning.col.add-absence.btn-sm type="button" data-toggle="modal" data-target="#add-absence"
+      i.material-icons edit  
+      b Въведи
