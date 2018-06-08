@@ -40,9 +40,9 @@ class Schedule < ApplicationRecord
     when :one
       create(course_id: course_id, time_slot_id: time_slot_id)
     when :series_7
-      create_series(school, course_id, time_slot, 7.days)
+      create_series(school, course_id, time_slot, 7)
     when :series_14
-      create_series(school, course_id, time_slot, 14.days)
+      create_series(school, course_id, time_slot, 14)
     else
       raise ArgumentError, "Unpermitted type."
     end
@@ -70,23 +70,6 @@ class Schedule < ApplicationRecord
       Schedule.with_interval_from_start_and_end(time_slot.start, time_slot.end, 14)
         .with_start_date_greater_than(time_slot.start)
         .update_all(course_id: course_id)
-    end
-  end
-
-  def self.destroy_with_type(school:, schedule:, type:)
-    time_slot = schedule.time_slot
-
-    case type.to_sym
-    when :one
-      schedule.destroy
-    when :series_7
-      Schedule.with_interval_from_start_and_end(time_slot.start, time_slot.end, 7)
-        .with_start_date_greater_than(time_slot.start)
-        .destroy_all
-    when :series_14
-      Schedule.with_interval_from_start_and_end(time_slot.start, time_slot.end, 14)
-        .with_start_date_greater_than(time_slot.start)
-        .destroy_all
     end
   end
 end
