@@ -31,6 +31,9 @@ class Schedule < ApplicationRecord
   scope :for_day, -> date {
     for_period(date.all_day)
   }
+  scope :for_week, -> date {
+    for_period(date.all_week)
+  }
 
   def self.create_with_type(school:, params:)
     course_id, time_slot_id = params[:course_id], params[:time_slot_id]

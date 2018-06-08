@@ -22,8 +22,30 @@ class TimeSlot < ApplicationRecord
   scope :for_day, -> date {
     for_period(date.all_day)
   }
+  scope :for_week, -> date {
+    for_period(date.all_week)
+  }
+  scope :this_week, -> { for_week(Time.current) }
+  scope :for_work_week, -> date {
+    week = date.all_week
+    a, b = week.first, week.last - 2.days
+    for_period(a..b)
+  }
+
   scope :for_school, -> school {
     where(school_year: school.school_years)
+  }
+  scope :group_schedule, -> group {
+    sql = sanitize_sql_array([<<~SQL, group_id: group.id])
+    LEFT OUTER JOIN schedules ON schedules.time_slot_id = time_slots.id AND schedules.id IN
+      (SELECT schedules.id FROM schedules WHERE schedules.course_id IN
+        (SELECT courses.id FROM courses WHERE courses.group_id = :group_id)
+      )
+    SQL
+    joins(sql).eager_load(:schedules)
+  }
+  scope :group_schedule_for_week, -> group {
+    group_schedule(group).this_week
   }
   default_scope { order('start ASC') }
 
@@ -79,6 +101,20 @@ class TimeSlot < ApplicationRecord
         .with_start_date_greater_than(time_slot.start)
         .destroy_all
     end
+  end
+
+  def self.schedule_table_for_group(group)
+    time_slots_by_day = group_schedule_for_week(group)
+      .map { |t| [t, t.schedules] }
+      .group_by { |(t, _)| t.start.strftime("%A") }
+
+    max = time_slots_by_day.values.map do |ts|
+      ts
+        .map.with_index { |t, i| [t, i] }
+        .max_by { |((t, s), index)| s.empty? ? 0 : index }
+    end.max[1]
+
+    time_slots_by_day.map { |day, data| [day, data[0..max]] }.to_h
   end
 
   def self.convert_to_time(t)
