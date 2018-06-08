@@ -32,17 +32,19 @@ class Schedule < ApplicationRecord
     for_period(date.all_day)
   }
 
-  def self.create_with_type(school:, course_id:, time_slot_id:, type:)
-    raise ArgumentError unless type.in?([:one, :series_7, :series_14])
+  def self.create_with_type(school:, params:)
+    course_id, time_slot_id = params[:course_id], params[:time_slot_id]
     time_slot = TimeSlot.find(time_slot_id)
 
-    case type.to_sym
+    case params[:type].to_sym
     when :one
       create(course_id: course_id, time_slot_id: time_slot_id)
     when :series_7
       create_series(school, course_id, time_slot, 7.days)
     when :series_14
       create_series(school, course_id, time_slot, 14.days)
+    else
+      raise ArgumentError, "Unpermitted type."
     end
   end
 
@@ -50,13 +52,14 @@ class Schedule < ApplicationRecord
     timeslots = TimeSlot.where(school_year: time_slot.school_year)
       .with_interval_from_start_and_end(time_slot.start, time_slot.end, days)
 
-    schedules = timeslots.map { |t| { time_slot_id: t.id, course_id: course_id, school_year: time_slot.school_year } }
+    schedules = timeslots.map { |t| { time_slot_id: t.id, course_id: course_id } }
     Schedule.import(schedules)
   end
 
-  def self.update_with_type(school:, schedule:, type:, course_id:)
+  def self.update_with_type(school:, schedule:, params:)
     time_slot = schedule.time_slot
-    case type.to_sym
+    course_id = params[:course_id]
+    case params[:type].to_sym
     when :one
       schedule.update(course_id: course_id)
     when :series_7

@@ -20,7 +20,7 @@ class SchedulesController < ApplicationController
     @school = School.find(params[:school_id])
 
     # NOTE(for Kris) Type param should be one of [:one, :series_7, :series_14]
-    Schedule.create_with_type(school: @school, **schedule_params)
+    Schedule.create_with_type(school: @school, params: schedule_params)
     respond_to do |format|
       format.js { }
     end
@@ -31,7 +31,7 @@ class SchedulesController < ApplicationController
     @schedule = Schedule.find(params[:id])
 
     # Type param should be one of [:one, :series_7, :series_14]
-    Schedule.update_with_type(school: school, schedule: schedule, **update_params)
+    Schedule.update_with_type(school: @school, schedule: @schedule, params: update_params)
     respond_to do |format|
       format.js { }
     end
