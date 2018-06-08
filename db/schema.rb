@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_06_06_125440) do
+ActiveRecord::Schema.define(version: 2018_06_05_120209) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,10 +20,13 @@ ActiveRecord::Schema.define(version: 2018_06_06_125440) do
     t.integer "kind", default: 0, null: false
     t.integer "category", default: 0, null: false
     t.integer "student_id"
+    t.bigint "schedule_id"
     t.bigint "school_year_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["schedule_id"], name: "index_absences_on_schedule_id"
     t.index ["school_year_id"], name: "index_absences_on_school_year_id"
+    t.index ["student_id"], name: "index_absences_on_student_id"
   end
 
   create_table "assignments", force: :cascade do |t|
@@ -207,6 +210,7 @@ ActiveRecord::Schema.define(version: 2018_06_06_125440) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "absences", "schedules"
   add_foreign_key "absences", "school_years"
   add_foreign_key "assignments", "roles"
   add_foreign_key "assignments", "schools"
