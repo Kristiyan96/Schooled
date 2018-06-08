@@ -20,8 +20,8 @@ ActiveRecord::Schema.define(version: 2018_06_05_120209) do
     t.integer "kind", default: 0, null: false
     t.integer "category", default: 0, null: false
     t.integer "student_id"
-    t.bigint "schedule_id"
     t.bigint "school_year_id"
+    t.bigint "schedule_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["schedule_id"], name: "index_absences_on_schedule_id"
