@@ -7,4 +7,20 @@
             button.close aria-hidden="true" data-dismiss="modal" type="button" 
               i.material-icons clear
             h4.card-title Отсъствия
+            h4.card-description.text-center 
         .modal-body
+          h4.title Маркирай отсъстващите
+          = form_with url: school_group_absences_path(@school, @group), remote: true do |f|
+            = f.hidden_field :value, value: 1
+            = f.hidden_field :category, value: "permanent"
+            = f.hidden_field :schedule_id, value: nil
+            = f.hidden_field :school_year, value: @school_year.id
+            = f.collection_check_boxes :student_ids, @group.students.order(:number_in_class), :id, :student_info do |m| 
+              .form-check
+                = m.label(class: 'form-check-label') 
+                  = m.check_box(class: 'form-check-input')
+                  = m.text
+                  span.form-check-sign
+                    span.check
+
+

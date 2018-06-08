@@ -42,4 +42,8 @@ class User < ApplicationRecord
     end 
     "roles/#{role}".downcase 
   end
+
+  def student_info
+    "#"+"#{number_in_class} #{self.full_name}"
+  end
 end

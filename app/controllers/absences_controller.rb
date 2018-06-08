@@ -8,6 +8,7 @@ class AbsencesController < ApplicationController
     @absence = Absence.new
     @date = Date.today
     @schedules = @group.schedules.for_day(@date)
+    @school_year = @school.active_school_year
   end
 
   def show
