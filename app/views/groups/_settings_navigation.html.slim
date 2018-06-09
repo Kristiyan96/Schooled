@@ -1,0 +1,7 @@
+ul.nav.nav-pills.justify-content-end
+  li.nav-item 
+    = link_to 'Настройки', edit_school_group_path(@school, @group), class: "nav-link #{'active' if controller_name == 'groups' && action_name == 'edit'}"
+  li.nav-item 
+    = link_to 'Седмична програма', edit_school_group_schedule_path(@school, @group), class: "nav-link #{'active' if controller_name == 'schedules' && action_name == 'edit'}"
+  li.nav-item 
+    = link_to 'Ученици', profiles_path(school_id: @school, group_id: @group), class: "nav-link #{'active' if controller_name == 'profiles' && action_name == 'index'}"

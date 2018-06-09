@@ -10,14 +10,20 @@ class SchedulesController < ApplicationController
 
   def show
     @school = School.find(params[:school_id])
-    @date = Date.parse(params[:date])
     @group = @school.groups.find(params[:group_id])
     @courses = @group.courses.to_a
     @courses << Course::None
-    @time_slots = @school.active_school_year.time_slots.for_day(@date)
-    respond_to do |format|
-      format.js { render action: "refresh_card"}
-    end
+    @date = Date.today
+    @time_slots = TimeSlot.where(school_year: @school.school_years)
+  end
+
+  def edit
+    @school = School.find(params[:school_id])
+    @group = @school.groups.find(params[:group_id])
+    @courses = @group.courses.to_a
+    @courses << Course::None
+    @date = Date.today
+    @time_slots = TimeSlot.where(school_year: @school.school_years)
   end
 
   def create

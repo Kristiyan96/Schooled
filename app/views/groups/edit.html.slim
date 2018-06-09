@@ -4,6 +4,8 @@
   .card-body
     = render 'groups/navigation'
     hr
+    = render 'groups/settings_navigation'
+    
     = form_with model: @group, url: school_group_path(@school, @group), method: :put do |f|
       .row
         .col-md-4
