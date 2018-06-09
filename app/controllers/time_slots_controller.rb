@@ -6,7 +6,7 @@ class TimeSlotsController < ApplicationController
 
     respond_to do |format|
       format.html { }
-      format.js { }
+      format.js { render action: "refresh_card"}
     end
   end
 
@@ -20,7 +20,7 @@ class TimeSlotsController < ApplicationController
     @time_slots = TimeSlot.for_school(@school).for_day(@date)
     
     respond_to do |format|
-      format.js { }
+      format.js { render action: "refresh_card"}
     end
   end
 
@@ -33,18 +33,21 @@ class TimeSlotsController < ApplicationController
     @time_slots = TimeSlot.for_school(@school).for_day(@date)
 
     respond_to do |format|
-      format.js { }
+      format.js { render action: "refresh_card"}
     end
   end
 
   def destroy
     time_slot = TimeSlot.find(params[:id])
+    @school = time_slot.school
+    @date = time_slot.start.to_date
 
     #Type is one of [:one, :all]
     TimeSlot.destroy_with_type(time_slot: time_slot, type: type)
+    @time_slots = TimeSlot.for_school(@school).for_day(@date)
 
     respond_to do |format|
-      format.js { }
+      format.js { render action: "refresh_card"}
     end
   end
 

@@ -8,5 +8,5 @@
               i.material-icons clear
             h4.card-title Изтрий период
         .modal-body
-          = link_to "Изтрии само този период", school_time_slot_path(@school), type: "one", method: :delete, remote: true, class: 'btn btn-warning'
-          = link_to "Изтрии поредицата от днес до края на годината", school_time_slot_path(@school, 1), type: "all", method: :delete, remote: true, class: 'btn btn-danger'
+          = link_to "Изтрии само този период", school_time_slot_path(@school), method: :delete, remote: true, class: 'btn btn-warning delete-one'
+          = link_to "Изтрии поредицата от днес до края на годината", school_time_slot_path(@school), method: :delete, remote: true, class: 'btn btn-danger delete-all'
