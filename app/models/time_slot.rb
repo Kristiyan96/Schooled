@@ -96,8 +96,7 @@ class TimeSlot < ApplicationRecord
     when :one
       time_slot.destroy
     when :all
-      year = time_slot.school_year
-      TimeSlot.with_interval_from_start_and_end(year.start, year.end, 1)
+      TimeSlot.with_interval_from_start_and_end(time_slot.start, time_slot.end, 1)
         .with_start_date_greater_than(time_slot.start)
         .destroy_all
     end
