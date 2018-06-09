@@ -129,9 +129,23 @@ puts "Creating remarks"
 Remark.create(student: s1, course: c1, message: "Ставаш")
 Remark.create(student: s2, course: c2, message: "Не-Ставаш")
 
-puts "Creating absences"
+puts "Creating time slots"
 
-Absence.create(student: s1, school_year: y1, value: (1/3r))
-Absence.create(student: s1, school_year: y1, value: (1/1r))
-Absence.create(student: s2, school_year: y1, value: (1/3r))
-Absence.create(student: s2, school_year: y1, value: (1/1r))
+TimeSlot.create_week_daily(school_year: y1, params: {start: Time.now.strftime("%H:%M"), end: (Time.now+45.minutes).strftime("%H:%M"), title: 'Час 1', school_year_id: y1.id})
+TimeSlot.create_week_daily(school_year: y1, params: {start: (Time.now + 55.minutes).strftime("%H:%M"), end: (Time.now+100.minutes).strftime("%H:%M"), title: 'Час 2', school_year_id: y1.id})
+TimeSlot.create_week_daily(school_year: y1, params: {start: (Time.now + 110.minutes).strftime("%H:%M"), end: (Time.now+155.minutes).strftime("%H:%M"), title: 'Час 3', school_year_id: y1.id})
+TimeSlot.create_week_daily(school_year: y1, params: {start: (Time.now + 165.minutes).strftime("%H:%M"), end: (Time.now+210.minutes).strftime("%H:%M"), title: 'Час 4', school_year_id: y1.id})
+TimeSlot.create_week_daily(school_year: y1, params: {start: (Time.now + 220.minutes).strftime("%H:%M"), end: (Time.now+265.minutes).strftime("%H:%M"), title: 'Час 5', school_year_id: y1.id})
+TimeSlot.create_week_daily(school_year: y1, params: {start: (Time.now + 275.minutes).strftime("%H:%M"), end: (Time.now+320.minutes).strftime("%H:%M"), title: 'Час 6', school_year_id: y1.id})
+TimeSlot.create_week_daily(school_year: y1, params: {start: (Time.now + 330.minutes).strftime("%H:%M"), end: (Time.now+375.minutes).strftime("%H:%M"), title: 'Час 7', school_year_id: y1.id})
+TimeSlot.create_week_daily(school_year: y1, params: {start: (Time.now + 385.minutes).strftime("%H:%M"), end: (Time.now+430.minutes).strftime("%H:%M"), title: 'Час 8', school_year_id: y1.id})
+
+puts "Creating schedules"
+
+slots_today = TimeSlot.for_school(smg).for_day(Date.today)
+Schedule.create_with_type(school: smg, params: {course_id: c1.id, time_slot_id: slots_today[0].id, type: 'series_7'})
+Schedule.create_with_type(school: smg, params: {course_id: c1.id, time_slot_id: slots_today[1].id, type: 'series_7'})
+Schedule.create_with_type(school: smg, params: {course_id: c2.id, time_slot_id: slots_today[2].id, type: 'series_7'})
+Schedule.create_with_type(school: smg, params: {course_id: c2.id, time_slot_id: slots_today[3].id, type: 'series_7'})
+Schedule.create_with_type(school: smg, params: {course_id: c3.id, time_slot_id: slots_today[4].id, type: 'series_7'})
+Schedule.create_with_type(school: smg, params: {course_id: c3.id, time_slot_id: slots_today[5].id, type: 'series_7'})
