@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   end
 
   resources :schools do
-    resources :time_slots
+    resource :time_slot
     resources :groups do
       resources :homeworks, only: [:index, :create, :update, :destroy]
       resources :absences, only: [:index, :show, :create, :update]
@@ -20,7 +20,6 @@ Rails.application.routes.draw do
       resources :courses
       resources :student_invitations, path: :students, module: :schools, only: [:index, :create]
       resources :parent_invitations, path: :parents, module: :schools, only: [:index, :create]
-      resources :time_slots
       resource :schedule
     end
     resources :headmaster_invitations, path: :headmasters, module: :schools, only: [:index, :create]

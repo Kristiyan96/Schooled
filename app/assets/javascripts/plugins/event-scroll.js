@@ -279,12 +279,12 @@ document.addEventListener("turbolinks:load", function() {
 
   function getURI(type){
     switch(type) {
-      case 'schedule':
-        return '/schools/1/groups/1/schedules/1'
+      case 'schedule-edit':
+        return '/schools/1/groups/1/schedule/edit'
       case 'absence':
         return '/schools/1/groups/1/absences/1'
       case 'time_slot':
-        return  'schools/1/time_slots/1'
+        return '/schools/1/time_slot'
     }
   }
 });

@@ -1,25 +1,24 @@
 class TimeSlotsController < ApplicationController
-  def index
-    @school = School.find(params[:school_id])
-    @date = Date.today
-    @time_slots = TimeSlot.for_school(@school).for_day(@date)
-  end
-
   def show
-    @school = School.find(params[:school_id])
-    @date = Date.parse(params[:date])
+    @school     = School.find(params[:school_id])
+    @date       = (params[:date] && Date.parse(params[:date])) || Date.today
     @time_slots = TimeSlot.for_school(@school).for_day(@date)
+
     respond_to do |format|
+      format.html { }
       format.js { }
     end
   end
 
   def create
-    @school = School.find(params[:school_id])
-    @date = Date.parse(params[:date])
+    @school     = School.find(params[:school_id])
+    @date       = Date.parse(params[:date])
     school_year = SchoolYear.find(time_slot_params[:school_year_id])
+
     TimeSlot.create_week_daily(school_year: school_year, params: time_slot_params)
+
     @time_slots = TimeSlot.for_school(@school).for_day(@date)
+    
     respond_to do |format|
       format.js { }
     end
