@@ -20,29 +20,8 @@
           li
             a.next href="#0" Next
 
-    - schedule = TimeSlot.schedule_table_for_group(@group)
-    .card
-      .card-body
-        table.table
-          thead
-            tr
-              th
-              - if "Monday".in?(schedule.keys) 
-                th Пон.
-              - if "Tuesday".in?(schedule.keys) 
-                th Втор.
-              - if "Wednesday".in?(schedule.keys) 
-                th Ср.
-              - if "Thursday".in?(schedule.keys) 
-                th Четв.
-              - if "Friday".in?(schedule.keys) 
-                th Пет.
-              - if "Saturday".in?(schedule.keys) 
-                th Съб.
-          tbody
-            - (0..schedule[schedule.keys.first].count).each do |slot|
-              tr
-                td = slot_period(schedule['Monday'][slot].try(:first)) 
-                - schedule.keys.each do |day|
-                  td = schedule[day][slot].try(:first).try(:courses).try(:first).try(:name)
+    #week-schedule
+      = render partial: 'schedules/week_schedule', locals: {date: @date}
+
+
             

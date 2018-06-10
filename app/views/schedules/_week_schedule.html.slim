@@ -1,44 +1,22 @@
+- schedule = TimeSlot.schedule_table_for_group(@group, date)
 .card
   .card-body
-    .cd-horizontal-timeline
-      .timeline
-        .events-wrapper
-          .events
-            ol data-school="#{@school.id}" data-type="time_slot"
-              - start = @school.active_school_year.start.beginning_of_week.to_date
-              - finish = @school.active_school_year.end.to_date
-              - start.step(finish, 7).each do |date|
-                li
-                  a class="#{'selected' if Date.today == date}" data-date="#{date.strftime('%d/%m/%Y')}" href="#0"
-                    = date.to_formatted_s(:short)
-            span.filling-line aria-hidden="true" 
-        ul.cd-timeline-navigation
-          li
-            a.prev.inactive href="#0" Prev
-          li
-            a.next href="#0" Next
-
-    - schedule = TimeSlot.schedule_table_for_group(@group)
     table.table
       thead
         tr
-          th
-          - if "Monday".in?(schedule.keys) 
-            th Пон.
-          - if "Tuesday".in?(schedule.keys) 
-            th Втор.
-          - if "Wednesday".in?(schedule.keys) 
-            th Ср.
-          - if "Thursday".in?(schedule.keys) 
-            th Четв.
-          - if "Friday".in?(schedule.keys) 
-            th Пет.
+          th Час
+          th Пон.
+          th Втор.
+          th Ср.
+          th Четв.
+          th Пет.
           - if "Saturday".in?(schedule.keys) 
             th Съб.
       tbody
         - (0..schedule[schedule.keys.first].count).each do |slot|
           tr
-            td = slot_period(schedule['Monday'][slot].try(:first)) 
+            td 
+              b = slot_period(schedule['Monday'][slot].try(:first)) 
             - schedule.keys.each do |day|
-              td = schedule[day][slot].try(:first).try(:courses).try(:first).try(:name)
-            
+              td 
+                b = schedule[day][slot].try(:first).try(:courses).try(:first).try(:name)

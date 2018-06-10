@@ -11,6 +11,12 @@ class AbsencesController < ApplicationController
     @school_year = @school.active_school_year
   end
 
+  def new
+    @absence = Absence.new
+    @date = Date.today
+    @schedules = @group.schedules.for_day(@date)
+  end
+
   def show
     @date = Date.parse(params[:date])
     @schedules = @group.schedules.for_day(@date)

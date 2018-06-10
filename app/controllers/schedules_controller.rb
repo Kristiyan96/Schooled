@@ -3,7 +3,6 @@ class SchedulesController < ApplicationController
     @school     = School.find(params[:school_id])
     @group      = @school.groups.find(params[:group_id])
     @date       = (params[:date] && Date.parse(params[:date])) || Date.today
-    @time_slots = TimeSlot.where(school_year: @school.school_years)
 
     respond_to do |format|
       format.html { }
