@@ -27,8 +27,13 @@ class TimeSlot < ApplicationRecord
   }
   scope :this_week, -> { for_week(Time.current) }
   scope :for_work_week, -> date {
-    week = date.all_week
+    week = date.to_datetime.all_week
     a, b = week.first, week.last - 2.days
+    for_period(a..b)
+  }
+  scope :for_work_week_with_saturday, -> date {
+    week = date.to_datetime.all_week
+    a, b = week.first, week.last - 1.days
     for_period(a..b)
   }
 
@@ -103,9 +108,13 @@ class TimeSlot < ApplicationRecord
   end
 
   def self.schedule_table_for_group(group, day = Time.current)
-    time_slots_by_day = group_schedule(group).for_work_week(day)
+    time_slots_by_day = group_schedule(group).for_work_week_with_saturday(day)
       .map { |t| [t, t.schedules] }
       .group_by { |(t, _)| t.start.strftime("%A") }
+
+    if time_slots_by_day['Saturday'].all? { |(t, ss)| ss.empty? }
+      time_slots_by_day.delete('Saturday')
+    end
 
     max = time_slots_by_day.values.map do |ts|
       ts

@@ -10,13 +10,13 @@
           th Ср.
           th Четв.
           th Пет.
-          - if "Saturday".in?(schedule.keys) 
+          - if "Saturday".in?(schedule.keys)
             th Съб.
       tbody
         - (0..schedule[schedule.keys.first].count).each do |slot|
           tr
-            td 
-              b = slot_period(schedule['Monday'][slot].try(:first)) 
+            td
+              b = slot_period(schedule['Monday'][slot].try(:first))
             - schedule.keys.each do |day|
-              td 
+              td
                 b = schedule[day][slot].try(:second).try(:first).try(:course).try(:name)
