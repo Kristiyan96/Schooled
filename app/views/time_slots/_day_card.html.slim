@@ -1,11 +1,9 @@
 .card.col-md-6.col-xs-12.offset-md-3
   .card-body
-    b
-      .title.text-center.text-primary = date.strftime("%A, %d/%m/%Y")
     table.table
       tbody#day-schedule
         = render partial: 'time_slots/slot', collection: time_slots.for_day(date), as: :slot
-    button.btn.btn-success type="button" data-toggle="modal" data-target="#add-slot" Добави период
+    button.btn.btn-success.btn-sm type="button" data-toggle="modal" data-target="#add-slot" Добави период
 = render 'time_slots/add_timeslot_modal'
 = render 'time_slots/edit_timeslot_modal'
 = render 'time_slots/delete_timeslot_modal'

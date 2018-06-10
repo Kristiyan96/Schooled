@@ -36,7 +36,6 @@ class TimeSlot < ApplicationRecord
     a, b = week.first, week.last - 1.days
     for_period(a..b)
   }
-
   scope :for_school, -> school {
     where(school_year: school.school_years)
   }
@@ -92,6 +91,7 @@ class TimeSlot < ApplicationRecord
         SQL
       year = time_slot.school_year
       TimeSlot.with_interval_from_start_and_end(time_slot.start, year.end, 1)
+        .with_start_date_greater_than(time_slot.start)
         .update_all(sql)
     end
   end
@@ -103,6 +103,7 @@ class TimeSlot < ApplicationRecord
     when :all
       year = time_slot.school_year
       TimeSlot.with_interval_from_start_and_end(time_slot.start, year.end, 1)
+        .with_start_date_greater_than(time_slot.start)
         .destroy_all
     end
   end
@@ -121,6 +122,7 @@ class TimeSlot < ApplicationRecord
         .map.with_index { |t, i| [t, i] }
         .max_by { |((t, s), index)| s.empty? ? 0 : index }
     end.max[1]
+
 
     time_slots_by_day.map { |day, data| [day, data[0..max]] }.to_h
   end

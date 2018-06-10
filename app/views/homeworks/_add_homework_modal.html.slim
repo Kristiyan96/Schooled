@@ -1,0 +1,36 @@
+#add-homework-modal.modal.fade role="" tabindex="-1" 
+  .modal-dialog role="document" 
+    .modal-content
+      .card.card-signup.card-plain
+        .modal-header
+          .card-header.card-header-primary.text-center style="width: 100%;"
+            button.close aria-hidden="true" data-dismiss="modal" type="button" 
+              i.material-icons clear
+            h4.card-title Ново домашно
+        .modal-body
+          = form_with scope: :homework, url: school_group_homeworks_path(@school, @group), method: :post, remote: true do |f|
+            = f.hidden_field :teacher_id, value: current_user.id
+            .card-body
+              .row
+                .form-group.bmd-form-group.col-md-6
+                  .input-group
+                    span.input-group-addon
+                      i.material-icons title
+                    = f.text_field :title, placeholder: "Заглавие", class: 'form-control'  
+                .form-group.bmd-form-group.col-md-6
+                  .input-group
+                    span.input-group-addon
+                      i.material-icons timer_off
+                    = f.date_field :deadline, placeholder: "Краен срок", class: 'form-control'  
+              .form-group.bmd-form-group
+                .input-group
+                  span.input-group-addon
+                    i.material-icons category
+                  = f.collection_select :course_id, @courses, :id, :name, {prompt: 'Изберете предмет'}, {class: "form-control"}
+              .form-group.bmd-form-group
+                .input-group
+                  span.input-group-addon
+                    i.material-icons short_text
+                  = f.text_area :description, placeholder: "Описание на домашното", class: 'form-control', rows: 15 
+              .justify-content-center
+                = f.submit "Създай", class: "btn btn-success"

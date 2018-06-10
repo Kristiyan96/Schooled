@@ -5,9 +5,12 @@ feg = School.create(name: "Френска Езикова Гимназия", emai
 
 puts "Creating subjects"
 
-maths     = Subject.new(name: "Математика")
-bulgarian = Subject.new(name: "Български")
-french    = Subject.new(name: "Френски")
+maths1     = Subject.new(name: "Математика", school: smg)
+bulgarian1 = Subject.new(name: "Български", school: smg)
+french1    = Subject.new(name: "Френски", school: smg)
+maths2     = Subject.new(name: "Математика", school: feg)
+bulgarian2 = Subject.new(name: "Български", school: feg)
+french2    = Subject.new(name: "Френски", school: feg)
 
 puts "Creating headmasters"
 
@@ -110,12 +113,12 @@ y2 = SchoolYear.create(year: "2017/2018", school: feg, active: true, start: Date
 
 puts "Creating courses"
 
-c1 = Course.create(school: smg, group: gr1, subject: maths, school_year: y1, teacher: t1)
-c2 = Course.create(school: smg, group: gr1, subject: bulgarian, school_year: y1, teacher: t2)
-c3 = Course.create(school: smg, group: gr1, subject: french, school_year: y1, teacher: t3)
-c5 = Course.create(school: feg, group: gr2, subject: maths, school_year: y2, teacher: t4)
-c6 = Course.create(school: feg, group: gr2, subject: french, school_year: y2, teacher: t5)
-c7 = Course.create(school: feg, group: gr2, subject: bulgarian, school_year: y2, teacher: t6)
+c1 = Course.create(school: smg, group: gr1, subject: maths1, school_year: y1, teacher: t1)
+c2 = Course.create(school: smg, group: gr1, subject: bulgarian1, school_year: y1, teacher: t2)
+c3 = Course.create(school: smg, group: gr1, subject: french1, school_year: y1, teacher: t3)
+c5 = Course.create(school: feg, group: gr2, subject: maths2, school_year: y2, teacher: t4)
+c6 = Course.create(school: feg, group: gr2, subject: french2, school_year: y2, teacher: t5)
+c7 = Course.create(school: feg, group: gr2, subject: bulgarian2, school_year: y2, teacher: t6)
 
 puts "Creating marks"
 

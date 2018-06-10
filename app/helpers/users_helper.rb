@@ -11,7 +11,7 @@ module UsersHelper
       when "Headmaster"
         role = "Директор"
       when "Teacher"
-        role = Учител
+        role = "Учител"
       when "Student"
         role = "Ученик"
       end

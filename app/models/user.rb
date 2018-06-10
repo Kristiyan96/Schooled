@@ -7,6 +7,7 @@ class User < ApplicationRecord
   has_many :groups
   has_many :assignments
   has_many :roles, through: :assignments
+  has_many :homeworks
 
   has_many :student_relations, foreign_key: "parent_id", class_name: "Parentship"
   has_many :students, through: :student_relations, source: :student

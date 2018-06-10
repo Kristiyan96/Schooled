@@ -1,0 +1,24 @@
+#invite-teacher.modal.fade role="" tabindex="-1" 
+  .modal-dialog role="document" 
+    .modal-content
+      .card.card-signup.card-plain
+        .modal-header
+          .card-header.card-header-primary.text-center style="width: 100%;"
+            button.close aria-hidden="true" data-dismiss="modal" type="button" 
+              i.material-icons clear
+            h4.card-title Прати покана на учител
+        .modal-body
+          = form_with url: school_teacher_invitations_path(@school), remote: true, method: :post do |f|
+            .card-body
+              .row
+                .form-group.bmd-form-group.col-md-6
+                  label.bmd-label-floating Име
+                  = f.text_field :first_name, required: true, class: 'form-control'  
+                .form-group.bmd-form-group.col-md-6
+                  label.bmd-label-floating Фамилия
+                  = f.text_field :last_name, required: true, class: 'form-control'  
+              .form-group.bmd-form-group
+                label.bmd-label-floating Имейл
+                = f.email_field :email, required: true, class: 'form-control' 
+              .justify-content-center
+                = f.submit "Покани", class: "btn btn-success btn-wd"

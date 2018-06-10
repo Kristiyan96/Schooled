@@ -13,8 +13,7 @@
           = form_with scope: :absence, url: school_group_absences_path(@school, @group), remote: true do |f|
             = f.hidden_field :value, value: 1
             = f.hidden_field :category, value: "permanent"
-            = f.hidden_field :schedule_id, value: nil
-            = f.hidden_field :school_year, value: @school_year.id
+            = f.hidden_field :schedule_id, value: 1
             = f.collection_check_boxes :student_ids, @group.students.order(:number_in_class), :id, :student_info do |m| 
               .form-check
                 = m.label(class: 'form-check-label')
@@ -23,4 +22,4 @@
                   span.form-check-sign
                     span.check
 
-            = f.submit "Запази"
+            = f.submit "Запази", class: "btn btn-success"
