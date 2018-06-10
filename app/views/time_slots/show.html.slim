@@ -10,7 +10,7 @@
                 li
                   a class="#{'selected' if Date.today == date}" data-date="#{date.strftime("%d/%m/%Y")}" href="#0"
                     = date.to_formatted_s(:short)
-                    span = ['Пон.', 'Вт.', 'Ср.', 'Четв.', 'Пет.', 'Съб.'][date.wday]
+                    span = ['Нед.', 'Пон.', 'Вт.', 'Ср.', 'Четв.', 'Пет.', 'Съб.'][date.wday]
             span.filling-line aria-hidden="true" 
         ul.cd-timeline-navigation
           li

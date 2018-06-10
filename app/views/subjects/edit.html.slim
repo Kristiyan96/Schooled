@@ -1,0 +1,11 @@
+.card
+  .card-header.card-header-icon
+    b.card-icon Редактиране на предмет
+  .card-body
+    .card.col-md-6.offset-md-3
+      .card-body
+        = form_with model: @subject, url: school_subject_path(@school, @subject), method: :put do |f|
+          .form-group
+            label.bmd-label-floating for="group_teacher_id" Име на предмет
+            = f.text_field :name, value: @subject.name, class: 'form-control'
+          = f.submit 'Редактирай', class: 'btn btn-warning'

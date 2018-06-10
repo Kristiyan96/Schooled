@@ -1,4 +1,13 @@
 class MessagesController < ApplicationController
+  
+  def index
+
+  end
+
+  def show
+
+  end
+
   def create
     # Message type is an array of [:user, :group_students, :group_parents, :teachers, :all_students, :all_parents]
     MessageSenderJob.perform_later(current_user.id, message_params)
