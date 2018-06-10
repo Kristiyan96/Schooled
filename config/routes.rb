@@ -36,7 +36,7 @@ Rails.application.routes.draw do
 
   resources :parentship, only: :create
   resources :profiles
-  resources :messages, only: :create
+  resources :messages, only: [:create, :index]
 
   root 'pages#show', page: 'home'
   get '/pages/*page', to: 'pages#show'

@@ -90,12 +90,14 @@ ActiveRecord::Schema.define(version: 2018_06_05_120209) do
 
   create_table "messages", force: :cascade do |t|
     t.string "text", null: false
-    t.integer "sender_id", null: false
-    t.integer "recepient_id", null: false
+    t.string "sender_type"
+    t.bigint "sender_id"
+    t.string "recepient_type"
+    t.bigint "recepient_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["recepient_id"], name: "index_messages_on_recepient_id"
-    t.index ["sender_id"], name: "index_messages_on_sender_id"
+    t.index ["recepient_type", "recepient_id"], name: "index_messages_on_recepient_type_and_recepient_id"
+    t.index ["sender_type", "sender_id"], name: "index_messages_on_sender_type_and_sender_id"
   end
 
   create_table "parentships", force: :cascade do |t|
