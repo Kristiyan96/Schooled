@@ -10,7 +10,7 @@ document.addEventListener("turbolinks:load", function() {
     $('#edit-slot input.period-start').val(start);
     $('#edit-slot input.period-end').val(end);
     $('#edit-slot input.period-title').val(title);
-    $('#edit-slot form').attr('action', "/schools/"+school_id+"/time_slots/"+slot_id);
+    $('#edit-slot form').attr('action', "/schools/"+school_id+"/time_slot?id="+slot_id);
   });
 
   // on timeslot delete button click
@@ -18,6 +18,7 @@ document.addEventListener("turbolinks:load", function() {
     var school_id = $('.cd-horizontal-timeline ol').data('school');
     var slot_id = $(this).parent().data('slot');
 
-    $('#delete-slot a').attr('href', "/schools/"+school_id+"/time_slots/"+slot_id);
+    $('#delete-slot a.delete-one').attr('href', `/schools/${school_id}/time_slot?id=${slot_id}&type=one`);
+    $('#delete-slot a.delete-all').attr('href', `/schools/${school_id}/time_slot?id=${slot_id}&type=all`);
   });
 });

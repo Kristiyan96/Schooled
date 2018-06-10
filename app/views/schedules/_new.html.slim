@@ -1,13 +1,12 @@
-= form_with(scope: :schedule, url: school_group_schedules_path(@school, @group), remote: true, method: :post) do |f|
+= form_with(scope: :schedule, url: school_group_schedule_path(@school, @group), remote: true, method: :post) do |f|
   = f.hidden_field :school_year_id, value: slot.school_year.id
   = f.hidden_field :time_slot_id, value: slot.id
   .row
-    .form-group.bmd-form-group.col-md-4
+    .form-group.no-margin.bmd-form-group.col-md-4
       .input-group
         = f.collection_select :course_id, @group.courses, :id, :name, {prompt: 'Изберете предмет'}, {class: "form-control"}
-    .form-group.bmd-form-group.col-md-4
+    .form-group.no-margin.bmd-form-group.col-md-4
       .input-group
         = f.select :type, [['Само днес', 'one'], ['Всяка седмица', 'series_7'], ['Четни седмици', 'series_14']], {}, { class: "form-control" }
-    .form-group.bmd-form-group.col-md-4
-      .input-group
-        = f.submit 'Добави', class: 'btn btn-success btn-sm form-control'
+    .form-group.no-margin.bmd-form-group.col-md-4
+      = f.submit 'Добави', class: 'btn btn-success btn-sm'

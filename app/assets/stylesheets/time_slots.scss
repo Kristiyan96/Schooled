@@ -59,7 +59,7 @@
     position: absolute;
     z-index: 1;
     left: 0;
-    top: 70px;
+    top: 60px;
     height: 2px;
     /* width will be set using JavaScript */
     background: #9c27b0;
@@ -92,7 +92,7 @@
   }
   .cd-horizontal-timeline .events a {
     position: absolute;
-    width: 50px;
+    width: 90px;
     bottom: 0;
     z-index: 2;
     text-align: center;
@@ -105,6 +105,16 @@
     -ms-transform: translateZ(0);
     -o-transform: translateZ(0);
     transform: translateZ(0);
+    span{
+      display: block;
+      position: absolute;
+      text-align: center;
+      width: 90px;
+      top: 50px;
+    }
+    span.double-line {
+      top: 70px;
+    }
   }
   .cd-horizontal-timeline .events a::after {
     /* this is used to create the event spot */

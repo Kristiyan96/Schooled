@@ -4,21 +4,25 @@
   .card-body
     = render 'groups/navigation'
     hr
-    = form_with model: @group, url: school_group_path(@school, @group), method: :put do |f|
-      .row
-        .col-md-4
-          .form-group
-            label.bmd-label-floating Group Grade (1 to 12)
-            = f.number_field :grade, class: "form-control", value: @group.grade
-            i Системата автоматично го увеличава с 1 всяка година
-        .col-md-4
-          .form-group
-            label.bmd-label-floating Group Name (A, B, ...)
-            = f.text_field :name, class: "form-control", value: @group.name
-      .row
-        .col-md-4
-          .form-group
-            label.bmd-label-floating for="group_teacher_id" Head Teacher
-            = f.collection_select :teacher_id, @school.teachers, :id, :full_name, {prompt: true}, {class: "form-control"}
-      = f.submit "Промени", class: "btn btn-warning pull-right"
-      .clearfix
+    = render 'groups/settings_navigation'
+    
+    .card.col-md-8.offset-md-2
+      .card-body
+        = form_with model: @group, url: school_group_path(@school, @group), method: :put do |f|
+          .row
+            .col-md-4
+              .form-group
+                label.bmd-label-floating Group Grade (1 to 12)
+                = f.number_field :grade, class: "form-control", value: @group.grade
+                i Системата автоматично го увеличава с 1 всяка година
+            .col-md-4
+              .form-group
+                label.bmd-label-floating Group Name (A, B, ...)
+                = f.text_field :name, class: "form-control", value: @group.name
+          .row
+            .col-md-4
+              .form-group
+                label.bmd-label-floating for="group_teacher_id" Head Teacher
+                = f.collection_select :teacher_id, @school.teachers, :id, :full_name, {prompt: true}, {class: "form-control"}
+          = f.submit "Промени", class: "btn btn-warning pull-right"
+          .clearfix

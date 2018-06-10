@@ -49,17 +49,17 @@ class TimeSlot < ApplicationRecord
   }
   default_scope { order('start ASC') }
 
-  def self.create_week_daily(school_year:, params:)
-    period_start = school_year.start
-    period_end = school_year.end
-    start = Time.parse(params[:start])
-    finish = Time.parse(params[:end])
-    title = params[:title]
-    time_slots = []
+  def self.create_week_daily(school_year:, date:, params:)
+    period_start = date.to_datetime.beginning_of_day
+    period_end   = school_year.end
+    start        = Time.parse(params[:start])
+    finish       = Time.parse(params[:end])
+    title        = params[:title]
+    time_slots   = []
     (period_start.to_i..period_end.to_i).step(1.day) do |day|
       day = Time.zone.at(day).to_date
-      s = Utils.datetime_from_date_and_time(day, start)
-      e = Utils.datetime_from_date_and_time(day, finish)
+      s   = Utils.datetime_from_date_and_time(day, start)
+      e   = Utils.datetime_from_date_and_time(day, finish)
       time_slots << { start: s, end: e, school_year_id: school_year.id, title: title }
     end
     TimeSlot.import(time_slots)
@@ -67,9 +67,9 @@ class TimeSlot < ApplicationRecord
 
   def self.update_with_type(time_slot:, type:, params:)
     s, e = params[:start], params[:end]
-    day = time_slot.start.to_date
-    s = Utils.datetime_from_date_and_time(day, Time.zone.parse(s))
-    e = Utils.datetime_from_date_and_time(day, Time.zone.parse(e))
+    day  = time_slot.start.to_date
+    s    = Utils.datetime_from_date_and_time(day, Time.zone.parse(s))
+    e    = Utils.datetime_from_date_and_time(day, Time.zone.parse(e))
     case type.to_sym
     when :one
       time_slot.update(params)
@@ -85,7 +85,8 @@ class TimeSlot < ApplicationRecord
           date_part('second', TIMESTAMP :end) * interval '1 second',
           title = :title
         SQL
-      TimeSlot.with_interval_from_start_and_end(time_slot.start, time_slot.end, 1)
+      year = time_slot.school_year
+      TimeSlot.with_interval_from_start_and_end(time_slot.start, year.end, 1)
         .with_start_date_greater_than(time_slot.start)
         .update_all(sql)
     end
@@ -96,15 +97,15 @@ class TimeSlot < ApplicationRecord
     when :one
       time_slot.destroy
     when :all
-      year = time_slot.school_year
-      TimeSlot.with_interval_from_start_and_end(year.start, year.end, 1)
+      year = time_slot.year
+      TimeSlot.with_interval_from_start_and_end(time_slot.start, year.end, 1)
         .with_start_date_greater_than(time_slot.start)
         .destroy_all
     end
   end
 
-  def self.schedule_table_for_group(group)
-    time_slots_by_day = group_schedule_for_week(group)
+  def self.schedule_table_for_group(group, day = Time.current)
+    time_slots_by_day = group_schedule(group).for_work_week(day)
       .map { |t| [t, t.schedules] }
       .group_by { |(t, _)| t.start.strftime("%A") }
 
