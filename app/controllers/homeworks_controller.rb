@@ -37,11 +37,11 @@ class HomeworksController < ApplicationController
       if @homework.update(homework_params)
         format.html { redirect_to @homework, notice: 'Homework was successfully updated.' }
         format.json { render :show, status: :ok, location: @homework }
-        format.js { }
+        format.js { render action: "refresh_homeworks" }
       else
         format.html { render :edit }
         format.json { render json: @homework.errors, status: :unprocessable_entity }
-        format.js { }
+        format.js { render action: "refresh_homeworks" }
       end
     end
   end
@@ -54,7 +54,7 @@ class HomeworksController < ApplicationController
     respond_to do |format|
       format.html { redirect_to homeworks_url, notice: 'Homework was successfully destroyed.' }
       format.json { head :no_content }
-      format.js { }
+      format.js { render action: "refresh_homeworks" }
     end
   end
 

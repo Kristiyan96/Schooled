@@ -1,4 +1,11 @@
+// Remove modal input values
+$('#add-homework-modal .form-group input').val("");
+
+// Close modal
 $('body').removeClass('modal-open');
 $('.modal-backdrop').remove();
-$("#future tbody").html("<%= escape_javascript ( render partial: 'homeworks/homework_row', collection: @homeworks_future, as: :homework ) %>");
-$("#past tbody").html("<%= escape_javascript ( render partial: 'homeworks/homework_row', collection: @homeworks_past, as: :homework ) %>");
+$('.modal').modal('hide');
+
+// Refresh homeworks
+$("#future").html("<%= escape_javascript ( render partial: 'homeworks/homework_row', collection: @homeworks_future, as: :homework ) %>");
+$("#past").html("<%= escape_javascript ( render partial: 'homeworks/homework_row', collection: @homeworks_past, as: :homework ) %>");

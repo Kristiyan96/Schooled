@@ -1,11 +1,11 @@
 .card.col-md-6.offset-md-3
   .card-body
-    .row.card-title
-      h4.pull-left.col-md-6 = homework.title
-      small.pull-right.text-right.col-md-6 = homework.teacher.full_name
-
-    .card-text = homework.description
-    .card-text 
-      small 
-        | Краен срок 
-        = homework.deadline
+    .card-title.row
+      h4.col = link_to homework.course.name
+      small.col.text-right
+        | Краен срок: 
+        span.homework-deadline data-date="#{homework.deadline}" = homework.deadline.strftime('%d/%m/%y')
+    h6.card-subtitle.mb-2.text-muted.homework-title = homework.title
+    p.card-text.homework-description = homework.description
+    a.card-link.edit-homework data-toggle="modal" href="#edit-homework-modal" data-target="#edit-homework-modal" data-homework="#{homework.id}"  Редактирай
+    = link_to 'Изтрий', school_group_homework_path(@school, @group, homework), method: :delete, remote: true, data: {confirm: "Потвърдете изтриване на домашно."}, class: 'card-link'

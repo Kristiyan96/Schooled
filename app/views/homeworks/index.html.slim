@@ -13,14 +13,10 @@
 
     .tab-content.tab-space
       .tab-pane.active id="future"
-        table.table
-          tbody
-            = render partial: 'homeworks/homework_row', collection: @homeworks_future, as: :homework
+        = render partial: 'homeworks/homework_row', collection: @homeworks_future, as: :homework
 
       .tab-pane id="past"
-        table.table
-          tbody
-            = render partial: 'homeworks/homework_row', collection: @homeworks_past, as: :homework
+        = render partial: 'homeworks/homework_row', collection: @homeworks_past, as: :homework
 
     = render 'homeworks/add_homework_modal'
     = render 'homeworks/edit_homework_modal'
