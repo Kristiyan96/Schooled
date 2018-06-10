@@ -12,18 +12,18 @@ defmodule Messages do
   def between(users) do
     Repo.all(
       from m in Message,
-      where: m.sender_type == "User" and m.receiver_type == "User" and
-        m.sender_id in ^users and m.receiver_id in ^users,
+      where: m.sender_type == "User" and m.recepient_type == "User" and
+        m.sender_id in ^users and m.recepient_id in ^users,
       order_by: m.id
     )
   end
 
-  def create(sender_id, receiver_id, message) do
+  def create(sender_id, recepient_id, message) do
     changes = %{
       sender_id: sender_id,
       sender_type: "User",
-      receiver_id: receiver_id,
-      receiver_type: "User",
+      recepient_id: recepient_id,
+      recepient_type: "User",
       text: message,
     }
 

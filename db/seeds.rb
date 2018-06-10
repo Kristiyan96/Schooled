@@ -150,3 +150,9 @@ Schedule.create_with_type(school: smg, params: {course_id: c2.id, time_slot_id: 
 Schedule.create_with_type(school: smg, params: {course_id: c2.id, time_slot_id: slots_today[3].id, type: 'series_7'})
 Schedule.create_with_type(school: smg, params: {course_id: c3.id, time_slot_id: slots_today[4].id, type: 'series_7'})
 Schedule.create_with_type(school: smg, params: {course_id: c3.id, time_slot_id: slots_today[5].id, type: 'series_7'})
+
+
+puts "Creating messages"
+
+Message.create(sender: h1, recepient: t1, text: "Какво ще се прави петък?")
+Message.create(sender: t1, recepient: h1, text: "Почивка!")

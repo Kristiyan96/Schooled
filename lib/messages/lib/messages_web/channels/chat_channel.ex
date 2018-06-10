@@ -1,6 +1,6 @@
 defmodule MessagesWeb.ChatChannel do
   use Phoenix.Channel
-  @message [:message, :sender_id, :sender_type, :receiver_id, :receiver_type]
+  @message [:text, :sender_id, :sender_type, :recepient_id, :recepient_type]
   def join("chat:" <> users, _info, socket) do
     Process.flag(:trap_exit, true)
 
@@ -25,12 +25,12 @@ defmodule MessagesWeb.ChatChannel do
   end
 
   def handle_in("new:msg", msg, socket) do
-    [receiver_id] = socket.topic
+    [recepient] = socket.topic
       |> String.replace_prefix("chat:", "")
       |> String.split(":")
       |> List.delete(socket.assigns.user_id)
 
-    case Messages.create(socket.assigns.user_id, receiver_id, msg) do
+    case Messages.create(socket.assigns.user_id, recepient, msg) do
       {:ok, message} ->
         broadcast! socket, "new:msg", Map.take(message, @message)
       {:error, _changeset} -> nil
