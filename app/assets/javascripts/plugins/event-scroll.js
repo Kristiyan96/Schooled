@@ -281,8 +281,8 @@ document.addEventListener("turbolinks:load", function() {
     switch(type) {
       case 'schedule-edit':
         return '/schools/1/groups/1/schedule/edit';
-      case 'absence':
-        return '/schools/1/groups/1/absences/1';
+      case 'new-absence':
+        return '/schools/1/groups/1/absences/new';
       case 'time_slot':
         return '/schools/1/time_slot';
       case 'week_schedule':

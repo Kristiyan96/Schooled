@@ -15,7 +15,7 @@ Rails.application.routes.draw do
     resource :time_slot
     resources :groups do
       resources :homeworks, only: [:index, :create, :update, :destroy]
-      resources :absences, only: [:index, :show, :create, :update]
+      resources :absences, only: [:index, :new, :show, :create, :update]
       resources :marks
       resources :courses
       resources :student_invitations, path: :students, module: :schools, only: [:index, :create]

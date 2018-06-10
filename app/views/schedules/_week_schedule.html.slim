@@ -19,4 +19,4 @@
               b = slot_period(schedule['Monday'][slot].try(:first)) 
             - schedule.keys.each do |day|
               td 
-                b = schedule[day][slot].try(:second).try(:first).try(:name)
+                b = schedule[day][slot].try(:second).try(:first).try(:course).try(:name)

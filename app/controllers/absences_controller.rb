@@ -4,22 +4,22 @@ class AbsencesController < ApplicationController
   before_action :set_year
   before_action :set_absence, only: [:update, :destroy]
 
-  def index
-    @absence = Absence.new
-    @date = Date.today
-    @schedules = @group.schedules.for_day(@date)
-    @school_year = @school.active_school_year
-  end
-
   def new
-    @absence = Absence.new
-    @date = Date.today
-    @schedules = @group.schedules.for_day(@date)
+    @absence     = Absence.new
+    @date        = (params[:date] && Date.parse(params[:date])) || Date.today
+    @schedules   = @group.schedules.for_day(@date)
+    @school_year = @school.active_school_year
+
+    respond_to do |format|
+      format.html { }
+      format.js   { render action: "refresh_card"}
+    end
   end
 
   def show
-    @date = Date.parse(params[:date])
+    @date      = Date.parse(params[:date])
     @schedules = @group.schedules.for_day(@date)
+    
     respond_to do |format|
       format.js { render action: "refresh_card"}
     end
@@ -30,11 +30,11 @@ class AbsencesController < ApplicationController
       if @absence = Absence.create_multiple(absence_params)
         format.html { redirect_to @absence, notice: 'Absence was successfully created.' }
         format.json { render :show, status: :created, location: @absence }
-        format.js { }
+        format.js   { }
       else
         format.html { render :new }
         format.json { render json: @absence.errors, status: :unprocessable_entity }
-        format.js { }
+        format.js   { }
       end
     end
   end
@@ -44,11 +44,11 @@ class AbsencesController < ApplicationController
       if @absence.update(absence_params)
         format.html { redirect_to @absence, notice: 'Absence was successfully updated.' }
         format.json { render :show, status: :ok, location: @absence }
-        format.js { }
+        format.js   { }
       else
         format.html { render :edit }
         format.json { render json: @absence.errors, status: :unprocessable_entity }
-        format.js { }
+        format.js   { }
       end
     end
   end
