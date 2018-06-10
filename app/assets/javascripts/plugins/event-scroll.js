@@ -1,6 +1,6 @@
 document.addEventListener("turbolinks:load", function() {
   var timelines = $('.cd-horizontal-timeline'),
-    eventsMinDistance = 60;
+    eventsMinDistance = 120;
 
   (timelines.length > 0) && initTimeline(timelines);
 
@@ -285,6 +285,10 @@ document.addEventListener("turbolinks:load", function() {
         return '/schools/1/groups/1/absences/1'
       case 'time_slot':
         return '/schools/1/time_slot'
+      case 'week_schedule':
+        return '/schools/1/groups/1/schedule'
+      default:
+        alert("error")
     }
   }
 });

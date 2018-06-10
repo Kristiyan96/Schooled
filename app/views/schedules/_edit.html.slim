@@ -1,6 +1,4 @@
-- empty_subject = Subject.new(name: "Празен")
-- empty_course  = Course.new(subject: empty_subject)
-= form_with(scope: :schedule, url: school_group_schedule_path(@school, @group, schedule), remote: true, method: :put) do |f|
+= form_with(scope: :schedule, url: school_group_schedule_path(@school, @group, id: schedule.id), remote: true, method: :put) do |f|
   .row
     .form-group.no-margin.bmd-form-group.col
       .input-group

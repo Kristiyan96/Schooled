@@ -102,8 +102,8 @@ class TimeSlot < ApplicationRecord
     end
   end
 
-  def self.schedule_table_for_group(group)
-    time_slots_by_day = group_schedule_for_week(group)
+  def self.schedule_table_for_group(group, day = Time.current)
+    time_slots_by_day = group_schedule(group).for_work_week(day)
       .map { |t| [t, t.schedules] }
       .group_by { |(t, _)| t.start.strftime("%A") }
 
