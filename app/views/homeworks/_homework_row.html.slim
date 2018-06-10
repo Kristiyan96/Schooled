@@ -1,6 +1,11 @@
-.card
+.card.col-md-6.offset-md-3
   .card-body
-    h4.card-title = homework.title
+    .row.card-title
+      h4.pull-left.col-md-6 = homework.title
+      small.pull-right.text-right.col-md-6 = homework.teacher.full_name
+
     .card-text = homework.description
     .card-text 
-      small = homework.deadline
+      small 
+        | Краен срок 
+        = homework.deadline

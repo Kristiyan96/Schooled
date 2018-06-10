@@ -1,0 +1,4 @@
+$('body').removeClass('modal-open');
+$('.modal-backdrop').remove();
+$("#future tbody").html("<%= escape_javascript ( render partial: 'homeworks/homework_row', collection: @homeworks_future, as: :homework ) %>");
+$("#past tbody").html("<%= escape_javascript ( render partial: 'homeworks/homework_row', collection: @homeworks_past, as: :homework ) %>");

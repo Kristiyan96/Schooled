@@ -5,26 +5,34 @@ class HomeworksController < ApplicationController
   before_action :set_homework, only: [:show, :edit, :update, :destroy]
 
   def index
-    @homeworks = Homework.all
+    @courses          = @group.courses
+    @homeworks_past   = @group.homeworks.where('deadline < ?', DateTime.now)
+    @homeworks_future = @group.homeworks.where('deadline > ?', DateTime.now)
   end
 
   def create
-    @homework = Homework.new(homework_params)
+    @homework         = @group.homeworks.new(homework_params)
+    @homeworks_past   = @group.homeworks.where('deadline < ?', DateTime.now)
+    @homeworks_future = @group.homeworks.where('deadline > ?', DateTime.now)
 
     respond_to do |format|
       if @homework.save
         format.html { redirect_to @homework, notice: 'Homework was successfully created.' }
         format.json { render :show, status: :created, location: @homework }
-        format.js { }
+        format.js { render action: "refresh_homeworks" }
       else
         format.html { render :new }
         format.json { render json: @homework.errors, status: :unprocessable_entity }
-        format.js { }
+        format.js { render action: "refresh_homeworks" }
       end
     end
   end
 
   def update
+    @homeworks        = @group.homeworks
+    @homeworks_past   = @group.homeworks.where('deadline < ?', DateTime.now)
+    @homeworks_future = @group.homeworks.where('deadline > ?', DateTime.now)
+
     respond_to do |format|
       if @homework.update(homework_params)
         format.html { redirect_to @homework, notice: 'Homework was successfully updated.' }
@@ -40,6 +48,9 @@ class HomeworksController < ApplicationController
 
   def destroy
     @homework.destroy
+    @homeworks_past   = @group.homeworks.where('deadline < ?', DateTime.now)
+    @homeworks_future = @group.homeworks.where('deadline > ?', DateTime.now)
+    
     respond_to do |format|
       format.html { redirect_to homeworks_url, notice: 'Homework was successfully destroyed.' }
       format.json { head :no_content }
@@ -66,6 +77,6 @@ class HomeworksController < ApplicationController
     end
 
     def homework_params
-      params.fetch(:homework, {})
+      params.require(:homework).permit(:title, :description, :deadline, :course_id, :teacher_id)
     end
 end
