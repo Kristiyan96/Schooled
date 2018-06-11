@@ -1,0 +1,20 @@
+.card
+  .card-body.time-slots
+    = render 'schools/navigation'
+    .card.col-md-6.offset-md-3
+      .card-body
+        table.table
+          tbody
+            - @subjects.each do |subject|
+              tr
+                td = subject.name
+                td.actions.pull-right
+                  = link_to edit_school_subject_path(@school, subject), class: 'btn btn-warning btn-sm' do 
+                    i.material-icons edit
+                  = link_to school_subject_path(@school, subject), class: 'btn btn-danger btn-sm', data: { confirm: 'Are you sure?' }, method: :delete do
+                    i.material-icons close  
+        
+
+        = link_to new_school_subject_path(@school), class: 'btn btn-success btn-sm' do 
+          i.material-icons add
+          | Добави предмет

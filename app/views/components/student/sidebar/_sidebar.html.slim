@@ -1,12 +1,12 @@
 li.nav-item
-  a.nav-link href="../examples/dashboard.html" 
+  = link_to dashboard_profile_path(current_user), class: 'nav-link' do
     i.material-icons dashboard
     p Панел
 li.nav-item
-  a.nav-link href="../examples/dashboard.html" 
+  = link_to school_path(assignment.school), class: 'nav-link' do
     i.material-icons school
     p Моето училище
 li.nav-item
-  a.nav-link href="../examples/dashboard.html" 
+  = link_to school_group_path(assignment.school, current_user.group), class: 'nav-link' do 
     i.material-icons group
     p Моят клас

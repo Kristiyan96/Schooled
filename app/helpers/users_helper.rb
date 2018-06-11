@@ -11,16 +11,16 @@ module UsersHelper
       when "Headmaster"
         role = "Директор"
       when "Teacher"
-        role = Учител
+        role = "Учител"
       when "Student"
         role = "Ученик"
       end
     end
 
     if user.students.any?
-      role = "Родител"
+      return "Родител"
     end
-      "#{role} в <a href='#{school_url(school)}'>#{school.name}</a>"
+    "#{role} в <a href='#{school_url(school)}'>#{school.name}</a>"
   end
 
   def user_url(user)

@@ -193,3 +193,8 @@ bg:
       long: "%d %B %Y, %H:%M"
       short: "%d %b, %H:%M"
     pm: следобед
+  roles:
+    headmaster: директор
+    parent: родител
+    teacher: учител
+    student: ученик
