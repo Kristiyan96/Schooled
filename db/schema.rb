@@ -90,6 +90,7 @@ ActiveRecord::Schema.define(version: 2018_06_05_120209) do
 
   create_table "messages", force: :cascade do |t|
     t.string "text", null: false
+    t.boolean "read", default: false, null: false
     t.string "sender_type"
     t.bigint "sender_id"
     t.string "recepient_type"

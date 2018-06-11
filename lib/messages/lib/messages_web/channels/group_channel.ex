@@ -1,4 +1,4 @@
-defmodule MessagesWeb.ChatChannel do
+defmodule MessagesWeb.GroupChannel do
   use Phoenix.Channel
   alias MessagesWeb.Presence
 
@@ -29,7 +29,7 @@ defmodule MessagesWeb.ChatChannel do
 
     case Messages.create(socket.assigns.user_id, recepient, msg) do
       {:ok, message} ->
-        broadcast! socket, "new:msg", Map.take(message, @message)
+        broadcast! socket, "new:msg", message
         if Enum.count(Presence.list(socket)) == 1 do
           MessagesWeb.Endpoint.broadcast!("user:#{recepient}", "new:msg", %{user_id: socket.assigns.user_id})
         end

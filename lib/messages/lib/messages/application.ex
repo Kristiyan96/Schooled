@@ -12,6 +12,8 @@ defmodule Messages.Application do
       supervisor(Messages.Repo, []),
       # Start the endpoint when the application starts
       supervisor(MessagesWeb.Endpoint, []),
+      # Start the presence supervisor
+      supervisor(MessagesWeb.Presence, []),
       # Start your own worker by calling: Messages.Worker.start_link(arg1, arg2, arg3)
       # worker(Messages.Worker, [arg1, arg2, arg3]),
     ]

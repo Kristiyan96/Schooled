@@ -1,7 +1,5 @@
 defmodule MessagesWeb.UserChannel do
   use Phoenix.Channel
-  alias Messages.{Repo, Message}
-  import Ecto.Query, only: [from: 2]
 
   def join("user:" <> user_id, _info, socket) do
     Process.flag(:trap_exit, true)
@@ -15,12 +13,12 @@ defmodule MessagesWeb.UserChannel do
 
   def handle_info(:after_join, socket) do
     #TODO: select messages from groups/etc
-    users = from(m in Message,
-      where: (m.recepient_id == ^socket.assigns.user_id and m.recepient_type == "User"),
-      select: m.sender_id,
-      distinct: true)
-      |> Repo.all
-    push socket, "init:usr", %{users: users}
+    conversations = Messages.unread(socket.assigns.user_id)
+    push socket, "init:usr", conversations
     {:noreply, socket}
+  end
+
+  def handle_in("new:msg", socket) do
+    #TODO handle notification for new message
   end
 end

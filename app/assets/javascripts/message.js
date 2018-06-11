@@ -1,7 +1,3 @@
-function log(data) {
-  console.log(data)
-}
-
 function joinRoom(id, user, users, socket) {
   users.forEach(u => {
     chat_id = (u < id) ? `${u}:${id}` : `${id}:${u}`
@@ -29,10 +25,14 @@ document.addEventListener("turbolinks:load", function() {
   socket = new Phoenix.Socket(endpoint, {params: user});
   socket.connect()
 
-  let channel = socket.channel("user:" + id, {token: token, user_name: user_name, id: id})
+  let channel = socket.channel("user:" + id, user)
   channel.on("init:usr", (rooms) => {
     console.log("Got rooms", rooms)
-    joinRoom(id, user, rooms["users"], socket)
+    joinRoom(id, user, rooms["User"], socket)
+    // joinGroup
+    // joinTeachers
+    // joinParents
+    // joinStudents
   })
 
   channel.join()

@@ -8,6 +8,7 @@ defmodule Messages.Message do
 
   schema "messages" do
     field :text, :string
+    field :read, :boolean
     field :sender_type, :string
     field :sender_id, :integer
     field :recepient_type, :string
