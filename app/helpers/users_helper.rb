@@ -18,9 +18,9 @@ module UsersHelper
     end
 
     if user.students.any?
-      role = "Родител"
+      return "Родител"
     end
-      "#{role} в <a href='#{school_url(school)}'>#{school.name}</a>"
+    "#{role} в <a href='#{school_url(school)}'>#{school.name}</a>"
   end
 
   def user_url(user)

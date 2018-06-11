@@ -1,4 +1,4 @@
 tr
-  td.text-center 
+  td
     = link_to group_name(group), school_group_path(@school, group)
   td = link_to group.teacher.full_name, profile_path(group.teacher)

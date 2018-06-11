@@ -98,12 +98,12 @@ Assignment.create(role: r1, school: feg, user: s6)
 
 puts "Linking parents and students"
 
-Parentship.create(parent: p1, student: s1)
+Parentship.create(parent: h1, student: s1)
 Parentship.create(parent: p1, student: s2)
 Parentship.create(parent: p2, student: s2)
 Parentship.create(parent: p2, student: s3)
 Parentship.create(parent: p2, student: s4)
-Parentship.create(parent: p3, student: s5)
+Parentship.create(parent: h1, student: s5)
 Parentship.create(parent: p3, student: s6)
 
 puts "Creating school years"
@@ -116,6 +116,10 @@ puts "Creating courses"
 c1 = Course.create(school: smg, group: gr1, subject: maths1, school_year: y1, teacher: t1)
 c2 = Course.create(school: smg, group: gr1, subject: bulgarian1, school_year: y1, teacher: t2)
 c3 = Course.create(school: smg, group: gr1, subject: french1, school_year: y1, teacher: t3)
+c1 = Course.create(school: smg, group: gr2, subject: maths1, school_year: y1, teacher: t1)
+c1 = Course.create(school: smg, group: gr2, subject: bulgarian1, school_year: y1, teacher: t1)
+c2 = Course.create(school: smg, group: gr2, subject: bulgarian1, school_year: y1, teacher: t2)
+c3 = Course.create(school: smg, group: gr2, subject: french1, school_year: y1, teacher: t3)
 c5 = Course.create(school: feg, group: gr2, subject: maths2, school_year: y2, teacher: t4)
 c6 = Course.create(school: feg, group: gr2, subject: french2, school_year: y2, teacher: t5)
 c7 = Course.create(school: feg, group: gr2, subject: bulgarian2, school_year: y2, teacher: t6)

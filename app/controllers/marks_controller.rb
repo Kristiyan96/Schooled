@@ -6,6 +6,7 @@ class MarksController < ApplicationController
   before_action :set_mark, only: [:update, :destroy]
 
   def index
+    @courses = @group.courses.where(school_year: @school.active_school_year)
     @mark = Mark.new
   end
 
