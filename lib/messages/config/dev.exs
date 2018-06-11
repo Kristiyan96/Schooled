@@ -36,14 +36,7 @@ config :logger, :console, format: "[$level] $message\n"
 # in production as building large stacktraces may be expensive.
 config :phoenix, :stacktrace_depth, 20
 
-# Configure your database
-config :messages, Messages.Repo,
-  adapter: Ecto.Adapters.Postgres,
-  username: "postgres",
-  password: "postgres",
-  database: "schooled_development",
-  hostname: "localhost",
-  pool_size: 10
-
 #TODO: fix this for deployment
 config :messages, :token, "b26e14f87bdf902e42b5363fb8255e198397acc90747ec554d010b1490577bbd8a9a6dfc4ecb3ac2224f0ecf2916f6537b728fec82d580059fd1de669192afda"
+
+import_config "#{Mix.env}.secret.exs"
