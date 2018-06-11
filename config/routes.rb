@@ -13,6 +13,7 @@ Rails.application.routes.draw do
 
   resources :schools do
     resource :time_slot
+    resources :subjects
     resources :groups do
       resources :homeworks, only: [:index, :create, :update, :destroy]
       resources :absences, only: [:index, :new, :show, :create, :update]
@@ -35,8 +36,12 @@ Rails.application.routes.draw do
   end
 
   resources :parentship, only: :create
-  resources :profiles
-  resources :messages, only: :create
+  resources :profiles do
+    member do 
+      get 'dashboard'
+    end  
+  end
+  resources :messages, only: [:index, :create]
 
   root 'pages#show', page: 'home'
   get '/pages/*page', to: 'pages#show'

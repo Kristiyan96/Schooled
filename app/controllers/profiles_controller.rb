@@ -5,6 +5,10 @@ class ProfilesController < ApplicationController
     @group  = @school.groups.find(params[:group_id])
   end
 
+  def dashboard
+
+  end
+
   def show
     @user = User.find(params[:id])
   end

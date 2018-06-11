@@ -1,4 +1,3 @@
-- schedule = TimeSlot.schedule_table_for_group(@group, date)
 .card
   .card-body
     table.table
@@ -10,13 +9,13 @@
           th Ср.
           th Четв.
           th Пет.
-          - if "Saturday".in?(schedule.keys)
+          - if "Saturday".in?(week_schedule.keys) 
             th Съб.
       tbody
-        - (0..schedule[schedule.keys.first].count).each do |slot|
+        - (0..week_schedule[week_schedule.keys.first].count).each do |slot|
           tr
-            td
-              b = slot_period(schedule['Monday'][slot].try(:first))
-            - schedule.keys.each do |day|
-              td
-                b = schedule[day][slot].try(:second).try(:first).try(:course).try(:name)
+            td 
+              b = slot_period(week_schedule['Monday'][slot].try(:first)) 
+            - week_schedule.keys.each do |day|
+              td 
+                b = week_schedule[day][slot].try(:second).try(:first).try(:course).try(:name)

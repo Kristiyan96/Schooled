@@ -1,4 +1,10 @@
 <% if @is_invited %>
+  // Close opened modals if any
+  $('body').removeClass('modal-open');
+  $('.modal-backdrop').remove();
+  $('.modal').modal('hide');
+
+  // Add roles if needed
   $("#student-<%=@student.number_in_class%>-parent- td input").val('');
   $("#student-<%=@student.number_in_class%>-parent-").after("<%= escape_javascript (render 'components/parent/group/parent_row', student: @student, parent: @user  ) %>");
 <% else %>

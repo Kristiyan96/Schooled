@@ -21,5 +21,8 @@
             a.prev.inactive href="#0" Prev
           li
             a.next href="#0" Next
-    #day-card
-      = render partial: 'schedules/day_card', locals: {date: @date, time_slots: @time_slots}
+    .card.col-md-8.col-xs-12.offset-md-2
+      .card-body
+        table.table
+          tbody#day-schedule
+            = render partial: 'schedules/schedule', collection: @time_slots, as: :slot

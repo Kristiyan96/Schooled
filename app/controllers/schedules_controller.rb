@@ -1,9 +1,10 @@
 class SchedulesController < ApplicationController
   def show
-    @school     = School.find(params[:school_id])
-    @group      = @school.groups.find(params[:group_id])
-    @date       = (params[:date] && Date.parse(params[:date])) || Date.today
-
+    @school        = School.find(params[:school_id])
+    @group         = @school.groups.find(params[:group_id])
+    @date          = (params[:date] && Date.parse(params[:date])) || Date.today
+    @week_schedule = TimeSlot.schedule_table_for_group(@group, @date)
+    
     respond_to do |format|
       format.html { }
       format.js   { }
@@ -28,10 +29,10 @@ class SchedulesController < ApplicationController
     @group      = @school.groups.find(params[:group_id])
     @courses    = @group.courses.to_a << Course::None
     @date       = TimeSlot.find(schedule_params[:time_slot_id]).start
-    @time_slots = @school.active_school_year.time_slots.for_day(@date)
 
     # NOTE(for Kris) Type param should be one of [:one, :series_7, :series_14]
     Schedule.create_with_type(school: @school, params: schedule_params)
+    @time_slots = @school.active_school_year.time_slots.for_day(@date)
     respond_to do |format|
       format.js { render action: "refresh_card"}
     end
@@ -41,12 +42,12 @@ class SchedulesController < ApplicationController
     @school     = School.find(params[:school_id])
     @group      = @school.groups.find(params[:group_id])
     @courses    = @group.courses.to_a << Course::None
-    @schedule   = Schedule.find(params[:id])
     @date       = @schedule.time_slot.start
     @time_slots = @school.active_school_year.time_slots.for_day(@date)
 
     # Type param should be one of [:one, :series_7, :series_14]
-    Schedule.update_with_type(school: @school, schedule: @schedule, params: update_params)
+    schedule = Schedule.find(params[:id])
+    Schedule.update_with_type(school: @school, schedule: schedule, params: update_params)
     respond_to do |format|
       format.js { render action: "refresh_card"}
     end

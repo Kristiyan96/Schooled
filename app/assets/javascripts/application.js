@@ -9,5 +9,5 @@
 //= require material-kit/plugins/bootstrap-datetimepicker
 //= require material-kit/plugins/nouislider.min
 //= require turbolinks
+//= require phoenix
 //= require_tree .
-

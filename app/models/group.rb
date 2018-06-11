@@ -6,4 +6,10 @@ class Group < ApplicationRecord
   has_many :courses
   has_many :homeworks
   has_many :schedules, through: :courses
+
+  scope :for_assignment, -> assignment {
+    joins(:courses)
+      .where(courses: {school_id: assignment.school_id, 
+                       teacher_id: assignment.user_id}).distinct
+  }
 end
