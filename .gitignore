@@ -99,3 +99,7 @@ pickle-email-*.html
 yarn-debug.log*
 yarn-error.log*
 .yarn-integrity
+_build/*
+credentials.yml.enc
+master.key
+dev.exs
