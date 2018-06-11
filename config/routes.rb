@@ -41,7 +41,7 @@ Rails.application.routes.draw do
       get 'dashboard'
     end  
   end
-  resources :messages, only: [:index, :show, :create]
+  resources :messages, only: [:index, :create]
 
   root 'pages#show', page: 'home'
   get '/pages/*page', to: 'pages#show'

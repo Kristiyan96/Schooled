@@ -2,6 +2,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
   :recoverable, :rememberable, :trackable, :validatable, :invitable
 
+  has_many :sent_messages, as: :sender
+  has_many :received_messages, as: :recepient
   has_many :marks
   has_many :absences
   has_many :groups
@@ -37,11 +39,11 @@ class User < ApplicationRecord
 
   def role_image
     if assignments.any?
-      role = assignments.order(:created_at).first.role.name == "Headmaster" ? 
+      role = assignments.order(:created_at).first.role.name == "Headmaster" ?
         "Teacher" : assignments.order(:created_at).first.role.name
     elsif students.any?
       role = "Parent"
-    end 
+    end
     "roles/#{role}".downcase 
   end
 
