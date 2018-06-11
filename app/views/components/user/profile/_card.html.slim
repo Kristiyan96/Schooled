@@ -3,31 +3,26 @@
     = image_tag(@user.role_image, class: "img")
   .card-body
     h6.card-category.text-gray = role_summary(@user).html_safe
-    h4.card-title = full_name(@user)
+    h4.card-title = @user.full_name
   .row
     - if user_signed_in? && @user != current_user
-      .col
-        button.btn
-          i.material-icons message 
-          | Съобщение
-      .col
-        a.btn href="mailto:#{@user.email}" data-toggle="tooltip" data-placement="top" title="#{@user.email}"
-          i.material-icons email 
-          | Имейл
+      button.btn.col.btn-sm.btn-link
+        i.material-icons message 
+        | &nbsp;&nbsp;Съобщение
+      a.btn.col.btn-sm.btn-link href="mailto:#{@user.email}" data-toggle="tooltip" data-placement="top" title="#{@user.email}"
+        i.material-icons email 
+        | &nbsp;&nbsp;Имейл
       - if @user.phone_number
-        .col
-          a.btn href="tel:#{@user.phone_number}" data-toggle="tooltip" data-placement="top" title="#{@user.phone_number}"
-            i.material-icons phone
-            | Позвъни   
+        button.btn.btn-sm.btn-link href="tel:#{@user.phone_number}" data-toggle="tooltip" data-placement="top" title="#{@user.phone_number}"
+          i.material-icons phone
+          | &nbsp;&nbsp;Позвъни   
     - if user_signed_in? && @user == current_user
-      .col
-        = link_to edit_user_registration_path, class: "btn btn-round" do
-          i.material-icons settings
-          | Настройки
+      = link_to edit_user_registration_path, class: "btn col btn-sm btn-link" do
+        i.material-icons settings
+        | &nbsp;&nbsp;Настройки
     - if can_add_parent?(current_user, @user)
-      .col
-        = link_to edit_user_registration_path, class: "btn btn-round", data: {target: '#addParent', toggle: 'modal'} do
-          i.material-icons person_add
-          | Добави родител
+      = link_to edit_user_registration_path, class: "btn col btn-sm btn-link", data: {target: '#addParent', toggle: 'modal'} do
+        i.material-icons person_add
+        | &nbsp;&nbsp;Добави родител
 
 = render 'components/student/profile/add_parent_modal'

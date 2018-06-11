@@ -36,7 +36,11 @@ Rails.application.routes.draw do
   end
 
   resources :parentship, only: :create
-  resources :profiles
+  resources :profiles do
+    member do 
+      get 'dashboard'
+    end  
+  end
   resources :messages, only: [:index, :show, :create]
 
   root 'pages#show', page: 'home'
