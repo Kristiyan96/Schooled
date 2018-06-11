@@ -22,7 +22,6 @@ defmodule MessagesWeb.UserSocket do
   # performing token verification on connect.
 
   def connect(%{"token" => token, "id" => user_id, "user_name" => user_name}, socket) do
-    IO.inspect(user_name)
     if Messages.Helper.ensure_hash(token, "#{user_id}:#{user_name}") do
       {:ok, socket |> assign(:user_id, user_id)}
     else
