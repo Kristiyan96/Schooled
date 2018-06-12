@@ -7,10 +7,10 @@
       .d-md-none
         = render 'components/user/navbar'
       = render 'components/user/sidebar'
+      = render 'components/parent/sidebar/sidebar'
       - current_user&.assignments&.each do |as|
         li.nav-item
           a.nav-link
             b 
               = (t "roles.#{as.role.name.downcase}").capitalize
         = render partial: "components/#{as.role.name.downcase}/sidebar/sidebar", locals: {assignment: as}
-      = render 'components/parent/sidebar/sidebar'
