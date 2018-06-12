@@ -1,4 +1,5 @@
 class SubjectsController < ApplicationController
+  load_and_authorize_resource
   before_action :set_school
   before_action :set_subject, only: [:edit, :update, :destroy]
 

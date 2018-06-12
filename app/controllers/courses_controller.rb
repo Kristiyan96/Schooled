@@ -1,4 +1,5 @@
 class CoursesController < ApplicationController
+  load_and_authorize_resource
   before_action :set_school
   before_action :set_group
   before_action :set_course, only: [:show, :edit, :update, :destroy]

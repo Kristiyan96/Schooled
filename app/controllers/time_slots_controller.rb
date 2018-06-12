@@ -1,4 +1,6 @@
 class TimeSlotsController < ApplicationController
+  load_and_authorize_resource
+  
   def show
     @school     = School.find(params[:school_id])
     @date       = (params[:date] && Date.parse(params[:date])) || Date.today

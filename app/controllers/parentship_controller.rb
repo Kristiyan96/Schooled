@@ -1,4 +1,5 @@
 class ParentshipController < ApplicationController
+  load_and_authorize_resource
   def create
     is_invited = Parentship.invite_parent(student: current_user, parent: user_params)
 

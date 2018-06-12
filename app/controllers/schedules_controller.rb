@@ -1,4 +1,6 @@
 class SchedulesController < ApplicationController
+  load_and_authorize_resource
+  
   def show
     @school        = School.find(params[:school_id])
     @group         = @school.groups.find(params[:group_id])

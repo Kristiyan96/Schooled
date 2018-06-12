@@ -1,4 +1,6 @@
 class Schools::StudentInvitationsController < ApplicationController
+  load_and_authorize_resource
+  
   def index
     @school = School.find(params[:school_id])
   end

@@ -1,4 +1,6 @@
 class Students::ParentshipController < ApplicationController
+  load_and_authorize_resource
+  
   def create
     @student = User.find(params[:student_id])
     @is_invited = Parentship.invite_parent(student: @student, parent: user_params)

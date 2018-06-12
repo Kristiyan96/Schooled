@@ -1,4 +1,5 @@
 class SchoolsController < ApplicationController
+  load_and_authorize_resource
   before_action :set_school, only: [:show, :dashboard, :teachers, :edit, :update, :destroy]
 
   def index

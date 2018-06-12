@@ -1,4 +1,5 @@
 class MessagesController < ApplicationController
+  load_and_authorize_resource
   def index
     @name = MessageHash.for(current_user)
   end
