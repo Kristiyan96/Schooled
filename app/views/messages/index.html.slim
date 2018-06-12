@@ -1,5 +1,36 @@
 #message_token.hidden data-name="#{current_user.full_name}" data-id="#{current_user.id}" data-token="#{@name}"
-.card
-  .card-header.card-header-icon
-    b.card-icon Съобщения
-    .card-body
+#messages.card
+  #messages-body.card-body  
+    #divide-columns.row
+      ul#recipients.nav.nav-pills.nav-pills-info.flex-column.col-md-3
+        li.nav-item.hidden.sample
+          a.nav-link href="#" data-toggle="tab" 
+            .row
+              .avatar
+                  img.rounded-circle src="images/new_logo.png"
+              .col.info
+                .row
+                  .col-pull-left.sender 
+                  .col.time.text-right 
+                .last-message.text-left.align-bottom 
+      #right-space.col-md-9
+        #message-box.tab-content
+          .message-box.elses.col-xs-12.float-left.hidden
+            button.message-elses.message.btn.btn-secondary data-toggle="tooltip" data-placement="top" title="10:42"
+              img.rounded-circle.float-left src="images/new_logo.png"
+              .message-content.float-left
+                .sender.text-left 
+                .msg 
+          .message-box.mine.col-xs-12.float-right.hidden
+            button.message-mine.message.btn.btn-secondary data-toggle="tooltip" data-placement="top" title="10:42"
+              img.rounded-circle.float-right src="images/new_logo.png"
+              .message-content.float-right 
+                .sender.text-right 
+                .msg 
+        #new-message-box.col-xs-12
+          .row
+            .form-group.no-margin.col-md-10
+              label for="message-content" class="bmd-label-floating" Съобщение
+              textarea type="text" class="form-control" id="message-content" rows="1"
+            .col-md-2
+              button type="submit" class="btn btn-info btn-sm" Прати

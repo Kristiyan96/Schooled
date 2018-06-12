@@ -1,3 +1,140 @@
 // Place all the styles related to the Messages controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+#recipients {
+  overflow-y: scroll;
+  display: block !important;
+  padding: 0px;
+  .nav-link {
+    padding: 5px;
+    border-radius: 0px;
+    .row {
+      margin: 0px;
+    }
+    .col {
+      padding: 0px;
+    }
+    .avatar {
+      height: 60px;
+      width: 60px !important;
+      img {
+        height: 60px;
+        width: 60px;
+      }
+    }
+    .col.info {
+      text-transform: none;
+      width: calc(100% - 60px);
+      padding: 5px 10px;
+      .sender {
+        font-size: 12px;
+      }
+    }
+  }
+}
+
+#recipients .nav-link.active {
+  border-radius: 0px;
+  border: 0px;
+}
+
+#messages-body {
+  height: calc(100vh - 180px);
+  overflow: hidden;
+  #divide-columns.row {
+    height: 100%;
+    overflow: hidden;
+  }
+  @media screen and (max-width : 768px) {
+    height: calc(100vh - 170px);
+  }
+  #right-space {
+    height: 100%;
+    #message-box {
+      height: calc(100vh - 270px);
+      overflow-y: scroll;
+      .message-box {
+        width: 80%;
+        overflow: auto;
+        .message{
+          overflow: auto;
+          width: 100%;
+          text-transform: none;
+          padding: 0px;
+          background-color: transparent;
+          display: block;
+          h3.popover-header {
+            font-size: 12px;
+            padding: 5px;
+          }
+          img {
+            height: 40px;
+          }
+          .message-content {
+            max-width: calc(100% - 60px);
+            .sender {
+              color: grey;
+              font-size: 10px;
+            }
+            .msg {
+              max-width: 100%;
+              padding: 10px;
+              border-radius: 5px;
+              font-size: 13px;
+              white-space: pre-wrap;
+            }
+          }
+        }
+        .message-elses {
+          .message-content {
+            .sender {
+              margin-left: 15px;
+            }
+            .msg {
+              background-color: rgba(0, 188, 212, 0.2);
+              margin-left: 15px;
+            }
+            .msg:before {
+              content:"";
+              border-style: solid;
+              border-width: 6px 9px 6px 0;
+              border-color: transparent rgba(0, 188, 212, 0.2) transparent transparent;
+              position: absolute;
+              top: 19px;
+              left: 46px;
+            }
+          }
+        }
+        .message-mine {
+          .message-content {
+            .sender {
+              margin-right: 15px;
+            }
+            .msg {
+              background-color: rgb(0, 188, 212);
+              color: white;
+              text-align: left;
+              margin-right: 15px;
+            }
+            .msg:after {
+              content:"";
+              border-style: solid;
+              border-width: 6px 0px 6px 9px;
+              border-color: transparent transparent transparent rgb(0, 188, 212);
+              position: absolute;
+              right: 46px;
+              top: 19px;
+            }
+          }
+        }
+        .message:hover {
+          box-shadow: none;
+        }
+      }
+    }
+    #new-message-box {
+      margin-top: 10px;
+    }
+  }
+}

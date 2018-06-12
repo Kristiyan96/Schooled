@@ -15,6 +15,51 @@ function joinRoom(id, user, users, socket) {
   })
 }
 
+//Add user at the end of the list with previous chats as inactive
+function appendUser(sender, time, last_message) {
+  var recipient = $('#recipients .sample').clone().removeClass('sample')
+                                .appendTo('#recipients').toggle('fast');
+  recipient.children('a.nav-link').removeClass('active');
+
+  recipient.find('.info .sender').text(sender);
+  recipient.find('.info .time').text(time);
+  recipient.find('.info .last-message').text(last_message);
+}
+
+//Add user at the beginning of the list with previous chats as active
+function prependUser(sender, time, last_message) {
+  $('#recipients').find('a.nav-link.active').removeClass('active');
+  var recipient = $('#recipients .sample').clone().removeClass('sample')
+                                .prependTo('#recipients').toggle('fast');
+  recipient.find('a.nav-link').addClass('active');
+
+  recipient.find('.info .sender').text(sender);
+  recipient.find('.info .time').text(time);
+  recipient.find('.info .last-message').text(last_message);
+}
+
+// Append a message send by me
+function appendMyMessage(sender, time, message){
+  var message_box = $('#message-box').find('.message-box.mine.hidden')
+                                        .clone().removeClass('hidden')
+                                        .appendTo('#message-box');
+  setMessageParams(message_box, sender, time, message);
+}
+
+// Append a message send by someone else
+function appendElsesMessage(sender, time, message){
+  var message_box = $('#message-box').find('.message-box.elses.hidden')
+                                        .clone().removeClass('hidden')
+                                        .appendTo('#message-box');
+  setMessageParams(message_box, sender, time, message);
+}
+
+function setMessageParams(message_box, sender, time, message){
+  message_box.find('button.message').attr('title', time);
+  message_box.find('.message-content .sender').html(sender);
+  message_box.find('.message-content .msg').html(message);
+}
+
 document.addEventListener("turbolinks:load", function() {
   id = $("#message_token").data('id');
   user_name = $("#message_token").data('name');
@@ -41,4 +86,11 @@ document.addEventListener("turbolinks:load", function() {
     )
     .receive("error", ({reason}) => console.log("failed join", reason) )
     .receive("timeout", () => console.log("Networking issue. Still waiting..."))
+
+
+  // listen for message submit
+  $('body').on('click tap', '#new-message-box button', function(e){
+    var message = $('#new-message-box textarea').val();
+    alert(message);
+  });
 });
