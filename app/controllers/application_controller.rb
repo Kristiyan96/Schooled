@@ -1,4 +1,6 @@
 class ApplicationController < ActionController::Base
+  check_authorization unless: :devise_controller?
+  
   def current_user
     @current_user ||= super && User.eager_load(:roles).find(@current_user.id)
   end

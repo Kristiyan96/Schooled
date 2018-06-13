@@ -1,13 +1,9 @@
 class ProfilesController < ApplicationController
-  load_and_authorize_resource
+  skip_authorization_check only: :show
 
   def index
     @school = School.find(params[:school_id])
     @group  = @school.groups.find(params[:group_id])
-  end
-
-  def dashboard
-
   end
 
   def show

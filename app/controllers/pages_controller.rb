@@ -1,4 +1,6 @@
 class PagesController < ApplicationController
+  skip_authorization_check
+  
 	def show
     if current_user
       if current_user.roles.any? && current_user.assignments.order(:created_at).first.role.name == "Headmaster"
