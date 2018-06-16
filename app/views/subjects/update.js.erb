@@ -1,0 +1,7 @@
+closeModals();
+
+// Find old row
+let old_row = $("#subjects").find('tr#<%= @subject.id%>');
+
+// Replace old row with new one
+old_row.replaceWith("<%= escape_javascript ( render partial: 'subjects/row', locals: {subject: @subject} ) %>");

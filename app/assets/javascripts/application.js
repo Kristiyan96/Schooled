@@ -11,3 +11,10 @@
 //= require turbolinks
 //= require phoenix
 //= require_tree .
+
+// Close all modals on page
+function closeModals(){
+  $('body').removeClass('modal-open');
+  $('.modal-backdrop').remove();
+  $('.modal').modal('hide');
+}

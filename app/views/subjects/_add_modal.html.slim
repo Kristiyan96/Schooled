@@ -1,0 +1,15 @@
+#add-subject.modal.fade role="" tabindex="-1" 
+  .modal-dialog role="document" 
+    .modal-content
+      .card.card-signup.card-plain
+        .modal-header
+          .card-header.card-header-primary.text-center style="width: 100%;"
+            button.close aria-hidden="true" data-dismiss="modal" type="button" 
+              i.material-icons clear
+            h4.card-title Добави предмет
+        .modal-body
+          = form_with scope: :subject, url: school_subjects_path(@school), method: :post do |f|
+            .form-group
+              label.bmd-label-floating for="group_teacher_id" Име на предмет
+              = f.text_field :name, class: 'form-control'
+            = f.submit 'Създай', class: 'btn btn-primary btn-link'
