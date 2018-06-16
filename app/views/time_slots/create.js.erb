@@ -1,0 +1,4 @@
+closeModals();
+
+// Prepend row
+$('#day-schedule').prepend("<%= escape_javascript ( render partial: 'time_slots/row', locals: {slot: @slot} ) %>");

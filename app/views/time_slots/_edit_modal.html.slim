@@ -9,7 +9,6 @@
             h4.card-title Редактирай период
         .modal-body
           = form_with(scope: :time_slot, url: school_time_slot_path(@school, id: 1, date: @date), remote: true, method: :put) do |f|
-            = f.hidden_field :school_year_id, value: @school.active_school_year.id
             .card-body
               .row
                 .form-group.bmd-form-group.col-md-6

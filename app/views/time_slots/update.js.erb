@@ -1,0 +1,7 @@
+closeModals();
+
+// find row
+let row = $('#day-card').find('tr#<%= @slot.id %>');
+
+// Replace row
+row.replaceWith("<%= escape_javascript ( render partial: 'time_slots/row', locals: {slot: @slot} ) %>");
