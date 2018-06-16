@@ -1,5 +1,4 @@
 class AbsencesController < ApplicationController
-  load_and_authorize_resource
   before_action :set_school
   before_action :set_group
   before_action :set_year
@@ -10,46 +9,58 @@ class AbsencesController < ApplicationController
     @date        = (params[:date] && Date.parse(params[:date])) || Date.today
     @schedules   = @group.schedules.for_day(@date)
     @school_year = @school.active_school_year
+    authorize @group, :teacher?
 
     respond_to do |format|
       format.html { }
-      format.js   { render action: "refresh_card"}
+      format.js   { render action: "refresh_card" }
     end
   end
 
   def show
     @date      = Date.parse(params[:date])
     @schedules = @group.schedules.for_day(@date)
+    authorize @group, :teacher?
     
     respond_to do |format|
-      format.js { render action: "refresh_card"}
+      format.js { render action: "refresh_card" }
     end
   end
 
   def create
+    authorize Absence.new(absence_params.except(:student_ids))
+    @date        = (params[:date] && Date.parse(params[:date])) || Date.today
+    @schedules   = @group.schedules.for_day(@date)
+    @school_year = @school.active_school_year
+
     respond_to do |format|
       if @absence = Absence.create_multiple(absence_params)
         format.html { redirect_to @absence, notice: 'Absence was successfully created.' }
         format.json { render :show, status: :created, location: @absence }
-        format.js   { }
+        format.js   { render action: "refresh_card" }
       else
         format.html { render :new }
         format.json { render json: @absence.errors, status: :unprocessable_entity }
-        format.js   { }
+        format.js   { render action: "refresh_card" }
       end
     end
   end
 
   def update
+    authorize Absence.new(absence_params.except(:student_ids))
+    @date        = (params[:date] && Date.parse(params[:date])) || Date.today
+    @schedules   = @group.schedules.for_day(@date)
+    @school_year = @school.active_school_year
+
     respond_to do |format|
       if @absence.update(absence_params)
         format.html { redirect_to @absence, notice: 'Absence was successfully updated.' }
         format.json { render :show, status: :ok, location: @absence }
-        format.js   { }
+        format.js   { render action: "refresh_card" }
       else
         format.html { render :edit }
         format.json { render json: @absence.errors, status: :unprocessable_entity }
-        format.js   { }
+        format.js   { render action: "refresh_card" }
       end
     end
   end
@@ -70,6 +81,7 @@ class AbsencesController < ApplicationController
 
   def set_absence
     @absence = Absence.find(params[:id])
+    authorize @absence
   end
 
   def absence_params

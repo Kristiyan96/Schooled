@@ -1,13 +1,7 @@
-class PagesController < ApplicationController
-  skip_authorization_check
-  
+class PagesController < ApplicationController  
 	def show
-    if current_user
-      if current_user.roles.any? && current_user.assignments.order(:created_at).first.role.name == "Headmaster"
-        @school = current_user.assignments.order(:created_at).first.school
-      end
-    end
-
+    skip_authorization
+    
 	  if valid_page?
 	    render template: "pages/#{params[:page]}"
 	  else

@@ -1,5 +1,5 @@
 li.nav-item
-  = link_to school_path(assignment.school), class: 'nav-link' do
+  = link_to schedule_profile_path(current_user), class: 'nav-link' do
     i.material-icons calendar_today
     p График
 - Group.for_assignment(assignment).each do |gr|

@@ -1,15 +1,12 @@
 = form_with(scope: :mark, url: school_group_marks_path(@school, @group, course_id: @course.id), remote: true) do |f|
-  button.add-mark.btn.btn-danger.btn-sm.btn-round
-    b 2
-  button.add-mark.btn.btn-warning.btn-sm.btn-round
-    b 3
-  button.add-mark.btn.btn-primary.btn-sm.btn-round
-    b 4
-  button.add-mark.btn.btn-info.btn-sm.btn-round
-    b 5
-  button.add-mark.btn.btn-success.btn-sm.btn-round
-    b 6
-  = f.hidden_field :grade, class: "whole-grade"
+  button.add-mark.btn.btn-sm.btn-default 2
+  button.add-mark.btn.btn-sm.btn-default 3
+  button.add-mark.btn.btn-sm.btn-default 4
+  button.add-mark.btn.btn-sm.btn-default 5
+  button.add-mark.btn.btn-sm.btn-default 6
   = f.hidden_field :student_id, value: student.id
   = f.hidden_field :course_id, value: @course.id
   = f.hidden_field :kind, value: term
+  .row
+    .col = f.number_field :grade, class: "whole-grade form-control", step: :any, placeholder: 'със стотни (5.60)'
+    .col = f.submit 'добави', class: 'btn btn-sm'

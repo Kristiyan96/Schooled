@@ -1,6 +1,5 @@
 class SchoolsController < ApplicationController
-  load_and_authorize_resource
-  before_action :set_school, only: [:show, :dashboard, :teachers, :edit, :update, :destroy]
+  before_action :set_school, only: [:show, :edit, :update, :destroy, :dashboard]
 
   def index
     @schools = School.all
@@ -9,16 +8,9 @@ class SchoolsController < ApplicationController
   def show
   end
 
-  def dashboard
-  end
-
-  def teachers
-    @teachers = @school.teachers
-  end
-
   def new
-    @back_to_path = schools_path
     @school = School.new
+    authorize @school
   end
 
   def edit
@@ -26,6 +18,7 @@ class SchoolsController < ApplicationController
 
   def create
     @school = School.new(school_params)
+    authorize @school
 
     respond_to do |format|
       if @school.save
@@ -58,9 +51,14 @@ class SchoolsController < ApplicationController
     end
   end
 
+  def dashboard
+
+  end
+
   private
   def set_school
     @school = School.find(params[:id])
+    authorize @school
   end
 
   def school_params

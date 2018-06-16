@@ -1,12 +1,11 @@
-.card.col-md-8.offset-md-2
-  .card-body
-    table.table
-      thead
-        tr
-          td Период
-          td Предмет
-          td Отсъствали
-          td Закъснели
-      tbody#day-schedule
-        = render partial: 'absences/schedule_row', collection: @schedules, as: :schedule
-        = render partial: 'absences/add_absences_modal', locals: {date: @date}
+table.table
+  thead
+    tr
+      td Период
+      td Предмет
+      td Отсъствали
+      td Закъснели
+  tbody#day-schedule
+    = render partial: 'absences/schedule_row', collection: schedules, as: :schedule
+    = render partial: 'absences/add_absences_modal', locals: {date: date}
+    = render partial: 'absences/edit_absences_modal', locals: {date: date}

@@ -7,6 +7,7 @@ class Course < ApplicationRecord
 
   has_many :schedules
   has_many :time_slots, through: :schedules
+  has_many :marks
 
   scope :in_year, -> (group_id, year) { Course.joins(:school_year).where(school_years: {year: year}, courses: {group_id: group_id}) }
   scope :ordered, -> { joins(:subject).order("subjects.name") }

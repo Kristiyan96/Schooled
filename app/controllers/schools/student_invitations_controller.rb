@@ -1,13 +1,16 @@
 class Schools::StudentInvitationsController < ApplicationController
-  load_and_authorize_resource
   
-  def index
+  def new
     @school = School.find(params[:school_id])
+    @group  = @school.groups.find(params[:group_id])
+    @students = policy_scope(@group.students)
+    authorize @group, :update?
   end
 
   def create
     school = School.find(params[:school_id])
     group = Group.find(params[:group_id])
+    authorize group, :update?
     role = Role.find_by(name: "Student")
     @is_invited = Assignment.invite(role: role, school: school, user: user_params.merge(group_id: group.id))
 

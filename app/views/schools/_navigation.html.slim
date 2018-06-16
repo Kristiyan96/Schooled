@@ -2,11 +2,14 @@ ul.nav.nav-pills.justify-content-end
   li.nav-item 
     = link_to 'Начало', dashboard_school_path(@school), class: "nav-link #{'active' if controller_name == 'schools' && action_name == 'dashboard'}"
   li.nav-item 
-    = link_to 'Учители', school_teacher_invitations_path(@school), class: "nav-link #{'active' if controller_name == 'teacher_invitations' && action_name == 'index'}"
-  li.nav-item 
-    = link_to 'Програма', school_time_slot_path(@school), class: "nav-link #{'active' if controller_name == 'time_slots' && action_name == 'show'}"
-  li.nav-item 
-    = link_to 'Предмети', school_subjects_path(@school), class: "nav-link #{'active' if controller_name == 'subjects' && action_name == 'index'}"
-  li.nav-item 
-    = link_to 'Класове', school_groups_path(@school), class: "nav-link #{'active' if controller_name == 'groups' && action_name == 'index'}"
+    = link_to 'Учители', new_school_teacher_invitation_path(@school), class: "nav-link #{'active' if controller_name == 'teacher_invitations' && action_name == 'index'}"
+  - if policy(TimeSlot.new(school_year: @school.active_school_year)).new?
+    li.nav-item 
+      = link_to 'Програма', school_time_slot_path(@school), class: "nav-link #{'active' if controller_name == 'time_slots' && action_name == 'show'}"
+  - if policy(Subject.new(school: @school)).new?
+    li.nav-item 
+      = link_to 'Предмети', school_subjects_path(@school), class: "nav-link #{'active' if controller_name == 'subjects' && action_name == 'index'}"
+  - if policy(Group.new(school: @school)).new?
+    li.nav-item 
+      = link_to 'Класове', school_groups_path(@school), class: "nav-link #{'active' if controller_name == 'groups' && action_name == 'index'}"
 

@@ -92,9 +92,9 @@ Assignment.create(role: r2, school: feg, user: t6)
 Assignment.create(role: r1, school: smg, user: s1)
 Assignment.create(role: r1, school: smg, user: s2)
 Assignment.create(role: r1, school: smg, user: s3)
-Assignment.create(role: r1, school: feg, user: s4)
-Assignment.create(role: r1, school: feg, user: s5)
-Assignment.create(role: r1, school: feg, user: s6)
+Assignment.create(role: r1, school: smg, user: s4)
+Assignment.create(role: r1, school: smg, user: s5)
+Assignment.create(role: r1, school: smg, user: s6)
 
 puts "Linking parents and students"
 

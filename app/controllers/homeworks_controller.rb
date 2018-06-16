@@ -1,23 +1,22 @@
 class HomeworksController < ApplicationController
-  load_and_authorize_resource
   before_action :set_school
   before_action :set_group
   before_action :set_course
-  before_action :set_homework, only: [:show, :edit, :update, :destroy]
+  before_action :set_homeworks, except: [:destroy]
+  before_action :set_homework, only: [:update, :destroy]
 
   def index
-    @courses          = @group.courses
-    @homeworks_past   = @group.homeworks.where('deadline < ?', DateTime.now)
-    @homeworks_future = @group.homeworks.where('deadline > ?', DateTime.now)
+    authorize @group, :show?
+    @courses = @group.courses
   end
 
   def create
-    @homework         = @group.homeworks.new(homework_params)
-    @homeworks_past   = @group.homeworks.where('deadline < ?', DateTime.now)
-    @homeworks_future = @group.homeworks.where('deadline > ?', DateTime.now)
+    @homework = @group.homeworks.new(homework_params)
+    authorize @homework
 
     respond_to do |format|
       if @homework.save
+        set_homeworks
         format.html { redirect_to @homework, notice: 'Homework was successfully created.' }
         format.json { render :show, status: :created, location: @homework }
         format.js { render action: "refresh_homeworks" }
@@ -30,10 +29,6 @@ class HomeworksController < ApplicationController
   end
 
   def update
-    @homeworks        = @group.homeworks
-    @homeworks_past   = @group.homeworks.where('deadline < ?', DateTime.now)
-    @homeworks_future = @group.homeworks.where('deadline > ?', DateTime.now)
-
     respond_to do |format|
       if @homework.update(homework_params)
         format.html { redirect_to @homework, notice: 'Homework was successfully updated.' }
@@ -75,6 +70,12 @@ class HomeworksController < ApplicationController
 
     def set_homework
       @homework = Homework.find(params[:id])
+      authorize @homework
+    end
+
+    def set_homeworks
+      @homeworks_past   = policy_scope(@group.homeworks.where('deadline < ?', DateTime.now))
+      @homeworks_future = policy_scope(@group.homeworks.where('deadline > ?', DateTime.now))
     end
 
     def homework_params

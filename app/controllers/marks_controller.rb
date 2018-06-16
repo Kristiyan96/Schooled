@@ -1,18 +1,23 @@
 class MarksController < ApplicationController
-  load_and_authorize_resource
   before_action :set_school
   before_action :set_group
   before_action :set_year
   before_action :set_course
   before_action :set_mark, only: [:update, :destroy]
 
-  def index
-    @courses = @group.courses.where(school_year: @school.active_school_year)
-    @mark = Mark.new
+  def new
+    if current_user.is_headmaster?(@group.school) || current_user.is_headteacher?(@group)
+      @courses = @group.courses.where(school_year: @school.active_school_year)
+    else
+      @courses = @group.courses.where(school_year: @school.active_school_year, teacher: current_user)
+    end
+    @mark = @course.marks.new
+    authorize @mark
   end
 
   def create
     @mark = Mark.new(mark_params)
+    authorize @mark
     respond_to do |format|
       if @mark.save
         format.html { redirect_to school_group_marks_path(@school, @group, course_id: @course.id), notice: 'Mark was successfully created.' }
@@ -31,11 +36,11 @@ class MarksController < ApplicationController
       if @mark.update(mark_params)
         format.html { redirect_to @mark, notice: 'Mark was successfully updated.' }
         format.json { render :show, status: :ok, location: @mark }
-        format.js { }
+        format.js { render action: "create" }
       else
         format.html { render :edit }
         format.json { render json: @mark.errors, status: :unprocessable_entity }
-        format.js { }
+        format.js { render action: "create" }
       end
     end
   end
@@ -45,7 +50,7 @@ class MarksController < ApplicationController
     respond_to do |format|
       format.html { redirect_to marks_url, notice: 'Mark was successfully destroyed.' }
       format.json { head :no_content }
-      format.js { }
+      format.js { render action: "create" }
     end
   end
 
@@ -69,9 +74,10 @@ class MarksController < ApplicationController
 
     def set_mark
       @mark = Mark.find(params[:id])
+      authorize @mark
     end
 
     def mark_params
-      params.require(:mark).permit(:student_id, :grade, :course_id, :kind)
+      params.require(:mark).permit(:student_id, :grade, :course_id, :kind, :note)
     end
 end

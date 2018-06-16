@@ -1,0 +1,25 @@
+#add-absence.modal.fade role="" tabindex="-1" 
+  .modal-dialog role="document" 
+    .modal-content
+      .card.card-signup.card-plain
+        .modal-header
+          .card-header.card-header-primary.text-center style="width: 100%;"
+            button.close aria-hidden="true" data-dismiss="modal" type="button" 
+              i.material-icons clear
+            h4.card-title Редактирай отсъствия
+            h4.card-description.text-center 
+        .modal-body
+          h4.title Маркирай отсъстващите
+          = form_with scope: :absence, url: school_group_absences_path(@school, @group), remote: true do |f|
+            = f.hidden_field :value, value: 1
+            = f.hidden_field :category, value: "permanent"
+            = f.hidden_field :schedule_id, value: 1
+            = f.collection_check_boxes :student_ids, @group.students.order(:number_in_class), :id, :student_info do |m| 
+              .form-check
+                = m.label(class: 'form-check-label')
+                  = m.check_box(class: 'form-check-input')
+                  = m.text
+                  span.form-check-sign
+                    span.check class="#{m.value}"
+
+            = f.submit "Обнови", class: "btn btn-success"

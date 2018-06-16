@@ -285,8 +285,10 @@ document.addEventListener("turbolinks:load", function() {
         return '/schools/1/groups/1/absences/new';
       case 'time_slot':
         return '/schools/1/time_slot';
-      case 'week_schedule':
+      case 'week_schedule_group':
         return '/schools/1/groups/1/schedule';
+      case 'week_schedule_teacher':
+        return '/profiles/1/schedule'
       default:
         alert("error");
     }

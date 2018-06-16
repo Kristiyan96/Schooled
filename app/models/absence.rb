@@ -1,5 +1,4 @@
 class Absence < ApplicationRecord
-  belongs_to :school_year
   belongs_to :schedule
   belongs_to :student, foreign_key: "student_id", class_name: "User"
 
@@ -12,11 +11,9 @@ class Absence < ApplicationRecord
     args = args.except(:student_ids)
 
     students.map! do |s|
-      #TODO(KRIS): Pass in schedule id and remove second merge
-      args.to_h.merge(student_id: s).merge(schedule_id: 1)
+      args.to_h.merge(student_id: s)
     end
 
-    p students
-    import(students)
+    Absence.import(students)
   end
 end

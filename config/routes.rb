@@ -11,23 +11,25 @@ Rails.application.routes.draw do
       end
   end
 
+
+
   resources :schools do
     resource :time_slot
     resources :subjects
+    resources :assignments
     resources :groups do
-      resources :homeworks, only: [:index, :create, :update, :destroy]
-      resources :absences, only: [:index, :new, :show, :create, :update]
-      resources :marks
-      resources :courses
-      resources :student_invitations, path: :students, module: :schools, only: [:index, :create]
-      resources :parent_invitations, path: :parents, module: :schools, only: [:index, :create]
       resource :schedule
+      resources :courses
+      resources :homeworks, only: [:index, :create, :update, :destroy]
+      resources :absences, only: [:new, :create, :update, :destroy]
+      resources :marks, only: [:new, :create, :update, :destroy]
+      resources :student_invitations, path: :students, module: :schools, only: [:new, :create]
+      resources :parent_invitations, path: :parents, module: :schools, only: [:new, :create]
     end
-    resources :headmaster_invitations, path: :headmasters, module: :schools, only: [:index, :create]
-    resources :teacher_invitations, path: :teachers, module: :schools, only: [:index, :create]
+    resources :headmaster_invitations, path: :headmasters, module: :schools, only: [:new, :create]
+    resources :teacher_invitations, path: :teachers, module: :schools, only: [:new, :create]
     member do 
       get 'dashboard'
-      get 'teachers'
     end
   end
 
@@ -39,6 +41,7 @@ Rails.application.routes.draw do
   resources :profiles do
     member do 
       get 'dashboard'
+      get 'schedule'
     end  
   end
   resources :messages, only: [:index, :create]

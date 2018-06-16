@@ -1,8 +1,0 @@
-tr id="student-#{student.id}"
-  td.text-center = student.number_in_class
-  td = link_to student.full_name, profile_path(student)
-  td 
-    = render partial: 'components/teacher/absence/absence_form', locals: {student: student, term: term, category: 'excused'}
-  td 
-    = render partial: 'components/teacher/absence/absence_form', locals: {student: student, term: term, category: 'permanent'}
- 

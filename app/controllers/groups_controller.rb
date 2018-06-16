@@ -1,11 +1,10 @@
 class GroupsController < ApplicationController
-  load_and_authorize_resource
   before_action :set_school
   before_action :set_group, only: [:show, :edit, :update, :destroy]
 
   def index
     @school = School.find(params[:school_id])
-    @groups = @school.groups
+    @groups = policy_scope(@school.groups)
   end
 
   def show
@@ -13,6 +12,7 @@ class GroupsController < ApplicationController
 
   def new
     @group = @school.groups.new
+    authorize @group
   end
 
   def edit
@@ -21,7 +21,8 @@ class GroupsController < ApplicationController
   def create
     @school = School.find(params[:school_id])
     @group = @school.groups.new(group_params)
-
+    authorize @group
+    
     respond_to do |format|
       if @group.save
         format.html { redirect_to school_groups_path(@school), notice: "Group was successfully created." }
@@ -53,6 +54,7 @@ class GroupsController < ApplicationController
 
   def set_group
     @group = @school.groups.find(params[:id])
+    authorize @group
   end
 
   def group_params

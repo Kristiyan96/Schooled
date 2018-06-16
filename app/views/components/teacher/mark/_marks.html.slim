@@ -1,1 +1,4 @@
-.btn.btn-sm.btn-round.btn-fab class="btn-#{mark_color(mark)}" = mark.grade
+a.btn.btn-sm.btn-default.mark-button data-toggle="modal" data-note="#{mark.note}" data-id="#{mark.id}" data-target="#edit-mark" style="background-color: rgb(240,240,240)" 
+  b = mark.grade == mark.grade.floor ? '%g' % mark.grade : ('%.2f' % mark.grade)
+
+      

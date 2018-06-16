@@ -1,12 +1,13 @@
 class Schools::HeadmasterInvitationsController < ApplicationController
-  load_and_authorize_resource
   
-  def index
+  def show
     @school = School.find(params[:school_id])
+    authorize @school, :create?
   end
 
   def create
     school = School.find(params[:school_id])
+    authorize school, :create?
     role = Role.find_by(name: "Headmaster")
     is_invited = Assignment.invite(role: role, school: school, user: user_params)
 

@@ -3,13 +3,15 @@
     b.card-icon = group_name(@group)
   .card-body
     = render 'groups/navigation'
-    hr
-    .row
-      a.col-md-2.dropdown-toggle.btn.btn-round data-toggle="dropdown" href="#" role="button" aria-expanded="false" style="margin: 0px;" = @course.name
-      .dropdown-menu
-        - @courses.each do |course|
-          = link_to course.name, school_group_marks_path(@school, @group, course_id: course), class: 'dropdown-item'
-      ul.nav.nav-pills.justify-content-end.col-md-10
+    ul.nav.nav-pills.justify-content-end
+      li.nav-item
+        - if @courses.count > 1
+          a.dropdown-toggle.nav-link data-toggle="dropdown" href="#" role="button" aria-expanded="false" style="margin: 0px;" = @course.name
+          .dropdown-menu
+            - @courses.each do |course|
+              = link_to course.name, new_school_group_mark_path(@school, @group, course_id: course), class: 'dropdown-item'
+        - else 
+          a.nav-link style="margin: 0px;" = @course.name
         li.nav-item 
           a.nav-link.active href="#first_semester" data-toggle="tab" Текущи - първи срок
         li.nav-item 
@@ -24,3 +26,5 @@
     .tab-content
       - ['first_semester', 'first_semester_final', 'second_semester', 'second_semester_final', 'final'].each do |term|
         = render partial: 'components/teacher/mark/semester_mark', locals: {term: term}
+
+    = render 'components/teacher/mark/edit_mark_modal'

@@ -1,11 +1,11 @@
 class CoursesController < ApplicationController
-  load_and_authorize_resource
   before_action :set_school
   before_action :set_group
   before_action :set_course, only: [:show, :edit, :update, :destroy]
 
   def index
     @courses = @group.courses
+    authorize @group, :show?
   end
 
   def show
@@ -13,6 +13,7 @@ class CoursesController < ApplicationController
 
   def new
     @course = @group.courses.new
+    authorize @course
   end
 
   def edit
@@ -20,6 +21,7 @@ class CoursesController < ApplicationController
 
   def create
     @course = @group.courses.new(course_params)
+    authorize @course
 
     respond_to do |format|
       if @course.save
@@ -68,6 +70,7 @@ class CoursesController < ApplicationController
 
     def set_course
       @course = @group.courses.find(params[:id])
+      authorize @course
     end
 
     def course_params

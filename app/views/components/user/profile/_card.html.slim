@@ -15,14 +15,14 @@
       - if @user.phone_number
         button.btn.btn-sm.btn-link href="tel:#{@user.phone_number}" data-toggle="tooltip" data-placement="top" title="#{@user.phone_number}"
           i.material-icons phone
-          | &nbsp;&nbsp;Позвъни   
-    - if user_signed_in? && @user == current_user
+          | &nbsp;&nbsp;Позвъни  
+    - if current_user == @user 
       = link_to edit_user_registration_path, class: "btn col btn-sm btn-link" do
         i.material-icons settings
         | &nbsp;&nbsp;Настройки
-    - if can_add_parent?(current_user, @user)
+    - if current_user == @user || current_user.is_parent?(@user)
       = link_to edit_user_registration_path, class: "btn col btn-sm btn-link", data: {target: '#addParent', toggle: 'modal'} do
         i.material-icons person_add
         | &nbsp;&nbsp;Добави родител
 
-= render 'components/student/profile/add_parent_modal'
+      = render 'components/student/profile/add_parent_modal'

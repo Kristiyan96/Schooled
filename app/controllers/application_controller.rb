@@ -1,15 +1,10 @@
 class ApplicationController < ActionController::Base
-  check_authorization unless: :devise_controller?
+  include Pundit
+  protect_from_forgery
+  after_action :verify_authorized, except: :index, unless: :devise_controller?
+  after_action :verify_policy_scoped, only: :index
   
   def current_user
     @current_user ||= super && User.eager_load(:roles).find(@current_user.id)
-  end
-
-  rescue_from CanCan::AccessDenied do |exception|
-    respond_to do |format|
-      format.json { head :forbidden, content_type: 'text/html' }
-      format.html { redirect_to root_path, notice: exception.message }
-      format.js   { head :forbidden, content_type: 'text/html' }
-    end
   end
 end

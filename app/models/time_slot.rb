@@ -39,17 +39,26 @@ class TimeSlot < ApplicationRecord
   scope :for_school, -> school {
     where(school_year: school.school_years)
   }
-  scope :group_schedule, -> group {
-    sql = sanitize_sql_array([<<~SQL, group_id: group.id])
-    LEFT OUTER JOIN schedules ON schedules.time_slot_id = time_slots.id AND schedules.id IN
-      (SELECT schedules.id FROM schedules WHERE schedules.course_id IN
-        (SELECT courses.id FROM courses WHERE courses.group_id = :group_id)
-      )
-    SQL
+  scope :schedule, -> instance {
+    if instance.class == User
+      sql = sanitize_sql_array([<<~SQL, teacher_id: instance.id])
+      LEFT OUTER JOIN schedules ON schedules.time_slot_id = time_slots.id AND schedules.id IN
+        (SELECT schedules.id FROM schedules WHERE schedules.course_id IN
+          (SELECT courses.id FROM courses WHERE courses.teacher_id = :teacher_id)
+        )
+      SQL
+    elsif instance.class == Group
+      sql = sanitize_sql_array([<<~SQL, group_id: instance.id])
+      LEFT OUTER JOIN schedules ON schedules.time_slot_id = time_slots.id AND schedules.id IN
+        (SELECT schedules.id FROM schedules WHERE schedules.course_id IN
+          (SELECT courses.id FROM courses WHERE courses.group_id = :group_id)
+        )
+      SQL
+    end
     joins(sql).eager_load(:schedules)
   }
-  scope :group_schedule_for_week, -> group {
-    group_schedule(group).this_week
+  scope :schedule_for_week, -> instance {
+    schedule(instance).this_week
   }
   default_scope { order('start ASC') }
 
@@ -108,8 +117,8 @@ class TimeSlot < ApplicationRecord
     end
   end
 
-  def self.schedule_table_for_group(group, day = Time.current)
-    time_slots_by_day = group_schedule(group).for_work_week_with_saturday(day)
+  def self.schedule_table(instance, day = Time.current)
+    time_slots_by_day = schedule(instance).for_work_week_with_saturday(day)
       .map { |t| [t, t.schedules] }
       .group_by { |(t, _)| t.start.strftime("%A") }
 
@@ -122,7 +131,6 @@ class TimeSlot < ApplicationRecord
         .map.with_index { |t, i| [t, i] }
         .max_by { |((t, s), index)| s.empty? ? 0 : index }
     end.max[1]
-
 
     time_slots_by_day.map { |day, data| [day, data[0..max]] }.to_h
   end
