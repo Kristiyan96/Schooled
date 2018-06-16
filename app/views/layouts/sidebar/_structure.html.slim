@@ -5,12 +5,12 @@
   .sidebar-wrapper
     ul.nav
       .d-md-none
-        = render 'components/user/navbar'
-      = render 'components/user/sidebar'
+        = render 'layouts/navbar/structure'
+      = render 'layouts/sidebar/common'
+      = render 'layouts/sidebar/children'
       - current_user&.assignments&.each do |as|
         li.nav-item
           a.nav-link
             b 
               = (t "roles.#{as.role.name.downcase}").capitalize
-        = render partial: "components/#{as.role.name.downcase}/sidebar/sidebar", locals: {assignment: as}
-      = render 'components/parent/sidebar/sidebar'
+        = render partial: "layouts/sidebar/#{as.role.name.downcase}", locals: {assignment: as}
