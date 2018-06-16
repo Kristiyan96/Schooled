@@ -139,14 +139,15 @@ Remark.create(student: s2, course: c2, message: "Не-Ставаш")
 puts "Creating time slots"
 
 date = Date.today.beginning_of_week
-TimeSlot.create_week_daily(school_year: y1, date: date, params: {start: Time.now.strftime("%H:%M"), end: (Time.now+45.minutes).strftime("%H:%M"), title: 'Час 1', school_year_id: y1.id})
-TimeSlot.create_week_daily(school_year: y1, date: date, params: {start: (Time.now + 55.minutes).strftime("%H:%M"), end: (Time.now+100.minutes).strftime("%H:%M"), title: 'Час 2', school_year_id: y1.id})
-TimeSlot.create_week_daily(school_year: y1, date: date, params: {start: (Time.now + 110.minutes).strftime("%H:%M"), end: (Time.now+155.minutes).strftime("%H:%M"), title: 'Час 3', school_year_id: y1.id})
-TimeSlot.create_week_daily(school_year: y1, date: date, params: {start: (Time.now + 165.minutes).strftime("%H:%M"), end: (Time.now+210.minutes).strftime("%H:%M"), title: 'Час 4', school_year_id: y1.id})
-TimeSlot.create_week_daily(school_year: y1, date: date, params: {start: (Time.now + 220.minutes).strftime("%H:%M"), end: (Time.now+265.minutes).strftime("%H:%M"), title: 'Час 5', school_year_id: y1.id})
-TimeSlot.create_week_daily(school_year: y1, date: date, params: {start: (Time.now + 275.minutes).strftime("%H:%M"), end: (Time.now+320.minutes).strftime("%H:%M"), title: 'Час 6', school_year_id: y1.id})
-TimeSlot.create_week_daily(school_year: y1, date: date, params: {start: (Time.now + 330.minutes).strftime("%H:%M"), end: (Time.now+375.minutes).strftime("%H:%M"), title: 'Час 7', school_year_id: y1.id})
-TimeSlot.create_week_daily(school_year: y1, date: date, params: {start: (Time.now + 385.minutes).strftime("%H:%M"), end: (Time.now+430.minutes).strftime("%H:%M"), title: 'Час 8', school_year_id: y1.id})
+time = Time.now
+TimeSlot.create_week_daily(school_year: y1, date: date, params: {start: time.change(hour: 7, min: 30).strftime("%H:%M"), end: time.change(hour: 8, min: 10).strftime("%H:%M"), title: 'Час 1', school_year_id: y1.id})
+TimeSlot.create_week_daily(school_year: y1, date: date, params: {start: time.change(hour: 8, min: 20).strftime("%H:%M"), end: time.change(hour: 9, min: 0).strftime("%H:%M"), title: 'Час 2', school_year_id: y1.id})
+TimeSlot.create_week_daily(school_year: y1, date: date, params: {start: time.change(hour: 9, min: 20).strftime("%H:%M"), end: time.change(hour: 10, min: 5).strftime("%H:%M"), title: 'Час 3', school_year_id: y1.id})
+TimeSlot.create_week_daily(school_year: y1, date: date, params: {start: time.change(hour: 10, min: 15).strftime("%H:%M"), end: time.change(hour: 11, min: 0).strftime("%H:%M"), title: 'Час 4', school_year_id: y1.id})
+TimeSlot.create_week_daily(school_year: y1, date: date, params: {start: time.change(hour: 11, min: 10).strftime("%H:%M"), end: time.change(hour: 11, min: 55).strftime("%H:%M"), title: 'Час 5', school_year_id: y1.id})
+TimeSlot.create_week_daily(school_year: y1, date: date, params: {start: time.change(hour: 12, min: 5).strftime("%H:%M"), end: time.change(hour: 12, min: 50).strftime("%H:%M"), title: 'Час 6', school_year_id: y1.id})
+TimeSlot.create_week_daily(school_year: y1, date: date, params: {start: time.change(hour: 13, min: 0).strftime("%H:%M"), end: time.change(hour: 13, min: 45).strftime("%H:%M"), title: 'Час 7', school_year_id: y1.id})
+TimeSlot.create_week_daily(school_year: y1, date: date, params: {start: time.change(hour: 13, min: 55).strftime("%H:%M"), end: time.change(hour: 14, min: 40).strftime("%H:%M"), title: 'Час 8', school_year_id: y1.id})
 
 puts "Creating schedules"
 

@@ -25,4 +25,4 @@
       .card-body
         table.table
           tbody#day-schedule
-            = render partial: 'schedules/schedule', collection: @time_slots, as: :slot
+            = render partial: 'schedules/row', collection: @time_slots, as: :slot

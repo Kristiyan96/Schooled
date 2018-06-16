@@ -1,4 +1,4 @@
-tr
+tr id="#{slot.id}"
   td.title data-title="#{slot.title}" 
     .form-group.no-margin.bmd-form-group
       .input-group
@@ -8,8 +8,8 @@ tr
       .input-group
         = slot_period(slot)
   td.course 
-    - schedule = @group.schedules.where(time_slot_id: slot.id)
-    - if schedule.any?
-      = render partial: 'schedules/edit', locals: {slot: slot, schedule: schedule.first}
+    - schedule ||= @group.schedules.find_by(time_slot_id: slot.id)
+    - if schedule
+      = render partial: 'schedules/edit', locals: {slot: slot, schedule: schedule}
     - else 
       = render partial: 'schedules/new', locals: {slot: slot}
