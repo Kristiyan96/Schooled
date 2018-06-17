@@ -1,1 +1,2 @@
 $("#day-card").html("<%= escape_javascript ( render partial: 'time_slots/day_card', locals: {time_slots: @time_slots, date: @date} ) %>");
+$('tbody').hide().fadeIn(400);
