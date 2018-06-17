@@ -10,7 +10,8 @@ class ProfilesController < ApplicationController
   end
 
   def schedule
-    
+    @date = (params[:date] && Date.parse(params[:date])) || Date.today
+    @week_schedule = TimeSlot.schedule_table(current_user, @date)
   end
 
   def show
