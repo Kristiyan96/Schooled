@@ -52,7 +52,7 @@ class TimeSlot < ApplicationRecord
       sql = sanitize_sql_array([<<~SQL, teacher_id: instance.id])
       LEFT OUTER JOIN schedules ON schedules.time_slot_id = time_slots.id AND schedules.id IN
         (SELECT schedules.id FROM schedules WHERE schedules.course_id IN
-          (SELECT courses.id FROM courses WHERE courses.teacher_id = :group_id)
+          (SELECT courses.id FROM courses WHERE courses.teacher_id = :teacher_id)
         )
       SQL
     end

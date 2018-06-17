@@ -16,3 +16,6 @@
             a.prev.inactive href="#0" Prev
           li
             a.next href="#0" Next
+
+    #week-schedule
+      = render partial: 'schedules/week_schedule', locals: {date: @date, week_schedule: @week_schedule}
