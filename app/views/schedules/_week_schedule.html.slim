@@ -4,9 +4,9 @@
       .text-center 
         h4 Графикът за тази седмица е празен.
     - else 
-      table.table
+      table.table.table-condensed.table-hover
         thead
-          tr
+          tr.text-center
             th Час
             th Пон.
             th Втор.
@@ -15,11 +15,14 @@
             th Пет.
             - if "Saturday".in?(week_schedule.keys) 
               th Съб.
-        tbody
+        tbody.text-center
           - (0..week_schedule[week_schedule.keys.first].count).each do |slot|
             tr
               td 
                 b = slot_period(week_schedule['Monday'][slot].try(:first)) 
               - week_schedule.keys.each do |day|
                 td 
-                  b = week_schedule[day][slot].try(:second).try(:first).try(:course).try(:name)
+                  - schedule = week_schedule[day][slot].try(:second).try(:first)
+                  - if schedule
+                    b = link_to school_group_schedule_path(schedule.course.school, schedule.course.group, schedule) do
+                      = schedule.course.name

@@ -286,7 +286,7 @@ document.addEventListener("turbolinks:load", function() {
       case 'time_slot':
         return '/schools/1/time_slot';
       case 'week_schedule_group':
-        return '/schools/1/groups/1/schedule';
+        return '/schools/1/groups/1/schedules';
       case 'week_schedule_user':
         return '/profiles/1/schedule'
       default:

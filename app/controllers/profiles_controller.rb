@@ -15,7 +15,7 @@ class ProfilesController < ApplicationController
 
     respond_to do |format|
       format.html { }
-      format.js   { render action: "../schedules/show" }
+      format.js   { render action: "../schedules/index" }
     end
   end
 
