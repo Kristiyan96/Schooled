@@ -1,0 +1,24 @@
+#edit-mark.modal.fade role="" tabindex="-1" 
+  .modal-dialog role="document" 
+    .modal-content
+      .card.card-signup.card-plain
+        .modal-header
+          .card-header.card-header-primary.text-center style="width: 100%;"
+            button.close aria-hidden="true" data-dismiss="modal" type="button" 
+              i.material-icons clear
+            h4.card-title Редактирай оценка
+        .modal-body
+          = form_with(scope: :mark, url: school_group_mark_path(@school, @group, 0), remote: true, method: :put) do |f|
+            .card-body
+              .form-group.bmd-form-group
+                .input-group
+                  span.input-group-addon
+                    i.material-icons create
+                  = f.number_field :grade, class: "form-control", step: :any, placeholder: 'със стотни (5.60)'
+              .form-group.bmd-form-group
+                .input-group
+                  span.input-group-addon
+                    i.material-icons comment
+                  = f.text_area :note, placeholder: "Описание на оценка", class: 'form-control', rows: '10' 
+              = f.submit "Редактирай", class: "btn btn-primary btn-link btn-wd btn-lg"
+              = link_to "Изтрии оценка", school_group_mark_path(@school, @group, 0), method: :delete, remote: true, class: 'btn btn-primary btn-link btn-wd btn-lg', id: "delete-mark"

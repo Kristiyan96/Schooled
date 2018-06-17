@@ -1,4 +1,0 @@
-.tab-pane id="#{term}" class="#{'active' if term == 'first_semester'}"
-  table.table
-    tbody
-      = render partial: 'components/teacher/mark/student_row', collection: @group.students.order(:number_in_class), as: :student, locals: {term: term}

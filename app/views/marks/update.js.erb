@@ -1,0 +1,2 @@
+closeModals();
+$(".mark-button#<%= @mark.id %>").replaceWith("<%= escape_javascript ( render partial: 'marks/mark', locals: {mark: @mark} )%>");

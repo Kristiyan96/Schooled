@@ -8,6 +8,11 @@ class MarksController < ApplicationController
   def index
     @courses = @group.courses.where(school_year: @school.active_school_year)
     @mark = Mark.new
+    respond_to do |format|
+      format.html { }
+      format.json { }
+      format.js { }
+    end
   end
 
   def create
