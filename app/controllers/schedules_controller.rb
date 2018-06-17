@@ -1,4 +1,5 @@
 class SchedulesController < ApplicationController
+
   def show
     @school        = School.find(params[:school_id])
     @group         = @school.groups.find(params[:group_id])

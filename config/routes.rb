@@ -39,6 +39,7 @@ Rails.application.routes.draw do
   resources :profiles do
     member do 
       get 'dashboard'
+      get 'schedule'
     end  
   end
   resources :messages, only: [:index, :create]
