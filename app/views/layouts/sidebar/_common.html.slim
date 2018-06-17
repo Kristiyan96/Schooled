@@ -1,6 +1,6 @@
 - if user_signed_in?
   li.nav-item
-    = link_to profile_path(current_user), class: "nav-link" do
+    = link_to profile_path(current_user), class: 'nav-link' do
       i.material-icons person
       p Профил
   li.nav-item
@@ -8,6 +8,10 @@
       i.material-icons notifications
       p Известия
   li.nav-item
-    = link_to messages_path, class: "nav-link" do
+    = link_to messages_path, class: 'nav-link' do
       i.material-icons message
       p Съобщения
+  li.nav-item
+    = link_to schedule_profile_path(current_user), class: 'nav-link' do
+      i.material-icons date_range
+      p График

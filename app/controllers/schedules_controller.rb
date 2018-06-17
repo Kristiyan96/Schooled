@@ -1,14 +1,22 @@
 class SchedulesController < ApplicationController
-  def show
-    @school        = School.find(params[:school_id])
-    @group         = @school.groups.find(params[:group_id])
-    @date          = (params[:date] && Date.parse(params[:date])) || Date.today
-    @week_schedule = TimeSlot.schedule_table_for_group(@group, @date)
+
+  def index
+    @school = School.find(params[:school_id])
+    @group = @school.groups.find(params[:group_id])
+    @date = (params[:date] && Date.parse(params[:date])) || Date.today
+    @week_schedule = TimeSlot.schedule_table(@group, @date)
     
     respond_to do |format|
       format.html { }
       format.js   { }
     end
+  end
+
+  def show
+    @school = School.find(params[:school_id])
+    @group = @school.groups.find(params[:group_id])
+    @schedule = Schedule.find(params[:id])
+    @date = (params[:date] && Date.parse(params[:date])) || Date.today
   end
 
   def edit

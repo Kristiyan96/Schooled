@@ -1,27 +1,6 @@
 .card
   .card-header.card-header-icon
     b.card-icon = group_name(@group)
-  .card-body.time-slots
-    = render 'groups/navigation'
-    .cd-horizontal-timeline
-      .timeline
-        .events-wrapper
-          .events
-            ol data-school="#{@school.id}" data-type="week_schedule"
-              - @school.active_school_year.start.beginning_of_week.to_date.step(@school.active_school_year.end.to_date, 7).each do |date|
-                li
-                  a class="#{'selected' if (date..date+6.days).include?(Date.today)}" data-date="#{date.strftime('%d/%m/%Y')}" href="#0"
-                    = "#{ l date, format: :short } #{ l (date+6), format: :short}"
-                    span.double-line = date.year
-            span.filling-line aria-hidden="true" 
-        ul.cd-timeline-navigation
-          li
-            a.prev.inactive href="#0" Prev
-          li
-            a.next href="#0" Next
-
-    #week-schedule
-      = render partial: 'schedules/week_schedule', locals: {date: @date, week_schedule: @week_schedule}
+  .card-body
 
 
-            

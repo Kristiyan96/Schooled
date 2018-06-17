@@ -21,7 +21,7 @@ Rails.application.routes.draw do
       resources :courses
       resources :student_invitations, path: :students, module: :schools, only: [:index, :create]
       resources :parent_invitations, path: :parents, module: :schools, only: [:index, :create]
-      resource :schedule
+      resources :schedules
     end
     resources :headmaster_invitations, path: :headmasters, module: :schools, only: [:index, :create]
     resources :teacher_invitations, path: :teachers, module: :schools, only: [:index, :create]
@@ -39,6 +39,7 @@ Rails.application.routes.draw do
   resources :profiles do
     member do 
       get 'dashboard'
+      get 'schedule'
     end  
   end
   resources :messages, only: [:index, :create]
