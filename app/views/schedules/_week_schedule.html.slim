@@ -1,21 +1,25 @@
 .card
   .card-body
-    table.table
-      thead
-        tr
-          th Час
-          th Пон.
-          th Втор.
-          th Ср.
-          th Четв.
-          th Пет.
-          - if "Saturday".in?(week_schedule.keys) 
-            th Съб.
-      tbody
-        - (0..week_schedule[week_schedule.keys.first].count).each do |slot|
+    - if week_schedule.empty?
+      .text-center 
+        h4 Графикът за тази седмица е празен.
+    - else 
+      table.table
+        thead
           tr
-            td 
-              b = slot_period(week_schedule['Monday'][slot].try(:first)) 
-            - week_schedule.keys.each do |day|
+            th Час
+            th Пон.
+            th Втор.
+            th Ср.
+            th Четв.
+            th Пет.
+            - if "Saturday".in?(week_schedule.keys) 
+              th Съб.
+        tbody
+          - (0..week_schedule[week_schedule.keys.first].count).each do |slot|
+            tr
               td 
-                b = week_schedule[day][slot].try(:second).try(:first).try(:course).try(:name)
+                b = slot_period(week_schedule['Monday'][slot].try(:first)) 
+              - week_schedule.keys.each do |day|
+                td 
+                  b = week_schedule[day][slot].try(:second).try(:first).try(:course).try(:name)

@@ -113,6 +113,10 @@ class TimeSlot < ApplicationRecord
       .map { |t| [t, t.schedules] }
       .group_by { |(t, _)| t.start.strftime("%A") }
 
+    if time_slots_by_day.empty?
+      return {}
+    end
+
     if time_slots_by_day['Saturday'].all? { |(t, ss)| ss.empty? }
       time_slots_by_day.delete('Saturday')
     end
