@@ -1,0 +1,21 @@
+table.table
+  thead
+    tr
+      th.text-center #
+      th Име
+      th Презиме
+      th Имейл
+      th.text-right Действия
+  tbody
+    - (1..35).each do |number|
+      - student = @group.students.find_by(number_in_class: number)
+      tr id="student-#{number}"
+        - if student
+          = render "student_row", student: student   
+        - else
+          = render "student_row_invite", student: student, number: number
+      - if student
+        = render "parent_row_invite", student: student
+        - student.parents.each do |parent|
+          = render "parent_row", student: student, parent: parent
+              

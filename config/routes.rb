@@ -12,8 +12,8 @@ Rails.application.routes.draw do
   end
 
   resources :schools do
-    resource :time_slot
-    resources :subjects
+    resource :time_slot, except: [:new, :edit]
+    resources :subjects, except: [:new, :show, :edit]
     resources :groups do
       resources :homeworks, only: [:index, :create, :update, :destroy]
       resources :absences, only: [:index, :new, :show, :create, :update]

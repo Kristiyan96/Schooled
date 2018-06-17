@@ -7,7 +7,7 @@
           thead
             tr
               th Клас
-              th Класен ръководител
+              th.text-center Класен ръководител
           tbody
             = render partial: 'groups/group_row', collection: @school.groups, as: :group
         = link_to new_school_group_path(@school), class: 'btn btn-success btn-sm' do 

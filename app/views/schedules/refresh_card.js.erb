@@ -1,1 +1,6 @@
-$("#day-schedule").html("<%= escape_javascript ( render partial: 'schedules/schedule', collection: @time_slots, as: :slot ) %>");
+if (<%= @time_slots.any? %>) {
+  $("#day-schedule").html("<%= escape_javascript ( render partial: 'schedules/row', collection: @time_slots, as: :slot ) %>");
+} else {
+  $("#day-schedule").html("<div class='text-center'><h4>Този ден не е раграфен от директора.</h4></div>");
+}
+$('tbody').hide().fadeIn(400);

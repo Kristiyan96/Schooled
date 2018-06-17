@@ -1,0 +1,21 @@
+= form_with url: school_group_student_invitations_path(@school, @group), remote: true do |f|
+  = f.hidden_field :number_in_class, value: number
+  td.text-center
+    .form-group = number
+  td
+    .form-group
+      label.bmd-label-floating Име
+      = f.text_field :first_name, required: true, class: "form-control"
+  td 
+    .form-group
+      label.bmd-label-floating Фамилия
+      = f.text_field :last_name, required: true, class: "form-control"
+  td
+    .form-group
+      label.bmd-label-floating Имейл
+      = f.email_field :email, required: true, class: "form-control"
+  td.td-actions.pull-right
+    .pull-right.form-group
+      = f.button class: "btn btn-success", type: "submit" do
+        i.material-icons person
+        | Добави

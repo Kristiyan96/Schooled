@@ -10,4 +10,5 @@ ul.nav.nav-pills.justify-content-end
   li.nav-item 
     = link_to 'Домашни', school_group_homeworks_path(@school,@group), class: "nav-link #{'active' if controller_name == 'homeworks' && action_name == 'index'}"
   li.nav-item 
-    = link_to 'Настройки', edit_school_group_path(@school, @group), class: "nav-link #{'active' if (controller_name == 'groups' && action_name == 'edit') || (controller_name == 'schedules' && action_name == 'edit') || (controller_name == 'profiles' && action_name == 'index')}"
+    = link_to 'Настройки', edit_school_group_path(@school, @group), class: "nav-link #{'active' if (controller_name == 'groups' && action_name == 'edit') || (controller_name == 'schedules' && action_name == 'edit') || (controller_name == 'student_invitations' && action_name == 'index')}"
+hr

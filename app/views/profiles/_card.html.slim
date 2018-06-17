@@ -1,0 +1,29 @@
+.card.card-profile
+  .card-avatar
+    = image_tag(@user.role_image, class: "img")
+  .card-body
+    h6.card-category.text-gray = role_summary(@user).html_safe
+    h4.card-title = @user.full_name
+  .row
+    - if user_signed_in? && @user != current_user
+      button.btn.col.btn-sm.btn-link
+        i.material-icons message 
+        | &nbsp;&nbsp;Съобщение
+      a.btn.col.btn-sm.btn-link href="mailto:#{@user.email}" data-toggle="tooltip" data-placement="top" title="#{@user.email}"
+        i.material-icons email 
+        | &nbsp;&nbsp;Имейл
+      - if @user.phone_number
+        button.btn.btn-sm.btn-link href="tel:#{@user.phone_number}" data-toggle="tooltip" data-placement="top" title="#{@user.phone_number}"
+          i.material-icons phone
+          | &nbsp;&nbsp;Позвъни   
+    - if user_signed_in? && @user == current_user
+      = link_to edit_user_registration_path, class: "btn col btn-sm btn-link" do
+        i.material-icons settings
+        | &nbsp;&nbsp;Настройки
+    - if can_add_parent?(current_user, @user)
+      = link_to edit_user_registration_path, class: "btn col btn-sm btn-link", data: {target: '#addParent', toggle: 'modal'} do
+        i.material-icons person_add
+        | &nbsp;&nbsp;Добави родител
+
+= render 'components/student/profile/add_parent_modal'
+

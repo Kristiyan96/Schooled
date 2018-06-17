@@ -1,0 +1,23 @@
+ul.nav.nav-pills.justify-content-end
+  li.nav-item
+    - if @courses.count > 1
+      a.dropdown-toggle.nav-link data-toggle="dropdown" href="#" role="button" aria-expanded="false" style="margin: 0px;" = @course.name
+      .dropdown-menu
+        - @courses.each do |course|
+          = link_to course.name, school_group_marks_path(@school, @group, course_id: course), class: 'dropdown-item', remote: true
+    - else 
+      a.nav-link style="margin: 0px;" = @course.name
+    li.nav-item 
+      a.nav-link.active href="#first_semester" data-toggle="tab" Текущи - първи срок
+    li.nav-item 
+      a.nav-link href="#first_semester_final" data-toggle="tab" Срочна - първи срок
+    li.nav-item 
+      a.nav-link href="#second_semester" data-toggle="tab" Текущи - втори срок
+    li.nav-item 
+      a.nav-link href="#second_semester_final" data-toggle="tab" Срочна - втори срок
+    li.nav-item 
+      a.nav-link href="#final" data-toggle="tab" Годишна
+
+.tab-content
+  - ['first_semester', 'first_semester_final', 'second_semester', 'second_semester_final', 'final'].each do |term|
+    = render partial: 'semester_marks', locals: {term: term}

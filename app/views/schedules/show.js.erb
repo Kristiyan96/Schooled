@@ -1,1 +1,2 @@
 $("#week-schedule").html("<%= escape_javascript ( render partial: 'schedules/week_schedule', locals: {date: @date, week_schedule: @week_schedule} ) %>");
+$('tbody').hide().fadeIn(400);

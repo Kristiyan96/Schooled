@@ -1,0 +1,9 @@
+.tab-pane id="#{term}" class="#{'active' if term == 'first_semester'}"
+  table.table
+    thead
+      tr.row
+        td.text-center.col-md-1 #
+        td.col-md-2 Име
+        td.col-md-9 Оценки
+    tbody
+      = render partial: 'row', collection: @group.students.order(:number_in_class), as: :student, locals: {term: term}

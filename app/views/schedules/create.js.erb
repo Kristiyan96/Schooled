@@ -1,0 +1,2 @@
+// Replace row
+$("#day-schedule tr#<%= @slot.id %>").replaceWith("<%= escape_javascript ( render partial: 'schedules/row', locals: {slot: @slot, schedule: @schedule} ) %>");

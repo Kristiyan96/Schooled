@@ -12,10 +12,10 @@ class SchedulesController < ApplicationController
   end
 
   def edit
-    @school     = School.find(params[:school_id])
-    @group      = @school.groups.find(params[:group_id])
-    @courses    = @group.courses.to_a << Course::None
-    @date       = (params[:date] && Date.parse(params[:date])) || Date.today
+    @school = School.find(params[:school_id])
+    @group = @school.groups.find(params[:group_id])
+    @courses = @group.courses.to_a << Course::None
+    @date = (params[:date] && Date.parse(params[:date])) || Date.today
     @time_slots = @school.active_school_year.time_slots.for_day(@date)
 
     respond_to do |format|
@@ -25,31 +25,33 @@ class SchedulesController < ApplicationController
   end
 
   def create
-    @school     = School.find(params[:school_id])
-    @group      = @school.groups.find(params[:group_id])
-    @courses    = @group.courses.to_a << Course::None
-    @date       = TimeSlot.find(schedule_params[:time_slot_id]).start
+    @slot = TimeSlot.find(schedule_params[:time_slot_id])
+    @school = School.find(params[:school_id])
+    @group = @school.groups.find(params[:group_id])
+    @courses = @group.courses.to_a << Course::None
+    @date = @slot.start
 
-    # NOTE(for Kris) Type param should be one of [:one, :series_7, :series_14]
-    Schedule.create_with_type(school: @school, params: schedule_params)
+    @schedules = Schedule.create_with_type(school: @school, params: schedule_params)
     @time_slots = @school.active_school_year.time_slots.for_day(@date)
+    @schedule = Schedule.find(@schedules.ids.first)
+
     respond_to do |format|
-      format.js { render action: "refresh_card"}
+      format.js { }
     end
   end
 
   def update
     @school     = School.find(params[:school_id])
-    @group      = @school.groups.find(params[:group_id])
-    @courses    = @group.courses.to_a << Course::None
+    @group = @school.groups.find(params[:group_id])
+    @courses = @group.courses.to_a << Course::None
     @date       = @schedule.time_slot.start
     @time_slots = @school.active_school_year.time_slots.for_day(@date)
 
-    # Type param should be one of [:one, :series_7, :series_14]
     schedule = Schedule.find(params[:id])
     Schedule.update_with_type(school: @school, schedule: schedule, params: update_params)
+
     respond_to do |format|
-      format.js { render action: "refresh_card"}
+      format.js { }
     end
   end
 

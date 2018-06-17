@@ -1,0 +1,4 @@
+closeModals();
+
+// Prepend new row at the beginning
+$('#subjects').prepend("<%= escape_javascript ( render partial: 'subjects/row', locals: {subject: @subject} ) %>");
