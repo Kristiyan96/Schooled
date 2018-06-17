@@ -7,7 +7,7 @@
           thead
             tr
               th Име
-              th Имейл
+              th.text-center Имейл
           tbody#teachers
             = render partial: 'schools/teacher_invitations/teacher_row', collection: @teachers, as: :teacher
         button.btn.btn-success.btn-sm type="button" data-toggle="modal" data-target="#invite-teacher" Покани учител

@@ -4,18 +4,18 @@
     .form-group = number
   td
     .form-group
-      label.bmd-label-floating First Name
+      label.bmd-label-floating Име
       = f.text_field :first_name, required: true, class: "form-control"
   td 
     .form-group
-      label.bmd-label-floating Last Name
+      label.bmd-label-floating Фамилия
       = f.text_field :last_name, required: true, class: "form-control"
   td
     .form-group
-      label.bmd-label-floating Email
+      label.bmd-label-floating Имейл
       = f.email_field :email, required: true, class: "form-control"
   td.td-actions.pull-right
     .pull-right.form-group
       = f.button class: "btn btn-success", type: "submit" do
         i.material-icons person
-        | Invite
+        | Добави
