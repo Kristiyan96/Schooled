@@ -1,0 +1,5 @@
+<% if @absence.value > 0 %>
+  $("#student-<%= @absence.student_id %>").attr('class','row').addClass('table-<%= @absence.value == 1 ? "danger" : "warning"%>');
+<% else %>
+  $("#student-<%= @absence.student_id %>").attr('class','row');
+<% end %>

@@ -12,6 +12,6 @@ class SchoolYear < ApplicationRecord
   end
 
   def active_term
-    midterm.past? ? 'first_semester' : 'second_semester'
+    midterm.past? ? 'second_semester' : 'first_semester'
   end
 end

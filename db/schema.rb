@@ -20,12 +20,10 @@ ActiveRecord::Schema.define(version: 2018_06_05_120209) do
     t.integer "kind", default: 0, null: false
     t.integer "category", default: 0, null: false
     t.integer "student_id"
-    t.bigint "school_year_id"
     t.bigint "schedule_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["schedule_id"], name: "index_absences_on_schedule_id"
-    t.index ["school_year_id"], name: "index_absences_on_school_year_id"
     t.index ["student_id"], name: "index_absences_on_student_id"
   end
 
@@ -215,7 +213,6 @@ ActiveRecord::Schema.define(version: 2018_06_05_120209) do
   end
 
   add_foreign_key "absences", "schedules"
-  add_foreign_key "absences", "school_years"
   add_foreign_key "assignments", "roles"
   add_foreign_key "assignments", "schools"
   add_foreign_key "assignments", "users"
