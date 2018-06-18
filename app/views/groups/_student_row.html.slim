@@ -1,10 +1,10 @@
 - absence_val = Absence.find_by(student: student, schedule: @schedule).try(:value) || 0
 tr.row id="student-#{student.id}" class="#{'table-danger' if absence_val == 1}#{'table-warning' if absence_val == Rational(1,3)}"
-  td.col-md-1 = student.number_in_class
+  td.text-center.col-md-1 = student.number_in_class
   td.col-md-2 = student.full_name
   td.text-center.col-md-2
-    = render partial: 'absences/form', locals: {student: student, term: term}
-  td.col-md-4.marks
+    = render partial: 'absences/form', locals: {student: student, term: term, absence_val: absence_val}
+  td.col-md-3.marks
     = render partial: 'marks/mark', collection: Mark.where(student: student, course: @course, kind: term).order(:created_at), as: :mark
-  td.col-md-3.text-right
+  td.col-md-4.text-right
     = render partial: 'marks/form', locals: {student: student, term: term}

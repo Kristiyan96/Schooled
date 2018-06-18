@@ -124,6 +124,8 @@ ActiveRecord::Schema.define(version: 2018_06_05_120209) do
   end
 
   create_table "schedules", force: :cascade do |t|
+    t.text "topic"
+    t.boolean "performed", default: false
     t.bigint "course_id"
     t.bigint "time_slot_id"
     t.datetime "created_at", null: false
