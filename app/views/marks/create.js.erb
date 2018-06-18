@@ -1,7 +1,7 @@
-$('.whole-grade').val('');
+$('#student-<%= @mark.student_id %> .whole-grade').val('');
 closeModals();
 if ("<%= @mark.id %>") {
   $("#<%= @mark.kind %> #student-<%= @mark.student_id %> .marks").append("<%= escape_javascript ( render partial: 'marks/mark', locals: {mark: @mark} )%>");
-  $("#<%= @mark.id%>").hide().fadeIn(400);
+  $("#<%= @mark.id %>").hide().fadeIn(400);
 }
 

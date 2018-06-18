@@ -16,6 +16,7 @@ class SchedulesController < ApplicationController
     @school = School.find(params[:school_id])
     @group = @school.groups.find(params[:group_id])
     @schedule = Schedule.find(params[:id])
+    @course = @schedule.course
     @date = (params[:date] && Date.parse(params[:date])) || Date.today
   end
 

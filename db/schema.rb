@@ -139,6 +139,7 @@ ActiveRecord::Schema.define(version: 2018_06_05_120209) do
     t.string "year"
     t.boolean "active", default: false, null: false
     t.datetime "start"
+    t.datetime "midterm"
     t.datetime "end"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

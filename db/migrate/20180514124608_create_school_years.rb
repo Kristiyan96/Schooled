@@ -6,6 +6,7 @@ class CreateSchoolYears < ActiveRecord::Migration[5.2]
       t.boolean :active, default: false, null: false
 
       t.datetime :start
+      t.datetime :midterm
       t.datetime :end
 
       t.timestamps

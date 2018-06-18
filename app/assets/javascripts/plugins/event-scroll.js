@@ -280,7 +280,7 @@ document.addEventListener("turbolinks:load", function() {
   function getURI(type){
     switch(type) {
       case 'schedule-edit':
-        return '/schools/1/groups/1/schedule/edit';
+        return '/schools/1/groups/1/schedules/1/edit';
       case 'new-absence':
         return '/schools/1/groups/1/absences/new';
       case 'time_slot':

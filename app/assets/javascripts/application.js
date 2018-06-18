@@ -20,7 +20,7 @@ function closeModals(){
 }
 
 document.addEventListener("turbolinks:load", function() {
-  $('body').on('mouseenter mouseleave', '.table-hover td', function(e){
-    $(`table tr td:nth-child(${$(this).index()+1})`).toggleClass('hover');
-  });
+  // $('body').on('mouseenter mouseleave', '.table-hover td', function(e){
+  //   $(`table tr td:nth-child(${$(this).index()+1})`).toggleClass('hover');
+  // });
 });
