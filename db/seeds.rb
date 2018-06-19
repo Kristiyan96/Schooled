@@ -152,12 +152,12 @@ TimeSlot.create_week_daily(school_year: y1, date: date, params: {start: time.cha
 puts "Creating schedules"
 
 slots_today = TimeSlot.for_school(smg).for_day(Date.today)
-Schedule.create_with_type(school: smg, params: {course_id: c1.id, time_slot_id: slots_today[0].id, type: 'series_7'})
-Schedule.create_with_type(school: smg, params: {course_id: c1.id, time_slot_id: slots_today[1].id, type: 'series_7'})
-Schedule.create_with_type(school: smg, params: {course_id: c2.id, time_slot_id: slots_today[2].id, type: 'series_7'})
-Schedule.create_with_type(school: smg, params: {course_id: c2.id, time_slot_id: slots_today[3].id, type: 'series_7'})
-Schedule.create_with_type(school: smg, params: {course_id: c3.id, time_slot_id: slots_today[4].id, type: 'series_7'})
-Schedule.create_with_type(school: smg, params: {course_id: c3.id, time_slot_id: slots_today[5].id, type: 'series_7'})
+Schedule.create_with_type(params: {course_id: c1.id, time_slot_id: slots_today[0].id, type: 'series_7'})
+Schedule.create_with_type(params: {course_id: c1.id, time_slot_id: slots_today[1].id, type: 'series_7'})
+Schedule.create_with_type(params: {course_id: c2.id, time_slot_id: slots_today[2].id, type: 'series_7'})
+Schedule.create_with_type(params: {course_id: c2.id, time_slot_id: slots_today[3].id, type: 'series_7'})
+Schedule.create_with_type(params: {course_id: c3.id, time_slot_id: slots_today[4].id, type: 'series_7'})
+Schedule.create_with_type(params: {course_id: c3.id, time_slot_id: slots_today[5].id, type: 'series_7'})
 
 
 puts "Creating messages"

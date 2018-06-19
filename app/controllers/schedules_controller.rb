@@ -16,9 +16,9 @@ class SchedulesController < ApplicationController
     @courses = @group.courses.to_a << Course::None
     @date = @slot.start
 
-    @schedules = Schedule.create_with_type(school: @school, params: schedule_params)
+    schedule_id = Schedule.create_with_type(params: schedule_params)
+    @schedule = Schedule.find(schedule_id)
     @time_slots = @school.active_school_year.time_slots.for_day(@date)
-    @schedule = Schedule.find(@schedules.ids.first)
 
     respond_to do |format|
       format.js { }
@@ -27,14 +27,15 @@ class SchedulesController < ApplicationController
 
   def update
     authorize @group, :update?
-    
+
     @schedule = @group.schedules.find(params[:id])
     @slot = @schedule.time_slot
+    Schedule.update_with_type(school: @school, schedule: @schedule, params: update_params)
+
     @courses = @group.courses.to_a << Course::None
     @date = @schedule.time_slot.start
     @time_slots = @school.active_school_year.time_slots.for_day(@date)
 
-    Schedule.update_with_type(school: @school, schedule: @schedule, params: update_params)
 
     respond_to do |format|
       format.js { }
