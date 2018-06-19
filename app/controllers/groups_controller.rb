@@ -43,6 +43,18 @@ class GroupsController < ApplicationController
     end
   end
 
+  def schedule
+    @school = School.find(params[:school_id])
+    @group = @school.groups.find(params[:group_id])
+    @date = (params[:date] && Date.parse(params[:date])) || Date.today
+    @week_schedule = TimeSlot.schedule_table(@group, @date)
+    
+    respond_to do |format|
+      format.html { }
+      format.js   { }
+    end
+  end
+
   private
 
   def set_school

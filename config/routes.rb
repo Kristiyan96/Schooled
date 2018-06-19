@@ -22,12 +22,18 @@ Rails.application.routes.draw do
       resources :student_invitations, path: :students, module: :schools, only: [:index, :create]
       resources :parent_invitations, path: :parents, module: :schools, only: [:index, :create]
       resources :schedules
+      member do 
+        get 'schedule'
+      end
     end
     resources :headmaster_invitations, path: :headmasters, module: :schools, only: [:index, :create]
-    resources :teacher_invitations, path: :teachers, module: :schools, only: [:index, :create]
+    resource :teacher_invitation, path: :teachers, module: :schools, only: [:create] do
+      member do 
+        get 'teachers'
+      end
+    end
     member do 
       get 'dashboard'
-      get 'teachers'
     end
   end
 
