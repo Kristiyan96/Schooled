@@ -1,5 +1,5 @@
 class SchoolsController < ApplicationController
-  before_action :set_school, only: [:show, :dashboard, :teachers, :edit, :update, :destroy]
+  before_action :set_school, except: [:index, :new]
 
   def index
     @schools = School.all
@@ -9,10 +9,6 @@ class SchoolsController < ApplicationController
   end
 
   def dashboard
-  end
-
-  def teachers
-    @teachers = @school.teachers
   end
 
   def new
@@ -60,6 +56,7 @@ class SchoolsController < ApplicationController
   private
   def set_school
     @school = School.find(params[:id])
+    authorize @school
   end
 
   def school_params
