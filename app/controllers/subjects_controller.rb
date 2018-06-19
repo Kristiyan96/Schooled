@@ -3,11 +3,12 @@ class SubjectsController < ApplicationController
   before_action :set_subject, only: [:edit, :update, :destroy]
 
   def index
-    @subjects = @school.subjects.all
+    @subjects = policy_scope(@school.subjects)
   end
 
   def new
     @subject = @school.subjects.new
+    authorize @subject
   end
 
   def edit
@@ -15,6 +16,7 @@ class SubjectsController < ApplicationController
 
   def create
     @subject = @school.subjects.new(subject_params)
+    authorize @subject
 
     respond_to do |format|
       if @subject.save
@@ -60,6 +62,7 @@ class SubjectsController < ApplicationController
 
   def set_subject
     @subject = Subject.find(params[:id])
+    authorize @subject
   end
 
   def subject_params

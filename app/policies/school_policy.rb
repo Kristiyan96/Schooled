@@ -14,4 +14,8 @@ class SchoolPolicy < ApplicationPolicy
   def destroy?
     false
   end
+
+  def dashboard?
+    user.headmaster?(record)
+  end
 end

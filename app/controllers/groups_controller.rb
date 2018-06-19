@@ -3,7 +3,7 @@ class GroupsController < ApplicationController
   before_action :set_group, except: [:index, :new, :create]
 
   def index
-    @groups = policy_scope(@school.groups)
+    @groups = policy_scope(@school.groups.order(:grade, :name))
   end
 
   def show
@@ -11,6 +11,7 @@ class GroupsController < ApplicationController
 
   def new
     @group = @school.groups.new
+    authorize @group
   end
 
   def edit
@@ -18,7 +19,7 @@ class GroupsController < ApplicationController
 
   def create
     @group = @school.groups.new(group_params)
-
+    authorize @group
     respond_to do |format|
       if @group.save
         format.html { redirect_to school_groups_path(@school), notice: "Group was successfully created." }

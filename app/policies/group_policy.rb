@@ -25,4 +25,10 @@ class GroupPolicy < ApplicationPolicy
   def destroy?
     user.admin? or user.headmaster?(record.school)
   end
+
+  def teacher?
+    user.teacher_of_group?(record) ||
+      user.headteacher?(record) || 
+      user.headmaster?(record.school)
+  end
 end
