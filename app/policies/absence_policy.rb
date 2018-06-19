@@ -1,0 +1,3 @@
+class AbsencePolicy < ApplicationPolicy
+
+end

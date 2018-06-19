@@ -2,6 +2,7 @@ class ApplicationPolicy
   attr_reader :user, :record
 
   def initialize(user, record)
+    raise Pundit::NotAuthorizedError, "Трябва да влезете в акаунта си." unless user
     @user = user
     @record = record
   end
@@ -42,6 +43,7 @@ class ApplicationPolicy
     attr_reader :user, :scope
 
     def initialize(user, scope)
+      raise Pundit::NotAuthorizedError, "Трябва да влезете в акаунта си." unless user
       @user = user
       @scope = scope
     end

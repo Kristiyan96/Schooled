@@ -1,0 +1,3 @@
+class MarkPolicy < ApplicationPolicy
+
+end
