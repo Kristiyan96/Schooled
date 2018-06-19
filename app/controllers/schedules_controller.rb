@@ -1,6 +1,8 @@
 class SchedulesController < ApplicationController
 
   def show
+    authorize current_user, :schedule?
+
     @school = School.find(params[:school_id])
     @group = @school.groups.find(params[:group_id])
     @schedule = Schedule.find(params[:id])
@@ -11,6 +13,8 @@ class SchedulesController < ApplicationController
   def edit
     @school = School.find(params[:school_id])
     @group = @school.groups.find(params[:group_id])
+    authorize @group, :update?
+
     @courses = @group.courses.to_a << Course::None
     @date = (params[:date] && Date.parse(params[:date])) || Date.today
     @time_slots = @school.active_school_year.time_slots.for_day(@date)
@@ -25,6 +29,8 @@ class SchedulesController < ApplicationController
     @slot = TimeSlot.find(schedule_params[:time_slot_id])
     @school = School.find(params[:school_id])
     @group = @school.groups.find(params[:group_id])
+    authorize @group, :update?
+
     @courses = @group.courses.to_a << Course::None
     @date = @slot.start
 
@@ -40,6 +46,8 @@ class SchedulesController < ApplicationController
   def update
     @school     = School.find(params[:school_id])
     @group = @school.groups.find(params[:group_id])
+    authorize @group, :udpate?
+
     @courses = @group.courses.to_a << Course::None
     @date       = @schedule.time_slot.start
     @time_slots = @school.active_school_year.time_slots.for_day(@date)
