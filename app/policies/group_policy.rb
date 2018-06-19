@@ -31,4 +31,12 @@ class GroupPolicy < ApplicationPolicy
       user.headteacher?(record) || 
       user.headmaster?(record.school)
   end
+
+  def schedule?
+    user.headmaster?(record.school) ||
+      user.headteacher?(record) ||
+      user.teacher_of_group?(record) ||
+      user.student_in_group?(record) ||
+      user.parent_in_group?(record)
+  end
 end

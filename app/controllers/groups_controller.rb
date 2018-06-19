@@ -45,7 +45,7 @@ class GroupsController < ApplicationController
 
   def schedule
     @school = School.find(params[:school_id])
-    @group = @school.groups.find(params[:group_id])
+    @group = @school.groups.find(params[:id])
     @date = (params[:date] && Date.parse(params[:date])) || Date.today
     @week_schedule = TimeSlot.schedule_table(@group, @date)
     
