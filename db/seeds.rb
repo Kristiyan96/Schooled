@@ -138,7 +138,7 @@ Remark.create(student: s2, course: c2, message: "Не-Ставаш")
 
 puts "Creating time slots"
 
-date = Date.today.beginning_of_week
+date = smg.active_school_year.start
 time = Time.now
 TimeSlot.create_week_daily(school_year: y1, date: date, params: {start: time.change(hour: 7, min: 30).strftime("%H:%M"), end: time.change(hour: 8, min: 10).strftime("%H:%M"), title: 'Час 1', school_year_id: y1.id})
 TimeSlot.create_week_daily(school_year: y1, date: date, params: {start: time.change(hour: 8, min: 20).strftime("%H:%M"), end: time.change(hour: 9, min: 0).strftime("%H:%M"), title: 'Час 2', school_year_id: y1.id})

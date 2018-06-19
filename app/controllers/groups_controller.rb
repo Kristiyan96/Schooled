@@ -56,7 +56,6 @@ class GroupsController < ApplicationController
   def day_schedule
     @courses = @group.courses.to_a << Course::None
     @date = (params[:date] && Date.parse(params[:date])) || Date.today
-    p @date
     @time_slots = @school.active_school_year.time_slots.for_day(@date)
 
     respond_to do |format|

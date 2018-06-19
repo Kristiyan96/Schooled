@@ -30,7 +30,7 @@ class SchedulesController < ApplicationController
 
     @schedule = @group.schedules.find(params[:id])
     @slot = @schedule.time_slot
-    Schedule.update_with_type(school: @school, schedule: @schedule, params: update_params)
+    Schedule.update_with_type(schedule: @schedule, params: update_params)
 
     @courses = @group.courses.to_a << Course::None
     @date = @schedule.time_slot.start
