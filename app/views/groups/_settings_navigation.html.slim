@@ -2,6 +2,6 @@ ul.nav.nav-pills.justify-content-end
   li.nav-item 
     = link_to 'Настройки', edit_school_group_path(@school, @group), class: "nav-link #{'active' if controller_name == 'groups' && action_name == 'edit'}"
   li.nav-item 
-    = link_to 'Седмична програма', edit_school_group_schedule_path(@school, @group), class: "nav-link #{'active' if controller_name == 'schedules' && action_name == 'edit'}"
+    = link_to 'Седмична програма', day_schedule_school_group_path(@school, @group), class: "nav-link #{'active' if controller_name == 'groups' && action_name == 'day_schedule'}"
   li.nav-item 
     = link_to 'Ученици', students_school_group_student_invitations_path(@school, @group), class: "nav-link #{'active' if controller_name == 'student_invitations' && action_name == 'students'}"

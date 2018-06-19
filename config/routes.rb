@@ -17,7 +17,7 @@ Rails.application.routes.draw do
     resources :groups do
       resources :homeworks, only: [:index, :create, :update, :destroy]
       resources :absences, only: [:index, :new, :show, :create, :update]
-      resources :marks
+      resources :marks, only: [:create, :update, :destroy]
       resources :courses
       resource :student_invitations, path: :students, module: :schools, only: [:create] do
         member do 
@@ -25,9 +25,11 @@ Rails.application.routes.draw do
         end
       end
       resources :parent_invitations, path: :parents, module: :schools, only: [:index, :create]
-      resource :schedule
+      resources :schedules
       member do 
-        get 'schedule'
+        get 'week_schedule'
+        get 'day_schedule'
+        get 'marks'
       end
     end
     resources :headmaster_invitations, path: :headmasters, module: :schools, only: [:index, :create]

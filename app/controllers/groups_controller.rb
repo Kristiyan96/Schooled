@@ -43,15 +43,35 @@ class GroupsController < ApplicationController
     end
   end
 
-  def schedule
-    @school = School.find(params[:school_id])
-    @group = @school.groups.find(params[:id])
+  def week_schedule
     @date = (params[:date] && Date.parse(params[:date])) || Date.today
     @week_schedule = TimeSlot.schedule_table(@group, @date)
     
     respond_to do |format|
       format.html { }
       format.js   { }
+    end
+  end
+
+  def day_schedule
+    @courses = @group.courses.to_a << Course::None
+    @date = (params[:date] && Date.parse(params[:date])) || Date.today
+    @time_slots = @school.active_school_year.time_slots.for_day(@date)
+
+    respond_to do |format|
+      format.html { }
+      format.js   { render action: "refresh_card"}
+    end
+  end
+
+  def marks
+    @courses = @group.courses.where(school_year: @school.active_school_year)
+    @course = @courses.first
+    @mark = Mark.new
+    respond_to do |format|
+      format.html { }
+      format.json { }
+      format.js { }
     end
   end
 

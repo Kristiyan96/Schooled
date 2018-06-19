@@ -32,11 +32,19 @@ class GroupPolicy < ApplicationPolicy
       user.headmaster?(record.school)
   end
 
-  def schedule?
+  def week_schedule?
     user.headmaster?(record.school) ||
       user.headteacher?(record) ||
       user.teacher_of_group?(record) ||
       user.student_in_group?(record) ||
       user.parent_in_group?(record)
+  end
+
+  def day_schedule?
+    user.headmaster?(record.school) or user.headteacher?(record)
+  end
+
+  def marks?
+    user.headmaster?(record.school) or user.headteacher?(record)
   end
 end

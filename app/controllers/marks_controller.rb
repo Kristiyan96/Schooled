@@ -5,16 +5,6 @@ class MarksController < ApplicationController
   before_action :set_course
   before_action :set_mark, only: [:update, :destroy]
 
-  def index
-    @courses = @group.courses.where(school_year: @school.active_school_year)
-    @mark = Mark.new
-    respond_to do |format|
-      format.html { }
-      format.json { }
-      format.js { }
-    end
-  end
-
   def create
     @mark = Mark.new(mark_params)
     respond_to do |format|

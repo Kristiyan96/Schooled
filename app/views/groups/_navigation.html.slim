@@ -1,14 +1,14 @@
 ul.nav.nav-pills.justify-content-end
   li.nav-item 
-    = link_to 'Начало', school_group_path(@school,@group), class: "nav-link #{'active' if controller_name == 'groups' && action_name == 'show'}"
+    = link_to 'Начало', school_group_path(@school, @group), class: "nav-link #{'active' if controller_name == 'groups' && action_name == 'show'}"
   li.nav-item 
-    = link_to 'Програма', schedule_school_group_path(@school,@group), class: "nav-link #{'active' if controller_name == 'groups' && action_name == 'schedule'}"
+    = link_to 'Програма', week_schedule_school_group_path(@school, @group), class: "nav-link #{'active' if controller_name == 'groups' && action_name == 'schedule'}"
   li.nav-item 
-    = link_to 'Оценки', school_group_marks_path(@school,@group), class: "nav-link #{'active' if controller_name == 'marks' && action_name == 'index'}"
+    = link_to 'Оценки', marks_school_group_path(@school, @group), class: "nav-link #{'active' if controller_name == 'groups' && action_name == 'marks'}"
   li.nav-item 
-    = link_to 'Отсъствия', new_school_group_absence_path(@school,@group, school_year_id: @school.active_school_year), class: "nav-link #{'active' if controller_name == 'absences' && action_name == 'new'}"
+    = link_to 'Отсъствия', new_school_group_absence_path(@school, @group, school_year_id: @school.active_school_year), class: "nav-link #{'active' if controller_name == 'absences' && action_name == 'new'}"
   li.nav-item 
-    = link_to 'Домашни', school_group_homeworks_path(@school,@group), class: "nav-link #{'active' if controller_name == 'homeworks' && action_name == 'index'}"
+    = link_to 'Домашни', school_group_homeworks_path(@school, @group), class: "nav-link #{'active' if controller_name == 'homeworks' && action_name == 'index'}"
   li.nav-item 
-    = link_to 'Настройки', edit_school_group_path(@school, @group), class: "nav-link #{'active' if (controller_name == 'groups' && action_name == 'edit') || (controller_name == 'schedules' && action_name == 'edit') || (controller_name == 'student_invitations' && action_name == 'students')}"
+    = link_to 'Настройки', edit_school_group_path(@school, @group), class: "nav-link #{'active' if (controller_name == 'groups' && action_name == 'edit') || (controller_name == 'groups' && action_name == 'day_schedule') || (controller_name == 'student_invitations' && action_name == 'students')}"
 hr
