@@ -56,7 +56,7 @@ class User < ApplicationRecord
   end
 
   def headteacher?(group)
-    group.teacher == self
+    group.try(:teacher) == self
   end
 
   def teacher?(school)
