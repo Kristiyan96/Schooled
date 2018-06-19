@@ -19,9 +19,13 @@ Rails.application.routes.draw do
       resources :absences, only: [:index, :new, :show, :create, :update]
       resources :marks
       resources :courses
-      resources :student_invitations, path: :students, module: :schools, only: [:index, :create]
+      resource :student_invitations, path: :students, module: :schools, only: [:create] do
+        member do 
+          get 'students'
+        end
+      end
       resources :parent_invitations, path: :parents, module: :schools, only: [:index, :create]
-      resources :schedules
+      resource :schedule
       member do 
         get 'schedule'
       end
