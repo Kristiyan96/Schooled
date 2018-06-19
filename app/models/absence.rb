@@ -13,8 +13,7 @@ class Absence < ApplicationRecord
     students.map! do |s|
       args.to_h.merge(student_id: s)
     end
-
-    p students
+    
     import(students)
   end
 end

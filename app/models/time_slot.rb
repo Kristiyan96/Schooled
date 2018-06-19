@@ -124,13 +124,11 @@ class TimeSlot < ApplicationRecord
       .map { |t| [t, t.schedules] }
       .group_by { |(t, _)| t.start.strftime("%A") }
 
-    if time_slots_by_day.empty?
-      return {}
-    end
+    return {} if time_slots_by_day.clone
+      .delete_if { |key, val| val.all? { |(t, ss)| ss.empty? } }.empty?
 
-    if time_slots_by_day['Saturday'].all? { |(t, ss)| ss.empty? }
-      time_slots_by_day.delete('Saturday')
-    end
+    time_slots_by_day.delete('Saturday') if time_slots_by_day['Saturday']
+      .all? { |(t, ss)| ss.empty? }
 
     max = time_slots_by_day.values.map do |ts|
       ts

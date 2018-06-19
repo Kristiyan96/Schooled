@@ -49,7 +49,7 @@ class GroupsController < ApplicationController
     
     respond_to do |format|
       format.html { }
-      format.js   { }
+      format.js   { render action: "../schedules/week_schedule"}
     end
   end
 

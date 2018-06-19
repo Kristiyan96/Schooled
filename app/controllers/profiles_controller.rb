@@ -12,7 +12,7 @@ class ProfilesController < ApplicationController
 
     respond_to do |format|
       format.html { }
-      format.js   { render action: "../schedules/index" }
+      format.js   { render action: "../schedules/week_schedule" }
     end
   end
   
