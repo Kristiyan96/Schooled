@@ -1,9 +1,9 @@
 class TimeSlotsController < ApplicationController
   def show
-    @school     = School.find(params[:school_id])
+    @school = School.find(params[:school_id])
     authorize @school, :update?
     
-    @date       = (params[:date] && Date.parse(params[:date])) || Date.today
+    @date = (params[:date] && Date.parse(params[:date])) || Date.today
     @time_slots = TimeSlot.for_school(@school).for_day(@date)
 
     respond_to do |format|
@@ -33,6 +33,8 @@ class TimeSlotsController < ApplicationController
     authorize @school, :update?
 
     TimeSlot.update_with_type(time_slot: @slot, type: params[:type], params: update_slot_params)
+
+    @slot = TimeSlot.find(params[:id])
     @date = @slot.start.to_date
 
     respond_to do |format|
