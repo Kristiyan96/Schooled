@@ -1,0 +1,6 @@
+= form_with(scope: :absence, url: school_group_absences_path(@school, @group), method: :post, remote: true) do |f|
+  = f.hidden_field :student_id, value: student.id
+  = f.hidden_field :schedule_id, value: @schedule.id
+  = f.hidden_field :category, value: "permanent"
+  = f.hidden_field :kind, value: term
+  = f.select :value, [['Присъствал', 0], ['Закъснял', '1/3'], ['Отсъствал', '1/1']], {selected: absence_val}, {class: "form-control set-absence"}

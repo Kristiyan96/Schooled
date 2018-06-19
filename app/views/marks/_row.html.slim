@@ -3,4 +3,4 @@ tr.row id="student-#{student.id}"
   td.col-md-1 = link_to student.full_name, profile_path(student)
   td.col-md-10
     .col-md-8.pull-left.marks  = render partial: 'mark', collection: Mark.where(student: student, course: @course, kind: term).order(:created_at), as: :mark
-    .col-md-4.pull-right = render partial: 'mark_form', locals: {student: student, term: term}
+    .col-md-4.pull-right = render partial: 'form', locals: {student: student, term: term}

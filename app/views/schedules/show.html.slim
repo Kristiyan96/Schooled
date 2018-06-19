@@ -1,6 +1,112 @@
 .card
-  .card-header.card-header-icon
-    b.card-icon = group_name(@group)
+  .card-header.card-header-tabs.card-header-primary
+    .nav-tabs-navigation
+      .nav-tabs-wrapper
+        ul.nav.nav-tabs data-tabs="tabs" 
+          li.nav-item
+            a.nav-link.active data-toggle="tab" href="#check" 
+              i.material-icons list
+              | Финална проверка
+              .ripple-container
+          li.nav-item
+            a.nav-link data-toggle="tab" href="#info" 
+              i.material-icons info
+              | Информация за часа
+              .ripple-container
+          li.nav-item
+            a.nav-link data-toggle="tab" href="#topic" 
+              i.material-icons title
+              | Тема на часа
+              .ripple-container
+          li.nav-item
+            a.nav-link data-toggle="tab" href="#homework" 
+              i.material-icons edit
+              | Домашно
+              .ripple-container
+          li.nav-item
+            a.nav-link data-toggle="tab" href="#smart-fill" 
+              i.material-icons flash_on
+              | Умно попълване
+              .ripple-container
+
   .card-body
+    .tab-content
+      #check.tab-pane.active
+        table.table
+          tbody
+            tr
+              td
+                .form-check
+                  label.form-check-label
+                    input.form-check-input checked="checked" type="checkbox" value="" /
+                    span.form-check-sign
+                      span.check
+              td Часът е проведен
+            tr
+              td
+                .form-check
+                  label.form-check-label
+                    input.form-check-input type="checkbox" value="" /
+                    span.form-check-sign
+                      span.check
+              td Отсъствията са въведени
+            tr
+              td
+                .form-check
+                  label.form-check-label
+                    input.form-check-input type="checkbox" value="" /
+                    span.form-check-sign
+                      span.check
+              td Темата на часа е описана
+
+      #info.tab-pane
+        table.table
+          tbody
+            tr
+              td Клас
+              td = group_name(@group)
+            tr
+              td Стая
+              td 404
+            tr
+              td Час
+              td = slot_period(@schedule.time_slot)
+      #topic.tab-pane
+        = form_with scope: :schedule, url: school_group_schedule_path(@school, @group, @schedule), remote: true do |f|
+          .form-group.no-margin.col-xs-10.offset-xs-1
+            label for="schedule_topic" 
+              | Моля, опишете темата на часа в това поле.
+            br
+            = f.text_area :topic, class: 'form-control', rows: 3
+          = f.submit 'Запази', class: 'btn btn-primary btn-sm pull-right'
+      #homework.tab-pane
+        = render partial: 'homeworks/homework_row', collection: @group.homeworks.where(course: @course), as: :homework
+
+        = render 'homeworks/add_homework_modal'
+        = render 'homeworks/edit_homework_modal'
+
+        .offset-md-3
+          button.btn.btn-success.btn-sm type="button" data-toggle="modal" data-target="#add-homework-modal" Добави домашно
+
+      #smart-fill.tab-pane
+
+
+
+
+.card.no-margin
+  .card-body
+    = form_with scope: :schedule, url: school_group_schedule_path(@school, @group, @schedule), remote: true do |f|
+
+    table.table
+      thead
+        tr.row
+          td.col-md-1.text-center #
+          td.col-md-2 Име
+          td.col-md-2.text-center Присъствие
+          td.col-md-3.text-center Текущи оценки
+          td.col-md-4.text-center Нова оценка
+      tbody id="#{@school.active_school_year.active_term}"
+        = render partial: 'groups/student_row', collection: @group.students.order(:number_in_class), as: :student, locals: {term: @school.active_school_year.active_term}
+        = render 'marks/edit_modal'
 
 

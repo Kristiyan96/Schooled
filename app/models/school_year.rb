@@ -10,4 +10,8 @@ class SchoolYear < ApplicationRecord
     where(school: year.school).update_all(active: false)
     year.save
   end
+
+  def active_term
+    midterm.past? ? 'second_semester' : 'first_semester'
+  end
 end

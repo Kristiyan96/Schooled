@@ -6,6 +6,10 @@ $('body').removeClass('modal-open');
 $('.modal-backdrop').remove();
 $('.modal').modal('hide');
 
-// Refresh homeworks
+// Refresh homeworks in group/homeworks
 $("#future").html("<%= escape_javascript ( render partial: 'homeworks/homework_row', collection: @homeworks_future, as: :homework ) %>");
 $("#past").html("<%= escape_javascript ( render partial: 'homeworks/homework_row', collection: @homeworks_past, as: :homework ) %>");
+
+// Refresh homeworks in schedule/show
+$('#homework .homework-row').remove();
+$("#homework").prepend("<%= escape_javascript ( render partial: 'homeworks/homework_row', collection: @homeworks, as: :homework ) %>");

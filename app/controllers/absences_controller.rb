@@ -26,10 +26,16 @@ class AbsencesController < ApplicationController
   end
 
   def create
+    student_id = absence_params[:student_id]
+    schedule_id = absence_params[:schedule_id]
     respond_to do |format|
-      if @absence = Absence.create_multiple(absence_params)
-        format.html { redirect_to @absence, notice: 'Absence was successfully created.' }
-        format.json { render :show, status: :created, location: @absence }
+      if @absence = Absence
+        .find_or_initialize_by(student_id: student_id, schedule_id: schedule_id)
+        .update_attributes!(value: absence_params[:value])
+
+        @absence = Absence.find_by(student_id: student_id, schedule_id: schedule_id)
+        @absence.destroy! unless @absence.value > 0
+
         format.js   { }
       else
         format.html { render :new }
@@ -72,7 +78,7 @@ class AbsencesController < ApplicationController
   end
 
   def absence_params
-    params.require(:absence).permit(:student_id, :category, :schedule_id, :value, student_ids: [])
+    params.require(:absence).permit(:student_id, :category, :schedule_id, :value, :student_id, :kind)
   end
 
   def value

@@ -14,6 +14,7 @@ class HomeworksController < ApplicationController
     @homework         = @group.homeworks.new(homework_params)
     @homeworks_past   = @group.homeworks.where('deadline < ?', DateTime.now)
     @homeworks_future = @group.homeworks.where('deadline > ?', DateTime.now)
+    @homeworks = @group.homeworks.where(course: @course).order(:created_at)
 
     respond_to do |format|
       if @homework.save
@@ -32,6 +33,7 @@ class HomeworksController < ApplicationController
     @homeworks        = @group.homeworks
     @homeworks_past   = @group.homeworks.where('deadline < ?', DateTime.now)
     @homeworks_future = @group.homeworks.where('deadline > ?', DateTime.now)
+    @homeworks = @group.homeworks.where(course: @course).order(:created_at)
 
     respond_to do |format|
       if @homework.update(homework_params)
@@ -50,6 +52,7 @@ class HomeworksController < ApplicationController
     @homework.destroy
     @homeworks_past   = @group.homeworks.where('deadline < ?', DateTime.now)
     @homeworks_future = @group.homeworks.where('deadline > ?', DateTime.now)
+    @homeworks = @group.homeworks.where(course: @course).order(:created_at)
     
     respond_to do |format|
       format.html { redirect_to homeworks_url, notice: 'Homework was successfully destroyed.' }

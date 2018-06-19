@@ -22,11 +22,14 @@
                     span.input-group-addon
                       i.material-icons timer_off
                     = f.date_field :deadline, placeholder: "Краен срок", class: 'form-control'  
-              .form-group.bmd-form-group
-                .input-group
-                  span.input-group-addon
-                    i.material-icons category
-                  = f.collection_select :course_id, @courses, :id, :name, {prompt: 'Изберете предмет'}, {class: "form-control"}
+              - if @courses
+                .form-group.bmd-form-group
+                  .input-group
+                    span.input-group-addon
+                      i.material-icons category
+                    = f.collection_select :course_id, @courses, :id, :name, {prompt: 'Изберете предмет'}, {class: "form-control"}
+              - else 
+                = f.hidden_field :course_id, value: @course.id
               .form-group.bmd-form-group
                 .input-group
                   span.input-group-addon
