@@ -25,7 +25,7 @@ Rails.application.routes.draw do
         end
       end
       resources :parent_invitations, path: :parents, module: :schools, only: [:index, :create]
-      resources :schedules
+      resource :schedule
       member do 
         get 'week_schedule'
         get 'day_schedule'

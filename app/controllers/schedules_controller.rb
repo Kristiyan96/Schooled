@@ -1,10 +1,9 @@
 class SchedulesController < ApplicationController
+  before_action :set_school_and_group
 
   def show
     authorize current_user, :schedule?
 
-    @school = School.find(params[:school_id])
-    @group = @school.groups.find(params[:group_id])
     @schedule = Schedule.find(params[:id])
     @course = @schedule.course
     @date = (params[:date] && Date.parse(params[:date])) || Date.today
@@ -12,8 +11,6 @@ class SchedulesController < ApplicationController
 
   def create
     @slot = TimeSlot.find(schedule_params[:time_slot_id])
-    @school = School.find(params[:school_id])
-    @group = @school.groups.find(params[:group_id])
     authorize @group, :update?
 
     @courses = @group.courses.to_a << Course::None
@@ -29,16 +26,15 @@ class SchedulesController < ApplicationController
   end
 
   def update
-    @school     = School.find(params[:school_id])
-    @group = @school.groups.find(params[:group_id])
-    authorize @group, :udpate?
-
+    authorize @group, :update?
+    
+    @schedule = @group.schedules.find(params[:id])
+    @slot = @schedule.time_slot
     @courses = @group.courses.to_a << Course::None
-    @date       = @schedule.time_slot.start
+    @date = @schedule.time_slot.start
     @time_slots = @school.active_school_year.time_slots.for_day(@date)
 
-    schedule = Schedule.find(params[:id])
-    Schedule.update_with_type(school: @school, schedule: schedule, params: update_params)
+    Schedule.update_with_type(school: @school, schedule: @schedule, params: update_params)
 
     respond_to do |format|
       format.js { }
@@ -46,6 +42,11 @@ class SchedulesController < ApplicationController
   end
 
   private
+
+  def set_school_and_group
+    @school = School.find(params[:school_id])
+    @group = @school.groups.find(params[:group_id])
+  end
 
   def schedule_params
     params.require(:schedule).permit(:course_id, :time_slot_id, :type)
