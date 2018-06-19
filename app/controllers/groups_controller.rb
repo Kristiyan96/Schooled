@@ -1,10 +1,9 @@
 class GroupsController < ApplicationController
   before_action :set_school
-  before_action :set_group, only: [:show, :edit, :update, :destroy]
+  before_action :set_group, except: [:index, :new, :create]
 
   def index
-    @school = School.find(params[:school_id])
-    @groups = @school.groups
+    @groups = policy_scope(@school.groups)
   end
 
   def show
@@ -18,7 +17,6 @@ class GroupsController < ApplicationController
   end
 
   def create
-    @school = School.find(params[:school_id])
     @group = @school.groups.new(group_params)
 
     respond_to do |format|
@@ -52,6 +50,7 @@ class GroupsController < ApplicationController
 
   def set_group
     @group = @school.groups.find(params[:id])
+    authorize @group
   end
 
   def group_params
