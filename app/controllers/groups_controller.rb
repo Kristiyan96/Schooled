@@ -75,6 +75,10 @@ class GroupsController < ApplicationController
     end
   end
 
+  def absences
+
+  end
+
   private
 
   def set_school

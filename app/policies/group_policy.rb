@@ -47,4 +47,8 @@ class GroupPolicy < ApplicationPolicy
   def marks?
     user.headmaster?(record.school) or user.headteacher?(record)
   end
+
+  def absences?
+    user.headmaster?(record.school) or user.headteacher?(record)
+  end
 end
