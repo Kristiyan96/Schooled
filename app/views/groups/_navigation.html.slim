@@ -2,7 +2,7 @@ ul.nav.nav-pills.justify-content-end
   li.nav-item 
     = link_to 'Начало', school_group_path(@school, @group), class: "nav-link #{'active' if controller_name == 'groups' && action_name == 'show'}"
   li.nav-item 
-    = link_to 'Програма', week_schedule_school_group_path(@school, @group), class: "nav-link #{'active' if controller_name == 'groups' && action_name == 'schedule'}"
+    = link_to 'Програма', week_schedule_school_group_path(@school, @group), class: "nav-link #{'active' if controller_name == 'groups' && action_name == 'week_schedule'}"
   li.nav-item 
     = link_to 'Оценки', marks_school_group_path(@school, @group), class: "nav-link #{'active' if controller_name == 'groups' && action_name == 'marks'}"
   li.nav-item 
