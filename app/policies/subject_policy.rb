@@ -6,14 +6,14 @@ class SubjectPolicy < ApplicationPolicy
   end
 
   def create?
-    user.admin? or user.is_headmaster?(record.school)
+    user.admin? or user.headmaster?(record.school)
   end
 
   def update?
-    user.admin? or user.is_headmaster?(record.school)
+    user.admin? or user.headmaster?(record.school)
   end
 
   def destroy?
-    user.admin? or user.is_headmaster?(record.school)
+    user.admin? or user.headmaster?(record.school)
   end
 end
