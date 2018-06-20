@@ -1,7 +1,7 @@
 class Schools::StudentInvitationsController < ApplicationController
   before_action :set_params
 
-  def index
+  def students
   end
 
   def create
@@ -29,5 +29,7 @@ class Schools::StudentInvitationsController < ApplicationController
   def set_params
     @school = School.find(params[:school_id])
     @group = Group.find(params[:group_id])
+
+    authorize @group, :update?
   end
 end

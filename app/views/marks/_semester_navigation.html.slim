@@ -20,4 +20,4 @@ ul.nav.nav-pills.justify-content-end
 
 .tab-content
   - ['first_semester', 'first_semester_final', 'second_semester', 'second_semester_final', 'final'].each do |term|
-    = render partial: 'semester_marks', locals: {term: term}
+    = render partial: 'marks/semester_marks', locals: {term: term}

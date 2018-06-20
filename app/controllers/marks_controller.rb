@@ -5,18 +5,10 @@ class MarksController < ApplicationController
   before_action :set_course
   before_action :set_mark, only: [:update, :destroy]
 
-  def index
-    @courses = @group.courses.where(school_year: @school.active_school_year)
-    @mark = Mark.new
-    respond_to do |format|
-      format.html { }
-      format.json { }
-      format.js { }
-    end
-  end
-
   def create
     @mark = Mark.new(mark_params)
+    authorize @mark
+
     respond_to do |format|
       if @mark.save
         format.html { redirect_to school_group_marks_path(@school, @group, course_id: @course.id), notice: 'Mark was successfully created.' }
@@ -73,6 +65,7 @@ class MarksController < ApplicationController
 
     def set_mark
       @mark = Mark.find(params[:id])
+      authorize @mark
     end
 
     def mark_params

@@ -6,12 +6,14 @@ class HomeworksController < ApplicationController
 
   def index
     @courses          = @group.courses
-    @homeworks_past   = @group.homeworks.where('deadline < ?', DateTime.now)
-    @homeworks_future = @group.homeworks.where('deadline > ?', DateTime.now)
+    @homeworks_past   = policy_scope(@group.homeworks.where('deadline < ?', DateTime.now))
+    @homeworks_future = policy_scope(@group.homeworks.where('deadline > ?', DateTime.now))
   end
 
   def create
     @homework         = @group.homeworks.new(homework_params)
+    authorize @homework
+
     @homeworks_past   = @group.homeworks.where('deadline < ?', DateTime.now)
     @homeworks_future = @group.homeworks.where('deadline > ?', DateTime.now)
     @homeworks = @group.homeworks.where(course: @course).order(:created_at)
@@ -31,6 +33,8 @@ class HomeworksController < ApplicationController
 
   def update
     @homeworks        = @group.homeworks
+    authorize @homework
+
     @homeworks_past   = @group.homeworks.where('deadline < ?', DateTime.now)
     @homeworks_future = @group.homeworks.where('deadline > ?', DateTime.now)
     @homeworks = @group.homeworks.where(course: @course).order(:created_at)
@@ -49,6 +53,8 @@ class HomeworksController < ApplicationController
   end
 
   def destroy
+    authorize @homework
+
     @homework.destroy
     @homeworks_past   = @group.homeworks.where('deadline < ?', DateTime.now)
     @homeworks_future = @group.homeworks.where('deadline > ?', DateTime.now)

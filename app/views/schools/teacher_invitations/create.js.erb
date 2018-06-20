@@ -1,4 +1,3 @@
-$('body').removeClass('modal-open');
-$('.modal-backdrop').remove();
+closeModals();
 $('#add-teacher .card-body input').val('');
-$('#teachers').html("<%= escape_javascript ( = render partial: 'schools/teacher_invitations/teacher_row', collection: @teachers, as: :teacher ) %>");
+$('#teachers').html("<%= escape_javascript ( render partial: 'schools/teacher_invitations/teacher_row', collection: @teachers, as: :teacher ) %>");

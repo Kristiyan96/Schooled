@@ -25,7 +25,8 @@
         - else
           = render partial: 'homeworks/homework_row', collection: @homeworks_past, as: :homework 
 
-    = render 'homeworks/add_homework_modal'
-    = render 'homeworks/edit_homework_modal'
-    .offset-md-3
-      button.btn.btn-success.btn-sm type="button" data-toggle="modal" data-target="#add-homework-modal" Добави домашно
+    - if policy(@group).teacher?
+      = render 'homeworks/add_homework_modal'
+      = render 'homeworks/edit_homework_modal'
+      .offset-md-3
+        button.btn.btn-success.btn-sm type="button" data-toggle="modal" data-target="#add-homework-modal" Добави домашно

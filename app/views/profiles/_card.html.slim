@@ -20,7 +20,7 @@
       = link_to edit_user_registration_path, class: "btn col btn-sm btn-link" do
         i.material-icons settings
         | &nbsp;&nbsp;Настройки
-    - if can_add_parent?(current_user, @user)
+    - if @user.group && policy(@user).invite_parent?
       = link_to edit_user_registration_path, class: "btn col btn-sm btn-link", data: {target: '#addParent', toggle: 'modal'} do
         i.material-icons person_add
         | &nbsp;&nbsp;Добави родител

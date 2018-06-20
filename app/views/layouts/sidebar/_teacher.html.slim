@@ -1,4 +1,8 @@
 li.nav-item
+  = link_to schedule_profile_path(current_user), class: 'nav-link' do
+    i.material-icons date_range
+    p График
+li.nav-item
   = link_to school_path(assignment.school), class: 'nav-link' do
     i.material-icons school
     p Моето училище

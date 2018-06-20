@@ -1,0 +1,3 @@
+class RemarkPolicy < ApplicationPolicy
+
+end

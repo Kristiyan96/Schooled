@@ -42,7 +42,7 @@ document.addEventListener("turbolinks:load", function() {
         var group_id = $(this).parent().parent().data('group');
         var school_id = $(this).parent().parent().data('school');
         jQuery.ajax({
-          url: getURI(type),
+          url: getURI(type, group_id, school_id),
           type: "GET",
           data: {date: $(this).data('date'), 
                  school_id: school_id, 
@@ -277,18 +277,18 @@ document.addEventListener("turbolinks:load", function() {
     return window.getComputedStyle(document.querySelector('.cd-horizontal-timeline'), '::before').getPropertyValue('content').replace(/'/g, "").replace(/"/g, "");
   }
 
-  function getURI(type){
+  function getURI(type, group_id, school_id){
     switch(type) {
-      case 'schedule-edit':
-        return '/schools/1/groups/1/schedules/1/edit';
+      case 'group_day_schedule':
+        return `/schools/${school_id}/groups/${group_id}/day_schedule`;
       case 'new-absence':
-        return '/schools/1/groups/1/absences/new';
+        return `/schools/${school_id}/groups/${group_id}/absences/new`;
       case 'time_slot':
-        return '/schools/1/time_slot';
-      case 'week_schedule_group':
-        return '/schools/1/groups/1/schedules';
+        return `/schools/${school_id}/time_slot`;
+      case 'group_week_schedule':
+        return `/schools/${school_id}/groups/${group_id}/week_schedule`;
       case 'week_schedule_user':
-        return '/profiles/1/schedule'
+        return `/profiles/1/schedule`;
       default:
         alert("error");
     }

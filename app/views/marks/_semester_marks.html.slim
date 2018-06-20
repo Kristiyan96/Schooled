@@ -6,4 +6,4 @@
         td.col-md-2 Име
         td.col-md-9 Оценки
     tbody
-      = render partial: 'row', collection: @group.students.order(:number_in_class), as: :student, locals: {term: term}
+      = render partial: 'marks/row', collection: @group.students.order(:number_in_class), as: :student, locals: {term: term}

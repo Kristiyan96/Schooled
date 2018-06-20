@@ -1,11 +1,15 @@
 class Schools::TeacherInvitationsController < ApplicationController
-  def index
+  def teachers
     @school = School.find(params[:school_id])
+    authorize @school, :update?
+
     @teachers = @school.teachers
   end
 
   def create
     @school = School.find(params[:school_id])
+    authorize @school, :update?
+    
     role = Role.find_by(name: "Teacher")
     is_invited = Assignment.invite(role: role, school: @school, user: user_params)
     @teachers = @school.teachers

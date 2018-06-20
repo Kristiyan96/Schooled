@@ -1,0 +1,3 @@
+class SchoolYearPolicy < ApplicationPolicy
+
+end

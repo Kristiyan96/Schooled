@@ -28,6 +28,8 @@ class AbsencesController < ApplicationController
   def create
     student_id = absence_params[:student_id]
     schedule_id = absence_params[:schedule_id]
+    authorize Absence.new(student_id: student_id, schedule_id: schedule_id)
+
     respond_to do |format|
       if @absence = Absence
         .find_or_initialize_by(student_id: student_id, schedule_id: schedule_id)
@@ -46,6 +48,7 @@ class AbsencesController < ApplicationController
   end
 
   def update
+    authorize @absence
     respond_to do |format|
       if @absence.update(absence_params)
         format.html { redirect_to @absence, notice: 'Absence was successfully updated.' }

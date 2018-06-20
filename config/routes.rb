@@ -1,6 +1,15 @@
 Rails.application.routes.draw do
   devise_for :users, skip: :registrations
   devise_scope :user do
+
+    authenticated  do
+      root 'pages#show', page: 'home'
+    end
+
+    unauthenticated do
+      root to: 'devise/sessions#new', as: 'unauthenticated_root'
+    end
+
     resource :registration,
       only: [:new, :create, :edit, :update],
       path: 'users',
@@ -16,18 +25,31 @@ Rails.application.routes.draw do
     resources :subjects, except: [:new, :show, :edit]
     resources :groups do
       resources :homeworks, only: [:index, :create, :update, :destroy]
-      resources :absences, only: [:index, :new, :show, :create, :update]
-      resources :marks
+      resources :absences, only: [:create, :update]
+      resources :marks, only: [:create, :update, :destroy]
       resources :courses
-      resources :student_invitations, path: :students, module: :schools, only: [:index, :create]
+      resource :student_invitations, path: :students, module: :schools, only: [:create] do
+        member do 
+          get 'students'
+        end
+      end
       resources :parent_invitations, path: :parents, module: :schools, only: [:index, :create]
       resources :schedules
+      member do 
+        get 'week_schedule'
+        get 'day_schedule'
+        get 'marks'
+        get 'absences'
+      end
     end
     resources :headmaster_invitations, path: :headmasters, module: :schools, only: [:index, :create]
-    resources :teacher_invitations, path: :teachers, module: :schools, only: [:index, :create]
+    resource :teacher_invitation, path: :teachers, module: :schools, only: [:create] do
+      member do 
+        get 'teachers'
+      end
+    end
     member do 
       get 'dashboard'
-      get 'teachers'
     end
   end
 
@@ -44,6 +66,5 @@ Rails.application.routes.draw do
   end
   resources :messages, only: [:index, :create]
 
-  root 'pages#show', page: 'home'
   get '/pages/*page', to: 'pages#show'
 end

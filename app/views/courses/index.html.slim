@@ -1,15 +1,10 @@
 .card
   .card-header.card-header-default.card-header-icon
-    b.card-icon
-      | Предмети(Курсове)
-    .row
-      .col.text-right
-        = link_to new_school_group_course_path(@school, @group), class: "btn btn-success" do
-          i.material-icons add
-          |  
-          | Добави курс
+    b.card-icon = group_name(@group)
 
   .card-body
+    = render 'groups/navigation'
+    = render 'groups/settings_navigation'
     table.table
       thead
         tr

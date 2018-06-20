@@ -23,6 +23,7 @@ gem 'bootstrap-sass'
 gem 'font-awesome-rails'
 gem 'devise'
 gem 'devise_invitable'
+gem 'pundit'
 
 gem 'activerecord-import'
 

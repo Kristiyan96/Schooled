@@ -9,7 +9,7 @@
               th Клас
               th.text-center Класен ръководител
           tbody
-            = render partial: 'groups/group_row', collection: @school.groups, as: :group
+            = render partial: 'groups/group_row', collection: @groups, as: :group
         = link_to new_school_group_path(@school), class: 'btn btn-success btn-sm' do 
           i.material-icons add
           | Добави клас    

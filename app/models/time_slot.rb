@@ -5,7 +5,7 @@ class TimeSlot < ApplicationRecord
   has_many :schedules
   has_many :courses, through: :schedules
 
-  scope :with_interval_from_start_and_end, -> start, finish, interval {
+  scope :with_start_and_end_daily, -> start, finish, interval {
     where("DATE_PART('hour', time_slots.start) = ?", start.hour)
       .where("DATE_PART('minute', time_slots.start) = ?", start.min)
       .where("DATE_PART('hour', time_slots.end) = ?", finish.hour)
@@ -100,8 +100,8 @@ class TimeSlot < ApplicationRecord
           date_part('second', TIMESTAMP :end) * interval '1 second',
           title = :title
         SQL
-      year = time_slot.school_year
-      TimeSlot.with_interval_from_start_and_end(time_slot.start, year.end, 1)
+      
+      TimeSlot.with_start_and_end_daily(time_slot.start, time_slot.end, 1)
         .with_start_date_greater_than(time_slot.start)
         .update_all(sql)
     end
@@ -113,7 +113,7 @@ class TimeSlot < ApplicationRecord
       time_slot.destroy
     when :all
       year = time_slot.school_year
-      TimeSlot.with_interval_from_start_and_end(time_slot.start, year.end, 1)
+      TimeSlot.with_start_and_end_daily(time_slot.start, time_slot.end, 1)
         .with_start_date_greater_than(time_slot.start)
         .destroy_all
     end
@@ -124,13 +124,11 @@ class TimeSlot < ApplicationRecord
       .map { |t| [t, t.schedules] }
       .group_by { |(t, _)| t.start.strftime("%A") }
 
-    if time_slots_by_day.empty?
-      return {}
-    end
+    return {} if time_slots_by_day.clone
+      .delete_if { |key, val| val.all? { |(t, ss)| ss.empty? } }.empty?
 
-    if time_slots_by_day['Saturday'].all? { |(t, ss)| ss.empty? }
-      time_slots_by_day.delete('Saturday')
-    end
+    time_slots_by_day.delete('Saturday') if time_slots_by_day['Saturday']
+      .all? { |(t, ss)| ss.empty? }
 
     max = time_slots_by_day.values.map do |ts|
       ts

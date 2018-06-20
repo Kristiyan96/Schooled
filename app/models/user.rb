@@ -50,4 +50,40 @@ class User < ApplicationRecord
   def student_info
     "#"+"#{number_in_class} #{self.full_name}"
   end
+
+  def headmaster?(school)
+    assignments.where(role_id: 3, school: school).any?
+  end
+
+  def headteacher?(group)
+    group.try(:teacher) == self
+  end
+
+  def teacher?(school)
+    assignments.where(school: school, role_id: 2).any?
+  end
+
+  def teacher_of_group?(group)
+    group.courses.where(teacher: self).any?
+  end
+
+  def teaching_course?(course)
+    course.teacher == self
+  end
+
+  def student?(school)
+    group.school == school
+  end
+
+  def student_in_group?(group)
+    self.group == group
+  end
+
+  def parent_in_group?(group)
+    students.where(group: group).any?
+  end
+
+  def parent_of?(student)
+    Parentship.where(parent: self, student: student).any?
+  end
 end

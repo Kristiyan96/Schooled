@@ -1,0 +1,6 @@
+<% if @time_slots.any? %>
+  $("#group-day-schedule").html("<%= escape_javascript ( render partial: 'schedules/row', collection: @time_slots, as: :slot ) %>");
+<% else %>
+  $("#group-day-schedule").html("<div class='text-center'><h4>Този ден не е раграфен от директора.</h4></div>");
+<% end %>
+$('tbody').hide().fadeIn(400);

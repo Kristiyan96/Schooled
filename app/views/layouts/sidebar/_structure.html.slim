@@ -1,16 +1,21 @@
-.sidebar data-background-color="white" data-color="purple"
+- if !current_user
   .logo
-    a.simple-text.logo-normal href="" 
-      | Schooled
-  .sidebar-wrapper
-    ul.nav
-      .d-md-none
-        = render 'layouts/navbar/structure'
-      = render 'layouts/sidebar/common'
-      = render 'layouts/sidebar/children'
-      - current_user&.assignments&.each do |as|
-        li.nav-item
-          a.nav-link
-            b 
-              = (t "roles.#{as.role.name.downcase}").capitalize
-        = render partial: "layouts/sidebar/#{as.role.name.downcase}", locals: {assignment: as}
+    a.simple-text.logo-normal href="/" 
+      h3 Schooled
+- if current_user
+  .sidebar data-background-color="white" data-color="purple"
+    .logo
+      a.simple-text.logo-normal href="" 
+        | Schooled
+    .sidebar-wrapper
+      ul.nav
+        .d-md-none
+          = render 'layouts/navbar/structure'
+        = render 'layouts/sidebar/common'
+        = render 'layouts/sidebar/children'
+        - current_user&.assignments&.each do |as|
+          li.nav-item
+            a.nav-link
+              b 
+                = (t "roles.#{as.role.name.downcase}").capitalize
+          = render partial: "layouts/sidebar/#{as.role.name.downcase}", locals: {assignment: as}
