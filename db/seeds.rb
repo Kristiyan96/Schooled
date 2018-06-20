@@ -19,11 +19,11 @@ h2 = User.create(first_name: 'Иван', last_name: 'Петров', email: "head
 
 puts "Creating teachers"
 
-t1 = User.create(first_name: "Таня", last_name: "Баладжанова", email: "teacher1@smg.bg", password: "password", password_confirmation: "password")
-t2 = User.create(first_name: "Мария", last_name: "Ценова", email: "teacher2@smg.bg", password: "password", password_confirmation: "password")
+t1 = User.create(first_name: "Мария", last_name: "Банова", email: "teacher1@smg.bg", password: "password", password_confirmation: "password")
+t2 = User.create(first_name: "Кристина", last_name: "Ценова", email: "teacher2@smg.bg", password: "password", password_confirmation: "password")
 t3 = User.create(first_name: "Ваня", last_name: "Костадинова", email: "teacher3@smg.bg", password: "password", password_confirmation: "password")
 
-t4 = User.create(first_name: "Анатолии", last_name: "Стоянов", email: "teacher4@feg.bg", password: "password", password_confirmation: "password")
+t4 = User.create(first_name: "Благой", last_name: "Терзиев", email: "teacher4@feg.bg", password: "password", password_confirmation: "password")
 t5 = User.create(first_name: "Благой", last_name: "Георгиев", email: "teacher5@feg.bg", password: "password", password_confirmation: "password")
 t6 = User.create(first_name: "Сам", last_name: "Маринов", email: "teacher6@feg.bg", password: "password", password_confirmation: "password")
 
@@ -54,12 +54,12 @@ s6 = User.create(group: gr1, number_in_class: 7, first_name: "Кирил", last_
 s6 = User.create(group: gr1, number_in_class: 8, first_name: "Марин", last_name: "Вергиев", birthday: Date.new(1996,8,21), email: "student8@smg.bg", password: "password", password_confirmation: "password")
 s6 = User.create(group: gr1, number_in_class: 9, first_name: "Мария", last_name: "Пешева", birthday: Date.new(1996,8,21), email: "student9@smg.bg", password: "password", password_confirmation: "password")
 s6 = User.create(group: gr1, number_in_class: 10, first_name: "Виктория", last_name: "Вергиева", birthday: Date.new(1996,8,21), email: "student10@smg.bg", password: "password", password_confirmation: "password")
-s6 = User.create(group: gr2, number_in_class: 6, first_name: "Велин", last_name: "Вергиев", birthday: Date.new(1996,8,21), email: "student31@smg.bg", password: "password", password_confirmation: "password")
-s6 = User.create(group: gr2, number_in_class: 6, first_name: "Велин", last_name: "Вергиев", birthday: Date.new(1996,8,21), email: "student32@smg.bg", password: "password", password_confirmation: "password")
-s6 = User.create(group: gr2, number_in_class: 6, first_name: "Велин", last_name: "Вергиев", birthday: Date.new(1996,8,21), email: "student33@smg.bg", password: "password", password_confirmation: "password")
-s6 = User.create(group: gr2, number_in_class: 6, first_name: "Велин", last_name: "Вергиев", birthday: Date.new(1996,8,21), email: "student34@smg.bg", password: "password", password_confirmation: "password")
-s6 = User.create(group: gr2, number_in_class: 6, first_name: "Велин", last_name: "Вергиев", birthday: Date.new(1996,8,21), email: "student35@smg.bg", password: "password", password_confirmation: "password")
-s6 = User.create(group: gr2, number_in_class: 6, first_name: "Велин", last_name: "Вергиев", birthday: Date.new(1996,8,21), email: "student36@smg.bg", password: "password", password_confirmation: "password")
+s6 = User.create(group: gr2, number_in_class: 1, first_name: "Велин", last_name: "Вергиев", birthday: Date.new(1996,8,21), email: "student31@smg.bg", password: "password", password_confirmation: "password")
+s6 = User.create(group: gr2, number_in_class: 2, first_name: "Глория", last_name: "Цачева", birthday: Date.new(1996,8,21), email: "student32@smg.bg", password: "password", password_confirmation: "password")
+s6 = User.create(group: gr2, number_in_class: 3, first_name: "Дргагомир", last_name: "Иванов", birthday: Date.new(1996,8,21), email: "student33@smg.bg", password: "password", password_confirmation: "password")
+s6 = User.create(group: gr2, number_in_class: 4, first_name: "Виктория", last_name: "Цалева", birthday: Date.new(1996,8,21), email: "student34@smg.bg", password: "password", password_confirmation: "password")
+s6 = User.create(group: gr2, number_in_class: 5, first_name: "Петър", last_name: "Терзиев", birthday: Date.new(1996,8,21), email: "student35@smg.bg", password: "password", password_confirmation: "password")
+s6 = User.create(group: gr2, number_in_class: 6, first_name: "Костантин", last_name: "Ковачев", birthday: Date.new(1996,8,21), email: "student36@smg.bg", password: "password", password_confirmation: "password")
 
 puts "Creating parents"
 
@@ -72,7 +72,7 @@ puts "Creating roles"
 r1 = Role.create(name: "Student")
 r2 = Role.create(name: "Teacher")
 r3 = Role.create(name: "Headmaster")
-r4 = Role.create(name: "Admin")
+r4 = Role.create(name: "Administrator")
 
 puts "Creating assignments"
 
@@ -116,13 +116,13 @@ puts "Creating courses"
 c1 = Course.create(school: smg, group: gr1, subject: maths1, school_year: y1, teacher: t1)
 c2 = Course.create(school: smg, group: gr1, subject: bulgarian1, school_year: y1, teacher: t2)
 c3 = Course.create(school: smg, group: gr1, subject: french1, school_year: y1, teacher: t3)
-c1 = Course.create(school: smg, group: gr2, subject: maths1, school_year: y1, teacher: t1)
-c1 = Course.create(school: smg, group: gr2, subject: bulgarian1, school_year: y1, teacher: t1)
-c2 = Course.create(school: smg, group: gr2, subject: bulgarian1, school_year: y1, teacher: t2)
-c3 = Course.create(school: smg, group: gr2, subject: french1, school_year: y1, teacher: t3)
-c5 = Course.create(school: feg, group: gr2, subject: maths2, school_year: y2, teacher: t4)
-c6 = Course.create(school: feg, group: gr2, subject: french2, school_year: y2, teacher: t5)
-c7 = Course.create(school: feg, group: gr2, subject: bulgarian2, school_year: y2, teacher: t6)
+c4 = Course.create(school: smg, group: gr2, subject: maths1, school_year: y1, teacher: t1)
+c5 = Course.create(school: smg, group: gr2, subject: bulgarian1, school_year: y1, teacher: t1)
+c6 = Course.create(school: smg, group: gr2, subject: bulgarian1, school_year: y1, teacher: t2)
+c7 = Course.create(school: smg, group: gr2, subject: french1, school_year: y1, teacher: t3)
+c8 = Course.create(school: feg, group: gr2, subject: maths2, school_year: y2, teacher: t4)
+c9 = Course.create(school: feg, group: gr2, subject: french2, school_year: y2, teacher: t5)
+c10 = Course.create(school: feg, group: gr2, subject: bulgarian2, school_year: y2, teacher: t6)
 
 puts "Creating marks"
 

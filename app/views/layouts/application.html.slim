@@ -12,6 +12,7 @@ html
   body.wrapper
     = render 'layouts/sidebar/structure'
     .main-panel
-      = render 'layouts/navbar/structure'
+      - if current_user
+        = render 'layouts/navbar/structure'
       .content
         = yield

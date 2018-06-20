@@ -8,7 +8,7 @@ class MarkPolicy < ApplicationPolicy
   end
 
   def update?
-    update?
+    create?
   end
 
   def destroy?

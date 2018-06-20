@@ -1,6 +1,15 @@
 Rails.application.routes.draw do
   devise_for :users, skip: :registrations
   devise_scope :user do
+
+    authenticated  do
+      root 'pages#show', page: 'home'
+    end
+
+    unauthenticated do
+      root to: 'devise/sessions#new', as: 'unauthenticated_root'
+    end
+
     resource :registration,
       only: [:new, :create, :edit, :update],
       path: 'users',
@@ -57,6 +66,5 @@ Rails.application.routes.draw do
   end
   resources :messages, only: [:index, :create]
 
-  root 'pages#show', page: 'home'
   get '/pages/*page', to: 'pages#show'
 end
