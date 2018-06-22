@@ -1,1 +1,3 @@
+closeModals();
 $("#day-card").html("<%= escape_javascript ( render partial: 'absences/day_card', locals: {date: @date, schedules: @schedules} ) %>");
+$('tbody').hide().fadeIn(400);

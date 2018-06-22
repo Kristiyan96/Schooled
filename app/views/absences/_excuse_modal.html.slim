@@ -1,0 +1,30 @@
+#excuse-absence.modal.fade role="" tabindex="-1" 
+  .modal-dialog role="document" 
+    .modal-content
+      .card.card-signup.card-plain
+        .modal-header
+          .card-header.card-header-primary.text-center style="width: 100%;"
+            button.close aria-hidden="true" data-dismiss="modal" type="button" 
+              i.material-icons clear
+            h4.card-title Извиняване на отсъствия в период
+        .modal-body
+          = form_with url: excuse_period_school_group_absence_path(@school, @group, 1), method: :post do |f|
+            = f.hidden_field :date, value: @date
+            .card-body
+              .input-group
+                span.input-group-addon
+                  i.material-icons face
+                = f.collection_select :student_id, @students, :id, :student_info, {prompt: 'Изберете ученик'}, {class: "form-control"}
+              .row
+                .form-group.bmd-form-group.col-md-6
+                  .input-group
+                    span.input-group-addon
+                      i.material-icons calendar_today
+                    = f.date_field :start, placeholder: "Начало", class: 'form-control'  
+                .form-group.bmd-form-group.col-md-6
+                  .input-group
+                    span.input-group-addon
+                      i.material-icons calendar_today
+                    = f.date_field :end, placeholder: "Край", class: 'form-control'  
+              .justify-content-center
+                = f.submit "Извини", class: "btn btn-success"

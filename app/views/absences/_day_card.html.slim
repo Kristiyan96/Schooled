@@ -1,12 +1,11 @@
 .card
   .card-body
-    table.table
+    table.table.table-hover
       thead
         tr
-          td Период
-          td Предмет
-          td Отсъствали
-          td Закъснели
-      tbody#day-schedule
-        = render partial: 'absences/schedule_row', collection: @schedules, as: :schedule
-        = render partial: 'absences/add_absences_modal', locals: {date: @date}
+          td #
+          td Име
+          - @schedules.each do |sch|
+            td.text-center data-toggle="tooltip" data-placement="top" title="#{sch.course.name}" = slot_period(sch.time_slot)
+      tbody#day-card
+        = render partial: 'absences/row', collection: @students, as: :student

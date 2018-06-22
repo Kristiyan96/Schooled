@@ -1,0 +1,9 @@
+tr
+  td = student.number_in_class
+  td = student.full_name
+  - @schedules.each do |sch|
+    - abs = Absence.find_by(student: student, schedule: sch)
+    td.text-center id="#{abs.id if abs}"
+      - if abs
+        = link_to toggle_category_school_group_absence_path(@school, @group, abs), remote: true, class: "absence mx-auto #{abs.excused? ? 'excused' : 'permanent'}" do 
+          = abs.value.humanize

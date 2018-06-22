@@ -2,28 +2,7 @@ class AbsencesController < ApplicationController
   before_action :set_school
   before_action :set_group
   before_action :set_year
-  before_action :set_absence, only: [:update, :destroy]
-
-  def new
-    @absence     = Absence.new
-    @date        = (params[:date] && Date.parse(params[:date])) || Date.today
-    @schedules   = @group.schedules.for_day(@date)
-    @school_year = @school.active_school_year
-
-    respond_to do |format|
-      format.html { }
-      format.js   { render action: "refresh_card"}
-    end
-  end
-
-  def show
-    @date      = Date.parse(params[:date])
-    @schedules = @group.schedules.for_day(@date)
-    
-    respond_to do |format|
-      format.js { render action: "refresh_card"}
-    end
-  end
+  before_action :set_absence, only: [:update, :toggle_category]
 
   def create
     student_id = absence_params[:student_id]
@@ -49,6 +28,7 @@ class AbsencesController < ApplicationController
 
   def update
     authorize @absence
+
     respond_to do |format|
       if @absence.update(absence_params)
         format.html { redirect_to @absence, notice: 'Absence was successfully updated.' }
@@ -59,6 +39,37 @@ class AbsencesController < ApplicationController
         format.json { render json: @absence.errors, status: :unprocessable_entity }
         format.js   { }
       end
+    end
+  end
+
+  def toggle_category
+    authorize @absence
+    if @absence.value == 1
+      @absence.update(category: @absence.excused? ? 'permanent' : 'excused')
+    end
+
+    @student = @absence.student
+    @date = @absence.schedule.time_slot.start.to_date
+
+    respond_to do |format|
+      format.js { }
+    end
+  end
+
+  def excuse_period
+    authorize @group, :update?
+    @date = (params[:date] && Date.parse(params[:date])) || Date.today
+    @schedules = @group.schedules.for_day(@date)
+    @students = @group.students
+
+    @student = User.find(params[:student_id])
+    start = params[:start]
+    finish = params[:end]
+
+    Absence.excuse_period(@student, start, finish)
+
+    respond_to do |format|
+      format.js { render action: "refresh_card" }
     end
   end
 

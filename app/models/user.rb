@@ -5,7 +5,7 @@ class User < ApplicationRecord
   has_many :sent_messages, as: :sender
   has_many :received_messages, as: :recepient
   has_many :marks
-  has_many :absences
+  has_many :absences, foreign_key: "student_id"
   has_many :groups
   has_many :assignments
   has_many :roles, through: :assignments
