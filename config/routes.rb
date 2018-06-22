@@ -25,7 +25,12 @@ Rails.application.routes.draw do
     resources :subjects, except: [:new, :show, :edit]
     resources :groups do
       resources :homeworks, only: [:index, :create, :update, :destroy]
-      resources :absences, only: [:create, :update]
+      resources :absences, only: [:create, :update] do
+        member do 
+          get 'toggle_category'
+          get 'excuse_period'
+        end
+      end
       resources :marks, only: [:create, :update, :destroy]
       resources :courses
       resource :student_invitations, path: :students, module: :schools, only: [:create] do

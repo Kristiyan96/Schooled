@@ -2,6 +2,7 @@
 @import "material/material-dashboard";
 @import "time_slots";
 @import "messages";
+@import "absences";
 
 .no-margin{
   margin-top: 0px !important;
@@ -31,4 +32,12 @@ table.table-hover td.hover {
 }
 .collapse.navbar-collapse .nav-item .nav-link {
   font-weight: 500;
+}
+.alert.fixed-top {
+  position: fixed;
+  top: 20px;
+  width: 80vw;
+  text-align: center;
+  left: 10vw;
+  font-weight: bold;
 }

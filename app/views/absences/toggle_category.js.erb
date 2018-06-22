@@ -1,0 +1,5 @@
+<% if @absence.value == 1 %>
+  $('td#<%= @absence.id %> a').toggleClass('excused').toggleClass('permanent');
+<% else %>
+  $('tbody').prepend("<%= j ( render partial: 'layouts/alerts/alert', locals: {content: 'Не може да извинявате закъснения.'} )%>");
+<% end %>

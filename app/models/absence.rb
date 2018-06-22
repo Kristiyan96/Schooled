@@ -16,4 +16,12 @@ class Absence < ApplicationRecord
     
     import(students)
   end
+
+  def excused?
+    category == 'excused'
+  end
+
+  def permanent?
+    category == 'permanent'
+  end
 end
