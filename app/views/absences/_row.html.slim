@@ -1,0 +1,5 @@
+tr
+  td = student.number_in_class
+  td = student.full_name
+  - @schedules.each do |sch|
+    td.text-center = Absence.find_by(student: student, schedule: sch).try(:value).try(:humanize)

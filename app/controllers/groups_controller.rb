@@ -76,7 +76,9 @@ class GroupsController < ApplicationController
   end
 
   def absences
-
+    @date = (params[:date] && Date.parse(params[:date])) || Date.today
+    @students = @group.students.order(:number_in_class)
+    @schedules = @group.schedules.for_day(@date)
   end
 
   private
