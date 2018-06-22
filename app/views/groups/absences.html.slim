@@ -18,6 +18,9 @@
             a.prev.inactive href="#0" Prev
           li
             a.next href="#0" Next
-
+.card
+  .card-body
+    = render 'absences/excuse_modal'
+    button.btn.btn-sm.btn-link.btn-primary type="button" data-toggle="modal" data-target="#excuse-absence" Извини отсъсвия в период
 #day-card
   = render partial: 'absences/day_card', locals: {date: @date, schedules: @schedules}

@@ -50,7 +50,6 @@ class AbsencesController < ApplicationController
 
     @student = @absence.student
     @date = @absence.schedule.time_slot.start.to_date
-    @schedules = @group.schedules.for_day(@date)
 
     respond_to do |format|
       format.js { }
@@ -58,7 +57,20 @@ class AbsencesController < ApplicationController
   end
 
   def excuse_period
-    
+    authorize @group, :update?
+    @date = (params[:date] && Date.parse(params[:date])) || Date.today
+    @schedules = @group.schedules.for_day(@date)
+    @students = @group.students
+
+    @student = User.find(params[:student_id])
+    start = params[:start]
+    finish = params[:end]
+
+    Absence.excuse_period(@student, start, finish)
+
+    respond_to do |format|
+      format.js { render action: "refresh_card" }
+    end
   end
 
   private

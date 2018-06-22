@@ -20,8 +20,4 @@ class AbsencePolicy < ApplicationPolicy
       user.headteacher?(record.schedule.course.group) ||
       user.headmaster?(record.schedule.course.group.school)
   end
-
-  def excuse_period?
-    toggle_category?
-  end
 end

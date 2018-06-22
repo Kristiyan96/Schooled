@@ -28,7 +28,7 @@ Rails.application.routes.draw do
       resources :absences, only: [:create, :update] do
         member do 
           get 'toggle_category'
-          get 'excuse_period'
+          post 'excuse_period'
         end
       end
       resources :marks, only: [:create, :update, :destroy]
