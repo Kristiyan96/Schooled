@@ -1,12 +1,20 @@
-ul.nav.nav-pills.justify-content-end
-  li.nav-item 
-    = link_to 'Начало', dashboard_school_path(@school), class: "nav-link #{'active' if controller_name == 'schools' && action_name == 'dashboard'}"
-  li.nav-item 
-    = link_to 'Учители', teachers_school_teacher_invitation_path(@school), class: "nav-link #{'active' if controller_name == 'teacher_invitations' && action_name == 'teachers'}"
-  li.nav-item 
-    = link_to 'Програма', school_time_slot_path(@school), class: "nav-link #{'active' if controller_name == 'time_slots' && action_name == 'show'}"
-  li.nav-item 
-    = link_to 'Предмети', school_subjects_path(@school), class: "nav-link #{'active' if controller_name == 'subjects' && action_name == 'index'}"
-  li.nav-item 
-    = link_to 'Класове', school_groups_path(@school), class: "nav-link #{'active' if controller_name == 'groups' && action_name == 'index'}"
+nav.navbar.navbar-expand-lg.navbar-dark.bg-primary
+  .container
+    a.navbar-brand href="#" = school_name(@school)
+    button.navbar-toggler aria-controls="navbarText" aria-expanded="false" aria-label=("Toggle navigation") data-target="#navbarText" data-toggle="collapse" type="button" 
+      span.navbar-toggler-icon
+    .justify-content-end
+      #navbarText.collapse.navbar-collapse
+        ul.navbar-nav.mr-auto
+          li.nav-item class="#{'active' if controller_name == 'schools' && action_name == 'dashboard'}"
+            = link_to 'Начало', dashboard_school_path(@school), class: "nav-link"
+          li.nav-item class="#{'active' if controller_name == 'teacher_invitations' && action_name == 'teachers'}"
+            = link_to 'Учители', teachers_school_teacher_invitation_path(@school), class: "nav-link"
+          li.nav-item class="#{'active' if controller_name == 'time_slots' && action_name == 'show'}"
+            = link_to 'Програма', school_time_slot_path(@school), class: "nav-link"
+          li.nav-item class="#{'active' if controller_name == 'subjects' && action_name == 'index'}"
+            = link_to 'Предмети', school_subjects_path(@school), class: "nav-link"
+          li.nav-item class="#{'active' if controller_name == 'groups' && action_name == 'index'}"
+            = link_to 'Класове', school_groups_path(@school), class: "nav-link"
 
+         

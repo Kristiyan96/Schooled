@@ -1,0 +1,9 @@
+tr id="#{course.id}"
+  td = course.name
+  td = course.teacher.full_name
+  td.td-actions.pull-right
+    button.btn.btn-primary.btn-link.btn-sm.edit-course data-id="#{course.id}" data-school="#{@school.id}" data-subject="#{course.subject.id}" data-teacher="#{course.teacher_id}" type="button" data-toggle="modal" data-target="#edit-course"
+      div data-toggle="tooltip" data-placement="left" title="Редактирай предмет" Редактирай
+
+    = link_to school_group_course_path(@school, @group, course), method: :delete, remote: true, class: 'btn btn-primary btn-link btn-sm delete-course' do 
+      div data-toggle="tooltip" data-placement="left" title="Изтрий предмет. Внимание: Това ще изтрие и всички отсъствия и оценки по този предмет." Изтрий

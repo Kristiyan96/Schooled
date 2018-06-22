@@ -1,6 +1,6 @@
 tr id="#{subject.id}"
   td = subject.name
-  td.actions.text-center
+  td.actions.text-right
     button.btn.btn-warning.btn-link.btn-wd.btn-sm.edit-subject type="button" data-toggle="modal" data-target="#edit-subject" data-id="#{subject.id}" data-name="#{subject.name}"
       i.material-icons edit
     = link_to school_subject_path(@school, subject), class: 'btn btn-danger btn-sm btn-link btn-wd', data: { confirm: 'Are you sure?' }, method: :delete, remote: true do

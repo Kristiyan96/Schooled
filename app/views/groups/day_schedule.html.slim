@@ -1,9 +1,7 @@
+= render 'groups/navigation'
+
 .card
-  .card-header.card-header-icon
-    b.card-icon = group_name(@group)
   .card-body.time-slots
-    = render 'groups/navigation'
-    = render 'groups/settings_navigation'
     .cd-horizontal-timeline
       .timeline
         .events-wrapper
@@ -20,12 +18,13 @@
             a.prev.inactive href="#0" Prev
           li
             a.next href="#0" Next
-    .card.col-md-8.col-xs-12.offset-md-2
-      .card-body
-        table.table
-          tbody#group-day-schedule
-            - if @time_slots.blank?
-              .text-center 
-                h4 Този ден не е разграфен от директора.
-            - else 
-              = render partial: 'schedules/row', collection: @time_slots, as: :slot
+
+.card
+  .card-body
+    table.table
+      tbody#group-day-schedule
+        - if @time_slots.blank?
+          .text-center 
+            h4 Този ден не е разграфен от директора.
+        - else 
+          = render partial: 'schedules/row', collection: @time_slots, as: :slot

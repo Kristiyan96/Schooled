@@ -1,0 +1,2 @@
+closeModals();
+$("#courses #<%=@course.id%>").replaceWith("<%= escape_javascript (render partial: 'courses/row', locals: { course: @course } ) %>");

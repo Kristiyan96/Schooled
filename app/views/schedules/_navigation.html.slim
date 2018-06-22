@@ -1,0 +1,15 @@
+nav.navbar.navbar-expand-lg.navbar-dark.bg-primary
+  .container
+    a.navbar-brand href="#"  = "#{group_name(@group)} от #{slot_period(@schedule.time_slot)}"
+    button.navbar-toggler aria-controls="navbarText" aria-expanded="false" aria-label=("Toggle navigation") data-target="#navbarText" data-toggle="collapse" type="button" 
+      span.navbar-toggler-icon
+    .justify-content-end
+      ul.nav.nav-tabs data-tabs="tabs" 
+        li.nav-item
+          a.nav-link.active data-toggle="tab" href="#absence"  Отсъствия
+        li.nav-item
+          a.nav-link data-toggle="tab" href="#mark"  Оценки
+        li.nav-item
+          a.nav-link data-toggle="tab" href="#homework"  Домашно
+        li.nav-item
+          a.nav-link data-toggle="tab" href="#topic"  Тема на часа

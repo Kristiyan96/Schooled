@@ -1,6 +1,7 @@
+= render 'schools/navigation'
+
 .card
   .card-body.time-slots
-    = render 'schools/navigation'
     .cd-horizontal-timeline
       .timeline
         .events-wrapper
@@ -17,5 +18,6 @@
             a.prev.inactive href="#0" Prev
           li
             a.next href="#0" Next
-    #day-card
-      = render partial: 'time_slots/day_card', locals: {date: @date, time_slots: @time_slots}
+
+#day-card
+  = render partial: 'time_slots/day_card', locals: {date: @date, time_slots: @time_slots}

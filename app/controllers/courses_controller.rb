@@ -4,7 +4,7 @@ class CoursesController < ApplicationController
   before_action :set_course, only: [:show, :edit, :update, :destroy]
 
   def index
-    @courses = policy_scope(@group.courses.order(:name))
+    @courses = policy_scope(@group.courses.ordered_by_subject)
   end
 
   def show
@@ -28,6 +28,7 @@ class CoursesController < ApplicationController
         format.json { render :show, status: :created, location: @course }
         format.js { }
       else
+        debugger
         format.html { render :new }
         format.json { render json: @course.errors, status: :unprocessable_entity }
         format.js { }

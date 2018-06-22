@@ -1,8 +1,7 @@
+= render 'groups/navigation'
+
 .card
-  .card-header.card-header-icon
-    b.card-icon = group_name(@group)
   .card-body.time-slots
-    = render 'groups/navigation'
     .cd-horizontal-timeline
       .timeline
         .events-wrapper
@@ -19,5 +18,6 @@
             a.prev.inactive href="#0" Prev
           li
             a.next href="#0" Next
-    #day-card
-      = render partial: 'absences/day_card', locals: {date: @date, schedules: @schedules}
+
+#day-card
+  = render partial: 'absences/day_card', locals: {date: @date, schedules: @schedules}

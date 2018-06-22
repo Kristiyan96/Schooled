@@ -5,7 +5,7 @@ class HomeworksController < ApplicationController
   before_action :set_homework, only: [:show, :edit, :update, :destroy]
 
   def index
-    @courses          = @group.courses
+    @courses          = @group.courses.where(teacher: current_user)
     @homeworks_past   = policy_scope(@group.homeworks.where('deadline < ?', DateTime.now))
     @homeworks_future = policy_scope(@group.homeworks.where('deadline > ?', DateTime.now))
   end

@@ -1,8 +1,7 @@
+= render 'groups/navigation'
+
 .card
-  .card-header.card-header-icon
-    b.card-icon = group_name(@group)
   .card-body.time-slots
-    = render 'groups/navigation'
     .cd-horizontal-timeline
       .timeline
         .events-wrapper
@@ -20,8 +19,8 @@
           li
             a.next href="#0" Next
 
-    #week-schedule
-      = render partial: 'schedules/week_schedule', locals: {date: @date, week_schedule: @week_schedule}
+#week-schedule
+  = render partial: 'schedules/week_schedule', locals: {date: @date, week_schedule: @week_schedule}
 
 
             
