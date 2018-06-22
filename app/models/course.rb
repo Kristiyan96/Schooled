@@ -9,7 +9,6 @@ class Course < ApplicationRecord
   has_many :time_slots, through: :schedules
 
   scope :in_year, -> (group_id, year) { Course.joins(:school_year).where(school_years: {year: year}, courses: {group_id: group_id}) }
-  scope :ordered, -> { joins(:subject).order("subjects.name") }
 
   def name
     subject.name
@@ -17,6 +16,10 @@ class Course < ApplicationRecord
 
   def year
     school_year.year
+  end
+
+  def self.ordered_by_subject
+     includes(:subject).order('subjects.name DESC')
   end
 
   class None

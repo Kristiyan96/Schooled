@@ -66,7 +66,7 @@ class GroupsController < ApplicationController
 
   def marks
     @courses = @group.courses.where(school_year: @school.active_school_year)
-    @course = @courses.first
+    @course = (params[:course_id] && Course.find(params[:course_id])) || @courses.first
     @mark = Mark.new
     respond_to do |format|
       format.html { }

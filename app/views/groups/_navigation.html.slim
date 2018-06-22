@@ -1,14 +1,29 @@
-ul.nav.nav-pills.justify-content-end
+nav.navbar.navbar-expand-lg.navbar-dark.bg-primary
+  .container
+    a.navbar-brand href="#"  
+      = group_name(@group)
+    button.navbar-toggler aria-controls="navbarText" aria-expanded="false" aria-label=("Toggle navigation") data-target="#navbarText" data-toggle="collapse" type="button" 
+      span.navbar-toggler-icon
+    .justify-content-end
+      #navbarText.collapse.navbar-collapse
+        ul.navbar-nav.mr-auto
+          li.nav-item class="#{'active' if controller_name == 'groups' && action_name == 'week_schedule'}"
+            = link_to 'Програма', week_schedule_school_group_path(@school, @group), class: "nav-link"
+          li.nav-item  class="#{'active' if controller_name == 'homeworks' && action_name == 'index'}"
+            = link_to 'Домашни', school_group_homeworks_path(@school, @group), class: "nav-link"
+          - if policy(@group).update?
+            li.nav-item class="#{'active' if controller_name == 'groups' && action_name == 'marks'}"
+              = link_to 'Оценки', marks_school_group_path(@school, @group), class: "nav-link"
+            li.nav-item class="#{'active' if controller_name == 'groups' && action_name == 'absences'}"
+              = link_to 'Отсъствия', absences_school_group_path(@school, @group, school_year_id: @school.active_school_year), class: "nav-link"
+            li.nav-item.dropdown class="#{'active' if (controller_name == 'groups' && action_name == 'edit') || (controller_name == 'groups' && action_name == 'day_schedule') || (controller_name == 'student_invitations' && action_name == 'students') || (controller_name == 'courses' && action_name == 'index')}"
+              a#settings.nav-link.dropdown-toggle href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" Настройки
+              .dropdown-menu.dropdown-menu-right aria-labelledby="settings" data-placement="left"
+                = link_to 'на класа', edit_school_group_path(@school, @group), class: "dropdown-item #{'active' if controller_name == 'groups' && action_name == 'edit'}"
+                = link_to 'на програмата', day_schedule_school_group_path(@school, @group), class: "dropdown-item #{'active' if controller_name == 'groups' && action_name == 'day_schedule'}"
+                = link_to 'на учениците', students_school_group_student_invitations_path(@school, @group), class: "dropdown-item #{'active' if controller_name == 'student_invitations' && action_name == 'students'}"
+                = link_to 'на предметите', school_group_courses_path(@school, @group), class: "dropdown-item #{'active' if controller_name == 'courses' && action_name == 'index'}"
 
-  li.nav-item 
-    = link_to 'Програма', week_schedule_school_group_path(@school, @group), class: "nav-link #{'active' if controller_name == 'groups' && action_name == 'week_schedule'}"
-  li.nav-item 
-    = link_to 'Домашни', school_group_homeworks_path(@school, @group), class: "nav-link #{'active' if controller_name == 'homeworks' && action_name == 'index'}"
-  - if policy(@group).update?
-    li.nav-item 
-      = link_to 'Оценки', marks_school_group_path(@school, @group), class: "nav-link #{'active' if controller_name == 'groups' && action_name == 'marks'}"
-    li.nav-item 
-      = link_to 'Отсъствия', absences_school_group_path(@school, @group, school_year_id: @school.active_school_year), class: "nav-link #{'active' if controller_name == 'groups' && action_name == 'absences'}"
-    li.nav-item 
-      = link_to 'Настройки', edit_school_group_path(@school, @group), class: "nav-link #{'active' if (controller_name == 'groups' && action_name == 'edit') || (controller_name == 'groups' && action_name == 'day_schedule') || (controller_name == 'student_invitations' && action_name == 'students') || (controller_name == 'courses' && action_name == 'index')}"
-hr
+
+
+

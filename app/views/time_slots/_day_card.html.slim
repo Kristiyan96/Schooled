@@ -1,11 +1,11 @@
-.card.col-md-6.col-xs-12.offset-md-3
+.card
   .card-body
     table.table
       thead
         tr
           td Начало-Край
           td Име
-          td.text-center Действия
+          td.text-right Действия
       tbody#day-schedule
         = render partial: 'time_slots/row', collection: time_slots.for_day(date), as: :slot
     button.btn.btn-success.btn-sm type="button" data-toggle="modal" data-target="#add-slot" Добави период

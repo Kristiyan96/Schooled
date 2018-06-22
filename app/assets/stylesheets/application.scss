@@ -6,21 +6,17 @@
 .no-margin{
   margin-top: 0px !important;
 }
-
 .hidden {
   display: none;
 }
-
 table.table-hover td.hover {
   background-color: #f5f5f5;
 }
-
 .logo a h3{
   position: absolute;
   top: 0px;
   left: 25px;
 }
-
 .icon.icon-rose {
   color: #e91e63;
 }
@@ -30,4 +26,9 @@ table.table-hover td.hover {
 .icon.icon-info {
   color: #00bcd4;
 }
-
+.content.main-content {
+  padding-top: 0px;
+}
+.collapse.navbar-collapse .nav-item .nav-link {
+  font-weight: 500;
+}

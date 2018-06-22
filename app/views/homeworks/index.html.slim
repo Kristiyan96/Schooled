@@ -1,32 +1,32 @@
-.card
-  .card-header.card-header-default.card-header-icon
-    b.card-icon = group_name(@group)
+= render 'groups/navigation'
 
+.card
   .card-body
-    = render 'groups/navigation'
-    ul.nav.nav-pills.justify-content-end
+    .d-inline
+      button.btn.btn-success.btn-sm.d-inline type="button" data-toggle="modal" data-target="#add-homework-modal" Добави домашно
+    ul.nav.nav-pills.justify-content-end.d-inline-flex.pull-right
       li.nav-item 
         a.nav-link.active href="#future" data-toggle="tab" Предстоящи
       li.nav-item 
         a.nav-link href="#past" data-toggle="tab" Изминали
 
-    .tab-content.tab-space
-      .tab-pane.active id="future"
-        - if @homeworks_future.blank?
-          .text-center
-            h4 Този клас няма предстоящи домашни.
-        - else 
-          = render partial: 'homeworks/homework_row', collection: @homeworks_future, as: :homework
 
-      .tab-pane id="past"
-        - if @homeworks_past.blank?
-          .text-center
-            h4 Този клас няма изминали домашни.  
-        - else
-          = render partial: 'homeworks/homework_row', collection: @homeworks_past, as: :homework 
+.tab-content.tab-space
+  .tab-pane.active id="future"
+    - if @homeworks_future.blank?
+      .text-center
+        h4 Този клас няма предстоящи домашни.
+    - else 
+      = render partial: 'homeworks/homework_row', collection: @homeworks_future, as: :homework
 
-    - if policy(@group).teacher?
-      = render 'homeworks/add_homework_modal'
-      = render 'homeworks/edit_homework_modal'
-      .offset-md-3
-        button.btn.btn-success.btn-sm type="button" data-toggle="modal" data-target="#add-homework-modal" Добави домашно
+  .tab-pane id="past"
+    - if @homeworks_past.blank?
+      .text-center
+        h4 Този клас няма изминали домашни.  
+    - else
+      = render partial: 'homeworks/homework_row', collection: @homeworks_past, as: :homework 
+
+- if policy(@group).teacher?
+  = render 'homeworks/add_homework_modal'
+  = render 'homeworks/edit_homework_modal'
+        

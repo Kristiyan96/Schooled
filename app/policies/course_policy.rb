@@ -2,7 +2,7 @@ class CoursePolicy < ApplicationPolicy
 
   class Scope < Scope
     def resolve
-      scope.joins(school: [:assignments]).where(assignments: {user_id: user.id, role_id: 3})
+      scope
     end
   end
   
@@ -21,6 +21,7 @@ class CoursePolicy < ApplicationPolicy
   def update?
     user.admin? ||
       user.headmaster?(record.school) ||
+      user.headteacher?(record.group) ||
       user.teaching_course?(record)
   end
 

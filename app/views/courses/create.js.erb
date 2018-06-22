@@ -1,0 +1,6 @@
+<% if @course.id %>
+  closeModals();
+  $('#courses').prepend("<%= escape_javascript ( render partial: 'courses/row', locals: { course: @course } ) %>");
+<% else %>
+
+<% end %>

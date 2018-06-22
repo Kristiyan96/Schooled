@@ -1,0 +1,7 @@
+tr.row id="student-#{student.id}"
+  td.text-center.col-md-1 = student.number_in_class
+  td.col-md-2 = student.full_name
+  td.col-md-3.marks
+    = render partial: 'marks/mark', collection: Mark.where(student: student, course: @course, kind: term).order(:created_at), as: :mark
+  td.col-md-3.text-right
+    = render partial: 'marks/form', locals: {student: student, term: term}

@@ -1,19 +1,18 @@
+= render 'schools/navigation'
+
 .card
-  .card-body.time-slots
-    = render 'schools/navigation'
-    .card.col-md-6.offset-md-3
-      .card-body
-        table.table
-          thead
-            tr
-              th Предмет
-              th.text-center Действия
-          tbody#subjects
-            = render partial: 'row', collection: @subjects, as: :subject
-        
-        button.btn.btn-success.btn-sm.add-subject type="button" data-toggle="modal" data-target="#add-subject" 
-          i.material-icons add
-          | Добави предмет
+  .card-body
+    table.table
+      thead
+        tr
+          th Предмет
+          th.text-right Действия
+      tbody#subjects
+        = render partial: 'row', collection: @subjects, as: :subject
+    
+    button.btn.btn-success.btn-sm.add-subject type="button" data-toggle="modal" data-target="#add-subject" 
+      i.material-icons add
+      | Добави предмет
 
     = render 'add_modal'
     = render 'edit_modal'

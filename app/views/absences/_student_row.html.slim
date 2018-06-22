@@ -1,0 +1,6 @@
+- absence_val = Absence.find_by(student: student, schedule: @schedule).try(:value) || 0
+tr.row id="student-#{student.id}"
+  td.text-center.col-md-2 = student.number_in_class
+  td.col-md-3 = student.full_name
+  td.text-center.col-md-3
+    = render partial: 'absences/form', locals: {student: student, term: term, absence_val: absence_val}
