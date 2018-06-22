@@ -5,6 +5,6 @@
         = f.collection_select :course_id, @courses, :id, :name, {selected: schedule.course.id}, {class: "form-control"}
     .form-group.no-margin.bmd-form-group.col
       .input-group
-        = f.select :type, [['Само днес', 'one'], ['Всяка седмица', 'series_7'], ['Четни седмици', 'series_14']], {}, { class: "form-control" }
+        = f.select :type, [['Само днес', 'one'], ['Всяка седмица', 'series_7'], ['Четни седмици', 'series_14']], {selected: 'series_7'}, { class: "form-control" }
     .form-group.no-margin.bmd-form-group.col
       = f.submit 'Промени', class: 'btn btn-warning btn-sm'

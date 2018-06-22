@@ -49,7 +49,7 @@ class GroupsController < ApplicationController
     
     respond_to do |format|
       format.html { }
-      format.js   { render action: "../schedules/week_schedule"}
+      format.js   { render action: "../schedules/week_schedule" }
     end
   end
 
@@ -60,7 +60,7 @@ class GroupsController < ApplicationController
 
     respond_to do |format|
       format.html { }
-      format.js   { render action: "../schedules/group_day_schedule"}
+      format.js   { render action: "../schedules/group_day_schedule" }
     end
   end
 
@@ -79,6 +79,12 @@ class GroupsController < ApplicationController
     @date = (params[:date] && Date.parse(params[:date])) || Date.today
     @students = @group.students.order(:number_in_class)
     @schedules = @group.schedules.for_day(@date)
+
+    respond_to do |format|
+      format.html { }
+      format.json { }
+      format.js { render action: "../absences/refresh_card" }
+    end
   end
 
   private
