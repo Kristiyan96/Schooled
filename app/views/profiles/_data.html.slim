@@ -16,12 +16,13 @@
               | Отсъствия
               .ripple-container
               .ripple-container
-          li.nav-item
-            a.nav-link data-toggle="tab" href="#remarks" 
-              i.material-icons notification_important
-              | Забележки
-              .ripple-container
-              .ripple-container
+          - if @user.remarks.any?
+            li.nav-item
+              a.nav-link data-toggle="tab" href="#remarks" 
+                i.material-icons notification_important
+                | Забележки
+                .ripple-container
+                .ripple-container
   .card-body
     .tab-content
       #marks.tab-pane.active.show
@@ -53,7 +54,7 @@
               th.text-center Извинени
           tbody
             = render partial: 'absences', collection: @courses, as: :course
-            tr
+            tr.text-primary
               th Общо
               th.text-center = Absence.where(student: @user, value: 0.5).count
               th.text-center = Absence.where(student: @user, value: 1, category: 'permanent').count

@@ -14,7 +14,7 @@ class Course < ApplicationRecord
   scope :in_year, -> (group_id, year) { Course.joins(:school_year).where(school_years: {year: year}, courses: {group_id: group_id}) }
 
   def name
-    subject.name
+    subject.abbreviation || subject.name
   end
 
   def year
