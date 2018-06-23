@@ -545,6 +545,27 @@
         .ct-label{
             color: rgba($white-color, .7);
         }
+        .ct-horizontal {
+          margin-top: 10px;
+          font-weight: bold;
+          font-size: 11px;
+
+          /* Safari */
+          -webkit-transform: rotate(-90deg);
+
+          /* Firefox */
+          -moz-transform: rotate(-90deg);
+
+          /* IE */
+          -ms-transform: rotate(-90deg);
+
+          /* Opera */
+          -o-transform: rotate(-90deg);
+
+          /* Internet Explorer */
+          filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+
+        }
         .ct-grid{
             stroke: rgba(255, 255, 255, 0.2);
         }
