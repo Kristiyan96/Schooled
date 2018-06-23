@@ -25,15 +25,20 @@
   .card-body
     .tab-content
       #marks.tab-pane.active.show
-        table.table
+        table.table.table-bordered.table-hover.table-sm
           thead
             tr
+              td 
+              th.text-center colspan="2" Първи срок
+              th.text-center colspan="2" Втори срок
+              th.text-right Годишна
+            tr
               th Предмет
-              th.text-center Първи срок
-              th.text-center 
-              th.text-center Втори срок
-              th.text-center 
-              th.text-right Годишна 
+              td.text-center Текущи
+              td.text-center Срочна
+              td.text-center Текущи
+              td.text-center Срочна
+              td
           tbody
             = render partial: 'marks', collection: @courses, as: :course
 

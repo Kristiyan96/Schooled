@@ -1,2 +1,1 @@
-a.btn.btn-primary.btn-link.btn-sm tabindex="0" data-toggle="popover" data-trigger="focus" title="#{mark.created_at.strftime('%d/%m/%Y')}" data-content="#{mark.try(:note).blank? ? 'Липсва коментар на оценката' : mark.note}" 
-  h6 = formatted_mark(mark)
+a.btn.btn-sm.profile-mark class="btn-#{mark_color(mark)} #{'btn-link' if mark.kind.in?(['first_semester', 'second_semester'])}" tabindex="0" data-toggle="popover" data-trigger="focus" title="#{mark.created_at.strftime('%d/%m/%Y')}" data-content="#{mark.try(:note).blank? ? 'Липсва коментар на оценката' : mark.note}" = formatted_mark(mark)
