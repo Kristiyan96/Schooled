@@ -43,7 +43,14 @@
             = render partial: 'marks', collection: @courses, as: :course
 
       #absences.tab-pane
-        table.table
+        table.table.table-bordered.table-hover.table-sm
+          thead
+            tr
+              th Предмет
+              th.text-center Закъснения
+              th.text-center Неизвинени
+              th.text-center Сбор неизвинени
+              th.text-center Извинени
           tbody
             = render partial: 'absences', collection: @courses, as: :course
 

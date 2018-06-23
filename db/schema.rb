@@ -16,10 +16,9 @@ ActiveRecord::Schema.define(version: 2018_06_05_120209) do
   enable_extension "plpgsql"
 
   create_table "absences", force: :cascade do |t|
-    t.string "value", default: "0/1", null: false
-    t.integer "kind", default: 0, null: false
+    t.decimal "value", default: "0.0", null: false
     t.integer "category", default: 0, null: false
-    t.integer "student_id"
+    t.integer "student_id", null: false
     t.bigint "schedule_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -159,6 +158,7 @@ ActiveRecord::Schema.define(version: 2018_06_05_120209) do
   create_table "subjects", force: :cascade do |t|
     t.bigint "school_id"
     t.string "name", null: false
+    t.string "abbreviation"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["school_id"], name: "index_subjects_on_school_id"

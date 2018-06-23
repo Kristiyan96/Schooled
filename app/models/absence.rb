@@ -2,7 +2,6 @@ class Absence < ApplicationRecord
   belongs_to :schedule
   belongs_to :student, class_name: "User", foreign_key: "student_id"
 
-  attribute :value, :rational
   enum category: [:permanent, :excused]
 
   scope :student_absences_in_period, -> student, start, finish {
