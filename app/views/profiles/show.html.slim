@@ -3,9 +3,11 @@
     = render 'card'
   - if @user.group_id
     .col-xs-6.col-md-5
-      = render 'marks_statistics'
+      = render 'marks_graph'
     .col-xs-6.col-md-3
       = render 'absences_statistics'
+      = render 'marks_statistics'
+
 - if @user.group_id
   .row
     .col-md-12

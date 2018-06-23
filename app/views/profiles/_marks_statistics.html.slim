@@ -1,18 +1,11 @@
-.card.card-chart
-  .card-header.card-header-success
-    #averageMarksChart.ct-chart
-  .card-body
-    h4.card-title Среден успех
+.card.card-stats
+  .card-header.card-header-success.card-header-icon
+    .card-icon
+      i.material-icons pie_chart
+    p.card-category Оценки
+    h3.card-title = Mark.where(student: @user).count
   .card-footer
     .stats
-      i.material-icons access_time
-      | последно обновен преди 
-      = time_ago_in_words (@user.marks.order(:updated_at).last.updated_at)
-
-javascript:
-  var data = {
-    labels: #{ raw weeks_until_now_this_semester(@user.group.school).map{|d| d.strftime('%d.%m')}.map(&:to_s).drop(1) },
-    series: [#{ average_mark_until_now_weekly_this_semester(@user) }]
-  };
-
-  new Chartist.Line('.ct-chart', data);
+      i.material-icons local_offer
+      = Mark.where('student_id=? and created_at>?', @user.id, Date.today - 7).count
+      |  нови от последните 7 дни.
