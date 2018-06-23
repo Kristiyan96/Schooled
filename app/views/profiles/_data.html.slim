@@ -1,0 +1,48 @@
+.card
+  .card-header.card-header-tabs.card-header-primary
+    .nav-tabs-navigation
+      .nav-tabs-wrapper
+        span.nav-tabs-title Данни:
+        ul.nav.nav-tabs data-tabs="tabs" 
+          li.nav-item
+            a.nav-link.active.show data-toggle="tab" href="#marks" 
+              i.material-icons pie_chart
+              | Оценки
+              .ripple-container
+              .ripple-container
+          li.nav-item
+            a.nav-link data-toggle="tab" href="#absences" 
+              i.material-icons done
+              | Отсъствия
+              .ripple-container
+              .ripple-container
+          li.nav-item
+            a.nav-link data-toggle="tab" href="#remarks" 
+              i.material-icons notification_important
+              | Забележки
+              .ripple-container
+              .ripple-container
+  .card-body
+    .tab-content
+      #marks.tab-pane.active.show
+        table.table
+          thead
+            tr
+              th Предмет
+              th.text-center Първи срок
+              th.text-center 
+              th.text-center Втори срок
+              th.text-center 
+              th.text-right Годишна 
+          tbody
+            = render partial: 'marks', collection: @courses, as: :course
+
+      #absences.tab-pane
+        table.table
+          tbody
+            = render partial: 'absences', collection: @courses, as: :course
+
+      #remarks.tab-pane
+        table.table
+          tbody
+

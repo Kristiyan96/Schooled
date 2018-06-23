@@ -1,2 +1,2 @@
 a.btn.btn-sm.btn-default.mark-button id="#{mark.id}" data-toggle="modal" data-note="#{mark.note}" data-id="#{mark.id}" data-target="#edit-mark" style="background-color: rgb(240,240,240)" 
-  b = mark.grade == mark.grade.floor ? '%g' % mark.grade : ('%.2f' % mark.grade)
+  b = formatted_mark(mark)

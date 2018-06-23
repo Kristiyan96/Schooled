@@ -5,7 +5,10 @@ class Course < ApplicationRecord
   belongs_to :school_year
   belongs_to :teacher, foreign_key: "teacher_id", class_name: "User"
 
-  has_many :schedules
+  has_many :marks, dependent: :destroy
+  has_many :remarks, dependent: :destroy
+  has_many :schedules, dependent: :destroy
+  has_many :absences, through: :schedules
   has_many :time_slots, through: :schedules
 
   scope :in_year, -> (group_id, year) { Course.joins(:school_year).where(school_years: {year: year}, courses: {group_id: group_id}) }
