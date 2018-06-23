@@ -3,6 +3,10 @@ class ProfilesController < ApplicationController
   def show
     @user = User.find(params[:id])
     authorize @user
+
+    if @user.group_id
+      @courses = @user.group.courses
+    end
   end
 
   def schedule

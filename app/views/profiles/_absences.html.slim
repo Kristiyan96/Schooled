@@ -1,0 +1,7 @@
+tr
+  td = course.name
+  td.text-center = Absence.where(student: @user, value: 0.5).joins(:schedule).where(schedules: {course: course}).size
+  td.text-center = Absence.where(student: @user, value: 1, category: 'permanent').joins(:schedule).where(schedules: {course: course}).size
+  td.text-center = Absence.where(student: @user, category: 'permanent').joins(:schedule).where(schedules: {course: course}).sum(:value).formatted
+  td.text-center = Absence.where(student: @user, value: 1, category: 'excused').joins(:schedule).where(schedules: {course: course}).size
+  

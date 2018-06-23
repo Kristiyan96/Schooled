@@ -5,12 +5,12 @@ feg = School.create(name: "Френска Езикова Гимназия", emai
 
 puts "Creating subjects"
 
-maths1     = Subject.new(name: "Математика", school: smg)
-bulgarian1 = Subject.new(name: "Български", school: smg)
-french1    = Subject.new(name: "Френски", school: smg)
-maths2     = Subject.new(name: "Математика", school: feg)
-bulgarian2 = Subject.new(name: "Български", school: feg)
-french2    = Subject.new(name: "Френски", school: feg)
+maths1     = Subject.new(name: "Математика", abbreviation: 'Мат', school: smg)
+bulgarian1 = Subject.new(name: "Български", abbreviation: 'БЕЛ', school: smg)
+french1    = Subject.new(name: "Френски", abbreviation: 'Френски', school: smg)
+maths2     = Subject.new(name: "Математика", abbreviation: 'Мат', school: feg)
+bulgarian2 = Subject.new(name: "Български", abbreviation: 'БЕЛ', school: feg)
+french2    = Subject.new(name: "Френски", abbreviation: 'Френски', school: feg)
 
 puts "Creating headmasters"
 

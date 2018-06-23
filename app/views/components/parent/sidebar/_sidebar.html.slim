@@ -1,9 +1,0 @@
-- if user_signed_in? && current_user.students.any?
-  li.nav-item
-    a.nav-link
-      b Моите деца
-  - current_user.students.each do |student|
-    li.nav-item
-      = link_to profile_path(student), class: "nav-link" do
-        i.material-icons person
-        p = student.full_name

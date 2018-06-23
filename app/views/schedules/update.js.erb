@@ -1,3 +1,3 @@
-let row = $('#group-day-schedule tr#<%= @slot.id %>')
+row = $('#group-day-schedule tr#<%= @slot.id %>');
 row.replaceWith("<%= escape_javascript ( render partial: 'schedules/row', locals: { slot: @slot } ) %>");
 row.fadeOut(100).fadeIn(1000);

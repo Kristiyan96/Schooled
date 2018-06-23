@@ -3,6 +3,7 @@
 @import "time_slots";
 @import "messages";
 @import "absences";
+@import "marks";
 
 .no-margin{
   margin-top: 0px !important;
@@ -40,4 +41,8 @@ table.table-hover td.hover {
   text-align: center;
   left: 10vw;
   font-weight: bold;
+}
+
+table.table-sm tr td {
+  padding: 8px;
 }
