@@ -53,6 +53,12 @@
               th.text-center Извинени
           tbody
             = render partial: 'absences', collection: @courses, as: :course
+            tr
+              th Общо
+              th.text-center = Absence.where(student: @user, value: 0.5).count
+              th.text-center = Absence.where(student: @user, value: 1, category: 'permanent').count
+              th.text-center = Absence.where(student: @user, category: 'permanent').sum(:value).formatted
+              th.text-center = Absence.where(student: @user, category: 'excused').sum(:value).formatted
 
       #remarks.tab-pane
         table.table
