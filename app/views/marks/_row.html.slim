@@ -2,5 +2,5 @@ tr.row id="student-#{student.id}"
   td.text-center.col-md-1 = student.number_in_class
   td.col-md-1 = link_to student.full_name, profile_path(student)
   td.col-md-10
-    .col-md-8.pull-left.marks  = render partial: 'marks/mark', collection: Mark.where(student: student, course: @course, kind: term).order(:created_at), as: :mark
+    .col-md-8.pull-left.marks  = render partial: 'marks/mark', collection: Mark.where(student: student, course: @course, kind: term || @kind).order(:created_at), as: :mark
     .col-md-4.pull-right = render partial: 'marks/form', locals: {student: student, term: term}
