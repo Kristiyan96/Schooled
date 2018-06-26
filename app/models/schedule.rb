@@ -57,6 +57,7 @@ class Schedule < ApplicationRecord
     timeslots = TimeSlot.where(school_year: time_slot.school_year)
       .with_start_and_end_daily(time_slot.start, time_slot.end, days)
       .with_start_date_greater_than(time_slot.start)
+      .with_end_date_before(time_slot.term_end)
 
     schedules = timeslots.map { |t| { time_slot_id: t.id, course_id: course_id } }
     Schedule.import(schedules)

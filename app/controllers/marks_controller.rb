@@ -7,6 +7,8 @@ class MarksController < ApplicationController
 
   def create
     @mark = Mark.new(mark_params)
+    @mark.created_at = Schedule.find(params[:schedule_id])
+      .time_slot.start if params[:schedule_id] 
     authorize @mark
 
     respond_to do |format|

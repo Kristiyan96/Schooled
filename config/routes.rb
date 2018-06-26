@@ -7,7 +7,7 @@ Rails.application.routes.draw do
     end
 
     unauthenticated do
-      root to: 'devise/sessions#new', as: 'unauthenticated_root'
+      root to: 'pages#show', page: 'home'
     end
 
     resource :registration,
