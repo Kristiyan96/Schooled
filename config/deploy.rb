@@ -4,8 +4,6 @@
 lock '~> 3.11.0'
 server 'moonhythe@188.166.8.19', port: 22, roles: %i[web app db], primary: true
 
-load 'lib/deploy/seed'
-
 set :application, 'schooled'
 set :user, 'moonhythe'
 set :repo_url, 'git@github.com:Kristiyan96/schooled.git'
@@ -54,3 +52,11 @@ set :keep_releases, 5
 
 # Uncomment the following to require manually verifying the host key before first deploy.
 # set :ssh_options, verify_host_key: :secure
+
+
+namespace :deploy do
+  desc "reload the database with seed data"
+  task :seed do
+    run "cd #{current_path}; RAILS_ENV=production bundle exec rake db:seed"
+  end
+end
