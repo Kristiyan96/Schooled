@@ -1,12 +1,12 @@
-tr
+tr.text-center
   td = course.name
-  td.text-center = render partial: 'mark', 
+  td = render partial: 'mark', 
       collection: Mark.where(student: @user, course: course, kind: 'first_semester').order(:created_at), as: :mark
-  td.text-center = render partial: 'mark', 
+  td = render partial: 'mark', 
       collection: Mark.where(student: @user, course: course, kind: 'first_semester_final').order(:created_at), as: :mark
-  td.text-center = render partial: 'mark', 
+  td = render partial: 'mark', 
       collection: Mark.where(student: @user, course: course, kind: 'second_semester').order(:created_at), as: :mark
-  td.text-center = render partial: 'mark', 
+  td = render partial: 'mark', 
       collection: Mark.where(student: @user, course: course, kind: 'second_semester_final').order(:created_at), as: :mark
-  td.text-right = render partial: 'mark', 
+  td = render partial: 'mark', 
       collection: Mark.where(student: @user, course: course, kind: 'final').order(:created_at), as: :mark

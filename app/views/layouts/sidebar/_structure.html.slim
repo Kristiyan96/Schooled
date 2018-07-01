@@ -1,12 +1,12 @@
 - if !current_user
   .logo
     a.simple-text.logo-normal href="/" 
-      h3 Schooled
+      = image_tag ('logo')
 - if current_user
   .sidebar data-background-color="white" data-color="purple"
     .logo
       a.simple-text.logo-normal href="" 
-        | Schooled
+        | Moonhythe
     .sidebar-wrapper
       ul.nav
         .d-md-none

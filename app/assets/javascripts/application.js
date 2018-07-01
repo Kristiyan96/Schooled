@@ -8,6 +8,7 @@
 //= require material-kit/plugins/moment.min
 //= require material-kit/plugins/bootstrap-datetimepicker
 //= require material-kit/plugins/nouislider.min
+//= require landing/header
 //= require turbolinks
 //= require phoenix
 //= require_tree .

@@ -1,11 +1,12 @@
 .row
-  .col-xs-12.col-md-4
+  .col-xs-12.col-md-6
     = render 'card'
   - if @user.group_id
-    .col-xs-6.col-md-5
+    .col-xs-12.col-md-6
       = render 'marks_graph'
-    .col-xs-6.col-md-3
+    .col-xs-6.col-md-6
       = render 'absences_statistics'
+    .col-xs-6.col-md-6
       = render 'marks_statistics'
 
 - if @user.group_id

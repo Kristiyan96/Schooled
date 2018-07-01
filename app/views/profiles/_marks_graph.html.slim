@@ -3,11 +3,12 @@
     #averageMarksChart.ct-chart
   .card-body
     h4.card-title Среден успех седмично
-  .card-footer
-    .stats
-      i.material-icons access_time
-      | последно обновен преди 
-      = time_ago_in_words (@user.marks.order(:updated_at).last.updated_at)
+  - if @user.marks.any?
+    .card-footer
+      .stats
+        i.material-icons access_time
+        | последно обновен преди 
+        = time_ago_in_words (@user.marks.order(:updated_at).last.try(:updated_at))
 
 javascript:
   var data = {

@@ -24,7 +24,6 @@ gem 'font-awesome-rails'
 gem 'devise'
 gem 'devise_invitable'
 gem 'pundit'
-gem 'bourbon'
 
 gem 'activerecord-import'
 
