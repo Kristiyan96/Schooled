@@ -151,7 +151,7 @@ TimeSlot.create_week_daily(school_year: y1, date: date, params: {start: time.cha
 
 puts "Creating schedules"
 
-slots_today = TimeSlot.for_school(smg).for_day(Date.today)
+slots_today = TimeSlot.for_school(smg).for_day(Date.today - 2)
 Schedule.create_with_type(params: {course_id: c1.id, time_slot_id: slots_today[0].id, type: 'series_7'})
 Schedule.create_with_type(params: {course_id: c1.id, time_slot_id: slots_today[1].id, type: 'series_7'})
 Schedule.create_with_type(params: {course_id: c2.id, time_slot_id: slots_today[2].id, type: 'series_7'})
