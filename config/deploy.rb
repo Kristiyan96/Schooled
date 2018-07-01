@@ -1,16 +1,15 @@
 # frozen_string_literal: true
 
 # config valid for current version and patch releases of Capistrano
-lock '~> 3.10.1'
-
-server 'moonhythe@188.166.9.18', port: 22, roles: %i[web app db], primary: true
+lock '~> 3.11.0'
+server 'moonhythe@188.166.8.19', port: 22, roles: %i[web app db], primary: true
 
 set :application, 'schooled'
 set :user, 'moonhythe'
 set :repo_url, 'git@github.com:Kristiyan96/schooled.git'
 
 set :rbenv_type, :user
-set :rbenv_prefix, "RBENV_ROOT=#{fetch(:rbenv_path)} RBENV_VERSION=#{fetch(:rbenv_ruby)} /usr/bin/rbenv exec"
+set :rbenv_prefix, "/home/moonhythe/.rbenv/bin/rbenv exec"
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
 

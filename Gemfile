@@ -27,8 +27,6 @@ gem 'pundit'
 
 gem 'activerecord-import'
 
-gem 'sidekiq'
-
 gem 'bootsnap', '>= 1.1.0', require: false
 
 group :development, :test do
@@ -49,7 +47,6 @@ group :development do
   gem 'capistrano-ext'
   gem 'capistrano-rails'
   gem 'capistrano-rbenv'
-  gem 'capistrano-sidekiq'
   gem 'capistrano-yarn'
   gem 'capistrano3-puma'
 end
