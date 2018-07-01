@@ -4,6 +4,8 @@
 lock '~> 3.11.0'
 server 'moonhythe@188.166.8.19', port: 22, roles: %i[web app db], primary: true
 
+load 'lib/deploy/seed'
+
 set :application, 'schooled'
 set :user, 'moonhythe'
 set :repo_url, 'git@github.com:Kristiyan96/schooled.git'
