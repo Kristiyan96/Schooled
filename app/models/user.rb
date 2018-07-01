@@ -45,7 +45,7 @@ class User < ApplicationRecord
     elsif students.any?
       role = "Parent"
     end
-    "roles/#{role}".downcase 
+    "roles/#{role}.svg".downcase
   end
 
   def student_info
