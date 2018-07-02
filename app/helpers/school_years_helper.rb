@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module SchoolYearsHelper
   def current_year(school)
     school.school_years.order(:year).last
@@ -9,7 +11,7 @@ module SchoolYearsHelper
 
     date_start = active_semester == 1 ? school_year.start : school_year.midterm
     date_end   = active_semester == 1 ? school_year.midterm : school_year.end
-    
+
     date_start = date_start.beginning_of_week.to_date
     date_end   = date_end.to_date
 

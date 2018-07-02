@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Students::ParentshipController < ApplicationController
   def create
     @student = User.find(params[:student_id])
@@ -6,10 +8,10 @@ class Students::ParentshipController < ApplicationController
     respond_to do |format|
       if @is_invited
         @user = User.find_by(email: user_params[:email])
-        format.html { redirect_back fallback_location: profile_path(@student), notice: "Invited!" }
+        format.html { redirect_back fallback_location: profile_path(@student), notice: 'Invited!' }
         format.js { render 'schools/parent_invitations/create' }
       else
-        format.html { redirect_back fallback_location: profile_path(@student), alert: "Failed to invite!" }
+        format.html { redirect_back fallback_location: profile_path(@student), alert: 'Failed to invite!' }
         format.js { render 'schools/parent_invitations/create' }
       end
     end

@@ -1,11 +1,13 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-RSpec.describe "subjects/show", type: :view do
+RSpec.describe 'subjects/show', type: :view do
   before(:each) do
-    @subject = assign(:subject, Subject.create!())
+    @subject = assign(:subject, Subject.create!)
   end
 
-  it "renders attributes in <p>" do
+  it 'renders attributes in <p>' do
     render
   end
 end

@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 class AbsencesController < ApplicationController
   before_action :set_school
   before_action :set_group
   before_action :set_year
-  before_action :set_absence, only: [:update, :toggle_category]
+  before_action :set_absence, only: %i[update toggle_category]
 
   def create
     student_id = absence_params[:student_id]
@@ -11,17 +13,17 @@ class AbsencesController < ApplicationController
 
     respond_to do |format|
       if @absence = Absence
-        .find_or_initialize_by(student_id: student_id, schedule_id: schedule_id)
-        .update_attributes!(value: absence_params[:value])
+         .find_or_initialize_by(student_id: student_id, schedule_id: schedule_id)
+         .update_attributes!(value: absence_params[:value])
 
         @absence = Absence.find_by(student_id: student_id, schedule_id: schedule_id)
         @absence.destroy! unless @absence.value > 0
 
-        format.js   { }
+        format.js   {}
       else
         format.html { render :new }
         format.json { render json: @absence.errors, status: :unprocessable_entity }
-        format.js   { }
+        format.js   {}
       end
     end
   end
@@ -33,11 +35,11 @@ class AbsencesController < ApplicationController
       if @absence.update(absence_params)
         format.html { redirect_to @absence, notice: 'Absence was successfully updated.' }
         format.json { render :show, status: :ok, location: @absence }
-        format.js   { }
+        format.js   {}
       else
         format.html { render :edit }
         format.json { render json: @absence.errors, status: :unprocessable_entity }
-        format.js   { }
+        format.js   {}
       end
     end
   end
@@ -52,7 +54,7 @@ class AbsencesController < ApplicationController
     @date = @absence.schedule.time_slot.start.to_date
 
     respond_to do |format|
-      format.js { }
+      format.js {}
     end
   end
 
@@ -69,7 +71,7 @@ class AbsencesController < ApplicationController
     Absence.excuse_period(@student, start, finish)
 
     respond_to do |format|
-      format.js { render action: "refresh_card" }
+      format.js { render action: 'refresh_card' }
     end
   end
 

@@ -1,37 +1,37 @@
+# frozen_string_literal: true
+
 class CoursesController < ApplicationController
   before_action :set_school
   before_action :set_group
-  before_action :set_course, only: [:show, :edit, :update, :destroy]
+  before_action :set_course, only: %i[show edit update destroy]
 
   def index
     @courses = policy_scope(@group.courses.ordered_by_subject)
   end
 
-  def show
-  end
+  def show; end
 
   def new
     @course = @group.courses.new
     authorize @course
   end
 
-  def edit
-  end
+  def edit; end
 
   def create
     @course = @group.courses.new(course_params)
     authorize @course
-    
+
     respond_to do |format|
       if @course.save
         format.html { redirect_to @course, notice: 'Course was successfully created.' }
         format.json { render :show, status: :created, location: @course }
-        format.js { }
+        format.js {}
       else
         debugger
         format.html { render :new }
         format.json { render json: @course.errors, status: :unprocessable_entity }
-        format.js { }
+        format.js {}
       end
     end
   end
@@ -60,20 +60,20 @@ class CoursesController < ApplicationController
 
   private
 
-    def set_school
-      @school = School.find(params[:school_id])
-    end
+  def set_school
+    @school = School.find(params[:school_id])
+  end
 
-    def set_group
-      @group = @school.groups.find(params[:group_id])
-    end
+  def set_group
+    @group = @school.groups.find(params[:group_id])
+  end
 
-    def set_course
-      @course = @group.courses.find(params[:id])
-      authorize @course
-    end
+  def set_course
+    @course = @group.courses.find(params[:id])
+    authorize @course
+  end
 
-    def course_params
-      params.require(:course).permit(:teacher_id, :subject_id, :school_year_id, :school_id)
-    end
+  def course_params
+    params.require(:course).permit(:teacher_id, :subject_id, :school_year_id, :school_id)
+  end
 end

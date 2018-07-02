@@ -1,3 +1,4 @@
-module AbsencesHelper
+# frozen_string_literal: true
 
+module AbsencesHelper
 end

@@ -1,23 +1,22 @@
+# frozen_string_literal: true
+
 class SchoolsController < ApplicationController
-  before_action :set_school, except: [:index, :new]
+  before_action :set_school, except: %i[index new]
 
   def index
     @schools = School.all
   end
 
-  def show
-  end
+  def show; end
 
-  def dashboard
-  end
+  def dashboard; end
 
   def new
     @back_to_path = schools_path
     @school = School.new
   end
 
-  def edit
-  end
+  def edit; end
 
   def create
     @school = School.new(school_params)
@@ -54,6 +53,7 @@ class SchoolsController < ApplicationController
   end
 
   private
+
   def set_school
     @school = School.find(params[:id])
     authorize @school

@@ -1,14 +1,16 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-RSpec.describe "absences/edit", type: :view do
+RSpec.describe 'absences/edit', type: :view do
   before(:each) do
-    @absence = assign(:absence, Absence.create!())
+    @absence = assign(:absence, Absence.create!)
   end
 
-  it "renders the edit absence form" do
+  it 'renders the edit absence form' do
     render
 
-    assert_select "form[action=?][method=?]", absence_path(@absence), "post" do
+    assert_select 'form[action=?][method=?]', absence_path(@absence), 'post' do
     end
   end
 end
