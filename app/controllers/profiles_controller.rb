@@ -1,7 +1,7 @@
 class ProfilesController < ApplicationController
 
   def show
-    @user = User.find(params[:id])
+    @user = (params[:id] && User.find(params[:id])) || current_user
     authorize @user
 
     if @user.group_id

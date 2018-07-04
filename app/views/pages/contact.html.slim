@@ -1,0 +1,38 @@
+= render 'pages/partials/header'
+
+.contact-page.page
+
+  section.full-height.row.page-contact
+    .container
+      .section-title Контакти
+      .row.col-xs-12.col-md-8.offset-md-2
+        .col-xs-12.col-md-6.text-center
+          i.material-icons.d-block phone
+          br
+          a href="tel:+359 88 59 559 26"
+            .description +359 88 59 559 26
+          a href="tel:+359 88 34 299 83"
+            .description +359 88 34 299 83
+
+        .text-center.col-xs-12.col-md-6
+          i.material-icons.d-block mail
+          br
+          a href="mailto:support@moonhythe.com"
+            .description.d-inline support@schooled.app
+
+
+      .section-title.message-us Пишете ни
+      .row.col-xs-12.col-md-8.offset-md-2
+        = form_with scope: :contact, url: contacts_path, class: 'col-xs-12 col-md-12' do |f|
+          .row
+            .col-md-6
+              .form-group
+                = f.text_field :name, class: 'form-control', placeholder: 'Вашите имена'
+            .col-md-6
+              .form-group
+                = f.email_field :email, class: 'form-control', placeholder: 'Вашият имейл'
+          = f.text_area :message, class: 'form-control', placeholder: 'Съобщение', rows: '10'
+          .text-center
+            = f.submit 'Изпрати', class: 'btn btn-primary btn-round'
+
+= render 'pages/partials/footer'

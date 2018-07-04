@@ -1,5 +1,170 @@
 = render 'pages/partials/header'
 
+.home-page.page
+
+  section.full-height.row.page-main
+    #particles-js
+    .moto.col-xs-12.col-md-4.h-100.justify-content-center.align-items-center
+      .title За прогреса на българското образование
+      .description 
+        | Нашата кауза е 
+        b.d-inline достъпна информация 
+        | - за ученици, учители и родители.
+
+    .col-xs-12.col-md-8.h-100.justify-content-center.align-items-center.laptop
+      = image_tag 'laptop', width: '100%'
+  
+
+  section.page-services.full-height
+    .section-title.text-center Какво предлагаме
+
+    .col-xs-12.col-md-8.offset-md-2.row.row-flex
+
+      .col-md-6.col-xs-12.text-center
+        .secure.content
+          i.material-icons security
+          .title Сигурност
+          .description
+            | Приложение работещо с личните данни на деца и обвързано с плащания трябва да покрива най-високи 
+            | мерки за сигурност. Може да проверите технологиите, които използваме тук. Сертификатите за 
+            | сигурност, които сме получили, може да видите тук.
+
+      .col-md-6.col-xs-12.text-center
+        .intuitive.content
+          i.material-icons dashboard
+          .title Интуитивен интерфейс
+          .description 
+            | Програмистите и дизайнерите, които работят върху този проект имат опит в създаването на 
+            | лесен за използване и модерен интерфейс. 
+            | Ние съчетаваме умерен минимализъм, който помага на нашите клиенти да използват SchoolEd с леснота.
+
+    hr.d-sm-none
+
+    .col-xs-12.col-md-8.offset-md-2.row.row-flex
+      .col-md-4.col-xs-8
+        .service.content
+          .title Електронен дневник
+          .description Управление на оценки, отсъствия, забележки, домашни, график.
+      .col-md-2.col-xs-4.d-none.d-sm-block
+        .service.content
+          i.material-icons class
+      .col-md-2.col-xs-4.d-none.d-sm-block
+        .service.content
+          i.material-icons import_contacts
+      .col-md-4.col-xs-8
+        .service.content
+          .title Записване за курсове
+          .description Записване за курсове водени във Вашето училище.
+
+    .col-xs-12.col-md-8.offset-md-2.row.row-flex
+      .col-md-4.col-xs-8
+        .service.content
+          .title Комуникация
+          .description Чат система поддържаща директни и групови кореспонденции. Получавате известия мигновенно.
+      .col-md-2.col-xs-4.d-none.d-sm-block
+        .service.content
+          i.material-icons message
+      .col-md-2.col-xs-4.d-none.d-sm-block
+        .service.content
+          i.material-icons account_balance
+      .col-md-4.col-xs-8
+        .service.content
+          .title Такси и задължения
+          .description Родителите могат да заплащат курсове, състезания и екскурзии през SchoolEd.
+
+    .col-xs-12.col-md-8.offset-md-2.row.row-flex
+      .col-md-4.col-xs-8
+        .service.content
+          .title Състезания
+          .description Записване за състецания и проверяване на резултати онлайн.
+      .col-md-2.col-xs-4.d-none.d-sm-block
+        .service.content
+          i.material-icons show_chart
+      .col-md-2.col-xs-4.d-none.d-sm-block
+        .service.content
+          i.material-icons edit
+      .col-md-4.col-xs-8
+        .service.content
+          .title Домашни и упражнения
+          .description Задаване и предаване на домашни.
+
+    .col-xs-12.col-md-8.offset-md-2.row.row-flex
+      .col-md-4.col-xs-8
+        .service.content
+          .title Умно попълване
+          .description Улеснение за учителите, което попълва отсъствия, домашни и тема на часа автоматично.
+      .col-md-2.col-xs-4.d-none.d-sm-block
+        .service.content
+          i.material-icons ballot
+      .col-md-2.col-xs-4.d-none.d-sm-block
+        .service.content
+          i.material-icons cloud_done
+      .col-md-4.col-xs-8
+        .service.content
+          .title Съхранение на данните
+          .description Пазим Вашите данни докато се нуждаете от тях.
+      
+
+  section.section-white.page-documentation
+
+    .col-xs-12.col-md-8.offset-md-2
+      .col-xs-12
+        .documentation
+          i.material-icons school
+          .title Документация
+          .description Открийте как да използвате функционалностите на SchoolEd. 
+
+    .col-xs-12.col-md-8.offset-md-2
+      .row.row-flex
+        .col-md-6
+          .blog.content
+            i.material-icons public
+            .title Блог
+            .description Разберете какви са новостите в SchoolEd, по какво работим, и какво да очаквате.
+
+        .col-md-6
+          .forum.content
+            i.material-icons forum
+            .title Форум
+            .description Задайте своите въпроси и споделете Вашите предложения в нашият форум.
+
+
+  section.page-contacts
+    .section-title.text-center Контакти
+
+    .row.col-xs-12
+
+      .col-xs-12.col-md-4.offset-md-2.text-center
+        i.material-icons.d-block phone
+        br
+        a href="tel:+359 88 59 559 26"
+          .description +359 88 59 559 26
+        a href="tel:+359 88 34 299 83"
+          .description +359 88 34 299 83
+
+      .text-center.col-xs-12.col-md-4
+        i.material-icons.d-block mail
+        br
+        a href="mailto:support@moonhythe.com"
+          .description.d-inline support@schooled.app
+    br
+    br
+    .col-xs-12.col-md-6.offset-md-3
+      .section-title.message-us Пишете ни
+      = form_with scope: :contact, url: contacts_path do |f|
+        .row
+          .col-md-6
+            .form-group
+              = f.text_field :name, class: 'form-control', placeholder: 'Вашите имена'
+          .col-md-6
+            .form-group
+              = f.email_field :email, class: 'form-control', placeholder: 'Вашият имейл'
+        = f.text_area :message, class: 'form-control', placeholder: 'Съобщение', rows: '10'
+        .text-center
+          = f.submit 'Изпрати', class: 'btn btn-primary btn-round'
+
+
+
 
 
 = render 'pages/partials/footer'

@@ -20,10 +20,10 @@ gem 'slim-rails'
 gem 'jquery-rails', '~> 4.3', '>= 4.3.3'
 gem 'popper_js', '~> 1.12.9'
 gem 'bootstrap-sass'
-gem 'font-awesome-rails'
 gem 'devise'
 gem 'devise_invitable'
 gem 'pundit'
+gem 'mail_form'
 
 gem 'activerecord-import'
 

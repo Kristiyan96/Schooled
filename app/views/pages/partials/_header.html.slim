@@ -1,26 +1,18 @@
-header.cd-auto-hide-header
+header.cd-auto-hide-header.passive
   .logo
-    a href="#0" 
-      | M 
-      = image_tag 'logo-moon', height: '50px'
-      |  nhythe
+    a href="/pages/home" 
+      .d-inline SCHOOL
+      | ED
   nav.cd-primary-nav
     a.nav-trigger href="#cd-navigation" 
       span
         em aria-hidden="true" 
-        | Menu
     ul#cd-navigation
       li
-        a href="#0"  Начало
+        a href="/pages/home" Начало
       li
-        a href="#0"  Демо
+        a href="/pages/price"  Ценоразпис
       li
-        a href="#0"  Цени
+        a href="/pages/contact"  Контакти
       li
-        a href="#0"  Въпроси
-      li
-        a href="#0"  Контакти
-      li
-        a href="#0"  Влез
-      li
-        a href="#0"  Регистрация
+        = link_to 'Влез', new_user_session_path

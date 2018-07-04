@@ -1,12 +1,23 @@
-@import "font-awesome";
 @import "material/material-dashboard";
-@import "landing/header";
-@import "landing/footer";
+@import "pages/header";
+@import "pages/home";
+@import "pages/contact";
+@import "pages/footer";
+@import "pages/login";
+@import "pages/main";
+@import "pages/price";
 @import "time_slots";
 @import "messages";
 @import "absences";
 @import "marks";
 @import "home";
+@import "plugins/rangeslider/rangeslider";
+@import "plugins/rangeslider/flat-ui";
+
+
+.irs-line {
+  color: black;
+}
 
 .no-margin{
   margin-top: 0px !important;
