@@ -2,10 +2,8 @@ defmodule MessagesWeb.ChatChannel do
   use Phoenix.Channel
   alias MessagesWeb.Presence
 
-  def join("chat:" <> users, _info, socket) do
-    Process.flag(:trap_exit, true)
-
-    if users |> String.split(":") |> Enum.member?(socket.assigns.user_id) do
+  def join("chat:" <> users, _info, %{assigns: %{user_id: user_id}} = socket) do
+    if users |> String.split(":") |> Enum.member?(user_id) do
       send(self(), :after_join)
       {:ok, %{}, socket}
     else
@@ -24,14 +22,14 @@ defmodule MessagesWeb.ChatChannel do
     {:noreply, socket}
   end
 
-  def handle_in("new:msg", msg, socket) do
-    recepient = other_guy(socket.topic, socket.assigns.user_id)
+  def handle_in("new:msg", %{message: msg}, socket) do
+    recipient = other_guy(socket.topic, socket.assigns.user_id)
 
-    case Messages.create(socket.assigns.user_id, recepient, msg) do
-      {:ok, message} ->
-        broadcast! socket, "new:msg", Map.take(message, @message)
+    case Messages.create(socket.assigns.user_id, recipient, msg) do
+      {:ok, %{text: message}} ->
+        broadcast! socket, "new:msg", message
         if Enum.count(Presence.list(socket)) == 1 do
-          MessagesWeb.Endpoint.broadcast!("user:#{recepient}", "new:msg", %{user_id: socket.assigns.user_id})
+          MessagesWeb.Endpoint.broadcast!("user:#{recipient}", "new:msg", %{user_id: socket.assigns.user_id})
         end
       {:error, _changeset} -> nil
     end

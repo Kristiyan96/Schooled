@@ -49,11 +49,11 @@ Rails.application.routes.draw do
     end
     resources :headmaster_invitations, path: :headmasters, module: :schools, only: [:index, :create]
     resource :teacher_invitation, path: :teachers, module: :schools, only: [:create] do
-      member do 
+      member do
         get 'teachers'
       end
     end
-    member do 
+    member do
       get 'dashboard'
     end
   end
@@ -64,10 +64,10 @@ Rails.application.routes.draw do
 
   resources :parentship, only: :create
   resources :profiles do
-    member do 
+    member do
       get 'dashboard'
       get 'schedule'
-    end  
+    end
   end
   resources :messages, only: [:index, :create]
 

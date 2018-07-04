@@ -6,6 +6,8 @@ class Group < ApplicationRecord
   has_many :courses
   has_many :homeworks
   has_many :schedules, through: :courses
+  has_many :sent_messages, as: :sender
+  has_many :received_messages, as: :recipient
 
   scope :for_assignment, -> assignment {
     joins(:courses)

@@ -5,7 +5,7 @@ class CreateMessages < ActiveRecord::Migration[5.2]
 
       t.boolean :read, default: false, null: false
       t.references :sender, polymorphic: true, index: true
-      t.references :recepient, polymorphic: true, index: true
+      t.references :recipient, polymorphic: true, index: true
 
       t.timestamps
     end

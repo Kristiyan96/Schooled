@@ -162,5 +162,16 @@ Schedule.create_with_type(params: {course_id: c3.id, time_slot_id: slots_today[5
 
 puts "Creating messages"
 
-Message.create(sender: h1, recepient: t1, text: "Какво ще се прави петък?")
-Message.create(sender: t1, recepient: h1, text: "Почивка!")
+Message.create(sender: h1, recipient: t1, text: "Какво ще се прави петък?")
+Message.create(sender: t1, recipient: h1, text: "Почивка!")
+
+Message.create(sender: s1, recipient: s2, text: "Какво правиш?")
+Message.create(sender: s2, recipient: s1, text: "Уча по математика.")
+
+msg = "Аре да отидем на билярд?"
+Message.create(sender: s1, recipient: gr1, text: msg)
+users = User.where(group: gr1)
+  .map { |u| { recipient_id: u.id, recipient_type: "User", sender_id: gr1.id, sender_type: "Group", text: msg } }
+Message.import(users)
+
+

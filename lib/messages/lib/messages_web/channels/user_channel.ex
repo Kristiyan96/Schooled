@@ -2,7 +2,6 @@ defmodule MessagesWeb.UserChannel do
   use Phoenix.Channel
 
   def join("user:" <> user_id, _info, socket) do
-    Process.flag(:trap_exit, true)
     if socket.assigns.user_id == user_id do
       send(self(), :after_join)
       {:ok, socket}
@@ -18,7 +17,7 @@ defmodule MessagesWeb.UserChannel do
     {:noreply, socket}
   end
 
-  def handle_in("new:msg", socket) do
-    #TODO handle notification for new message
-  end
+  # def handle_in("new:msg", socket) do
+  #   #TODO handle notification for new message
+  # end
 end

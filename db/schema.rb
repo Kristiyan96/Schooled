@@ -90,11 +90,11 @@ ActiveRecord::Schema.define(version: 2018_06_05_120209) do
     t.boolean "read", default: false, null: false
     t.string "sender_type"
     t.bigint "sender_id"
-    t.string "recepient_type"
-    t.bigint "recepient_id"
+    t.string "recipient_type"
+    t.bigint "recipient_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["recepient_type", "recepient_id"], name: "index_messages_on_recepient_type_and_recepient_id"
+    t.index ["recipient_type", "recipient_id"], name: "index_messages_on_recipient_type_and_recipient_id"
     t.index ["sender_type", "sender_id"], name: "index_messages_on_sender_type_and_sender_id"
   end
 

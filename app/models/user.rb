@@ -3,7 +3,7 @@ class User < ApplicationRecord
   :recoverable, :rememberable, :trackable, :validatable, :invitable
 
   has_many :sent_messages, as: :sender
-  has_many :received_messages, as: :recepient
+  has_many :received_messages, as: :recipient
   has_many :marks, foreign_key: "student_id"
   has_many :remarks, foreign_key: "student_id"
   has_many :absences, foreign_key: "student_id"

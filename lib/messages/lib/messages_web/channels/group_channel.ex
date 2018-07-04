@@ -2,10 +2,10 @@ defmodule MessagesWeb.GroupChannel do
   use Phoenix.Channel
   alias MessagesWeb.Presence
 
-  def join("chat:" <> users, _info, socket) do
-    Process.flag(:trap_exit, true)
-
-    if users |> String.split(":") |> Enum.member?(socket.assigns.user_id) do
+  # Define student group
+  def join("group:" <> group, _info, socket) do
+    groups = Messages.groups(socket.assigns.user_id)
+    if Enum.member?(group, groups) do
       send(self(), :after_join)
       {:ok, %{}, socket}
     else
@@ -14,9 +14,9 @@ defmodule MessagesWeb.GroupChannel do
   end
 
   def handle_info(:after_join, socket) do
-    users = get_users(socket.topic)
+    group = get_group(socket.topic)
 
-    messages = Messages.between(users)
+    messages = Messages.for_group(group, socket.assigns.user_id)
     push socket, "init:msg", %{messages: messages}
 
     Presence.track(socket, socket.assigns.user_id, %{})
@@ -25,13 +25,20 @@ defmodule MessagesWeb.GroupChannel do
   end
 
   def handle_in("new:msg", msg, socket) do
-    recepient = other_guy(socket.topic, socket.assigns.user_id)
+    group = get_group(socket.topic)
 
-    case Messages.create(socket.assigns.user_id, recepient, msg) do
+    case Messages.create_group(socket.assigns.user_id, group, msg) do
       {:ok, message} ->
         broadcast! socket, "new:msg", message
+
         if Enum.count(Presence.list(socket)) == 1 do
-          MessagesWeb.Endpoint.broadcast!("user:#{recepient}", "new:msg", %{user_id: socket.assigns.user_id})
+          offline = Messages.users_in_group(group) -- Presence.list(socket)
+          Task.async(fn ->
+            offline
+            |> Enum.each(fn recipient ->
+              MessagesWeb.Endpoint.broadcast!("user:#{recipient}", "new:msg", %{group_id: group})
+            end)
+          end)
         end
       {:error, _changeset} -> nil
     end
@@ -39,21 +46,12 @@ defmodule MessagesWeb.GroupChannel do
   end
 
   def handle_in("read:msg", msg_id, socket) do
-    from = other_guy(socket.topic, socket.assigns.user_id)
-    Messages.read(msg_id, socket.assigns.user_id, from)
+    group = get_group(socket.topic)
+    Messages.read(msg_id, socket.assigns.user_id, group, "Group")
     {:noreply, socket}
   end
 
-  defp get_users(topic) do
-    topic
-    |> String.replace_prefix("chat:", "")
-    |> String.split(":")
-  end
-
-  defp other_guy(topic, user_id) do
-    [guy] = get_users(topic)
-    |> List.delete(user_id)
-
-    guy
+  defp get_group(topic) do
+    String.replace_prefix(topic, "group:", "")
   end
 end

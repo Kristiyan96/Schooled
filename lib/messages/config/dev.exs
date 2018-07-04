@@ -37,6 +37,13 @@ config :logger, :console, format: "[$level] $message\n"
 config :phoenix, :stacktrace_depth, 20
 
 #TODO: fix this for deployment
-config :messages, :token, "b26e14f87bdf902e42b5363fb8255e198397acc90747ec554d010b1490577bbd8a9a6dfc4ecb3ac2224f0ecf2916f6537b728fec82d580059fd1de669192afda"
-
+config :messages, :token, "e5176eeb82377b01996053565e2e215c30398b95f7dc2f78f5267b77b641663cc6a940eba0f903cd3f588e1bafae7f0fc6c4e937373423559c8911bc3045d66c"
 import_config "#{Mix.env}.secret.exs"
+
+config :messages, Messages.Repo,
+  adapter: Ecto.Adapters.Postgres,
+  username: "postgres",
+  password: "postgres",
+  database: "schooled_development",
+  hostname: "localhost",
+  pool_size: 10

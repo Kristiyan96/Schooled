@@ -11,8 +11,8 @@ defmodule Messages.Message do
     field :read, :boolean
     field :sender_type, :string
     field :sender_id, :integer
-    field :recepient_type, :string
-    field :recepient_id, :integer
+    field :recipient_type, :string
+    field :recipient_id, :integer
 
     timestamps()
   end
@@ -20,7 +20,8 @@ defmodule Messages.Message do
   @doc false
   def changeset(message, attrs) do
     message
-    |> cast(attrs, [:text, :sender_type, :sender_id, :recepient_type, :recepient_id])
-    |> validate_required([:text, :sender_type, :sender_id, :recepient_type, :recepient_id])
+    |> cast(attrs, [:text, :read, :sender_type, :sender_id, :recipient_type, :recipient_id])
+    |> validate_required([:text, :sender_type, :sender_id, :recipient_type, :recipient_id])
   end
 end
+
