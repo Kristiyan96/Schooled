@@ -11,6 +11,7 @@
 //= require landing/header
 //= require plugins/particles.min
 //= require plugins/rangeslider
+//= require font_awesome5
 //= require turbolinks
 //= require phoenix
 //= require_tree .

@@ -13,6 +13,7 @@
 @import "home";
 @import "plugins/rangeslider/rangeslider";
 @import "plugins/rangeslider/flat-ui";
+@import "font_awesome5";
 
 
 .irs-line {
@@ -22,6 +23,11 @@
 .no-margin{
   margin-top: 0px !important;
 }
+
+.margin-top {
+  margin-top: 50px;
+}
+
 .hidden {
   display: none;
 }

@@ -24,6 +24,7 @@ gem 'devise'
 gem 'devise_invitable'
 gem 'pundit'
 gem 'mail_form'
+gem 'font_awesome5_rails'
 
 gem 'activerecord-import'
 

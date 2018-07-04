@@ -1,7 +1,6 @@
 = render 'pages/partials/header'
 
 .home-page.page
-
   section.full-height.row.page-main
     #particles-js
     .moto.col-xs-12.col-md-4.h-100.justify-content-center.align-items-center
@@ -14,24 +13,23 @@
     .col-xs-12.col-md-8.h-100.justify-content-center.align-items-center.laptop
       = image_tag 'laptop', width: '100%'
   
-
   section.page-services.full-height
     .section-title.text-center Какво предлагаме
 
     .col-xs-12.col-md-8.offset-md-2.row.row-flex
-
       .col-md-6.col-xs-12.text-center
         .secure.content
           i.material-icons security
           .title Сигурност
           .description
             | Приложение работещо с личните данни на деца и обвързано с плащания трябва да покрива най-високи 
-            | мерки за сигурност. Може да проверите технологиите, които използваме тук. Сертификатите за 
-            | сигурност, които сме получили, може да видите тук.
-
+            | мерки за сигурност. Може да проверите технологиите, които използваме 
+            a href="/pages/privacy" тук. 
+            | Сертификатите за сигурност, които сме получили, може да видите 
+            a href="/pages/privacy" тук.
       .col-md-6.col-xs-12.text-center
         .intuitive.content
-          i.material-icons dashboard
+          = fa_icon('universal-access')
           .title Интуитивен интерфейс
           .description 
             | Програмистите и дизайнерите, които работят върху този проект имат опит в създаването на 
@@ -39,6 +37,38 @@
             | Ние съчетаваме умерен минимализъм, който помага на нашите клиенти да използват SchoolEd с леснота.
 
     hr.d-sm-none
+
+    .col-xs-12.col-md-8.offset-md-2.row.row-flex
+      .col-md-4.col-xs-8
+        .service.content
+          .title НЕИСПУО
+          .description Интеграция с НЕИСПУО
+      .col-md-2.col-xs-4.d-none.d-sm-block
+        .service.content
+          i.material-icons account_balance
+      .col-md-2.col-xs-4.d-none.d-sm-block
+        .service.content
+          i.material-icons book
+      .col-md-4.col-xs-8
+        .service.content
+          .title Админ Про/Л/М
+          .description Интеграция с Админ Про/Л/М.
+
+    .col-xs-12.col-md-8.offset-md-2.row.row-flex
+      .col-md-4.col-xs-8
+        .service.content
+          .title Facebook вход
+          .description Можете да се свържете с Вашият Facebook акаунт и да влизате в SchoolEd с леснота.
+      .col-md-2.col-xs-4.d-none.d-sm-block
+        .service.content
+          = fa_icon('facebook-f', type: :brand)
+      .col-md-2.col-xs-4.d-none.d-sm-block
+        .service.content
+          = fa_icon('google-plus-g', type: :brand)
+      .col-md-4.col-xs-8
+        .service.content
+          .title Google+ вход
+          .description Можете да се свържете с Вашият Gmail акаунт и да влизате в SchoolEd с леснота.
 
     .col-xs-12.col-md-8.offset-md-2.row.row-flex
       .col-md-4.col-xs-8
@@ -66,7 +96,7 @@
           i.material-icons message
       .col-md-2.col-xs-4.d-none.d-sm-block
         .service.content
-          i.material-icons account_balance
+          = fa_icon('file-invoice-dollar')
       .col-md-4.col-xs-8
         .service.content
           .title Такси и задължения
@@ -79,7 +109,7 @@
           .description Записване за състецания и проверяване на резултати онлайн.
       .col-md-2.col-xs-4.d-none.d-sm-block
         .service.content
-          i.material-icons show_chart
+          = fa_icon('award')
       .col-md-2.col-xs-4.d-none.d-sm-block
         .service.content
           i.material-icons edit
@@ -95,25 +125,22 @@
           .description Улеснение за учителите, което попълва отсъствия, домашни и тема на часа автоматично.
       .col-md-2.col-xs-4.d-none.d-sm-block
         .service.content
-          i.material-icons ballot
+          = fa_icon('lightbulb')
       .col-md-2.col-xs-4.d-none.d-sm-block
         .service.content
-          i.material-icons cloud_done
+          = fa_icon('database')
       .col-md-4.col-xs-8
         .service.content
           .title Съхранение на данните
           .description Пазим Вашите данни докато се нуждаете от тях.
-      
 
-  section.section-white.page-documentation
-
+  section.page-documentation
     .col-xs-12.col-md-8.offset-md-2
       .col-xs-12
         .documentation
-          i.material-icons school
+          = fa_icon('book')
           .title Документация
           .description Открийте как да използвате функционалностите на SchoolEd. 
-
     .col-xs-12.col-md-8.offset-md-2
       .row.row-flex
         .col-md-6
@@ -121,19 +148,16 @@
             i.material-icons public
             .title Блог
             .description Разберете какви са новостите в SchoolEd, по какво работим, и какво да очаквате.
-
         .col-md-6
           .forum.content
             i.material-icons forum
             .title Форум
             .description Задайте своите въпроси и споделете Вашите предложения в нашият форум.
 
-
   section.page-contacts
     .section-title.text-center Контакти
 
     .row.col-xs-12
-
       .col-xs-12.col-md-4.offset-md-2.text-center
         i.material-icons.d-block phone
         br
@@ -162,9 +186,5 @@
         = f.text_area :message, class: 'form-control', placeholder: 'Съобщение', rows: '10'
         .text-center
           = f.submit 'Изпрати', class: 'btn btn-primary btn-round'
-
-
-
-
 
 = render 'pages/partials/footer'

@@ -1,6 +1,6 @@
 puts "Creating schools"
 
-smg = School.create(name: "Софийска Математическа Гимназия", email: 'smg@gmail.com', contact_number: "0885955926", address: "Sofia, bul. Levski 26", number: 128)
+smg = School.create(name: "СОУ 'Ив. Вазов'", email: '32sou@schooled.app', contact_number: "0885955926", address: "Sofia, bul. Levski 26", number: 32)
 feg = School.create(name: "Френска Езикова Гимназия", email: 'fed@gmail.com', contact_number: "0885955925", address: "Varna, bul. Lomsko shose 12", number: 9)
 
 puts "Creating subjects"
@@ -14,8 +14,8 @@ french2    = Subject.new(name: "Френски", abbreviation: 'Френски',
 
 puts "Creating headmasters"
 
-h1 = User.create(first_name: 'Ивайло', last_name: 'Ушагелов', email: "headmaster@smg.bg", password: "password", password_confirmation: "password")
-h2 = User.create(first_name: 'Иван', last_name: 'Петров', email: "headmaster@feg.bg", password: "password", password_confirmation: "password")
+h1 = User.create(first_name: 'Иван', last_name: 'Георгиев', email: "headmaster1@schooled.app", password: "password", password_confirmation: "password")
+h2 = User.create(first_name: 'Иван', last_name: 'Петров', email: "headmaster2@schooled.app", password: "password", password_confirmation: "password")
 
 puts "Creating teachers"
 
@@ -23,9 +23,9 @@ t1 = User.create(first_name: "Мария", last_name: "Банова", email: "te
 t2 = User.create(first_name: "Кристина", last_name: "Ценова", email: "teacher2@smg.bg", password: "password", password_confirmation: "password")
 t3 = User.create(first_name: "Ваня", last_name: "Костадинова", email: "teacher3@smg.bg", password: "password", password_confirmation: "password")
 
-t4 = User.create(first_name: "Благой", last_name: "Терзиев", email: "teacher4@feg.bg", password: "password", password_confirmation: "password")
-t5 = User.create(first_name: "Благой", last_name: "Георгиев", email: "teacher5@feg.bg", password: "password", password_confirmation: "password")
-t6 = User.create(first_name: "Сам", last_name: "Маринов", email: "teacher6@feg.bg", password: "password", password_confirmation: "password")
+t4 = User.create(first_name: "Благой", last_name: "Терзиев", email: "teacher4@schooled.app", password: "password", password_confirmation: "password")
+t5 = User.create(first_name: "Благой", last_name: "Георгиев", email: "teacher5@schooled.app", password: "password", password_confirmation: "password")
+t6 = User.create(first_name: "Сам", last_name: "Маринов", email: "teacher6@schooled.app", password: "password", password_confirmation: "password")
 
 puts "Creating groups"
 gr1 = Group.create(name: 'а', school: smg, teacher: t1, grade: 6)
@@ -108,8 +108,8 @@ Parentship.create(parent: p3, student: s6)
 
 puts "Creating school years"
 
-y1 = SchoolYear.create(year: "2017/2018", school: smg, active: true, start: DateTime.parse("15/09/2017 8:00"), midterm: DateTime.parse("28/02/2018 8:00"),end: DateTime.parse("30/06/2018 8:00"))
-y2 = SchoolYear.create(year: "2017/2018", school: feg, active: true, start: DateTime.parse("15/09/2017 8:00"), midterm: DateTime.parse("28/02/2018 8:00"),end: DateTime.parse("30/06/2018 8:00"))
+y1 = SchoolYear.create(year: "2017/2018", school: smg, active: true, start: DateTime.parse("15/09/2017 8:00"), midterm: DateTime.parse("28/03/2018 8:00"),end: DateTime.parse("30/08/2018 8:00"))
+y2 = SchoolYear.create(year: "2017/2018", school: feg, active: true, start: DateTime.parse("15/09/2017 8:00"), midterm: DateTime.parse("28/03/2018 8:00"),end: DateTime.parse("30/08/2018 8:00"))
 
 puts "Creating courses"
 
