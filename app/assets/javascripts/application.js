@@ -28,7 +28,7 @@ document.addEventListener("turbolinks:load", function() {
   //   $(`table tr td:nth-child(${$(this).index()+1})`).toggleClass('hover');
   // });
 
-  particlesJS.load('particles-js', '/assets/plugins/particlesjs-config.json', function() {
+  particlesJS.load('particles-js', '/assets/particlesjs-config.json', function() {
     console.log('callback - particles.js config loaded');
   });
 
