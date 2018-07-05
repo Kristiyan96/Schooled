@@ -1,11 +1,13 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-RSpec.describe "courses/show", type: :view do
+RSpec.describe 'courses/show', type: :view do
   before(:each) do
-    @course = assign(:course, Course.create!())
+    @course = assign(:course, Course.create!)
   end
 
-  it "renders attributes in <p>" do
+  it 'renders attributes in <p>' do
     render
   end
 end

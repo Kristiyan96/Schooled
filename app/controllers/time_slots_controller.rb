@@ -1,14 +1,16 @@
+# frozen_string_literal: true
+
 class TimeSlotsController < ApplicationController
   def show
     @school = School.find(params[:school_id])
     authorize @school, :update?
-    
+
     @date = (params[:date] && Date.parse(params[:date])) || Date.today
     @time_slots = TimeSlot.for_school(@school).for_day(@date)
 
     respond_to do |format|
-      format.html { }
-      format.js { }
+      format.html {}
+      format.js {}
     end
   end
 
@@ -21,9 +23,9 @@ class TimeSlotsController < ApplicationController
 
     @slots = TimeSlot.create_week_daily(school_year: school_year, date: @date, params: time_slot_params)
     @slot = TimeSlot.find(@slots.ids.first)
-    
+
     respond_to do |format|
-      format.js { }
+      format.js {}
     end
   end
 
@@ -38,7 +40,7 @@ class TimeSlotsController < ApplicationController
     @date = @slot.start.to_date
 
     respond_to do |format|
-      format.js { }
+      format.js {}
     end
   end
 
@@ -51,7 +53,7 @@ class TimeSlotsController < ApplicationController
     TimeSlot.destroy_with_type(time_slot: @slot, type: params[:type])
 
     respond_to do |format|
-      format.js { }
+      format.js {}
     end
   end
 

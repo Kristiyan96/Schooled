@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 class SubjectsController < ApplicationController
   before_action :set_school
-  before_action :set_subject, only: [:edit, :update, :destroy]
+  before_action :set_subject, only: %i[edit update destroy]
 
   def index
     @subjects = policy_scope(@school.subjects)
@@ -11,8 +13,7 @@ class SubjectsController < ApplicationController
     authorize @subject
   end
 
-  def edit
-  end
+  def edit; end
 
   def create
     @subject = @school.subjects.new(subject_params)
@@ -22,11 +23,11 @@ class SubjectsController < ApplicationController
       if @subject.save
         format.html { redirect_to @subject, notice: 'Subject was successfully created.' }
         format.json { render :show, status: :created, location: @subject }
-        format.js { }
+        format.js {}
       else
         format.html { render :new }
         format.json { render json: @subject.errors, status: :unprocessable_entity }
-        format.js { }
+        format.js {}
       end
     end
   end
@@ -36,11 +37,11 @@ class SubjectsController < ApplicationController
       if @subject.update(subject_params)
         format.html { redirect_to @subject, notice: 'Subject was successfully updated.' }
         format.json { render :show, status: :ok, location: @subject }
-        format.js { }
+        format.js {}
       else
         format.html { render :edit }
         format.json { render json: @subject.errors, status: :unprocessable_entity }
-        format.js { }
+        format.js {}
       end
     end
   end
@@ -50,7 +51,7 @@ class SubjectsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to subjects_url, notice: 'Subject was successfully destroyed.' }
       format.json { head :no_content }
-      format.js { }
+      format.js {}
     end
   end
 

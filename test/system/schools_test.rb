@@ -1,41 +1,43 @@
-require "application_system_test_case"
+# frozen_string_literal: true
+
+require 'application_system_test_case'
 
 class SchoolsTest < ApplicationSystemTestCase
   setup do
     @school = schools(:one)
   end
 
-  test "visiting the index" do
+  test 'visiting the index' do
     visit schools_url
-    assert_selector "h1", text: "Schools"
+    assert_selector 'h1', text: 'Schools'
   end
 
-  test "creating a School" do
+  test 'creating a School' do
     visit schools_url
-    click_on "New School"
+    click_on 'New School'
 
-    click_on "Create School"
+    click_on 'Create School'
 
-    assert_text "School was successfully created"
-    click_on "Back"
+    assert_text 'School was successfully created'
+    click_on 'Back'
   end
 
-  test "updating a School" do
+  test 'updating a School' do
     visit schools_url
-    click_on "Edit", match: :first
+    click_on 'Edit', match: :first
 
-    click_on "Update School"
+    click_on 'Update School'
 
-    assert_text "School was successfully updated"
-    click_on "Back"
+    assert_text 'School was successfully updated'
+    click_on 'Back'
   end
 
-  test "destroying a School" do
+  test 'destroying a School' do
     visit schools_url
     page.accept_confirm do
-      click_on "Destroy", match: :first
+      click_on 'Destroy', match: :first
     end
 
-    assert_text "School was successfully destroyed"
+    assert_text 'School was successfully destroyed'
   end
 end

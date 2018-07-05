@@ -28,8 +28,6 @@ gem 'font_awesome5_rails'
 
 gem 'activerecord-import'
 
-gem 'sidekiq'
-
 gem 'bootsnap', '>= 1.1.0', require: false
 
 group :development, :test do
@@ -44,6 +42,14 @@ group :development do
   gem 'listen', '>= 3.0.5', '< 3.2'
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+
+  gem 'capistrano'
+  gem 'capistrano-bundler'
+  gem 'capistrano-ext'
+  gem 'capistrano-rails'
+  gem 'capistrano-rbenv'
+  gem 'capistrano-yarn'
+  gem 'capistrano3-puma'
 end
 
 group :test do

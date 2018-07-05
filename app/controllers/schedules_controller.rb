@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class SchedulesController < ApplicationController
   before_action :set_school_and_group
 
@@ -22,7 +24,7 @@ class SchedulesController < ApplicationController
     @time_slots = @school.active_school_year.time_slots.for_day(@date)
 
     respond_to do |format|
-      format.js { }
+      format.js {}
     end
   end
 
@@ -37,9 +39,8 @@ class SchedulesController < ApplicationController
     @date = @schedule.time_slot.start
     @time_slots = @school.active_school_year.time_slots.for_day(@date)
 
-
     respond_to do |format|
-      format.js { }
+      format.js {}
     end
   end
 

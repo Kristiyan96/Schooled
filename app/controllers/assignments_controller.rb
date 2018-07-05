@@ -1,20 +1,20 @@
+# frozen_string_literal: true
+
 class AssignmentsController < ApplicationController
   before_action :set_school
-  before_action :set_assignment, only: [:show, :edit, :update, :destroy]
+  before_action :set_assignment, only: %i[show edit update destroy]
 
   def index
     @assignments = @school.assignments.where(role_id: 2)
   end
 
-  def show
-  end
+  def show; end
 
   def new
     @assignment = Assignment.new
   end
 
-  def edit
-  end
+  def edit; end
 
   def create
     @assignment = Assignment.new(assignment_params)
@@ -51,6 +51,7 @@ class AssignmentsController < ApplicationController
   end
 
   private
+
   def set_school
     @school = School.find(params[:school_id])
   end

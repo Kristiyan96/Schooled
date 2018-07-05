@@ -1,21 +1,22 @@
-module MarksHelper
+# frozen_string_literal: true
 
+module MarksHelper
   def mark_color(mark)
-    if mark.grade<2.5
-      "danger"
-    elsif mark.grade<3.5
-      "warning"
-    elsif mark.grade<4.5
-      "primary"
-    elsif mark.grade<5.5
-      "info"
+    if mark.grade < 2.5
+      'danger'
+    elsif mark.grade < 3.5
+      'warning'
+    elsif mark.grade < 4.5
+      'primary'
+    elsif mark.grade < 5.5
+      'info'
     else
-      "success" 
+      'success'
     end
   end
-  
+
   def formatted_mark(mark)
-    mark.grade == mark.grade.floor ? '%g' % mark.grade : ('%.2f' % mark.grade)
+    mark.grade == mark.grade.floor ? format('%g', mark.grade) : format('%.2f', mark.grade)
   end
 
   def average_mark_until_now_weekly_this_semester(student)
