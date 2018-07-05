@@ -9,7 +9,7 @@
 //= require material-kit/plugins/bootstrap-datetimepicker
 //= require material-kit/plugins/nouislider.min
 //= require landing/header
-//= require plugins/particles.min
+//= require particles.min
 //= require plugins/rangeslider
 //= require font_awesome5
 //= require turbolinks
@@ -28,7 +28,7 @@ document.addEventListener("turbolinks:load", function() {
   //   $(`table tr td:nth-child(${$(this).index()+1})`).toggleClass('hover');
   // });
 
-  particlesJS.load('particles-js', '/assets/particlesjs-config.json', function() {
+  particlesJS.load('particles-js', 'assets/particles.json', function() {
     console.log('callback - particles.js config loaded');
   });
 
