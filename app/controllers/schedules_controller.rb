@@ -8,7 +8,8 @@ class SchedulesController < ApplicationController
 
     @schedule = Schedule.find(params[:id])
     @course = @schedule.course
-    @date = (params[:date] && Date.parse(params[:date])) || Date.today
+    @date = @schedule.time_slot.start
+    @term = @school.active_school_year.active_term(@date)
   end
 
   def create

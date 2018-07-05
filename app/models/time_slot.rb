@@ -15,6 +15,11 @@ class TimeSlot < ApplicationRecord
   scope :with_start_date_greater_than, -> date {
     where('time_slots.start >= ?', date)
   }
+
+  scope :with_end_date_before, -> date {
+    where('time_slots.end <= ?', date)
+  }
+
   scope :for_period, -> period {
     where(start: period)
       .where(end: period)
@@ -142,5 +147,9 @@ class TimeSlot < ApplicationRecord
 
   def self.convert_to_time(t)
     Time.zone.parse(t)
+  end
+
+  def term_end
+    start < school_year.midterm ? school_year.midterm : school_year.end
   end
 end

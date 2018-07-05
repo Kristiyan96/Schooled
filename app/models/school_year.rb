@@ -11,7 +11,7 @@ class SchoolYear < ApplicationRecord
     year.save
   end
 
-  def active_term
-    midterm.past? ? 'second_semester' : 'first_semester'
+  def active_term(date = Date.today)
+    date < midterm ? 'first_semester' : 'second_semester'
   end
 end

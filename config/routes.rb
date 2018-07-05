@@ -1,23 +1,14 @@
 Rails.application.routes.draw do
-  devise_for :users, skip: :registrations
+  devise_for :users
   devise_scope :user do
 
     authenticated  do
-      root 'pages#show', page: 'home'
+      root 'profiles#show'
     end
 
     unauthenticated do
-      root to: 'devise/sessions#new', as: 'unauthenticated_root'
+      root to: 'pages#show', page: 'home'
     end
-
-    resource :registration,
-      only: [:new, :create, :edit, :update],
-      path: 'users',
-      path_names: { new: 'sign_up' },
-      controller: 'registrations',
-      as: :user_registration do
-        get :cancel
-      end
   end
 
   resources :schools do
@@ -70,6 +61,7 @@ Rails.application.routes.draw do
     end  
   end
   resources :messages, only: [:index, :create]
+  resources :contacts, only: [:create]
 
   get '/pages/*page', to: 'pages#show'
 end

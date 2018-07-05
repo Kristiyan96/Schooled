@@ -1,0 +1,154 @@
+= render 'pages/partials/header'
+
+.price-page.page
+
+  section.full-height.row.page-price
+    .container
+      .section-title Ценоразпис
+
+      .text-center
+        label брой ученици
+      input type="text" id="students_count" name="students_count" value=""
+
+
+      .text-center.section-title
+        .total-price 
+          | Общо: 
+          .price.d-inline 0.00
+          | лв. без ДДС
+
+      table.table.pricing
+        tbody
+          tr
+            td
+              .form-check
+                label.form-check-label
+                  input.form-check-input type="checkbox" value="" checked="checked" disabled="disabled"
+                  span.form-check-sign
+                    span.check
+
+            td 
+              i.material-icons security
+            td Сигурност
+            td 0лв.
+          tr
+            td
+              .form-check
+                label.form-check-label
+                  input.form-check-input type="checkbox" value="" checked="checked" disabled="disabled"
+                  span.form-check-sign
+                    span.check
+
+            td 
+              i.material-icons dashboard
+            td Интуитивен интерфейс
+            td 0лв.
+          tr
+            td
+              .form-check
+                label.form-check-label
+                  input.form-check-input type="checkbox" value="" checked="checked" disabled="disabled"
+                  span.form-check-sign
+                    span.check
+
+            td 
+              i.material-icons class
+            td Електронен дневник
+            td 0лв.
+          tr
+            td
+              .form-check
+                label.form-check-label
+                  input.form-check-input type="checkbox" value=""
+                  span.form-check-sign
+                    span.check
+
+            td 
+              i.material-icons import_contacts
+            td Записване за курсове
+            td 5% от трансфера
+          tr
+            td
+              .form-check
+                label.form-check-label
+                  input.form-check-input type="checkbox" value="" checked="checked" disabled="disabled"
+                  span.form-check-sign
+                    span.check
+
+            td 
+              i.material-icons messages
+            td Комуникация
+            td 0лв.
+          tr
+            td
+              .form-check
+                label.form-check-label
+                  input.form-check-input data-price="0.4" type="checkbox" value=""
+                  span.form-check-sign
+                    span.check
+
+            td 
+              i.material-icons account_balance
+            td Такси и задължения
+            td 0.40лв/ученик
+          tr
+            td
+              .form-check
+                label.form-check-label
+                  input.form-check-input type="checkbox" value="" checked="checked" disabled="disabled"
+                  span.form-check-sign
+                    span.check
+
+            td 
+              i.material-icons show_chart
+            td Състезания
+            td 0лв.
+          tr
+            td
+              .form-check
+                label.form-check-label
+                  input.form-check-input type="checkbox" value="" checked="checked" disabled="disabled"
+                  span.form-check-sign
+                    span.check
+
+            td 
+              i.material-icons edit
+            td Домашни и упражнения
+            td 0лв.
+          tr
+            td
+              .form-check
+                label.form-check-label
+                  input.form-check-input data-price="0.4" type="checkbox" value=""
+                  span.form-check-sign
+                    span.check
+
+            td 
+              i.material-icons ballot
+            td Умно попълване
+            td 0.40лв/ученик
+          tr
+            td
+              .form-check
+                label.form-check-label
+                  input.form-check-input data-price="0.4" type="checkbox" value=""
+                  span.form-check-sign
+                    span.check
+
+            td 
+              i.material-icons cloud_done
+            td Съхранение на данните
+            td 0.40лв/ученик
+
+
+      .text-center.section-title
+        .total-price 
+          | Общо: 
+          .price.d-inline 0.00
+          | лв. без ДДС
+  
+
+
+
+
+= render 'pages/partials/footer'

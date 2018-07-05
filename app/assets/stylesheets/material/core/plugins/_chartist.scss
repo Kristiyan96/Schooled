@@ -296,6 +296,10 @@
     display: flex;
   }
 
+  .ct-grids, .ct-labels {
+    width: 100%;
+  }
+
   .ct-label.ct-vertical.ct-start {
     -webkit-box-align: flex-end;
     -webkit-align-items: flex-end;

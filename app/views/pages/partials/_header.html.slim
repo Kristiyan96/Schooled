@@ -1,0 +1,18 @@
+header.cd-auto-hide-header.passive
+  .logo
+    a href="/pages/home" 
+      .d-inline SCHOOL
+      | ED
+  nav.cd-primary-nav
+    a.nav-trigger href="#cd-navigation" 
+      span
+        em aria-hidden="true" 
+    ul#cd-navigation
+      li
+        a href="/pages/home" Начало
+      li
+        a href="/pages/price"  Ценоразпис
+      li
+        a href="/pages/contact"  Контакти
+      li
+        = link_to 'Влез', new_user_session_path

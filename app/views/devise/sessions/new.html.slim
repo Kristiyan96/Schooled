@@ -1,44 +1,46 @@
-.page-header.header-filter filter-color="purple"
-  .container
-    .row
-      .col-md-10
-        .card.card-signup
-          h2.card-title.text-center Вход
-          .card-body
-            .row
-              .col-md-5.mr-auto
-                = form_for(:user, url: session_path(:user)) do |f|  
-                  .form-group
-                    .input-group
-                      .input-group-prepend
-                        span.input-group-text
-                          i.material-icons mail
-                      = f.email_field :email, placeholder: "Имейл...", class: 'form-control' 
-                  .form-group
-                    .input-group
-                      .input-group-prepend
-                        span.input-group-text
-                          i.material-icons lock_outline
-                      = f.password_field :password, placeholder: "Парола...", class: 'form-control' 
-                  .text-center
-                    = f.submit "Влез", class: "btn btn-primary btn-round"
-                = render "devise/shared/links"
-              .col-md-5.ml-auto
-                .info.info-horizontal
-                  .icon.icon-info
-                    i.material-icons mobile_friendly
-                  .description
-                    h4.info-title Удобен на всяко устройство
-                    p.description Модерен и интуитивен дизайн, създаден с внимание към детайла.
-                .info.info-horizontal
-                  .icon.icon-primary
-                    i.material-icons flash_on
-                  .description
-                    h4.info-title Лесен за ползване
-                    p.description Следва всеобщо познати конвенции за организация на съдържанието.
-                .info.info-horizontal
-                  .icon.icon-rose
-                    i.material-icons favorite
-                  .description
-                    h4.info-title Създаден с грижа
-             
+= render 'pages/partials/header'
+
+.login-page.page
+
+  section.full-height.row.page-login
+    .container
+      .section-title Вход
+      .row.col-xs-12.col-md-8.offset-md-2
+        .col-md-6
+          = form_for(:user, url: session_path(:user)) do |f|  
+            .form-group
+              .input-group
+                .input-group-prepend
+                  span.input-group-text
+                    i.material-icons mail
+                = f.email_field :email, placeholder: "Имейл...", class: 'form-control' 
+            .form-group
+              .input-group
+                .input-group-prepend
+                  span.input-group-text
+                    i.material-icons lock_outline
+                = f.password_field :password, placeholder: "Парола...", class: 'form-control' 
+            .text-center
+              = f.submit "Влез", class: "btn btn-primary btn-round"
+          = render "devise/shared/links"
+        .col-md-6
+          .info.info-horizontal
+            .icon.icon-info
+              i.material-icons mobile_friendly
+            .description
+              h4.info-title Удобен на всяко устройство
+              p.description Модерен и интуитивен дизайн, създаден с внимание към детайла.
+          .info.info-horizontal
+            .icon.icon-primary
+              i.material-icons flash_on
+            .description
+              h4.info-title Лесен за ползване
+              p.description Следва всеобщо познати конвенции за организация на съдържанието.
+          .info.info-horizontal
+            .icon.icon-rose
+              i.material-icons favorite
+            .description
+              h4.info-title Създаден с любов
+       
+
+= render 'pages/partials/footer'

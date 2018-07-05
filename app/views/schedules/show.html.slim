@@ -2,24 +2,25 @@
 
 .card
   .card-body
-    .tab-content.text-center
+    .tab-content
+
       #absence.tab-pane.active
         table.table.table-hover
-          tbody id="#{@school.active_school_year.active_term}"
-            = render partial: 'absences/student_row', collection: @group.students.order(:number_in_class), as: :student, locals: {term: @school.active_school_year.active_term}
+          tbody id="#{@term}"
+            = render partial: 'absences/student_row', collection: @group.students.order(:number_in_class), as: :student, locals: {term: @term}
+      
       #mark.tab-pane
         table.table.table-hover
-          tbody id="#{@school.active_school_year.active_term}"
-            = render partial: 'marks/student_row', collection: @group.students.order(:number_in_class), as: :student, locals: {term: @school.active_school_year.active_term}
-            = render 'marks/edit_modal'
+          tbody id="#{@term}"
+            = render partial: 'marks/student_row', collection: @group.students.order(:number_in_class), as: :student, locals: {term: @term}
+          
+      
       #homework.tab-pane
         = render partial: 'homeworks/homework_row', collection: @group.homeworks.where(course: @course), as: :homework
 
-        = render 'homeworks/add_homework_modal'
-        = render 'homeworks/edit_homework_modal'
-
         .offset-md-3
           button.btn.btn-success.btn-sm type="button" data-toggle="modal" data-target="#add-homework-modal" Добави домашно
+      
       #topic.tab-pane
         = form_with scope: :schedule, url: school_group_schedule_path(@school, @group, @schedule), remote: true do |f|
           .form-group.no-margin.col-xs-10.offset-xs-1
@@ -30,5 +31,6 @@
           = f.submit 'Запази', class: 'btn btn-primary btn-sm pull-right'
 
 
-
-
+= render 'homeworks/add_homework_modal'
+= render 'homeworks/edit_homework_modal'
+= render 'marks/edit_modal'

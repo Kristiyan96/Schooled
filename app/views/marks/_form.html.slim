@@ -1,4 +1,4 @@
-= form_with(scope: :mark, url: school_group_marks_path(@school, @group, course_id: @course.id), remote: true) do |f|
+= form_with(scope: :mark, url: school_group_marks_path(@school, @group, course_id: @course.id, schedule_id: @schedule.try(:id)), remote: true) do |f|
   .col-md-11
     .row
       button.add-mark.btn.btn-sm.btn-default.col 2

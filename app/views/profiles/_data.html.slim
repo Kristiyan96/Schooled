@@ -46,39 +46,39 @@
     .tab-content
       #marks.tab-pane.active.show
         table.table.table-bordered.table-hover.table-sm
-          thead
+          thead.text-center
             tr
               td 
-              th.text-center colspan="2" Първи срок
-              th.text-center colspan="2" Втори срок
-              th.text-right Годишна
+              th colspan="2" Първи срок
+              th colspan="2" Втори срок
+              th Годишна
             tr
               th Предмет
-              td.text-center Текущи
-              td.text-center Срочна
-              td.text-center Текущи
-              td.text-center Срочна
+              td Текущи
+              td Срочна
+              td Текущи
+              td Срочна
               td
           tbody
             = render partial: 'marks', collection: @courses, as: :course
 
       #absences.tab-pane
         table.table.table-bordered.table-hover.table-sm
-          thead
+          thead.text-center
             tr
               th Предмет
-              th.text-center Закъснения
-              th.text-center Неизвинени
-              th.text-center Сбор неизвинени
-              th.text-center Извинени
-          tbody
+              th Закъснения
+              th Неизвинени
+              th Сбор неизвинени
+              th Извинени
+          tbody.text-center
             = render partial: 'absences', collection: @courses, as: :course
             tr.text-primary
               th Общо
-              th.text-center = Absence.where(student: @user, value: 0.5).count
-              th.text-center = Absence.where(student: @user, value: 1, category: 'permanent').count
-              th.text-center = Absence.where(student: @user, category: 'permanent').sum(:value).formatted
-              th.text-center = Absence.where(student: @user, category: 'excused').sum(:value).formatted
+              th = Absence.where(student: @user, value: 0.5).count
+              th = Absence.where(student: @user, value: 1, category: 'permanent').count
+              th = Absence.where(student: @user, category: 'permanent').sum(:value).formatted
+              th = Absence.where(student: @user, category: 'excused').sum(:value).formatted
 
       #remarks.tab-pane
         table.table
